@@ -7,7 +7,10 @@ namespace MpesaLib
 {
     public class Token
     {
-        public string access_token { get; set; }
+        /*Property names required like this for json, can be refactored**/
+#pragma warning disable IDE1006 // Naming Styles
+        public string access_token { get; set; } 
+#pragma warning restore IDE1006 // Naming Styles
         public string expires_in { get; set; }
     }
 }
