@@ -11,9 +11,17 @@ using System.Web;
 namespace MpesaLib
 {
     public class MpesaTransaction : IMpesaTransaction
-    {      
+    {
+        private string _consumerKey;
+        private string _consumerSecret;
 
-        public static async Task<string> Authenticate(string consumerKey, string consumerSecret)
+        public MpesaTransaction()
+        {
+            _consumerKey = "HzROja3XIZJiCIfzsMj59xyL2GR2S52C";
+            _consumerSecret = "c7cB7AU3c0uyYxxd";
+        }
+
+        public async Task<string> Authenticate(string consumerKey, string consumerSecret)
         {
             HttpClient httpclient = new HttpClient
             {
@@ -22,8 +30,6 @@ namespace MpesaLib
 
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get,httpclient.BaseAddress);
 
-            //consumerKey = "HzROja3XIZJiCIfzsMj59xyL2GR2S52C";
-            //consumerSecret = "c7cB7AU3c0uyYxxd";
             var key = consumerKey + ":" + consumerSecret;
             var keyBytes = System.Text.Encoding.UTF8.GetBytes(key);          
 
@@ -33,22 +39,17 @@ namespace MpesaLib
 
             var content = response.Content;
 
-            string jsonContent = content.ReadAsStringAsync().Result;
-            return jsonContent;
+            //string jsonContent = content.ReadAsStringAsync().Result;
+
+            var token = JsonConvert.DeserializeObject<Token>(content.ReadAsStringAsync().Result);
+            return token.access_token;
         }
 
         //B2C
         public async Task<string> BusinessToCustomer(BusinessToCustomer b2ccontent)
         {
 
-            var consumerKey = "HzROja3XIZJiCIfzsMj59xyL2GR2S52C";
-            var consumerSecret = "c7cB7AU3c0uyYxxd";
-
-            string tokendata = await Authenticate(consumerKey, consumerSecret);
-
-            var accesstoken = JsonConvert.DeserializeObject<Token>(tokendata);
-
-            //string accesstoken = "Fv70J7eOJeGxHJIYM9te3V9WV9vt";
+            var accesstoken = await Authenticate(_consumerKey, _consumerSecret);
 
             HttpClient httpclient = new HttpClient
             {
@@ -82,17 +83,15 @@ namespace MpesaLib
 
             HttpResponseMessage response = await httpclient.SendAsync(request);
 
-            var content = response.Content;
+            Console.WriteLine(accesstoken); //write access token to console
 
-            string jsonContent = content.ReadAsStringAsync().Result;
-            Console.WriteLine(jsonContent);
-            return jsonContent;
+            return response.Content.ReadAsStringAsync().Result;
         }
 
         //Lipa_Na_Mpesa_Online
         public async Task<string> LipaNaMpesaOnline(LipaNaMpesaOnline lipa)
         {
-            string accesstoken = "Fv70J7eOJeGxHJIYM9te3V9WV9vt";         
+            var accesstoken = await Authenticate(_consumerKey, _consumerSecret);
 
             HttpClient httpclient = new HttpClient
             {
@@ -127,18 +126,21 @@ namespace MpesaLib
 
             HttpResponseMessage response = await httpclient.SendAsync(request);
 
-            var content = response.Content;
+            Console.WriteLine(accesstoken);
 
-            string jsonContent = content.ReadAsStringAsync().Result;
-            Console.WriteLine(jsonContent);
-            return jsonContent;
+            return response.Content.ReadAsStringAsync().Result;
 
         }
 
         
 
-        public Task<string> BusinessToBusiness(BusinessToBusiness b2b)
+        public async Task<string> BusinessToBusiness(BusinessToBusiness b2b)
         {
+            string tokendata = await Authenticate(_consumerKey, _consumerSecret);
+
+            var accesstoken = JsonConvert.DeserializeObject<Token>(tokendata);
+
+
             throw new NotImplementedException();
         }     
 

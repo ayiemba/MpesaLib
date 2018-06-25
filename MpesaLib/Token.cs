@@ -7,12 +7,9 @@ using System.Threading.Tasks;
 namespace MpesaLib
 {
     public class Token
-    {
-      
-        [JsonProperty]
-        public string access_token { get; set; }
-
-        [JsonProperty]
+    {     
+        public string access_token { get; set; } 
+        
         public string expires_in { get; set; }
     }
 }

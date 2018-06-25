@@ -14,11 +14,11 @@ namespace MpesaLibTests
                 CommandID = "BusinessPayment",
                 InitiatorName = "testapi",
                 Occasion = "test",
-                PartyA = "600525",
-                PartyB = "254708374149",
-                QueueTimeOutURL = "https://hookbin.com/bin/Z8aaN0Ob",
-                ResultURL = "https://hookbin.com/bin/Z8aaN0Ob",
-                SecurityCredential = "FE1MVFVDYtgrsJMfWYd8w4pxeup1fhR/qjgcacwA1JiWgn1eSXCc28+N00fm213AWr7yg4ltL+jFJG9szVcuQ2wtPywrH80a0lU9WqycBMWL7C6G6oRrD/mAeeFxfDnLY3yx5D9Anp+GlC3LH+srThvPbNoU4ZJiMwKq4IDedjVPza8rf1rjW4in4zxbbX2Z3++xUWVqix6rCwLCNNHgV7OzrLljCRQdI+hzCfjsppHc8gy5hxHjW3QoaBCBxGHwlhs/jJxh/dv37JxK5y85rfbqd/Vv51RIfvfsxurY/bH7OoKQ06XFCHl6cC27rPMaRsDp9GM7WJkXLYt4SE6dtg=="
+                PartyA = "600157",
+                PartyB = "600000",
+                QueueTimeOutURL = "http://mockbin.org/bin/7e613f32-e00a-48d3-86e4-9088e4f96ffa",
+                ResultURL = "http://mockbin.org/bin/7e613f32-e00a-48d3-86e4-9088e4f96ffa",
+                SecurityCredential = "BPWkcbLlh3gLaAe5rxIdHC7zKpxHZJmuYAnIsTsXUdH1O5tcOQ/HCtg0GVs87GUfDkQcazyztAViU/kCQjua199XwCoYakNnZwiNC8UgF4t4PzX2g0PogVd4Pn5UQpMA1+B8DeVszF10KN2w6KAaMugSNbJqb9b6iE2ykDRycANmN6hbtfAEA7el5y4fas6+KImiBmhmplRc8P9GvohLYxRLPct3q0A58Sf9mz9w5uuKF7ZmYJlpI8YY2pWQq1GIedYY63OIFamHu1PVufZmbc/lmq/hWO9C3AcfKN9dnP6bkO4Y/TeC8HvvkooxpWl+eCe7AyUAk9OIjcIiAzh05w=="
 
 
             };
@@ -31,8 +31,8 @@ namespace MpesaLibTests
                 PartyA = "254708374149",
                 PartyB = "174379",
                 BusinessShortCode = "174379",
-                CallBackURL = "https://hookbin.com/bin/Z8aaN0Ob",
-                Password = "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919",
+                CallBackURL = "http://mockbin.org/bin/7e613f32-e00a-48d3-86e4-9088e4f96ffa",
+                Password = "M0bileST!!",
                 PhoneNumber = "254708374149",
                 Timestamp = new DateTimeOffset(DateTime.UtcNow).ToUnixTimeSeconds().ToString(),
                 TransactionDesc = "test",
