@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using MpesaLib.Interfaces;
+using MpesaLib.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -36,15 +38,17 @@ namespace MpesaLib
         }
 
         //B2C
-        public async Task<string> BusinessToCustomer(string InitiatorName, string SecurityCredential,
-            string CommandID, string Amount, string PartyA, string PartyB, string Remarks,
-            string QueueTimeOutURL, string ResultURL, string Occasion)
+        public async Task<string> BusinessToCustomer(BusinessToCustomer b2ccontent)
         {
-            B2C b2ccontent = new B2C();
 
-            //string tokendata = await Authenticate();         
-            //var tokenresult = JsonConvert.DeserializeObject<Token>(tokendata);
-            string accesstoken = "Fv70J7eOJeGxHJIYM9te3V9WV9vt";
+            var consumerKey = "HzROja3XIZJiCIfzsMj59xyL2GR2S52C";
+            var consumerSecret = "c7cB7AU3c0uyYxxd";
+
+            string tokendata = await Authenticate(consumerKey, consumerSecret);
+
+            var accesstoken = JsonConvert.DeserializeObject<Token>(tokendata);
+
+            //string accesstoken = "Fv70J7eOJeGxHJIYM9te3V9WV9vt";
 
             HttpClient httpclient = new HttpClient
             {
@@ -86,13 +90,9 @@ namespace MpesaLib
         }
 
         //Lipa_Na_Mpesa_Online
-        public async Task<string> LipaNaMpesaOnline(string BusinessShortCode, string Password, string Timestamp,
-            string TransactionType, string Amount, string PartyA, string PartyB, string PhoneNumber,
-            string CallBackURL, string AccountReference, string TransactionDesc)
+        public async Task<string> LipaNaMpesaOnline(LipaNaMpesaOnline lipa)
         {
-            LipaNaMpesaOnline lipa = new LipaNaMpesaOnline();
-            string accesstoken = "Fv70J7eOJeGxHJIYM9te3V9WV9vt";
-            lipa.Timestamp = new DateTimeOffset(DateTime.UtcNow).ToUnixTimeSeconds().ToString();
+            string accesstoken = "Fv70J7eOJeGxHJIYM9te3V9WV9vt";         
 
             HttpClient httpclient = new HttpClient
             {
@@ -135,52 +135,41 @@ namespace MpesaLib
 
         }
 
-        public Task<string> AccountBalance(string Initiator, string SecurityCredential, string CommandID, 
-            string Amount, string PartyA, string IdentifierType, string Remarks, string QueueTimeOutURL, string ResultURL)
-        {
-            throw new NotImplementedException();
-        }
+        
 
-        public Task<string> BusinessToBusiness(string Initiator, string SecurityCredential, 
-            string CommandID, string SenderIdentifierType, string RecieverIdentifierType, 
-            string Amount, string PartyA, string PartyB, string AccountReference, string Remarks, 
-            string QueueTimeOutURL, string ResultURL)
+        public Task<string> BusinessToBusiness(BusinessToBusiness b2b)
         {
             throw new NotImplementedException();
         }     
 
-        public Task<string> CustomerToBusinessRegister(string ShortCode, string ResponseType, 
-            string ConfirmationURL, string ValidationURL)
+        public Task<string> CustomerToBusinessRegister(CustomerToBusinessRegister c2bregister)
         {
             throw new NotImplementedException();
         }
 
-        public Task<string> CustomerToBusinessSimulate(string ShortCode, string CommandID,
-            string Amount, string Msisdn, string BillRefNumber)
+        public Task<string> CustomerToBusinessSimulate(CustomerToBusinessSimulate c2bsimulate)
         {
             throw new NotImplementedException();
         }
 
-        public Task<string> LipaNaMpesaQuery(string BusinessShortCode, string Password, 
-            string Timestamp, string CheckoutRequestID)
+        public Task<string> LipaNaMpesaQuery(LipaNaMpesaQuery query)
         {
             throw new NotImplementedException();
         }
 
-        public Task<string> Reversal(string InitiatorName, string SecurityCredential, string CommandID, 
-            string TransactionID, string Amount, string ReceiverParty, string RecieverIdentifierType, 
-            string Remarks, string QueueTimeOutURL, string ResultURL, string Occasion)
+        public Task<string> Reversal(Reversal reversal)
         {
             throw new NotImplementedException();
         }
 
-        public Task<string> TransactionStatus(string Initiator, string SecurityCredential, string CommandID, 
-            string TransactionID, string PartyA, string IdentifierType, string Remarks, 
-            string QueueTimeOutURL, string ResultURL, string Occasion)
+        public Task<string> TransactionStatus(TransactionStatus status)
         {
             throw new NotImplementedException();
-        }    
+        }
 
-
+        public Task<string> AccountBalance(AccountBalance balance)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
