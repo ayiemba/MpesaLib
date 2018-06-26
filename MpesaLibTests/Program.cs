@@ -1,6 +1,7 @@
 ﻿using MpesaLib;
 using Newtonsoft.Json;
 using System;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace MpesaLibTests
@@ -9,18 +10,17 @@ namespace MpesaLibTests
     {
         public static void Main(string[] args)
         {
-            //var consumerKey = "HzROja3XIZJiCIfzsMj59xyL2GR2S52C";
-            //var consumerSecret = "c7cB7AU3c0uyYxxd";
+            //These Keys should come from a configuration file
+            //DO NOT rely on these keys, they are just for testing and are deleted once used
+            //Create your own key from https://developer.safaricom.co.ke/
+            var consumerKey = "vHlWQgAamTdrA2MFRUGdfVCKESOvBGmu";
+            var consumerSecret = "lG7aQLJOdXmVwVAg";
 
             var items = new Items();
 
-            var transaction = new MpesaTransaction();
+            var transaction = new MpesaTransaction(new HttpClient(), consumerKey, consumerSecret);
 
-
-
-            
-
-           var lipaNaMpesa = transaction.LipaNaMpesaOnline(items.lipaOnline);           
+            var lipaNaMpesa = transaction.LipaNaMpesaOnline(items.lipaOnline);           
 
             var b2c = transaction.BusinessToCustomer(items.b2c);
 
