@@ -29,17 +29,16 @@ namespace MpesaLib
             var BaseAddress = new Uri("https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials");
 
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, BaseAddress);
+            
 
-           // var key = consumerKey + ":" + consumerSecret;
-            var keyBytes = System.Text.Encoding.UTF8.GetBytes(consumerKey + ":" + consumerSecret);          
+            var keyBytes = System.Text.Encoding.UTF8.GetBytes(consumerKey + ":" + consumerSecret);
+            request.Headers.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(keyBytes));
 
-            _httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(keyBytes));
+            //_httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(keyBytes));
 
             HttpResponseMessage response = await _httpclient.SendAsync(request);
 
             var content = response.Content;
-
-            //string jsonContent = content.ReadAsStringAsync().Result;
 
             var token = JsonConvert.DeserializeObject<Token>(content.ReadAsStringAsync().Result);
             return token.access_token;
@@ -55,7 +54,7 @@ namespace MpesaLib
 
             _httpclient.DefaultRequestHeaders.Accept.Clear();
             _httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            _httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Authorization", "Bearer " + accesstoken);
+            //_httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Authorization", "Bearer " + accesstoken);
 
             var values = new List<KeyValuePair<string, string>>
             {
@@ -76,9 +75,12 @@ namespace MpesaLib
                 Content = new FormUrlEncodedContent(values)
             };
 
+            request.Headers.Authorization = new AuthenticationHeaderValue("Authorization", "Bearer " + accesstoken);
+
             HttpResponseMessage response = await _httpclient.SendAsync(request);
 
-            //TODO: Remove the following line once everything works smoothly
+            //TODO: Remove the following line once everything works smoothly, 
+            // this is just to show that an access token is actually received
             Console.WriteLine(accesstoken); 
 
             return response.Content.ReadAsStringAsync().Result;
@@ -93,8 +95,7 @@ namespace MpesaLib
 
             _httpclient.DefaultRequestHeaders.Accept.Clear();
             _httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            _httpclient.DefaultRequestHeaders
-                .Authorization = new AuthenticationHeaderValue("Authorization", "Bearer " + accesstoken);
+           // _httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Authorization", "Bearer " + accesstoken);
 
             var values = new List<KeyValuePair<string, string>>
             {
@@ -116,6 +117,8 @@ namespace MpesaLib
                 Content = new FormUrlEncodedContent(values)
             };
 
+            request.Headers.Authorization = new AuthenticationHeaderValue("Authorization", "Bearer " + accesstoken);
+
 
             HttpResponseMessage response = await _httpclient.SendAsync(request);
 
@@ -130,42 +133,269 @@ namespace MpesaLib
 
         public async Task<string> BusinessToBusiness(BusinessToBusiness b2b)
         {
-            string tokendata = await Authenticate(_consumerKey, _consumerSecret);
+            var accesstoken = await Authenticate(_consumerKey, _consumerSecret);
 
-            var accesstoken = JsonConvert.DeserializeObject<Token>(tokendata);
+            var BaseAddress = new Uri("https://sandbox.safaricom.co.ke/mpesa/b2b/v1/paymentrequest");
+            _httpclient.DefaultRequestHeaders.Accept.Clear();
+            _httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            //_httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Authorization", "Bearer " + accesstoken);
+
+            var values = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("Initiator", b2b.Initiator),
+                new KeyValuePair<string, string>("SecurityCredential", b2b.SecurityCredential),
+                new KeyValuePair<string, string>("CommandID", b2b.CommandID),
+                new KeyValuePair<string, string>("SenderIdentifierType", b2b.SenderIdentifierType),
+                new KeyValuePair<string, string>("RecieverIdentifierType", b2b.RecieverIdentifierType),
+                new KeyValuePair<string, string>("Amount", b2b.Amount),
+                new KeyValuePair<string, string>("PartyA", b2b.PartyA),
+                new KeyValuePair<string, string>("PartyB", b2b.PartyB),
+                new KeyValuePair<string, string>("AccountReference", b2b.AccountReference),
+                new KeyValuePair<string, string>("Remarks", b2b.Remarks),
+                new KeyValuePair<string, string>("QueueTimeOutURL", b2b.QueueTimeOutURL),
+                new KeyValuePair<string, string>("ResultURL", b2b.ResultURL),
+            };
+
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, BaseAddress)
+            {
+                Content = new FormUrlEncodedContent(values)
+            };
+
+            request.Headers.Authorization = new AuthenticationHeaderValue("Authorization", "Bearer " + accesstoken);
 
 
-            throw new NotImplementedException();
+            HttpResponseMessage response = await _httpclient.SendAsync(request);
+
+            //TODO: Remove the following line once everything works smoothly
+            Console.WriteLine(accesstoken);
+
+            return response.Content.ReadAsStringAsync().Result;
         }     
 
-        public Task<string> CustomerToBusinessRegister(CustomerToBusinessRegister c2bregister)
+        public async Task<string> CustomerToBusinessRegister(CustomerToBusinessRegister c2bregister)
         {
-            throw new NotImplementedException();
+            var accesstoken = await Authenticate(_consumerKey, _consumerSecret);
+
+            var BaseAddress = new Uri("https://sandbox.safaricom.co.ke/mpesa/c2b/v1/registerurl");
+            _httpclient.DefaultRequestHeaders.Accept.Clear();
+            _httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            //_httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Authorization", "Bearer " + accesstoken);
+
+            var values = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("ShortCode", c2bregister.ShortCode),
+                new KeyValuePair<string, string>("ResponseType", c2bregister.ResponseType),
+                new KeyValuePair<string, string>("ConfirmationURL", c2bregister.ConfirmationURL),
+                new KeyValuePair<string, string>("ValidationURL", c2bregister.ValidationURL)
+               
+            };
+
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, BaseAddress)
+            {
+                Content = new FormUrlEncodedContent(values)
+            };
+
+            request.Headers.Authorization = new AuthenticationHeaderValue("Authorization", "Bearer " + accesstoken);
+
+
+            HttpResponseMessage response = await _httpclient.SendAsync(request);
+
+            //TODO: Remove the following line once everything works smoothly
+            Console.WriteLine(accesstoken);
+
+            return response.Content.ReadAsStringAsync().Result;
         }
 
-        public Task<string> CustomerToBusinessSimulate(CustomerToBusinessSimulate c2bsimulate)
+        public async Task<string> CustomerToBusinessSimulate(CustomerToBusinessSimulate c2bsimulate)
         {
-            throw new NotImplementedException();
+            var accesstoken = await Authenticate(_consumerKey, _consumerSecret);
+
+            var BaseAddress = new Uri("https://sandbox.safaricom.co.ke/mpesa/c2b/v1/simulate");
+
+            _httpclient.DefaultRequestHeaders.Accept.Clear();
+            _httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            //_httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Authorization", "Bearer " + accesstoken);
+
+            var values = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("ShortCode", c2bsimulate.ShortCode),
+                new KeyValuePair<string, string>("CommandID", c2bsimulate.CommandID),
+                new KeyValuePair<string, string>("Amount", c2bsimulate.Amount),
+                new KeyValuePair<string, string>("Msisdn", c2bsimulate.Msisdn),
+                new KeyValuePair<string, string>("BillRefNumber", c2bsimulate.BillRefNumber)
+                
+            };
+
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, BaseAddress)
+            {
+                Content = new FormUrlEncodedContent(values)
+            };
+
+            request.Headers.Authorization = new AuthenticationHeaderValue("Authorization", "Bearer " + accesstoken);
+
+
+            HttpResponseMessage response = await _httpclient.SendAsync(request);
+
+            //TODO: Remove the following line once everything works smoothly
+            Console.WriteLine(accesstoken);
+
+            return response.Content.ReadAsStringAsync().Result;
         }
 
-        public Task<string> LipaNaMpesaQuery(LipaNaMpesaQuery query)
+        public async Task<string> LipaNaMpesaQuery(LipaNaMpesaQuery query)
         {
-            throw new NotImplementedException();
+            var accesstoken = await Authenticate(_consumerKey, _consumerSecret);
+
+            var BaseAddress = new Uri("https://sandbox.safaricom.co.ke/mpesa/stkpushquery/v1/query");
+
+            _httpclient.DefaultRequestHeaders.Accept.Clear();
+            _httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            //_httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Authorization", "Bearer " + accesstoken);
+
+            var values = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("BusinessShortCode", query.BusinessShortCode),
+                new KeyValuePair<string, string>("Password", query.Password),
+                new KeyValuePair<string, string>("Timestamp", query.Timestamp),
+                new KeyValuePair<string, string>("CheckoutRequestID", query.CheckoutRequestID)
+                
+            };
+
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, BaseAddress)
+            {
+                Content = new FormUrlEncodedContent(values)
+            };
+
+            request.Headers.Authorization = new AuthenticationHeaderValue("Authorization", "Bearer " + accesstoken);
+
+
+            HttpResponseMessage response = await _httpclient.SendAsync(request);
+
+            //TODO: Remove the following line once everything works smoothly
+            Console.WriteLine(accesstoken);
+
+            return response.Content.ReadAsStringAsync().Result;
         }
 
-        public Task<string> Reversal(Reversal reversal)
+        public async Task<string> Reversal(Reversal reversal)
         {
-            throw new NotImplementedException();
+            var accesstoken = await Authenticate(_consumerKey, _consumerSecret);
+
+            var BaseAddress = new Uri("https://sandbox.safaricom.co.ke/mpesa/reversal/v1/request");
+
+            _httpclient.DefaultRequestHeaders.Accept.Clear();
+            _httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            //_httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Authorization", "Bearer " + accesstoken);
+
+            var values = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("Initiator", reversal.Initiator),
+                new KeyValuePair<string, string>("SecurityCredential", reversal.SecurityCredential),
+                new KeyValuePair<string, string>("CommandID", reversal.CommandID),
+                new KeyValuePair<string, string>("TransactionID", reversal.TransactionID),
+                new KeyValuePair<string, string>("Amount", reversal.Amount),
+                new KeyValuePair<string, string>("ReceiverParty", reversal.ReceiverParty),
+                new KeyValuePair<string, string>("RecieverIdentifierType", reversal.RecieverIdentifierType),
+                new KeyValuePair<string, string>("ResultURL", reversal.ResultURL),
+                new KeyValuePair<string, string>("QueueTimeOutURL", reversal.QueueTimeOutURL),
+                new KeyValuePair<string, string>("Remarks", reversal.Remarks),
+                new KeyValuePair<string, string>("Occasion", reversal.Occasion)
+                
+            };
+
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, BaseAddress)
+            {
+                Content = new FormUrlEncodedContent(values)
+            };
+
+            request.Headers.Authorization = new AuthenticationHeaderValue("Authorization", "Bearer " + accesstoken);
+
+
+            HttpResponseMessage response = await _httpclient.SendAsync(request);
+
+            //TODO: Remove the following line once everything works smoothly
+            Console.WriteLine(accesstoken);
+
+            return response.Content.ReadAsStringAsync().Result;
         }
 
-        public Task<string> TransactionStatus(TransactionStatus status)
+        public async Task<string> TransactionStatus(TransactionStatus status)
         {
-            throw new NotImplementedException();
+            var accesstoken = await Authenticate(_consumerKey, _consumerSecret);
+
+            var BaseAddress = new Uri("https://sandbox.safaricom.co.ke/mpesa/transactionstatus/v1/query");
+
+            _httpclient.DefaultRequestHeaders.Accept.Clear();
+            _httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            //_httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Authorization", "Bearer " + accesstoken);
+
+            var values = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("Initiator", status.Initiator),
+                new KeyValuePair<string, string>("SecurityCredential", status.SecurityCredential),
+                new KeyValuePair<string, string>("CommandID", status.CommandID),
+                new KeyValuePair<string, string>("TransactionID", status.TransactionID),
+                new KeyValuePair<string, string>("PartyA", status.PartyA),
+                new KeyValuePair<string, string>("IdentifierType", status.IdentifierType),
+                new KeyValuePair<string, string>("ResultURL", status.ResultURL),
+                new KeyValuePair<string, string>("QueueTimeOutURL", status.QueueTimeOutURL),
+                new KeyValuePair<string, string>("Remarks", status.Remarks),
+                new KeyValuePair<string, string>("Occasion", status.Occasion)
+                
+            };
+
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, BaseAddress)
+            {
+                Content = new FormUrlEncodedContent(values)
+            };
+
+            request.Headers.Authorization = new AuthenticationHeaderValue("Authorization", "Bearer " + accesstoken);
+
+
+            HttpResponseMessage response = await _httpclient.SendAsync(request);
+
+            //TODO: Remove the following line once everything works smoothly
+            Console.WriteLine(accesstoken);
+
+            return response.Content.ReadAsStringAsync().Result;
         }
 
-        public Task<string> AccountBalance(AccountBalance balance)
+        public async Task<string> AccountBalance(AccountBalance balance)
         {
-            throw new NotImplementedException();
+            var accesstoken = await Authenticate(_consumerKey, _consumerSecret);
+
+            var BaseAddress = new Uri("https://sandbox.safaricom.co.ke/mpesa/accountbalance/v1/query");
+
+            _httpclient.DefaultRequestHeaders.Accept.Clear();
+            _httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            //_httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Authorization", "Bearer " + accesstoken);
+
+            var values = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("Initiator", balance.Initiator),
+                new KeyValuePair<string, string>("SecurityCredential", balance.SecurityCredential),
+                new KeyValuePair<string, string>("CommandID", balance.CommandID),
+                new KeyValuePair<string, string>("PartyA", balance.PartyA),
+                new KeyValuePair<string, string>("IdentifierType", balance.IdentifierType),
+                new KeyValuePair<string, string>("Remarks", balance.Remarks),
+                new KeyValuePair<string, string>("QueueTimeOutURL", balance.QueueTimeOutURL),
+                new KeyValuePair<string, string>("ResultURL", balance.ResultURL),
+            };
+
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, BaseAddress)
+            {
+                Content = new FormUrlEncodedContent(values)
+            };
+
+            request.Headers.Authorization = new AuthenticationHeaderValue("Authorization", "Bearer " + accesstoken);
+
+
+            HttpResponseMessage response = await _httpclient.SendAsync(request);
+
+            //TODO: Remove the following line once everything works smoothly
+            Console.WriteLine(accesstoken);
+
+            return response.Content.ReadAsStringAsync().Result;
         }
     }
 }

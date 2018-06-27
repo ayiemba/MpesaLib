@@ -24,12 +24,16 @@ namespace MpesaLibTests
 
             var b2c = transaction.BusinessToCustomer(items.b2c);
 
+            var c2bsim = transaction.CustomerToBusinessSimulate(items.c2b);
+
 
             Console.WriteLine("Starting Simulations...");
 
-            Console.WriteLine(lipaNaMpesa.Result);
+            //Console.WriteLine(lipaNaMpesa.Result);
             Console.WriteLine("=================================================");
-            Console.WriteLine(b2c.Result);
+            //Console.WriteLine(b2c.Result);
+            Console.WriteLine("===============================================");
+            Console.WriteLine(c2bsim.Result);
 
         }
 

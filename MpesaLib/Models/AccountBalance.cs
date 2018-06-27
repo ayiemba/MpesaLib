@@ -8,7 +8,7 @@ namespace MpesaLib.Models
     {
         public string Initiator { get; set; }
         public string SecurityCredential { get; set; }
-        public string CommandID { get; set; }
+        public string CommandID { get; } = "AccountBalance";
         public string Amount { get; set; }
         public string PartyA { get; set; }
         public string IdentifierType { get; set; }
