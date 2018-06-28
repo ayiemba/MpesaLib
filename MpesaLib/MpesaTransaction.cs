@@ -14,13 +14,13 @@ namespace MpesaLib
     {
         private readonly string _consumerKey;
         private readonly string _consumerSecret;
-        private static HttpClient _httpclient;
+        private readonly IHttpClientService _httpclient;
 
-        public MpesaTransaction(HttpClient httpclient, string consumerKey, string consumerSecret)
+        public MpesaTransaction(IHttpClientService clientService, string consumerKey, string consumerSecret)
         {
             _consumerKey = consumerKey;
             _consumerSecret = consumerSecret;
-            _httpclient = httpclient;
+            _httpclient = clientService;
         }
 
         public async Task<string> Authenticate(string consumerKey, string consumerSecret)
@@ -36,7 +36,7 @@ namespace MpesaLib
 
             //_httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(keyBytes));
 
-            HttpResponseMessage response = await _httpclient.SendAsync(request);
+            HttpResponseMessage response = await _httpclient.Client.SendAsync(request);
 
             var content = response.Content;
 
@@ -52,8 +52,8 @@ namespace MpesaLib
             
             var BaseAddress = new Uri("https://sandbox.safaricom.co.ke/mpesa/b2c/v1/paymentrequest");
 
-            _httpclient.DefaultRequestHeaders.Accept.Clear();
-            _httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            _httpclient.Client.DefaultRequestHeaders.Accept.Clear();
+            _httpclient.Client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             //_httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Authorization", "Bearer " + accesstoken);
 
             var values = new List<KeyValuePair<string, string>>
@@ -77,7 +77,7 @@ namespace MpesaLib
 
             request.Headers.Authorization = new AuthenticationHeaderValue("Authorization", "Bearer " + accesstoken);
 
-            HttpResponseMessage response = await _httpclient.SendAsync(request);
+            HttpResponseMessage response = await _httpclient.Client.SendAsync(request);
 
             //TODO: Remove the following line once everything works smoothly, 
             // this is just to show that an access token is actually received
@@ -93,8 +93,8 @@ namespace MpesaLib
 
             var BaseAddress = new Uri("https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest");
 
-            _httpclient.DefaultRequestHeaders.Accept.Clear();
-            _httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            _httpclient.Client.DefaultRequestHeaders.Accept.Clear();
+            _httpclient.Client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
            // _httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Authorization", "Bearer " + accesstoken);
 
             var values = new List<KeyValuePair<string, string>>
@@ -120,7 +120,7 @@ namespace MpesaLib
             request.Headers.Authorization = new AuthenticationHeaderValue("Authorization", "Bearer " + accesstoken);
 
 
-            HttpResponseMessage response = await _httpclient.SendAsync(request);
+            HttpResponseMessage response = await _httpclient.Client.SendAsync(request);
 
             //TODO: Remove the following line once everything works smoothly
             Console.WriteLine(accesstoken);
@@ -136,8 +136,8 @@ namespace MpesaLib
             var accesstoken = await Authenticate(_consumerKey, _consumerSecret);
 
             var BaseAddress = new Uri("https://sandbox.safaricom.co.ke/mpesa/b2b/v1/paymentrequest");
-            _httpclient.DefaultRequestHeaders.Accept.Clear();
-            _httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            _httpclient.Client.DefaultRequestHeaders.Accept.Clear();
+            _httpclient.Client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             //_httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Authorization", "Bearer " + accesstoken);
 
             var values = new List<KeyValuePair<string, string>>
@@ -164,7 +164,7 @@ namespace MpesaLib
             request.Headers.Authorization = new AuthenticationHeaderValue("Authorization", "Bearer " + accesstoken);
 
 
-            HttpResponseMessage response = await _httpclient.SendAsync(request);
+            HttpResponseMessage response = await _httpclient.Client.SendAsync(request);
 
             //TODO: Remove the following line once everything works smoothly
             Console.WriteLine(accesstoken);
@@ -177,8 +177,8 @@ namespace MpesaLib
             var accesstoken = await Authenticate(_consumerKey, _consumerSecret);
 
             var BaseAddress = new Uri("https://sandbox.safaricom.co.ke/mpesa/c2b/v1/registerurl");
-            _httpclient.DefaultRequestHeaders.Accept.Clear();
-            _httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            _httpclient.Client.DefaultRequestHeaders.Accept.Clear();
+            _httpclient.Client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             //_httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Authorization", "Bearer " + accesstoken);
 
             var values = new List<KeyValuePair<string, string>>
@@ -198,7 +198,7 @@ namespace MpesaLib
             request.Headers.Authorization = new AuthenticationHeaderValue("Authorization", "Bearer " + accesstoken);
 
 
-            HttpResponseMessage response = await _httpclient.SendAsync(request);
+            HttpResponseMessage response = await _httpclient.Client.SendAsync(request);
 
             //TODO: Remove the following line once everything works smoothly
             Console.WriteLine(accesstoken);
@@ -212,8 +212,8 @@ namespace MpesaLib
 
             var BaseAddress = new Uri("https://sandbox.safaricom.co.ke/mpesa/c2b/v1/simulate");
 
-            _httpclient.DefaultRequestHeaders.Accept.Clear();
-            _httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            _httpclient.Client.DefaultRequestHeaders.Accept.Clear();
+            _httpclient.Client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             //_httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Authorization", "Bearer " + accesstoken);
 
             var values = new List<KeyValuePair<string, string>>
@@ -234,7 +234,7 @@ namespace MpesaLib
             request.Headers.Authorization = new AuthenticationHeaderValue("Authorization", "Bearer " + accesstoken);
 
 
-            HttpResponseMessage response = await _httpclient.SendAsync(request);
+            HttpResponseMessage response = await _httpclient.Client.SendAsync(request);
 
             //TODO: Remove the following line once everything works smoothly
             Console.WriteLine(accesstoken);
@@ -248,8 +248,8 @@ namespace MpesaLib
 
             var BaseAddress = new Uri("https://sandbox.safaricom.co.ke/mpesa/stkpushquery/v1/query");
 
-            _httpclient.DefaultRequestHeaders.Accept.Clear();
-            _httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            _httpclient.Client.DefaultRequestHeaders.Accept.Clear();
+            _httpclient.Client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             //_httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Authorization", "Bearer " + accesstoken);
 
             var values = new List<KeyValuePair<string, string>>
@@ -269,7 +269,7 @@ namespace MpesaLib
             request.Headers.Authorization = new AuthenticationHeaderValue("Authorization", "Bearer " + accesstoken);
 
 
-            HttpResponseMessage response = await _httpclient.SendAsync(request);
+            HttpResponseMessage response = await _httpclient.Client.SendAsync(request);
 
             //TODO: Remove the following line once everything works smoothly
             Console.WriteLine(accesstoken);
@@ -283,8 +283,8 @@ namespace MpesaLib
 
             var BaseAddress = new Uri("https://sandbox.safaricom.co.ke/mpesa/reversal/v1/request");
 
-            _httpclient.DefaultRequestHeaders.Accept.Clear();
-            _httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            _httpclient.Client.DefaultRequestHeaders.Accept.Clear();
+            _httpclient.Client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             //_httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Authorization", "Bearer " + accesstoken);
 
             var values = new List<KeyValuePair<string, string>>
@@ -311,7 +311,7 @@ namespace MpesaLib
             request.Headers.Authorization = new AuthenticationHeaderValue("Authorization", "Bearer " + accesstoken);
 
 
-            HttpResponseMessage response = await _httpclient.SendAsync(request);
+            HttpResponseMessage response = await _httpclient.Client.SendAsync(request);
 
             //TODO: Remove the following line once everything works smoothly
             Console.WriteLine(accesstoken);
@@ -325,8 +325,8 @@ namespace MpesaLib
 
             var BaseAddress = new Uri("https://sandbox.safaricom.co.ke/mpesa/transactionstatus/v1/query");
 
-            _httpclient.DefaultRequestHeaders.Accept.Clear();
-            _httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            _httpclient.Client.DefaultRequestHeaders.Accept.Clear();
+            _httpclient.Client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             //_httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Authorization", "Bearer " + accesstoken);
 
             var values = new List<KeyValuePair<string, string>>
@@ -352,7 +352,7 @@ namespace MpesaLib
             request.Headers.Authorization = new AuthenticationHeaderValue("Authorization", "Bearer " + accesstoken);
 
 
-            HttpResponseMessage response = await _httpclient.SendAsync(request);
+            HttpResponseMessage response = await _httpclient.Client.SendAsync(request);
 
             //TODO: Remove the following line once everything works smoothly
             Console.WriteLine(accesstoken);
@@ -366,8 +366,8 @@ namespace MpesaLib
 
             var BaseAddress = new Uri("https://sandbox.safaricom.co.ke/mpesa/accountbalance/v1/query");
 
-            _httpclient.DefaultRequestHeaders.Accept.Clear();
-            _httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            _httpclient.Client.DefaultRequestHeaders.Accept.Clear();
+            _httpclient.Client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             //_httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Authorization", "Bearer " + accesstoken);
 
             var values = new List<KeyValuePair<string, string>>
@@ -390,7 +390,7 @@ namespace MpesaLib
             request.Headers.Authorization = new AuthenticationHeaderValue("Authorization", "Bearer " + accesstoken);
 
 
-            HttpResponseMessage response = await _httpclient.SendAsync(request);
+            HttpResponseMessage response = await _httpclient.Client.SendAsync(request);
 
             //TODO: Remove the following line once everything works smoothly
             Console.WriteLine(accesstoken);
