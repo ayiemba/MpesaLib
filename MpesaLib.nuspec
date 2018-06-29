@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>MpesaLib</id>
+    <version>$version$</version>
+    <title>Mpesa C# API Library</title>
+    <authors>Elvis Ayiemba</authors>
+    <owners>Elvis Ayiemba</owners>
+    <licenseUrl>https://github.com/ayiemba/MpesaLib/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://ayiemba.github.io/MpesaLib/</projectUrl>
+    <iconUrl></iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>MpesaLib provides a simple way for C# developers to integrate Mpesa API's into their projetcs.</description>
+    <releaseNotes></releaseNotes>
+    <copyright>Copyright &#x00A9; Geospartan tech.  All rights reserved.</copyright>
+    <tags>mpesa payment billing c2b b2c, lipanampesa</tags>
+  </metadata>
+  <files>
+	<file src="MpesaLib\bin\$configuration$\MpesaLib.dll" target="netstandard2.0\" />
+  </files>
+</package>
