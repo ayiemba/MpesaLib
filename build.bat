@@ -14,7 +14,7 @@ if "%nuget%" == "" (
 	set nuget=nuget
 )
 
-%ProgramFiles(x86)%\Microsoft Visual Studio\Preview\Community\MSBuild\ MpesaLibrary.sln /p:Configuration="%config%" /m /v:M /fl /flp:LogFile=msbuild.log;Verbosity=diag /nr:false
+%ProgramFiles(x86)%\Microsoft Visual Studio\Preview\Community\MSBuild MpesaLibrary.sln /p:Configuration="%config%" /m /v:M /fl /flp:LogFile=msbuild.log;Verbosity=diag /nr:false
 
 mkdir Build
 mkdir Build\lib
