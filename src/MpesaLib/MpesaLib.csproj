@@ -8,7 +8,7 @@
     <Company>Geospartan Tech.</Company>
     <Description>Mpesa API  Library for C# developers</Description>
     <PackageTags>mpesa payment billing c2b b2c, lipanampesa</PackageTags>
-    <Copyright>Copyright &amp;#x00A9; Geospartan Tech.  All rights reserved.</Copyright>
+    <Copyright>Copyright © Geospartan Tech.  All rights reserved.</Copyright>
     <PackageLicenseUrl>https://github.com/ayiemba/MpesaLib/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://ayiemba.github.io/MpesaLib</PackageProjectUrl>
   </PropertyGroup>

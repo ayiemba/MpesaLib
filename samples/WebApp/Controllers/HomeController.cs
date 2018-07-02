@@ -36,18 +36,19 @@ namespace WebApp.Controllers
             
             var consumerSecret = _configuration["MpesaConfiguration:ConsumerSecret"];
 
-            var c2b_accesstoken = await _auth.GetData(consumerKey, consumerSecret);
-            var lipaOnlineAccesstoken = await _auth.GetData(consumerKey, consumerSecret);
-
+            var accesstoken = await _auth.GetData(consumerKey, consumerSecret);
+           
             var items = new Items();
 
-            var c2bdata = await _c2bsim.PostData(items.c2b, c2b_accesstoken);
+            var c2bdata = await _c2bsim.PostData(items.c2b, accesstoken);
 
-            var lipaData = await _lipaNaMpesaOnline.MakePayment(items.lipaOnline, lipaOnlineAccesstoken);
+            var lipaData = await _lipaNaMpesaOnline.MakePayment(items.lipaOnline, accesstoken);
 
             ViewData["Message"] = c2bdata;
 
             ViewData["Message2"] = lipaData;
+
+            Console.WriteLine(accesstoken);
 
             return View();
         }

@@ -25,10 +25,8 @@ namespace MpesaLib.Clients
 
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, BaseAddress);
 
-            var keyBytes = Encoding.UTF8.GetBytes(consumerKey + ":" + consumerSecret);
+            var keyBytes = Encoding.UTF8.GetBytes($"{consumerKey}:{consumerSecret}");
             request.Headers.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(keyBytes));
-
-            //_httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(keyBytes));
 
             HttpResponseMessage response = await _httpclient.SendAsync(request);
 
