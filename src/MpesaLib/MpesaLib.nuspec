@@ -8,7 +8,7 @@
     <owners>Elvis Ayiemba</owners>
     <licenseUrl>https://github.com/ayiemba/MpesaLib/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://ayiemba.github.io/MpesaLib/</projectUrl>
-    <iconUrl></iconUrl>
+    <iconUrl>https://github.com/ayiemba/MpesaLib/blob/master/screenshots/mlib.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>MpesaLib provides a simple way for C# developers to integrate Mpesa API's into their projetcs.</description>
     <releaseNotes></releaseNotes>
