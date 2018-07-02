@@ -14,10 +14,10 @@ if "%nuget%" == "" (
 	set nuget=nuget
 )
 
-%WINDIR%\Microsoft.NET\Framework\v4.0.30319\msbuild MpesaLibrary.sln /p:Configuration="%config%" /m /v:M /fl /flp:LogFile=msbuild.log;Verbosity=diag /nr:false
+%ProgramFiles(x86)%\Microsoft Visual Studio\Preview\Community\MSBuild\ MpesaLibrary.sln /p:Configuration="%config%" /m /v:M /fl /flp:LogFile=msbuild.log;Verbosity=diag /nr:false
 
 mkdir Build
 mkdir Build\lib
-mkdir Build\lib\net40
+mkdir Build\lib\netstandard2.0
 
 %nuget% pack "src\MpesaLib.nuspec" -NoPackageAnalysis -verbosity detailed -o Build -Version %version% -p Configuration="%config%"

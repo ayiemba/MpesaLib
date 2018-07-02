@@ -12,7 +12,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>MpesaLib provides a simple way for C# developers to integrate Mpesa API's into their projetcs.</description>
     <releaseNotes></releaseNotes>
-    <copyright>Copyright &#x00A9; Geospartan tech.  All rights reserved.</copyright>
+    <copyright>Copyright ©; Geospartan tech.  All rights reserved.</copyright>
     <tags>mpesa payment billing c2b b2c, lipanampesa</tags>
   </metadata>
   <files>

@@ -6,7 +6,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Elvis Ayiemba</Authors>
     <Company>Geospartan Tech.</Company>
-    <Description>Mpesa API  Library for C# developers</Description>
+    <Description>Mpesa API  Library for C# developers. Based on .Net Standard 2.0</Description>
     <PackageTags>mpesa payment billing c2b b2c, lipanampesa</PackageTags>
     <Copyright>Copyright © Geospartan Tech.  All rights reserved.</Copyright>
     <PackageLicenseUrl>https://github.com/ayiemba/MpesaLib/blob/master/LICENSE</PackageLicenseUrl>
