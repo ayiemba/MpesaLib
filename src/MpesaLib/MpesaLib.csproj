@@ -1,12 +1,16 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>1.0.4</Version>
+    <Version>1.0.7</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Elvis Ayiemba</Authors>
     <Company>Geospartan Tech.</Company>
-    <Description>Mpesa API abastraction library for C# developers</Description>
+    <Description>Mpesa API  Library for C# developers</Description>
+    <PackageTags>mpesa payment billing c2b b2c, lipanampesa</PackageTags>
+    <Copyright>Copyright &amp;#x00A9; Geospartan Tech.  All rights reserved.</Copyright>
+    <PackageLicenseUrl>https://github.com/ayiemba/MpesaLib/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://ayiemba.github.io/MpesaLib</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>
