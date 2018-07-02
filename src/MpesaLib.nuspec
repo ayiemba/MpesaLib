@@ -16,6 +16,6 @@
     <tags>mpesa payment billing c2b b2c lipanampesa</tags>
   </metadata>
   <files>
-	<file src="C:\Dev\Work\MpesaIntegration\MpesaLibrary\src\MpesaLib\bin\$configuration$\netstandard2.0\MpesaLib.dll" target="netstandard2.0" />
+	<file src="src\MpesaLib\bin\$configuration$\netstandard2.0\MpesaLib.dll" target="netstandard2.0" />
   </files>
 </package>
