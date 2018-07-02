@@ -20,4 +20,4 @@ mkdir Build
 mkdir Build\lib
 mkdir Build\lib\netstandard2.0
 
-%nuget% pack "src\MpesaLib\MpesaLib.nuspec" -NoPackageAnalysis -verbosity detailed -o Build -Version %version% -p Configuration="%config%"
+%nuget% pack "src\MpesaLib.nuspec" -NoPackageAnalysis -verbosity detailed -o Build -Version %version% -p Configuration="%config%"
