@@ -9,7 +9,7 @@ if not "%PackageVersion%" == "" (
    set version=%PackageVersion%
 )
 
-set nuget=
+set nuget = "./../src/nuget.exe";
 if "%nuget%" == "" (
 	set nuget=nuget
 )
@@ -23,5 +23,6 @@ Set msBuildLocation="C:\Program Files (x86)\Microsoft Visual Studio\2017\Communi
 mkdir Build
 mkdir Build\lib
 mkdir Build\lib\netstandard2.0
+
 
 %nuget% pack "src\MpesaLib.nuspec" -NoPackageAnalysis -verbosity detailed -o Build -Version %version% -p Configuration="%config%"
