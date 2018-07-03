@@ -9,7 +9,7 @@ if not "%PackageVersion%" == "" (
    set version=%PackageVersion%
 )
 
-set nuget = "./../src/nuget.exe";
+set nuget = "./../lib/nuget.exe"
 if "%nuget%" == "" (
 	set nuget=nuget
 )
@@ -17,8 +17,7 @@ if "%nuget%" == "" (
 Set msBuildLocation="C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\msbuild.exe"
 
 
-
-%msBuildLocation% MpesaLibrary.sln /p:Configuration="%config%" /m /v:M /fl /flp:LogFile=msbuild.log;Verbosity=diag /nr:false
+%msBuildLocation% MpesaLibrary.sln /t:restore /p:Configuration="%config%" /m /v:M /fl /flp:LogFile=msbuild.log;Verbosity=diag /nr:false
 
 mkdir Build
 mkdir Build\lib
