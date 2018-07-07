@@ -1,4 +1,4 @@
- # MpesaLib [![mpesalib MyGet Build Status](https://www.myget.org/BuildSource/Badge/mpesalib?identifier=cf0f8e5c-2a40-41cf-8065-9f27db7e2678)](https://www.myget.org/)
+# MpesaLib [![mpesalib MyGet Build Status](https://www.myget.org/BuildSource/Badge/mpesalib?identifier=cf0f8e5c-2a40-41cf-8065-9f27db7e2678)](https://www.myget.org/)
  
 ![icon](https://github.com/ayiemba/MpesaLib/blob/master/screenshots/mlib.png)  MPESA API LIBRARY For C# Developers
 
@@ -15,4 +15,4 @@ Explore All existing MPESA APIs and how to generate your API Keys at Daraja - [S
 
 ![Accesstoken Expirition period](screenshots/accesstoken.png)
 
-* *Users of MpesaLib should ensure they handle token expriration in their code. An quick solution would be to put the semaphore in a try/catch/finally block as documented in [this question](https://stackoverflow.com/questions/49304326/refresh-token-using-static-httpclient) from stackoverflow.*
+* *Users of MpesaLib should ensure they handle token expriration in their code. A quick solution would be to put the semaphore in a try/catch/finally block as documented in [this question](https://stackoverflow.com/questions/49304326/refresh-token-using-static-httpclient) from stackoverflow.*
