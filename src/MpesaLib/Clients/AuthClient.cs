@@ -25,8 +25,13 @@ namespace MpesaLib.Clients
 
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, BaseAddress);
 
-            var keyBytes = Encoding.UTF8.GetBytes($"{consumerKey}:{consumerSecret}");
-            request.Headers.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(keyBytes));
+            var keyBytes = Convert.ToBase64String(Encoding.UTF8.GetBytes($"{consumerKey}:{consumerSecret}")); 
+
+            //var keyBytes2 = Convert.ToBase64String(Encoding.GetEncoding("ISO-8859-1")
+            //    .GetBytes($"{consumerKey}:{consumerSecret}"));
+
+            request.Headers.Authorization = new AuthenticationHeaderValue("Basic", keyBytes);
+            request.Headers.Host = "sandbox.safaricom.co.ke";
 
             HttpResponseMessage response = await _httpclient.SendAsync(request);
 

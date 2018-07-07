@@ -47,6 +47,7 @@ namespace MpesaLib.Clients
             };
 
             request.Headers.Authorization = new AuthenticationHeaderValue("Authorization", "Bearer " + accesstoken);
+            request.Headers.Host = "sandbox.safaricom.co.ke";
 
 
             HttpResponseMessage response = await _httpclient.SendAsync(request);
