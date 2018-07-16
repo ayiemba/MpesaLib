@@ -21,25 +21,9 @@ namespace MpesaLib.Clients
         public async Task<string> PostData(BusinessToBusiness b2bitem, string token)
         {
             var BaseAddress = new Uri("https://sandbox.safaricom.co.ke/mpesa/b2b/v1/paymentrequest");
-            //_httpclient.DefaultRequestHeaders.Accept.Clear();
+            
             _httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             _httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-
-            //var values = new List<KeyValuePair<string, string>>
-            //{
-            //    new KeyValuePair<string, string>("Initiator", b2bitem.Initiator),
-            //    new KeyValuePair<string, string>("SecurityCredential", b2bitem.SecurityCredential),
-            //    new KeyValuePair<string, string>("CommandID", b2bitem.CommandID),
-            //    new KeyValuePair<string, string>("SenderIdentifierType", b2bitem.SenderIdentifierType),
-            //    new KeyValuePair<string, string>("RecieverIdentifierType", b2bitem.RecieverIdentifierType),
-            //    new KeyValuePair<string, string>("Amount", b2bitem.Amount),
-            //    new KeyValuePair<string, string>("PartyA", b2bitem.PartyA),
-            //    new KeyValuePair<string, string>("PartyB", b2bitem.PartyB),
-            //    new KeyValuePair<string, string>("AccountReference", b2bitem.AccountReference),
-            //    new KeyValuePair<string, string>("Remarks", b2bitem.Remarks),
-            //    new KeyValuePair<string, string>("QueueTimeOutURL", b2bitem.QueueTimeOutURL),
-            //    new KeyValuePair<string, string>("ResultURL", b2bitem.ResultURL)
-            //};
 
             var values = new Dictionary<string, string>
             {
@@ -61,12 +45,6 @@ namespace MpesaLib.Clients
             {
                 Content = new StringContent(JsonConvert.SerializeObject(values).ToString(), Encoding.UTF8, "application/json")
             };
-
-            //HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, BaseAddress)
-            //{
-            //    Content = new FormUrlEncodedContent(values)
-            //};
-
 
             HttpResponseMessage response = await _httpclient.SendAsync(request);      
 
