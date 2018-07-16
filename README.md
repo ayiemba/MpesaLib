@@ -20,6 +20,7 @@ Explore All existing MPESA APIs and how to generate your API Keys at Daraja - [S
 
 * Run `Install-Package MpesaLib -Version 1.0.8` in Package Manager Console or go to Manage Nuget Packages, Search and install MpesaLib
 * Inject Mpesa API Clients in Startup.cs
+
 ```c#
     //Add AuthClient
     services.AddHttpClient<AuthClient>();
@@ -31,9 +32,11 @@ Explore All existing MPESA APIs and how to generate your API Keys at Daraja - [S
     services.AddHttpClient<C2BSimulateClient>();
     //Add any other Mpesa API Clients you wish to use...
 ```
+
 * In your Controller Instantiate the clients in constructor...
+
 ```c#
-public class PaymentsController : Controller
+    public class PaymentsController : Controller
     {
         private readonly AuthClient _auth;
         private LipaNaMpesaOnlineClient _lipaNaMpesa;
@@ -52,7 +55,6 @@ public class PaymentsController : Controller
         }
         ...
         //Code omitted for brevity
-
 ```
 
 * You can store your ConsumerKey and ConsumerSecret in appsettings.json as follows
@@ -65,8 +67,9 @@ public class PaymentsController : Controller
 ```
 
 * Generate `accesstoken` using the AuthClient
+
 ```c#
-// GET: /<controller>/
+        // GET: /<controller>/
         public async Task<IActionResult> Index()
         {
             var consumerKey = _config["MpesaConfiguration:ConsumerKey"];
@@ -76,26 +79,26 @@ public class PaymentsController : Controller
             var accesstoken = await _auth.GetData(consumerKey,consumerSecret);
             
             ...
-            //code omitted for brevity
+        //code omitted for brevity
 ```
 
 * To use Send Request to LipaNaMpesaOnline, initialize the LipaNaMpesaOnline object by providing values for it's properties
 
 ```c#
-        LipaNaMpesaOnline lipaonline = new LipaNaMpesaOnline
-        {
-            AccountReference = "test",
-            Amount = "1",
-            PartyA = "254708374149",
-            PartyB = "174379",
-            BusinessShortCode = "174379",
-            CallBackURL = "[your callback url, i wish i could help but you'll have to write your own]",
-            Password = "daraga explains on how to get password",
-            PhoneNumber = "254708374149",
-            Timestamp = "20180716124916",//DateTime.Now.ToString("yyyyMMddHHmmss"),
-            TransactionDesc = "test"
-            TransactionType = "CustomerPayBillOnline" //I am using this by default, you might wanna check the other option
-        };
+      LipaNaMpesaOnline lipaonline = new LipaNaMpesaOnline
+      {
+          AccountReference = "test",
+          Amount = "1",
+          PartyA = "254708374149",
+          PartyB = "174379",
+          BusinessShortCode = "174379",
+          CallBackURL = "[your callback url, i wish i could help but you'll have to write your own]",
+          Password = "daraga explains on how to get password",
+          PhoneNumber = "254708374149",
+          Timestamp = "20180716124916",//DateTime.Now.ToString("yyyyMMddHHmmss"),
+          TransactionDesc = "test"
+          TransactionType = "CustomerPayBillOnline" //I am using this by default, you might wanna check the other option
+      };
 ```
 
 * You can then make a payment request in your controller as follows..
