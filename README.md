@@ -1,13 +1,13 @@
-# MpesaLib [![mpesalib MyGet Build Status](https://www.myget.org/BuildSource/Badge/mpesalib?identifier=cf0f8e5c-2a40-41cf-8065-9f27db7e2678)](https://www.myget.org/)   [![NuGet](https://img.shields.io/nuget/dt/Microsoft.AspNetCore.Mvc.svg)](https://www.nuget.org/packages/MpesaLib/)
+# MpesaLib [![mpesalib MyGet Build Status](https://www.myget.org/BuildSource/Badge/mpesalib?identifier=cf0f8e5c-2a40-41cf-8065-9f27db7e2678)](https://www.myget.org/)   
+# [![NuGet](https://img.shields.io/nuget/dt/Microsoft.AspNetCore.Mvc.svg)](https://www.nuget.org/packages/MpesaLib/)
 
  
 ![icon](https://github.com/ayiemba/MpesaLib/blob/master/screenshots/mlib.png)  MPESA API LIBRARY For C# Developers
 
-* This Library is work in progress.
-* Pull requests are accepted!
-* Library is based on .NET Standard 2.0
-* Will be deployed as a NUGET Package in the near future...
-* This is a pet project, and is fully open source
+* MpesaLib is in BETA Version as of NUGET Package version 1.0.8.
+* Pull requests and design reviews/recommendations are encouraged.
+* MpesaLib is based on .NET Standard 2.0
+* MpesaLib is a side project, and is fully open source.
 
 Explore All existing MPESA APIs and how to generate your API Keys at Daraja - [Safaricom's Developer Portal](https://developer.safaricom.co.ke/apis-explorer)
 
@@ -17,3 +17,88 @@ Explore All existing MPESA APIs and how to generate your API Keys at Daraja - [S
 ![Accesstoken Expirition period](screenshots/accesstoken.png)
 
 * *Users of MpesaLib should ensure they handle token expriration in their code. A quick solution would be to put the semaphore in a try/catch/finally block as documented in [this question](https://stackoverflow.com/questions/49304326/refresh-token-using-static-httpclient) from stackoverflow.*
+
+## HOW TO USE - ASP.NET Core Web Application
+
+* Run `Install-Package MpesaLib -Version 1.0.8` in Package Manager Console or go to Manage Nuget Packages, Search and install MpesaLib
+* Inject Mpesa API Clients in Startup.cs
+```c#
+    //Add AuthClient
+    services.AddHttpClient<AuthClient>();
+    //Add LipaNaMpesaOnlineClient
+    services.AddHttpClient<LipaNaMpesaOnlineClient>();
+    //Add C2BRegisterUrlClient
+    services.AddHttpClient<C2BRegisterClient>();
+    //Add C2BSimulateClient
+    services.AddHttpClient<C2BSimulateClient>();
+    //Add any other Mpesa API Clients you wish to use...
+```
+* In your Controller Instantiate the clients in constructor...
+```c#
+public class PaymentsController : Controller
+    {
+        private readonly AuthClient _auth;
+        private LipaNaMpesaOnlineClient _lipaNaMpesa;
+        private C2BRegisterClient _c2bregister;
+        private readonly C2BSimulateClient _c2bSimulate;
+        private readonly IConfiguration _config;
+
+        public PaymentsController(AuthClient auth, LipaNaMpesaOnlineClient lipaNampesa, C2BRegisterClient c2bregister,
+           C2BSimulateClient c2bsim, IConfiguration configuration)
+        {
+            _auth = auth;
+            _lipaNaMpesa = lipaNampesa;
+            _c2bregister = c2bregister;
+            _c2bSimulate = c2bsim;
+            _config = configuration;
+        }
+        ...
+        //Code omitted for brevity
+
+```
+* Generate `accesstoken` using the AuthClient
+```c#
+// GET: /<controller>/
+        public async Task<IActionResult> Index()
+        {
+            var consumerKey = _config["MpesaConfiguration:ConsumerKey"];
+
+            var consumerSecret = _config["MpesaConfiguration:ConsumerSecret"];
+
+            var accesstoken = await _auth.GetData(consumerKey,consumerSecret);
+            
+            ...
+            //code omitted for brevity
+```
+** You can store your ConsumerKey and ConsumerSecret in appsettings.json as follows
+```json
+"MpesaConfiguration": {
+    "ConsumerKey": "[Your Mpesa ConsumerKey from daraja]",
+    "ConsumerSecret": "[Your Mpesa ConsumerSecret from daraja]"
+  }
+```
+
+* To use Send Request to LipaNaMpesaOnline, initialize the LipaNaMpesaOnline object by providing values for it's properties
+```c#
+LipaNaMpesaOnline lipaonline = new LipaNaMpesaOnline
+        {
+            AccountReference = "test",
+            Amount = "1",
+            PartyA = "254708374149",
+            PartyB = "174379",
+            BusinessShortCode = "174379",
+            CallBackURL = "[your callback url, i wish i could help but you'll have to write your own]",
+            Password = "daraga explains on how to get password",
+            PhoneNumber = "254708374149",
+            Timestamp = "20180716124916",//DateTime.Now.ToString("yyyyMMddHHmmss"),
+            TransactionDesc = "test"
+            TransactionType = "CustomerPayBillOnline" //I am using this by default, you might wanna check the other option
+        };
+```
+
+* You can then make a payment request in your controller (does'nt have to be in controller, you can always refactor) as follows
+```c#
+var paymentrequest = await _lipaNaMpesa.MakePayment(lipaonline, accesstoken);
+```
+
+* Do whatever you want with the results of the request... (Of cos i plan to make these docs better in the future)
