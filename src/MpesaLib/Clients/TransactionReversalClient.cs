@@ -1,5 +1,6 @@
 ﻿using MpesaLib.Interfaces;
 using MpesaLib.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -16,39 +17,33 @@ namespace MpesaLib.Clients
         {
             _httpclient = httpClient;
         }
-
         public async Task<string> ReverseTransaction(Reversal reversal, string accesstoken)
         {
             var BaseAddress = new Uri("https://sandbox.safaricom.co.ke/mpesa/reversal/v1/request");
 
-            _httpclient.DefaultRequestHeaders.Accept.Clear();
             _httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            //_httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Authorization", "Bearer " + accesstoken);
+            _httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accesstoken);            
 
-            var values = new List<KeyValuePair<string, string>>
+            var values = new Dictionary<string, string>
             {
-                new KeyValuePair<string, string>("Initiator", reversal.Initiator),
-                new KeyValuePair<string, string>("SecurityCredential", reversal.SecurityCredential),
-                new KeyValuePair<string, string>("CommandID", reversal.CommandID),
-                new KeyValuePair<string, string>("TransactionID", reversal.TransactionID),
-                new KeyValuePair<string, string>("Amount", reversal.Amount),
-                new KeyValuePair<string, string>("ReceiverParty", reversal.ReceiverParty),
-                new KeyValuePair<string, string>("RecieverIdentifierType", reversal.RecieverIdentifierType),
-                new KeyValuePair<string, string>("ResultURL", reversal.ResultURL),
-                new KeyValuePair<string, string>("QueueTimeOutURL", reversal.QueueTimeOutURL),
-                new KeyValuePair<string, string>("Remarks", reversal.Remarks),
-                new KeyValuePair<string, string>("Occasion", reversal.Occasion)
+                {"Initiator", reversal.Initiator },
+                {"SecurityCredential", reversal.SecurityCredential },
+                {"CommandID", reversal.CommandID },
+                {"TransactionID", reversal.TransactionID },
+                {"Amount", reversal.Amount },
+                {"ReceiverParty", reversal.ReceiverParty },
+                {"RecieverIdentifierType", reversal.RecieverIdentifierType },
+                {"ResultURL", reversal.ResultURL },
+                {"QueueTimeOutURL", reversal.QueueTimeOutURL },
+                {"Remarks", reversal.Remarks },
+                { "Occasion", reversal.Occasion }
 
             };
 
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, BaseAddress)
             {
-                Content = new FormUrlEncodedContent(values)
+                Content = new StringContent(JsonConvert.SerializeObject(values).ToString(), Encoding.UTF8, "application/json")
             };
-
-            request.Headers.Authorization = new AuthenticationHeaderValue("Authorization", "Bearer " + accesstoken);
-            request.Headers.Host = "sandbox.safaricom.co.ke";
-
 
             HttpResponseMessage response = await _httpclient.SendAsync(request);
 

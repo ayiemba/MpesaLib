@@ -1,5 +1,6 @@
 ﻿using MpesaLib.Interfaces;
 using MpesaLib.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -21,26 +22,22 @@ namespace MpesaLib.Clients
         {
             var BaseAddress = new Uri("https://sandbox.safaricom.co.ke/mpesa/stkpushquery/v1/query");
 
-            _httpclient.DefaultRequestHeaders.Accept.Clear();
             _httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            //_httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Authorization", "Bearer " + accesstoken);
+            _httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accesstoken);
 
-            var values = new List<KeyValuePair<string, string>>
+            var values = new Dictionary<string, string>
             {
-                new KeyValuePair<string, string>("BusinessShortCode", mpesaQuery.BusinessShortCode),
-                new KeyValuePair<string, string>("Password", mpesaQuery.Password),
-                new KeyValuePair<string, string>("Timestamp", mpesaQuery.Timestamp),
-                new KeyValuePair<string, string>("CheckoutRequestID", mpesaQuery.CheckoutRequestID)
+                {"BusinessShortCode", mpesaQuery.BusinessShortCode },
+                {"Password", mpesaQuery.Password },
+                {"Timestamp", mpesaQuery.Timestamp },
+                { "CheckoutRequestID", mpesaQuery.CheckoutRequestID }
 
             };
 
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, BaseAddress)
             {
-                Content = new FormUrlEncodedContent(values)
+                Content = new StringContent(JsonConvert.SerializeObject(values).ToString(), Encoding.UTF8, "application/json")
             };
-
-            request.Headers.Authorization = new AuthenticationHeaderValue("Authorization", "Bearer " + accesstoken);
-            request.Headers.Host = "sandbox.safaricom.co.ke";
 
 
             HttpResponseMessage response = await _httpclient.SendAsync(request);

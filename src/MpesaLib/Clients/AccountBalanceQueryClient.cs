@@ -1,5 +1,6 @@
 ﻿using MpesaLib.Interfaces;
 using MpesaLib.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -21,28 +22,29 @@ namespace MpesaLib.Clients
         {
             var BaseAddress = new Uri("https://sandbox.safaricom.co.ke/mpesa/accountbalance/v1/query");
 
-            _httpClient.DefaultRequestHeaders.Accept.Clear();
+            //_httpClient.DefaultRequestHeaders.Accept.Clear();
             _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",accesstoken);
+            //_httpClient.DefaultRequestHeaders.Host = "sandbox.safaricom.co.ke";
 
-            var values = new List<KeyValuePair<string, string>>
+            
+
+            var values = new Dictionary<string, string>
             {
-                new KeyValuePair<string, string>("Initiator", accbalance.Initiator),
-                new KeyValuePair<string, string>("SecurityCredential", accbalance.SecurityCredential),
-                new KeyValuePair<string, string>("CommandID", accbalance.CommandID),
-                new KeyValuePair<string, string>("PartyA", accbalance.PartyA),
-                new KeyValuePair<string, string>("IdentifierType", accbalance.IdentifierType),
-                new KeyValuePair<string, string>("Remarks", accbalance.Remarks),
-                new KeyValuePair<string, string>("QueueTimeOutURL", accbalance.QueueTimeOutURL),
-                new KeyValuePair<string, string>("ResultURL", accbalance.ResultURL)
+                { "Initiator", accbalance.Initiator },
+                { "SecurityCredential", accbalance.SecurityCredential},
+                { "CommandID", accbalance.CommandID},
+                { "PartyA", accbalance.PartyA},
+                { "IdentifierType", accbalance.IdentifierType},
+                { "Remarks", accbalance.Remarks },
+                { "QueueTimeOutURL", accbalance.QueueTimeOutURL},
+                { "ResultURL", accbalance.ResultURL}
             };
 
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, BaseAddress)
             {
-                Content = new FormUrlEncodedContent(values)
+                Content = new StringContent(JsonConvert.SerializeObject(values).ToString(), Encoding.UTF8, "application/json")
             };
-
-            request.Headers.Authorization = new AuthenticationHeaderValue("Authorization", "Bearer " + accesstoken);
-            request.Headers.Host = "sandbox.safaricom.co.ke";
 
 
             HttpResponseMessage response = await _httpClient.SendAsync(request);

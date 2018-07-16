@@ -1,5 +1,6 @@
 ﻿using MpesaLib.Interfaces;
 using MpesaLib.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -21,29 +22,25 @@ namespace MpesaLib.Clients
         {            
 
             var BaseAddress = new Uri("https://sandbox.safaricom.co.ke/mpesa/c2b/v1/simulate");
-
-           // client.DefaultRequestHeaders.Accept.Clear();
+           
             _httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            //_httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Authorization", "Bearer " + accesstoken);
+            _httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accesstoken);
 
-            var values = new List<KeyValuePair<string, string>>
+
+            var values = new Dictionary<string, string>
             {
-                new KeyValuePair<string, string>("ShortCode", c2bsimulate.ShortCode),
-                new KeyValuePair<string, string>("CommandID", c2bsimulate.CommandID),
-                new KeyValuePair<string, string>("Amount", c2bsimulate.Amount),
-                new KeyValuePair<string, string>("Msisdn", c2bsimulate.Msisdn),
-                new KeyValuePair<string, string>("BillRefNumber", c2bsimulate.BillRefNumber)
+                {"ShortCode", c2bsimulate.ShortCode },
+                {"CommandID", c2bsimulate.CommandID },
+                {"Amount", c2bsimulate.Amount },
+                {"Msisdn", c2bsimulate.Msisdn },
+                { "BillRefNumber", c2bsimulate.BillRefNumber }
 
             };
 
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, BaseAddress)
             {
-                Content = new FormUrlEncodedContent(values)
+                Content = new StringContent(JsonConvert.SerializeObject(values).ToString(), Encoding.UTF8, "application/json")
             };
-
-            request.Headers.Authorization = new AuthenticationHeaderValue("Authorization", "Bearer " + accesstoken);
-            request.Headers.Host = "sandbox.safaricom.co.ke";
-
 
             HttpResponseMessage response = await _httpclient.SendAsync(request);
 

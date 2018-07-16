@@ -1,5 +1,6 @@
 ﻿using MpesaLib.Interfaces;
 using MpesaLib.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -20,30 +21,27 @@ namespace MpesaLib.Clients
         {
             var BaseAddress = new Uri("https://sandbox.safaricom.co.ke/mpesa/b2c/v1/paymentrequest");
 
-            _httpclient.DefaultRequestHeaders.Accept.Clear();
-            _httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));     
+            _httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            _httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accesstoken);
 
-            var values = new List<KeyValuePair<string, string>>
+            var values = new Dictionary<string, string>
             {
-                new KeyValuePair<string, string>("InitiatorName", b2citem.InitiatorName),
-                new KeyValuePair<string, string>("SecurityCredential", b2citem.SecurityCredential),
-                new KeyValuePair<string, string>("CommandID", b2citem.CommandID),
-                new KeyValuePair<string, string>("Amount", b2citem.Amount),
-                new KeyValuePair<string, string>("PartyA", b2citem.PartyA),
-                new KeyValuePair<string, string>("PartyB", b2citem.PartyB),
-                new KeyValuePair<string, string>("Remarks", b2citem.Remarks),
-                new KeyValuePair<string, string>("QueueTimeOutURL", b2citem.QueueTimeOutURL),
-                new KeyValuePair<string, string>("ResultURL", b2citem.ResultURL),
-                new KeyValuePair<string, string>("Occasion", b2citem.Occasion)
+                {"InitiatorName", b2citem.InitiatorName },
+                {"SecurityCredential", b2citem.SecurityCredential },
+                {"CommandID", b2citem.CommandID },
+                {"Amount", b2citem.Amount },
+                {"PartyA", b2citem.PartyA },
+                {"PartyB", b2citem.PartyB },
+                {"Remarks", b2citem.Remarks },
+                {"QueueTimeOutURL", b2citem.QueueTimeOutURL },
+                {"ResultURL", b2citem.ResultURL },
+                { "Occasion", b2citem.Occasion }
             };
 
-            var request = new HttpRequestMessage(HttpMethod.Post, BaseAddress)
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, BaseAddress)
             {
-                Content = new FormUrlEncodedContent(values)
+                Content = new StringContent(JsonConvert.SerializeObject(values).ToString(), Encoding.UTF8, "application/json")
             };
-
-            request.Headers.Authorization = new AuthenticationHeaderValue("Authorization", "Bearer " + accesstoken);
-            request.Headers.Host = "sandbox.safaricom.co.ke";
 
             HttpResponseMessage response = await _httpclient.SendAsync(request);
 
