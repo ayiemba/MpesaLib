@@ -19,7 +19,7 @@ Explore All existing MPESA APIs and how to generate your API Keys at Daraja - [S
 ## 1. HOW TO USE In an ASP.NET Core Web Application
 
 * Run `Install-Package MpesaLib -Version 1.0.8` in Package Manager Console or go to Manage Nuget Packages, Search and install MpesaLib
-* Inject Mpesa API Clients in Startup.cs
+* Inject Mpesa API Clients in DI Container; For asp.net core core this can be done in Startup.cs
 
 ```c#
     //Add AuthClient
