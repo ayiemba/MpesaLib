@@ -1,6 +1,4 @@
-# MpesaLib [![mpesalib MyGet Build Status](https://www.myget.org/BuildSource/Badge/mpesalib?identifier=cf0f8e5c-2a40-41cf-8065-9f27db7e2678)](https://www.myget.org/)   
-# [![NuGet](https://img.shields.io/nuget/dt/Microsoft.AspNetCore.Mvc.svg)](https://www.nuget.org/packages/MpesaLib/)
-
+# MpesaLib [![mpesalib MyGet Build Status](https://www.myget.org/BuildSource/Badge/mpesalib?identifier=cf0f8e5c-2a40-41cf-8065-9f27db7e2678)](https://www.myget.org/)
  
 ![icon](https://github.com/ayiemba/MpesaLib/blob/master/screenshots/mlib.png)  MPESA API LIBRARY For C# Developers
 
@@ -18,7 +16,7 @@ Explore All existing MPESA APIs and how to generate your API Keys at Daraja - [S
 
 * *Users of MpesaLib should ensure they handle token expriration in their code. A quick solution would be to put the semaphore in a try/catch/finally block as documented in [this question](https://stackoverflow.com/questions/49304326/refresh-token-using-static-httpclient) from stackoverflow.*
 
-## HOW TO USE - ASP.NET Core Web Application
+## 1. HOW TO USE In an ASP.NET Core Web Application
 
 * Run `Install-Package MpesaLib -Version 1.0.8` in Package Manager Console or go to Manage Nuget Packages, Search and install MpesaLib
 * Inject Mpesa API Clients in Startup.cs
@@ -56,6 +54,16 @@ public class PaymentsController : Controller
         //Code omitted for brevity
 
 ```
+
+* You can store your ConsumerKey and ConsumerSecret in appsettings.json as follows
+
+```json
+     "MpesaConfiguration": {
+         "ConsumerKey": "[Your Mpesa ConsumerKey from daraja]",
+         "ConsumerSecret": "[Your Mpesa ConsumerSecret from daraja]"
+       }
+```
+
 * Generate `accesstoken` using the AuthClient
 ```c#
 // GET: /<controller>/
@@ -70,17 +78,11 @@ public class PaymentsController : Controller
             ...
             //code omitted for brevity
 ```
-** You can store your ConsumerKey and ConsumerSecret in appsettings.json as follows
-```json
-"MpesaConfiguration": {
-    "ConsumerKey": "[Your Mpesa ConsumerKey from daraja]",
-    "ConsumerSecret": "[Your Mpesa ConsumerSecret from daraja]"
-  }
-```
 
 * To use Send Request to LipaNaMpesaOnline, initialize the LipaNaMpesaOnline object by providing values for it's properties
+
 ```c#
-LipaNaMpesaOnline lipaonline = new LipaNaMpesaOnline
+        LipaNaMpesaOnline lipaonline = new LipaNaMpesaOnline
         {
             AccountReference = "test",
             Amount = "1",
@@ -96,7 +98,8 @@ LipaNaMpesaOnline lipaonline = new LipaNaMpesaOnline
         };
 ```
 
-* You can then make a payment request in your controller (does'nt have to be in controller, you can always refactor) as follows
+* You can then make a payment request in your controller as follows..
+
 ```c#
 var paymentrequest = await _lipaNaMpesa.MakePayment(lipaonline, accesstoken);
 ```
