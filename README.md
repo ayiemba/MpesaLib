@@ -1,11 +1,11 @@
 # MpesaLib [![mpesalib MyGet Build Status](https://www.myget.org/BuildSource/Badge/mpesalib?identifier=cf0f8e5c-2a40-41cf-8065-9f27db7e2678)](https://www.myget.org/)
  
-![icon](https://github.com/ayiemba/MpesaLib/blob/master/screenshots/mlib.png)  MPESA API LIBRARY For C# Developers
+MPESA API LIBRARY For C# Developers
 
 * MpesaLib is in BETA Version as of NUGET Package version 1.0.8.
-* Pull requests and design reviews/recommendations are encouraged.
 * MpesaLib is based on .NET Standard 2.0
 * MpesaLib is a side project, and is fully open source.
+* Pull requests and design reviews/recommendations are encouraged.
 
 Explore All existing MPESA APIs and how to generate your API Keys at Daraja - [Safaricom's Developer Portal](https://developer.safaricom.co.ke/apis-explorer)
 
