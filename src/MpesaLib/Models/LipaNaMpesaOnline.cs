@@ -35,15 +35,11 @@ namespace MpesaLib.Models
         public string AccountReference { get; set; }
 
         [JsonProperty("Password")]
-        public string Password { get; set; } //= GetPassword();
+        public string Password { get; set; } 
 
         [JsonProperty("TransactionDesc")]
         public string TransactionDesc { get; set; }
-
-        //private static string GetPassword()
-        //{
-        //    return Convert.ToBase64String(Encoding.UTF8.GetBytes($"{BusinessShortCode}{LNMPasskey}{Timestamp}"));
-        //}
+        
     }
 
 }
