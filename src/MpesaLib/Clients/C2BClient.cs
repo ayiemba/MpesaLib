@@ -10,40 +10,37 @@ using System.Threading.Tasks;
 
 namespace MpesaLib.Clients
 {
-    public class C2BRegisterClient : IC2BRegisterClient
+    public class C2BClient : IC2BClient
     {
         private readonly HttpClient _httpclient;
-        public C2BRegisterClient(HttpClient httpClient)
+        public C2BClient(HttpClient httpClient)
         {
             _httpclient = httpClient;
         }
-        public async Task<string> GetData(CustomerToBusinessRegister c2bregisterItem, string accesstoken)
-        {
-            var BaseAddress = new Uri("https://sandbox.safaricom.co.ke/mpesa/c2b/v1/registerurl");
-          
+
+        public Uri BaseAddress { get; set; } = new Uri("https://sandbox.safaricom.co.ke/mpesa/c2b/v1/simulate");
+
+        public async Task<string> MakeC2BPayment(CustomerToBusinessSimulate c2bsimulate, string accesstoken)
+        {                        
+           
             _httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             _httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accesstoken);
 
-            
 
             var values = new Dictionary<string, string>
             {
-                {"ShortCode", c2bregisterItem.ShortCode },
-                {"ResponseType", c2bregisterItem.ResponseType },
-                {"ConfirmationURL", c2bregisterItem.ConfirmationURL },
-                { "ValidationURL", c2bregisterItem.ValidationURL }
+                {"ShortCode", c2bsimulate.ShortCode },
+                {"CommandID", c2bsimulate.CommandID },
+                {"Amount", c2bsimulate.Amount },
+                {"Msisdn", c2bsimulate.Msisdn },
+                { "BillRefNumber", c2bsimulate.BillRefNumber }
 
             };
-
 
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, BaseAddress)
             {
                 Content = new StringContent(JsonConvert.SerializeObject(values).ToString(), Encoding.UTF8, "application/json")
             };
-
-            //request.Headers.Authorization = new AuthenticationHeaderValue("Authorization", "Bearer " + accesstoken);
-            //request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            //request.Headers.Host = "sandbox.safaricom.co.ke";
 
             HttpResponseMessage response = await _httpclient.SendAsync(request);
 

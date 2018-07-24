@@ -10,37 +10,38 @@ using System.Threading.Tasks;
 
 namespace MpesaLib.Clients
 {
-    public class C2BSimulateClient : IC2BSimulateClient
+    public class C2BRegisterUrlClient : IC2BRegisterUrlClient
     {
         private readonly HttpClient _httpclient;
-        public C2BSimulateClient(HttpClient httpClient)
+        public C2BRegisterUrlClient(HttpClient httpClient)
         {
             _httpclient = httpClient;
         }
 
-        public async Task<string> PostData(CustomerToBusinessSimulate c2bsimulate, string accesstoken)
-        {            
+        public Uri BaseAddress { get; set; } = new Uri("https://sandbox.safaricom.co.ke/mpesa/c2b/v1/registerurl");
 
-            var BaseAddress = new Uri("https://sandbox.safaricom.co.ke/mpesa/c2b/v1/simulate");
-           
+        public async Task<string> RegisterUrl(CustomerToBusinessRegister c2bregisterItem, string accesstoken)
+        {           
+          
             _httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             _httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accesstoken);
 
+            
 
             var values = new Dictionary<string, string>
             {
-                {"ShortCode", c2bsimulate.ShortCode },
-                {"CommandID", c2bsimulate.CommandID },
-                {"Amount", c2bsimulate.Amount },
-                {"Msisdn", c2bsimulate.Msisdn },
-                { "BillRefNumber", c2bsimulate.BillRefNumber }
+                {"ShortCode", c2bregisterItem.ShortCode },
+                {"ResponseType", c2bregisterItem.ResponseType },
+                {"ConfirmationURL", c2bregisterItem.ConfirmationURL },
+                { "ValidationURL", c2bregisterItem.ValidationURL }
 
             };
+
 
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, BaseAddress)
             {
                 Content = new StringContent(JsonConvert.SerializeObject(values).ToString(), Encoding.UTF8, "application/json")
-            };
+            };          
 
             HttpResponseMessage response = await _httpclient.SendAsync(request);
 

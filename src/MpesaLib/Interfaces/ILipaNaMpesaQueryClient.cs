@@ -5,6 +5,6 @@ namespace MpesaLib.Interfaces
 {
     public interface ILipaNaMpesaQueryClient
     {
-        Task<string> GetData(LipaNaMpesaQuery mpesaQuery, string accesstoken);
+        Task<string> MakeMpesaQuery(LipaNaMpesaQuery mpesaQuery, string accesstoken);
     }
 }

@@ -4,8 +4,8 @@ using System.Threading.Tasks;
 
 namespace MpesaLib.Interfaces
 {
-    public interface IC2BSimulateClient
+    public interface IC2BClient
     {
-        Task<string> PostData(CustomerToBusinessSimulate c2bsimulate, string token);
+        Task<string> MakeC2BPayment(CustomerToBusinessSimulate c2bsimulate, string token);
     }
 }

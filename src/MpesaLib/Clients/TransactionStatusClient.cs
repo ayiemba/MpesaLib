@@ -17,10 +17,11 @@ namespace MpesaLib.Clients
         {
             _httpclient = httpClient;
         }
-        public async Task<string> GetData(MpesaTransactionStatus transactionStatus, string accesstoken)
-        {
-            var BaseAddress = new Uri("https://sandbox.safaricom.co.ke/mpesa/transactionstatus/v1/query");
 
+        public Uri BaseAddress { get; set; } = new Uri("https://sandbox.safaricom.co.ke/mpesa/transactionstatus/v1/query");
+
+        public async Task<string> GetTransactionStatus(MpesaTransactionStatus transactionStatus, string accesstoken)
+        {           
             _httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             _httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accesstoken);
 

@@ -11,7 +11,7 @@ namespace MpesaLib.Models
         public string BusinessShortCode { get; set; }
 
         [JsonProperty("Timestamp")]
-        public string Timestamp { get; set; }
+        public string Timestamp { get; set; } = DateTime.Now.ToString("yyyyMMddHHmmss");
 
         [JsonProperty("TransactionType")]
         public string TransactionType { get; set; } = "CustomerPayBillOnline";

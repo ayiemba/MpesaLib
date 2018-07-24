@@ -18,9 +18,10 @@ namespace MpesaLib.Clients
             _httpclient = httpClient;
         }
 
-        public async Task<string> GetData(LipaNaMpesaQuery mpesaQuery, string accesstoken)
-        {
-            var BaseAddress = new Uri("https://sandbox.safaricom.co.ke/mpesa/stkpushquery/v1/query");
+        public Uri BaseAddress { get; set; } = new Uri("https://sandbox.safaricom.co.ke/mpesa/stkpushquery/v1/query");
+
+        public async Task<string> MakeMpesaQuery(LipaNaMpesaQuery mpesaQuery, string accesstoken)
+        {           
 
             _httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             _httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accesstoken);

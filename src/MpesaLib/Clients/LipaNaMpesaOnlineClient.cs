@@ -18,10 +18,10 @@ namespace MpesaLib.Clients
             _httpclient = httpClient;
         }
 
-        public async Task<string> MakePayment(LipaNaMpesaOnline mpesaItem, string accesstoken)
-        {
-            var BaseAddress = new Uri("https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest");
+        public Uri BaseAddress { get; set; } = new Uri("https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest");
 
+        public async Task<string> MakePayment(LipaNaMpesaOnline mpesaItem, string accesstoken)
+        {            
             _httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             _httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accesstoken);           
 

@@ -17,9 +17,11 @@ namespace MpesaLib.Clients
         {
             _httpclient = httpClient;
         }
+
+        public Uri BaseAddress { get; set; } = new Uri("https://sandbox.safaricom.co.ke/mpesa/reversal/v1/request");
+
         public async Task<string> ReverseTransaction(Reversal reversal, string accesstoken)
-        {
-            var BaseAddress = new Uri("https://sandbox.safaricom.co.ke/mpesa/reversal/v1/request");
+        {          
 
             _httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             _httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accesstoken);            

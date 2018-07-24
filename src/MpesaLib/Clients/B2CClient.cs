@@ -17,9 +17,12 @@ namespace MpesaLib.Clients
         {
             _httpclient = httpClient;
         }
-        public async Task<string> PostData(BusinessToCustomer b2citem, string accesstoken)
+
+        public Uri BaseAddress { get; set; } = new Uri("https://sandbox.safaricom.co.ke/mpesa/b2c/v1/paymentrequest");
+
+        public async Task<string> PayCustomer(BusinessToCustomer b2citem, string accesstoken)
         {
-            var BaseAddress = new Uri("https://sandbox.safaricom.co.ke/mpesa/b2c/v1/paymentrequest");
+           
 
             _httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             _httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accesstoken);

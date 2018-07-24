@@ -6,6 +6,6 @@ namespace MpesaLib.Interfaces
 {
     public interface ITransactionStatusClient
     {
-        Task<string> GetData(MpesaTransactionStatus transactionStatus, string accesstoken);
+        Task<string> GetTransactionStatus(MpesaTransactionStatus transactionStatus, string accesstoken);
     }
 }
