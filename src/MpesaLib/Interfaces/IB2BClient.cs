@@ -5,6 +5,6 @@ namespace MpesaLib.Interfaces
 {
     public interface IB2BClient
     {
-        Task<string> PostData(BusinessToBusiness b2bitem, string token);
+        Task<string> PayBusiness(BusinessToBusiness b2bitem, string token);
     }
 }

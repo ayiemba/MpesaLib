@@ -18,30 +18,12 @@ namespace MpesaLib.Clients
             _httpclient = httpClient;
         }
 
+        public Uri BaseAddress { get; set; } = new Uri("https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest");
+
         public async Task<string> MakePayment(LipaNaMpesaOnline mpesaItem, string accesstoken)
-        {
-            var BaseAddress = new Uri("https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest");
-
-            //_httpclient.DefaultRequestHeaders.Accept.Clear();
+        {            
             _httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            _httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accesstoken);
-            //_httpclient.BaseAddress = BaseAddress;
-            //_httpclient.DefaultRequestHeaders.Host = "sandbox.safaricom.co.ke";
-
-            //var values = new List<KeyValuePair<string, string>>
-            //{
-            //    new KeyValuePair<string, string>("BusinessShortCode", mpesaItem.BusinessShortCode),
-            //    new KeyValuePair<string, string>("Password", mpesaItem.Password),
-            //    new KeyValuePair<string, string>("Timestamp", mpesaItem.Timestamp),
-            //    new KeyValuePair<string, string>("TransactionType", mpesaItem.TransactionType),
-            //    new KeyValuePair<string, string>("Amount", mpesaItem.Amount),
-            //    new KeyValuePair<string, string>("PartyA", mpesaItem.PartyA),
-            //    new KeyValuePair<string, string>("PartyB", mpesaItem.PartyB),
-            //    new KeyValuePair<string, string>("PhoneNumber", mpesaItem.PhoneNumber),
-            //    new KeyValuePair<string, string>("CallBackURL", mpesaItem.CallBackURL),
-            //    new KeyValuePair<string, string>("AccountReference", mpesaItem.AccountReference),
-            //    new KeyValuePair<string, string>("TransactionDesc", mpesaItem.TransactionDesc)
-            //};
+            _httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accesstoken);           
 
             var values = new Dictionary<string, string>
             {
@@ -62,7 +44,6 @@ namespace MpesaLib.Clients
 
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, BaseAddress)
             {
-                //Content = new FormUrlEncodedContent(values)
                 Content = new StringContent(jsonvalues.ToString(), Encoding.UTF8, "application/json")
             };
 

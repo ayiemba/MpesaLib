@@ -17,17 +17,14 @@ namespace MpesaLib.Clients
         public AccountBalanceQueryClient(HttpClient httpClient)
         {
             _httpClient = httpClient;
-        }     
-        public async Task<string> GetData(AccountBalance accbalance, string accesstoken)
-        {
-            var BaseAddress = new Uri("https://sandbox.safaricom.co.ke/mpesa/accountbalance/v1/query");
+        }
 
-            //_httpClient.DefaultRequestHeaders.Accept.Clear();
+        public Uri BaseAddress { get; set; } = new Uri("https://sandbox.safaricom.co.ke/mpesa/accountbalance/v1/query");
+
+        public async Task<string> GetBalance(AccountBalance accbalance, string accesstoken)
+        {                       
             _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",accesstoken);
-            //_httpClient.DefaultRequestHeaders.Host = "sandbox.safaricom.co.ke";
-
-            
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",accesstoken);                   
 
             var values = new Dictionary<string, string>
             {
