@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 
 namespace MpesaLib.Clients
 {
+    /// <summary>
+    /// Instantiate this claa to make a Business to Customer Mpesa payment.
+    /// </summary>
     public class B2CClient : IB2CClient
     {
         private readonly HttpClient _httpclient;
@@ -18,12 +21,21 @@ namespace MpesaLib.Clients
             _httpclient = httpClient;
         }
 
-        public Uri BaseAddress { get; set; } = new Uri("https://sandbox.safaricom.co.ke/mpesa/b2c/v1/paymentrequest");
+        /// <summary>
+        /// Defaults to sandbox URL. Override with Mpesa production url when deploying to a production environment.
+        /// </summary>
+        public string BaseUri { get; set; } = "https://sandbox.safaricom.co.ke/mpesa/b2c/v1/paymentrequest";
 
+        /// <summary>
+        /// Make Business to Customer Mpesa Payment
+        /// </summary>
+        /// <param name="b2citem">B2C payment request object</param>
+        /// <param name="accesstoken">Access token generate by AuthClient</param>
+        /// <returns>Returns a JSON string that you should deserialize</returns>
         public async Task<string> PayCustomer(BusinessToCustomer b2citem, string accesstoken)
         {
-           
 
+            Uri BaseAddress = new Uri(BaseUri);
             _httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             _httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accesstoken);
 
