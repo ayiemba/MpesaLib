@@ -12,7 +12,7 @@
     <PackageLicenseUrl>https://github.com/ayiemba/MpesaLib/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://ayiemba.github.io/MpesaLib</PackageProjectUrl>
     <PackageReleaseNotes>- XML Documentation
-- Ability to Override Sandbox Urls</PackageReleaseNotes>
+- Ability to Override Sandbox URLs</PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
