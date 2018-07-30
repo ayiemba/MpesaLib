@@ -15,8 +15,12 @@ namespace MpesaLib.Clients
     /// </summary>
     public class AuthClient : IAuthClient
     {
-        private readonly HttpClient _httpclient;      
+        private readonly HttpClient _httpclient;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="httpClient"></param>
         public AuthClient(HttpClient httpClient)
         {
             _httpclient = httpClient;           

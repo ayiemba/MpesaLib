@@ -16,6 +16,10 @@ namespace MpesaLib.Clients
     public class LipaNaMpesaQueryClient : ILipaNaMpesaQueryClient
     {
         private readonly HttpClient _httpclient;
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="httpClient"></param>
         public LipaNaMpesaQueryClient(HttpClient httpClient)
         {
             _httpclient = httpClient;

@@ -16,6 +16,10 @@ namespace MpesaLib.Clients
     public class B2BClient : IB2BClient
     {
         private readonly HttpClient _httpclient;
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="httpClient"></param>
         public B2BClient(HttpClient httpClient)
         {
             _httpclient = httpClient;

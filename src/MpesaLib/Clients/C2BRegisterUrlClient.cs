@@ -16,6 +16,10 @@ namespace MpesaLib.Clients
     public class C2BRegisterUrlClient : IC2BRegisterUrlClient
     {
         private readonly HttpClient _httpclient;
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="httpClient"></param>
         public C2BRegisterUrlClient(HttpClient httpClient)
         {
             _httpclient = httpClient;
