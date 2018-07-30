@@ -9,7 +9,7 @@ if not "%PackageVersion%" == "" (
    set version=%PackageVersion%
 )
 
-set nuget = "./../lib/nuget.exe"
+set nuget = "./../lib/nuget2.exe"
 if "%nuget%" == "" (
 	set nuget=nuget
 )
@@ -23,7 +23,7 @@ mkdir Build
 mkdir Build\lib
 mkdir Build\lib\netstandard2.0
 
-%nuget% pack "src\MpesaLib.nuspec" -NoPackageAnalysis -verbosity detailed -o Build -Version %version% -p Configuration="%config%"
+
 
 
 
