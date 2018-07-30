@@ -13,6 +13,7 @@
     <PackageProjectUrl>https://ayiemba.github.io/MpesaLib</PackageProjectUrl>
     <PackageReleaseNotes>- XML Documentation
 - Ability to Override Sandbox URLs</PackageReleaseNotes>
+<IncludeBuildOutput>false</IncludeBuildOutput>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
