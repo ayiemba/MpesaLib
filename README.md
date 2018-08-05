@@ -76,7 +76,7 @@ Explore All existing MPESA APIs and how to generate your API Keys at Daraja - [S
 
             var consumerSecret = _config["MpesaConfiguration:ConsumerSecret"];
 
-            var accesstoken = await _auth.GetData(consumerKey,consumerSecret);
+            var accesstoken = await _auth.GetToken(consumerKey,consumerSecret);
             
             ...
         //code omitted for brevity
