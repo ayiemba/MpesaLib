@@ -2,10 +2,7 @@
  
 MPESA API LIBRARY For C# Developers
 
-* MpesaLib is in BETA Version as of NUGET Package version 1.0.8.
-* MpesaLib is based on .NET Standard 2.0
-* MpesaLib is a side project, and is fully open source.
-* Pull requests and design reviews/recommendations are encouraged.
+* This documentation is only meant to help you get started on how to use this library and does not explain MPESA APIs and there internal working or exemplifications of when and where you might want to use any of the APIs. If you need indepth explanation on how these Mpesa APIs work you can checkout this link ---> https://peternjeru.co.ke/safdaraja. Otherwise Safaricoms developer portal should get you sufficient detail.
 
 Explore All existing MPESA APIs and how to generate your API Keys at Daraja - [Safaricom's Developer Portal](https://developer.safaricom.co.ke/apis-explorer)
 
@@ -19,44 +16,57 @@ Explore All existing MPESA APIs and how to generate your API Keys at Daraja - [S
 ## 1. HOW TO USE In an ASP.NET Core Web Application
 
 * Run `Install-Package MpesaLib -Version 1.0.8` in Package Manager Console or go to Manage Nuget Packages, Search and install MpesaLib
-* Inject Mpesa API Clients in DI Container; For asp.net core core this can be done in Startup.cs
+* Add usings ```c# using MpesaLib.Clients; ```
+* Inject Mpesa API Clients in DI Container; For asp.net core core this can be done in Startup.cs. 
+** *Note that there are about 10 mpesa api clients. Only register or new up the ones you need in your code.
 
 ```c#
-    //Add AuthClient
+    //Add AuthClient - gets you accesstokens (This is manadatory)
     services.AddHttpClient<AuthClient>();
-    //Add LipaNaMpesaOnlineClient
+    
+    //Add LipaNaMpesaOnlineClient - makes STK Push payment requests
     services.AddHttpClient<LipaNaMpesaOnlineClient>();
-    //Add C2BRegisterUrlClient
-    services.AddHttpClient<C2BRegisterClient>();
-    //Add C2BSimulateClient
-    services.AddHttpClient<C2BSimulateClient>();
-    //Add any other Mpesa API Clients you wish to use...
+    
+    //Add C2BRegisterUrlClient - register your callback URLS, goes hand-in-hand with the C2BClient
+    services.AddHttpClient<C2BRegisterUrlClient>();
+    
+    //Add C2BClient - makes customer to business payment requests 
+    services.AddHttpClient<C2BClient>();
+    
+    //Add B2BClient - makes business to business payment requests
+    services.AddHttpClient<B2BClient>();
+    
+    //Add B2CClient - makes business to customer payment requests
+    services.AddHttpClient<B2CClient>();
+    
+    //Add LipaNaMpesaQueryClient - Query status of a LipaNaMpesaOnline Payment request
+    services.AddHttpClient<LipaNaMpesaQueryClient>();
+    
+    //Add TransactionReversalClient - Reverses Mpesa transactions
+    services.AddHttpClient<LipaNaMpesaOnlineClient>();
+    
+    //Add TransactionStatusClient - Query status of transaction requests
+    services.AddHttpClient<LipaNaMpesaOnlineClient>();   
+    
 ```
-
-* In your Controller Instantiate the clients in constructor...
+* In your Controller Instantiate the clients in constructor... (in this case am instantiating the AuthClient and LipaNaMpesaOnlineClient. And of cos i pull my API Keys and secrets from configuration.
 
 ```c#
     public class PaymentsController : Controller
     {
         private readonly AuthClient _auth;
-        private LipaNaMpesaOnlineClient _lipaNaMpesa;
-        private C2BRegisterClient _c2bregister;
-        private readonly C2BSimulateClient _c2bSimulate;
+        private LipaNaMpesaOnlineClient _lipaNaMpesa;        
         private readonly IConfiguration _config;
 
-        public PaymentsController(AuthClient auth, LipaNaMpesaOnlineClient lipaNampesa, C2BRegisterClient c2bregister,
-           C2BSimulateClient c2bsim, IConfiguration configuration)
+        public PaymentsController(AuthClient auth, LipaNaMpesaOnlineClient lipaNampesa, IConfiguration configuration)
         {
             _auth = auth;
-            _lipaNaMpesa = lipaNampesa;
-            _c2bregister = c2bregister;
-            _c2bSimulate = c2bsim;
+            _lipaNaMpesa = lipaNampesa;            
             _config = configuration;
         }
         ...
         //Code omitted for brevity
 ```
-
 * You can store your ConsumerKey and ConsumerSecret in appsettings.json as follows
 
 ```json
@@ -107,4 +117,11 @@ Explore All existing MPESA APIs and how to generate your API Keys at Daraja - [S
 var paymentrequest = await _lipaNaMpesa.MakePayment(lipaonline, accesstoken);
 ```
 
+* (Not Recommended) - If you dont want to use Dependency Injection you can just New-Up the clients and use them like this..
+```c#
+   LipaNaMpesaOnlineClient LipaNaMpesa = new LipaNaMpesaOnlineClient();
+   ...
+   ...
+   var paymentrequest = await LipaNaMpesa.MakePayment(lipaonline, accesstoken);
+```
 * Do whatever you want with the results of the request... (Of cos i plan to make these docs better in the future)
