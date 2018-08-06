@@ -127,3 +127,68 @@ var paymentrequest = await _lipaNaMpesa.MakePayment(lipaonline, accesstoken);
    var paymentrequest = await LipaNaMpesa.MakePayment(lipaonline, accesstoken);
 ```
 * Do whatever you want with the results of the request... (Of cos i plan to make these docs better in the future)
+
+
+## 2. A Quick and Cheeky Way to test Using Console App:
+```c#
+using MpesaLib.Clients;
+using MpesaLib.Models;
+using System;
+using System.Net.Http;
+using System.Threading.Tasks;
+
+namespace ConsoleApp1
+{
+    class Program
+    {
+        
+
+        static void  Main(string[] args)
+        {
+            Console.WriteLine("Mpesa API Test ..."); 
+            
+            MakePaymentAsync().GetAwaiter().GetResult(); 
+
+            Console.WriteLine("Press Any Key to Exit..");
+
+            Console.ReadKey();
+
+        }
+
+        static async Task<string> MakePaymentAsync()
+        {
+            string ConsumerSecret = "your consumer secret from daraja";
+            string ConsumerKey = "your consumer key from daraja";
+
+            var httpClient = new HttpClient(); //NOT A GOOD IDEA!!
+           
+            AuthClient Auth = new AuthClient(httpClient);   //Your have to pass in httpClient to all the MpesaLib clients.        
+
+            string accesstoken = await Auth.GetToken(ConsumerKey, ConsumerSecret); //this will get you a token
+
+            var LipaNaMpesaOnline = new LipaNaMpesaOnline
+            {
+                AccountReference = "test",
+                Amount = "1",
+                PartyA = "2547xxxxxxxx", //replace with your number
+                PartyB = "174379",
+                BusinessShortCode = "174379",
+                CallBackURL = "https://use-your-own-callback-url/api/callback", //you should implement your own callback url, can be an api controller with a post method taking in a JToken (I gave you a big hint!!)
+                Password = "use your own password",
+                PhoneNumber = "254xxxxxxx", //same as PartyA
+                Timestamp = "20180716124916", // replace with timestamp used to generate password
+                TransactionDesc = "test"
+
+            };
+
+            LipaNaMpesaOnlineClient lipaonline = new LipaNaMpesaOnlineClient(httpClient);   //initialize the LipaNaMpesaOnlineClient()                
+
+            var paymentdata = lipaonline.MakePayment(LipaNaMpesaOnline, accesstoken);// this will make the STK Push and if you use your personal number you should see that on your phone. If you complete the payment it will be reversed.           
+
+            return paymentdata.ToString(); // you can return or log to console, in a real app there is plenty that you still need to do 
+        }
+
+    }
+}
+
+```
