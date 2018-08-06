@@ -192,3 +192,5 @@ namespace ConsoleApp1
 }
 
 ```
+You should see this from your phone if you did it right...
+![STK Push Screen](screenshots/stkpush.png)
