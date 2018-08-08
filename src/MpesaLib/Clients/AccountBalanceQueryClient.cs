@@ -17,6 +17,10 @@ namespace MpesaLib.Clients
     {
         private readonly HttpClient _httpClient;
 
+        /// <summary>
+        /// Queries Mpesa Account Balance
+        /// </summary>
+        /// <param name="httpClient"></param>
         public AccountBalanceQueryClient(HttpClient httpClient)
         {
             _httpClient = httpClient;

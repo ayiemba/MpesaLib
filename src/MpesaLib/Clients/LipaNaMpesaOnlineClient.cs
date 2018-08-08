@@ -16,6 +16,10 @@ namespace MpesaLib.Clients
     public class LipaNaMpesaOnlineClient : ILipaNaMpesaOnlineClient
     {
         private readonly HttpClient _httpclient;
+        /// <summary>
+        /// Makes Mpesa Express(STK Push) payment requests
+        /// </summary>
+        /// <param name="httpClient"></param>
         public LipaNaMpesaOnlineClient(HttpClient httpClient)
         {
             _httpclient = httpClient;
@@ -60,9 +64,7 @@ namespace MpesaLib.Clients
                 Content = new StringContent(jsonvalues.ToString(), Encoding.UTF8, "application/json")
             };
 
-            HttpResponseMessage response = await _httpclient.SendAsync(request);
-
-            Console.WriteLine("This is the request data: " + jsonvalues.ToString());
+            HttpResponseMessage response = await _httpclient.SendAsync(request);           
 
             return response.Content.ReadAsStringAsync().Result;
 

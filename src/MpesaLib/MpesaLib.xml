@@ -9,6 +9,12 @@
             Instantiate this class to check Mpesa Account balance
             </summary>
         </member>
+        <member name="M:MpesaLib.Clients.AccountBalanceQueryClient.#ctor(System.Net.Http.HttpClient)">
+            <summary>
+            Queries Mpesa Account Balance
+            </summary>
+            <param name="httpClient"></param>
+        </member>
         <member name="P:MpesaLib.Clients.AccountBalanceQueryClient.BaseUri">
             <summary>
             Defaults to sandbox URL. Override with Mpesa production url when deploying to a production environment.
@@ -26,6 +32,12 @@
             <summary>
             Instantiate this class to generate an accesstoken to use with the other Mpesa API clients
             </summary>
+        </member>
+        <member name="M:MpesaLib.Clients.AuthClient.#ctor(System.Net.Http.HttpClient)">
+            <summary>
+            Returns accesstoken
+            </summary>
+            <param name="httpClient"></param>
         </member>
         <member name="P:MpesaLib.Clients.AuthClient.BaseUri">
             <summary>
@@ -45,6 +57,12 @@
             Instantiate this class to make a Business to Business Mpesa payment.
             </summary>
         </member>
+        <member name="M:MpesaLib.Clients.B2BClient.#ctor(System.Net.Http.HttpClient)">
+            <summary>
+            Makes B2B Mpesa payment request
+            </summary>
+            <param name="httpClient"></param>
+        </member>
         <member name="P:MpesaLib.Clients.B2BClient.BaseUri">
             <summary>
             Defaults to sandbox URL. Override with Mpesa production url when deploying to a production environment.
@@ -62,6 +80,12 @@
             <summary>
             Instantiate this claa to make a Business to Customer Mpesa payment.
             </summary>
+        </member>
+        <member name="M:MpesaLib.Clients.B2CClient.#ctor(System.Net.Http.HttpClient)">
+            <summary>
+            Makes B2C Mpesa payment request
+            </summary>
+            <param name="httpClient"></param>
         </member>
         <member name="P:MpesaLib.Clients.B2CClient.BaseUri">
             <summary>
@@ -81,6 +105,12 @@
             Instantiate this class to make a Customer to Business Mpesa payment.
             </summary>
         </member>
+        <member name="M:MpesaLib.Clients.C2BClient.#ctor(System.Net.Http.HttpClient)">
+            <summary>
+            Makes C2B Mpesa Payment request
+            </summary>
+            <param name="httpClient"></param>
+        </member>
         <member name="P:MpesaLib.Clients.C2BClient.BaseUri">
             <summary>
             Defaults to sandbox URL. Override with Mpesa production url when deploying to a production environment.
@@ -98,6 +128,12 @@
             <summary>
             Instantiate this class to register your app callback Urls.
             </summary>
+        </member>
+        <member name="M:MpesaLib.Clients.C2BRegisterUrlClient.#ctor(System.Net.Http.HttpClient)">
+            <summary>
+            Registers callback urls
+            </summary>
+            <param name="httpClient"></param>
         </member>
         <member name="P:MpesaLib.Clients.C2BRegisterUrlClient.BaseUri">
             <summary>
@@ -117,6 +153,12 @@
             Instantiate this class to make a Lipa Na Mpesa Online payment request
             </summary>
         </member>
+        <member name="M:MpesaLib.Clients.LipaNaMpesaOnlineClient.#ctor(System.Net.Http.HttpClient)">
+            <summary>
+            Makes Mpesa Express(STK Push) payment requests
+            </summary>
+            <param name="httpClient"></param>
+        </member>
         <member name="P:MpesaLib.Clients.LipaNaMpesaOnlineClient.BaseUri">
             <summary>
             Defaults to sandbox URL. Override with Mpesa production url when deploying to a production environment.
@@ -134,6 +176,12 @@
             <summary>
             Instantiate this class to make a Lipa na Mpesa online Query api call
             </summary>
+        </member>
+        <member name="M:MpesaLib.Clients.LipaNaMpesaQueryClient.#ctor(System.Net.Http.HttpClient)">
+            <summary>
+            Queries Mpesa Express payments status
+            </summary>
+            <param name="httpClient"></param>
         </member>
         <member name="P:MpesaLib.Clients.LipaNaMpesaQueryClient.BaseUri">
             <summary>
@@ -153,6 +201,12 @@
             Instantiate this class to make a Mpesa Transaction Reversal API call.
             </summary>
         </member>
+        <member name="M:MpesaLib.Clients.TransactionReversalClient.#ctor(System.Net.Http.HttpClient)">
+            <summary>
+            Reverses Mpesa transactions
+            </summary>
+            <param name="httpClient"></param>
+        </member>
         <member name="P:MpesaLib.Clients.TransactionReversalClient.BaseUri">
             <summary>
             Defaults to sandbox URL. Override with Mpesa production url when deploying to a production environment.
@@ -170,6 +224,12 @@
             <summary>
             Instantiate this class to make a Mpesa Transaction status api call
             </summary>
+        </member>
+        <member name="M:MpesaLib.Clients.TransactionStatusClient.#ctor(System.Net.Http.HttpClient)">
+            <summary>
+            Queries status of Mpesa transactions
+            </summary>
+            <param name="httpClient"></param>
         </member>
         <member name="P:MpesaLib.Clients.TransactionStatusClient.BaseUri">
             <summary>

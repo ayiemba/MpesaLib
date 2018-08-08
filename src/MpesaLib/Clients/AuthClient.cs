@@ -2,7 +2,6 @@
 using MpesaLib.Models;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -15,8 +14,12 @@ namespace MpesaLib.Clients
     /// </summary>
     public class AuthClient : IAuthClient
     {
-        private readonly HttpClient _httpclient;      
+        private readonly HttpClient _httpclient;
 
+        /// <summary>
+        /// Returns accesstoken
+        /// </summary>
+        /// <param name="httpClient"></param>
         public AuthClient(HttpClient httpClient)
         {
             _httpclient = httpClient;           
