@@ -17,7 +17,7 @@ namespace MpesaLib.Clients
     {
         private readonly HttpClient _httpclient;
         /// <summary>
-        /// Makes B2B Mpesa payment request
+        /// Constructor
         /// </summary>
         /// <param name="httpClient"></param>
         public B2BClient(HttpClient httpClient)

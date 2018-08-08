@@ -17,7 +17,7 @@ namespace MpesaLib.Clients
         private readonly HttpClient _httpclient;
 
         /// <summary>
-        /// Returns accesstoken
+        /// Constructor
         /// </summary>
         /// <param name="httpClient"></param>
         public AuthClient(HttpClient httpClient)

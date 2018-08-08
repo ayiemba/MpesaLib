@@ -35,7 +35,7 @@
         </member>
         <member name="M:MpesaLib.Clients.AuthClient.#ctor(System.Net.Http.HttpClient)">
             <summary>
-            Returns accesstoken
+            Constructor
             </summary>
             <param name="httpClient"></param>
         </member>
@@ -59,7 +59,7 @@
         </member>
         <member name="M:MpesaLib.Clients.B2BClient.#ctor(System.Net.Http.HttpClient)">
             <summary>
-            Makes B2B Mpesa payment request
+            Constructor
             </summary>
             <param name="httpClient"></param>
         </member>
@@ -83,7 +83,7 @@
         </member>
         <member name="M:MpesaLib.Clients.B2CClient.#ctor(System.Net.Http.HttpClient)">
             <summary>
-            Makes B2C Mpesa payment request
+            Constructor
             </summary>
             <param name="httpClient"></param>
         </member>
@@ -107,7 +107,7 @@
         </member>
         <member name="M:MpesaLib.Clients.C2BClient.#ctor(System.Net.Http.HttpClient)">
             <summary>
-            Makes C2B Mpesa Payment request
+            Constructor
             </summary>
             <param name="httpClient"></param>
         </member>
@@ -131,7 +131,7 @@
         </member>
         <member name="M:MpesaLib.Clients.C2BRegisterUrlClient.#ctor(System.Net.Http.HttpClient)">
             <summary>
-            Registers callback urls
+            Constructor
             </summary>
             <param name="httpClient"></param>
         </member>
@@ -155,7 +155,7 @@
         </member>
         <member name="M:MpesaLib.Clients.LipaNaMpesaOnlineClient.#ctor(System.Net.Http.HttpClient)">
             <summary>
-            Makes Mpesa Express(STK Push) payment requests
+            Constructor
             </summary>
             <param name="httpClient"></param>
         </member>
@@ -179,7 +179,7 @@
         </member>
         <member name="M:MpesaLib.Clients.LipaNaMpesaQueryClient.#ctor(System.Net.Http.HttpClient)">
             <summary>
-            Queries Mpesa Express payments status
+            Constructor
             </summary>
             <param name="httpClient"></param>
         </member>
@@ -203,7 +203,7 @@
         </member>
         <member name="M:MpesaLib.Clients.TransactionReversalClient.#ctor(System.Net.Http.HttpClient)">
             <summary>
-            Reverses Mpesa transactions
+            Constructor
             </summary>
             <param name="httpClient"></param>
         </member>
@@ -227,7 +227,7 @@
         </member>
         <member name="M:MpesaLib.Clients.TransactionStatusClient.#ctor(System.Net.Http.HttpClient)">
             <summary>
-            Queries status of Mpesa transactions
+            Constructor
             </summary>
             <param name="httpClient"></param>
         </member>

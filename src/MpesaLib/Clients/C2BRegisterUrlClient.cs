@@ -17,7 +17,7 @@ namespace MpesaLib.Clients
     {
         private readonly HttpClient _httpclient;
         /// <summary>
-        /// Registers callback urls
+        /// Constructor
         /// </summary>
         /// <param name="httpClient"></param>
         public C2BRegisterUrlClient(HttpClient httpClient)

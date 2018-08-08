@@ -2,6 +2,7 @@
 <package >
   <metadata>
     <id>MpesaLib</id>
+	
     <version>$version$</version>
     <title>Mpesa C# API Library</title>
     <authors>Elvis Ayiemba</authors>
@@ -14,8 +15,10 @@
     <releaseNotes></releaseNotes>
     <copyright>Copyright ©2018; Geospartan tech.  All rights reserved.</copyright>
     <tags>mpesa payment billing c2b b2c lipanampesa</tags>
+	
   </metadata>
   <files>
 	<file src="MpesaLib\bin\$configuration$\netstandard2.0\MpesaLib.dll" target="netstandard2.0" />
   </files>
+  
 </package>

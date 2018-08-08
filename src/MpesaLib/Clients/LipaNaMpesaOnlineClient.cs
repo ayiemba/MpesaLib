@@ -17,7 +17,7 @@ namespace MpesaLib.Clients
     {
         private readonly HttpClient _httpclient;
         /// <summary>
-        /// Makes Mpesa Express(STK Push) payment requests
+        /// Constructor
         /// </summary>
         /// <param name="httpClient"></param>
         public LipaNaMpesaOnlineClient(HttpClient httpClient)

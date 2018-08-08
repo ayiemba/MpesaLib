@@ -17,7 +17,7 @@ namespace MpesaLib.Clients
     {
         private readonly HttpClient _httpclient;
         /// <summary>
-        /// Reverses Mpesa transactions
+        /// Constructor
         /// </summary>
         /// <param name="httpClient"></param>
         public TransactionReversalClient(HttpClient httpClient)

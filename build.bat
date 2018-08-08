@@ -1,7 +1,7 @@
 ﻿@echo Off
 set config=%1
 if "%config%" == "" (
-   set config=Debug
+   set config=Release
 )
  
 set version=1.1.3
@@ -9,7 +9,7 @@ if not "%PackageVersion%" == "" (
    set version=%PackageVersion%
 )
 
-set nuget = "./../lib/nuget.exe"
+set nuget= "./../lib/nuget2.exe"
 if "%nuget%" == "" (
 	set nuget=nuget
 )
@@ -22,6 +22,9 @@ Set msBuildLocation="C:\Program Files (x86)\Microsoft Visual Studio\2017\Communi
 mkdir Build
 mkdir Build\lib
 mkdir Build\lib\netstandard2.0
+
+
+
 
 
 

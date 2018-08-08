@@ -18,7 +18,7 @@ namespace MpesaLib.Clients
        
         private readonly HttpClient _httpclient;
         /// <summary>
-        /// Queries status of Mpesa transactions
+        /// Constructor
         /// </summary>
         /// <param name="httpClient"></param>
         public TransactionStatusClient(HttpClient httpClient)

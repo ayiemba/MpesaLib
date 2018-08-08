@@ -11,10 +11,12 @@
     <Copyright>Copyright © Geospartan Tech.  All rights reserved.</Copyright>
     <PackageLicenseUrl>https://github.com/ayiemba/MpesaLib/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://ayiemba.github.io/MpesaLib</PackageProjectUrl>
-    <PackageReleaseNotes>Minor Code Cleaning</PackageReleaseNotes>
+    <PackageReleaseNotes>Minor Code Cleaning</PackageReleaseNotes>   
+    <IncludeBuildOutput>false</IncludeBuildOutput>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <DocumentationFile>C:\Dev\Work\MpesaIntegration\MpesaLibrary\src\MpesaLib\MpesaLib.xml</DocumentationFile>
   </PropertyGroup>
 

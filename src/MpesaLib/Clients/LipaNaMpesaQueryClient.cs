@@ -17,7 +17,7 @@ namespace MpesaLib.Clients
     {
         private readonly HttpClient _httpclient;
         /// <summary>
-        /// Queries Mpesa Express payments status
+        /// Constructor
         /// </summary>
         /// <param name="httpClient"></param>
         public LipaNaMpesaQueryClient(HttpClient httpClient)
