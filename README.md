@@ -24,8 +24,8 @@ using MpesaLib.Clients; //gives you the clients
 using MpesaLib.Interfaces; //gives you the interfaces for use in DI
 using MpesaLib.Models; //gives the DTOs for each client
 ```
-* Inject Mpesa API Clients in DI Container; For asp.net core core this can be done in Startup.cs. 
-** *Note that there are about 10 mpesa api clients. Only register or new up the ones you need in your code.
+* Add Mpesa API Clients in DI Container; For asp.net core core this can be done in Startup.cs.
+There are about 10 mpesa api clients. Only register and use the specific ones you need in your code. If you can abstract them behind a helper method the better for you especially if you dont want to litter Startup.cs with too many services.AddHttpClient<>();
 
 ```c#
     //Add AuthClient - gets you accesstokens (This is manadatory)
@@ -50,13 +50,16 @@ using MpesaLib.Models; //gives the DTOs for each client
     services.AddHttpClient<ILipaNaMpesaQueryClient, LipaNaMpesaQueryClient>();
     
     //Add TransactionReversalClient - Reverses Mpesa transactions
-    services.AddHttpClient<ILipaNaMpesaOnlineClient, LipaNaMpesaOnlineClient>();
+    services.AddHttpClient<ITransactionReversalClient, TransactionReversalClient>();
     
     //Add TransactionStatusClient - Query status of transaction requests
-    services.AddHttpClient<ILipaNaMpesaOnlineClient, LipaNaMpesaOnlineClient>();   
+    services.AddHttpClient<ITransactionStatusClient, TransactionStatusClient>();  
+    
+     //Add AccountBalanceQueryCient - Query Mpesa balance
+    services.AddHttpClient<IAccountBalanceQueryCient, AccountBalanceQueryCient>(); 
     
 ```
-* In your Controller Instantiate the clients in constructor... (in this case am instantiating the AuthClient and LipaNaMpesaOnlineClient. And of cos i pull my API Keys and secrets from configuration.
+* Inject the clients in your controller of any class that does the api calls... (in this case am using the AuthClient and LipaNaMpesaOnlineClient. I store my API Keys and secrets in a configuration file in this case appsettings.json.
 
 ```c#
     public class PaymentsController : Controller
