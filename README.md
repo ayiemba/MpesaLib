@@ -18,37 +18,42 @@ Explore All existing MPESA APIs and how to generate your API Keys at Daraja - [S
 ## 1. HOW TO USE In an ASP.NET Core Web Application
 
 * Run `Install-Package MpesaLib -Version 1.0.8` in Package Manager Console or go to Manage Nuget Packages, Search and install MpesaLib
-* Add usings ```c# using MpesaLib.Clients; ```
+* Add usings 
+```c# 
+using MpesaLib.Clients; //gives you the clients
+using MpesaLib.Interfaces; //gives you the interfaces for use in DI
+using MpesaLib.Models; //gives the DTOs for each client
+```
 * Inject Mpesa API Clients in DI Container; For asp.net core core this can be done in Startup.cs. 
 ** *Note that there are about 10 mpesa api clients. Only register or new up the ones you need in your code.
 
 ```c#
     //Add AuthClient - gets you accesstokens (This is manadatory)
-    services.AddHttpClient<AuthClient>();
+    services.AddHttpClient<IAuthClient, AuthClient>();
     
     //Add LipaNaMpesaOnlineClient - makes STK Push payment requests
-    services.AddHttpClient<LipaNaMpesaOnlineClient>();
+    services.AddHttpClient<ILipaNaMpesaOnlineClient, LipaNaMpesaOnlineClient>();
     
     //Add C2BRegisterUrlClient - register your callback URLS, goes hand-in-hand with the C2BClient
-    services.AddHttpClient<C2BRegisterUrlClient>();
+    services.AddHttpClient<IC2BRegisterUrlClient, C2BRegisterUrlClient>();
     
     //Add C2BClient - makes customer to business payment requests 
-    services.AddHttpClient<C2BClient>();
+    services.AddHttpClient<IC2BClient, C2BClient>();
     
     //Add B2BClient - makes business to business payment requests
-    services.AddHttpClient<B2BClient>();
+    services.AddHttpClient<IB2BClient, B2BClient>();
     
     //Add B2CClient - makes business to customer payment requests
-    services.AddHttpClient<B2CClient>();
+    services.AddHttpClient<IB2CClient, B2CClient>();
     
     //Add LipaNaMpesaQueryClient - Query status of a LipaNaMpesaOnline Payment request
-    services.AddHttpClient<LipaNaMpesaQueryClient>();
+    services.AddHttpClient<ILipaNaMpesaQueryClient, LipaNaMpesaQueryClient>();
     
     //Add TransactionReversalClient - Reverses Mpesa transactions
-    services.AddHttpClient<LipaNaMpesaOnlineClient>();
+    services.AddHttpClient<ILipaNaMpesaOnlineClient, LipaNaMpesaOnlineClient>();
     
     //Add TransactionStatusClient - Query status of transaction requests
-    services.AddHttpClient<LipaNaMpesaOnlineClient>();   
+    services.AddHttpClient<ILipaNaMpesaOnlineClient, LipaNaMpesaOnlineClient>();   
     
 ```
 * In your Controller Instantiate the clients in constructor... (in this case am instantiating the AuthClient and LipaNaMpesaOnlineClient. And of cos i pull my API Keys and secrets from configuration.
