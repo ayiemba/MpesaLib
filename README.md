@@ -2,10 +2,9 @@
  
 MPESA API LIBRARY For C# Developers
 
-* MpesaLib is in BETA Version as of NUGET Package version 1.0.8.
-* MpesaLib is based on .NET Standard 2.0
-* MpesaLib is a side project, and is fully open source.
-* Pull requests and design reviews/recommendations are encouraged.
+ONLY ASP.NET CORE Tested!!
+
+* This documentation is only meant to help you get started on how to use this library and does not explain MPESA APIs and there internal workings or exemplifications of when and where you might want to use any of them. If you need some indepth explanation on how these Mpesa APIs work you can checkout this link ---> https://peternjeru.co.ke/safdaraja. Otherwise Safaricoms developer portal should get you sufficient detail.
 
 Explore All existing MPESA APIs and how to generate your API Keys at Daraja - [Safaricom's Developer Portal](https://developer.safaricom.co.ke/apis-explorer)
 
@@ -19,44 +18,65 @@ Explore All existing MPESA APIs and how to generate your API Keys at Daraja - [S
 ## 1. HOW TO USE In an ASP.NET Core Web Application
 
 * Run `Install-Package MpesaLib -Version 1.0.8` in Package Manager Console or go to Manage Nuget Packages, Search and install MpesaLib
-* Inject Mpesa API Clients in DI Container; For asp.net core core this can be done in Startup.cs
+* Add usings 
+```c# 
+using MpesaLib.Clients; //gives you the clients
+using MpesaLib.Interfaces; //gives you the interfaces for use in DI
+using MpesaLib.Models; //gives the DTOs for each client
+```
+* Add Mpesa API Clients in DI Container; For asp.net core core this can be done in Startup.cs.
+There are about 10 mpesa api clients. Only register and use the specific ones you need in your code. If you can abstract them behind a helper method the better for you especially if you dont want to litter Startup.cs with too many services.AddHttpClient<>();
 
 ```c#
-    //Add AuthClient
-    services.AddHttpClient<AuthClient>();
-    //Add LipaNaMpesaOnlineClient
-    services.AddHttpClient<LipaNaMpesaOnlineClient>();
-    //Add C2BRegisterUrlClient
-    services.AddHttpClient<C2BRegisterClient>();
-    //Add C2BSimulateClient
-    services.AddHttpClient<C2BSimulateClient>();
-    //Add any other Mpesa API Clients you wish to use...
+    //Add AuthClient - gets you accesstokens (This is manadatory)
+    services.AddHttpClient<IAuthClient, AuthClient>();
+    
+    //Add LipaNaMpesaOnlineClient - makes STK Push payment requests
+    services.AddHttpClient<ILipaNaMpesaOnlineClient, LipaNaMpesaOnlineClient>();
+    
+    //Add C2BRegisterUrlClient - register your callback URLS, goes hand-in-hand with the C2BClient
+    services.AddHttpClient<IC2BRegisterUrlClient, C2BRegisterUrlClient>();
+    
+    //Add C2BClient - makes customer to business payment requests 
+    services.AddHttpClient<IC2BClient, C2BClient>();
+    
+    //Add B2BClient - makes business to business payment requests
+    services.AddHttpClient<IB2BClient, B2BClient>();
+    
+    //Add B2CClient - makes business to customer payment requests
+    services.AddHttpClient<IB2CClient, B2CClient>();
+    
+    //Add LipaNaMpesaQueryClient - Query status of a LipaNaMpesaOnline Payment request
+    services.AddHttpClient<ILipaNaMpesaQueryClient, LipaNaMpesaQueryClient>();
+    
+    //Add TransactionReversalClient - Reverses Mpesa transactions
+    services.AddHttpClient<ITransactionReversalClient, TransactionReversalClient>();
+    
+    //Add TransactionStatusClient - Query status of transaction requests
+    services.AddHttpClient<ITransactionStatusClient, TransactionStatusClient>();  
+    
+     //Add AccountBalanceQueryCient - Query Mpesa balance
+    services.AddHttpClient<IAccountBalanceQueryCient, AccountBalanceQueryCient>(); 
+    
 ```
-
-* In your Controller Instantiate the clients in constructor...
+* Inject the clients in your controller of any class that does the api calls... (in this case am using the AuthClient and LipaNaMpesaOnlineClient. I store my API Keys and secrets in a configuration file in this case appsettings.json.
 
 ```c#
     public class PaymentsController : Controller
     {
-        private readonly AuthClient _auth;
-        private LipaNaMpesaOnlineClient _lipaNaMpesa;
-        private C2BRegisterClient _c2bregister;
-        private readonly C2BSimulateClient _c2bSimulate;
+        private readonly IAuthClient _auth;
+        private ILipaNaMpesaOnlineClient _lipaNaMpesa;        
         private readonly IConfiguration _config;
 
-        public PaymentsController(AuthClient auth, LipaNaMpesaOnlineClient lipaNampesa, C2BRegisterClient c2bregister,
-           C2BSimulateClient c2bsim, IConfiguration configuration)
+        public PaymentsController(IAuthClient auth, ILipaNaMpesaOnlineClient lipaNampesa, IConfiguration configuration)
         {
             _auth = auth;
-            _lipaNaMpesa = lipaNampesa;
-            _c2bregister = c2bregister;
-            _c2bSimulate = c2bsim;
+            _lipaNaMpesa = lipaNampesa;            
             _config = configuration;
         }
         ...
         //Code omitted for brevity
 ```
-
 * You can store your ConsumerKey and ConsumerSecret in appsettings.json as follows
 
 ```json
@@ -76,7 +96,7 @@ Explore All existing MPESA APIs and how to generate your API Keys at Daraja - [S
 
             var consumerSecret = _config["MpesaConfiguration:ConsumerSecret"];
 
-            var accesstoken = await _auth.GetData(consumerKey,consumerSecret);
+            var accesstoken = await _auth.GetToken(consumerKey,consumerSecret);
             
             ...
         //code omitted for brevity
@@ -107,4 +127,78 @@ Explore All existing MPESA APIs and how to generate your API Keys at Daraja - [S
 var paymentrequest = await _lipaNaMpesa.MakePayment(lipaonline, accesstoken);
 ```
 
+* (Not Recommended) - If you dont want to use Dependency Injection you can just New-Up the clients and use them like this..
+```c#
+   LipaNaMpesaOnlineClient LipaNaMpesa = new LipaNaMpesaOnlineClient();
+   ...
+   ...
+   var paymentrequest = await LipaNaMpesa.MakePayment(lipaonline, accesstoken);
+```
 * Do whatever you want with the results of the request... (Of cos i plan to make these docs better in the future)
+
+
+## 2. A Quick and Cheeky Way to test Using Console App:
+```c#
+using MpesaLib.Clients;
+using MpesaLib.Models;
+using System;
+using System.Net.Http;
+using System.Threading.Tasks;
+
+namespace ConsoleApp1
+{
+    class Program
+    {
+        
+
+        static void  Main(string[] args)
+        {
+            Console.WriteLine("Mpesa API Test ..."); 
+            
+            MakePaymentAsync().GetAwaiter().GetResult(); 
+
+            Console.WriteLine("Press Any Key to Exit..");
+
+            Console.ReadKey();
+
+        }
+
+        static async Task<string> MakePaymentAsync()
+        {
+            string ConsumerSecret = "your consumer secret from daraja";
+            string ConsumerKey = "your consumer key from daraja";
+
+            var httpClient = new HttpClient(); //NOT A GOOD IDEA!!
+           
+            AuthClient Auth = new AuthClient(httpClient);   //Your have to pass in httpClient to all the MpesaLib clients.        
+
+            string accesstoken = await Auth.GetToken(ConsumerKey, ConsumerSecret); //this will get you a token
+
+            var LipaNaMpesaOnline = new LipaNaMpesaOnline
+            {
+                AccountReference = "test",
+                Amount = "1",
+                PartyA = "2547xxxxxxxx", //replace with your number
+                PartyB = "174379",
+                BusinessShortCode = "174379",
+                CallBackURL = "https://use-your-own-callback-url/api/callback", //you should implement your own callback url, can be an api controller with a post method taking in a JToken (I gave you a big hint!!)
+                Password = "use your own password",
+                PhoneNumber = "254xxxxxxx", //same as PartyA
+                Timestamp = "20180716124916", // replace with timestamp used to generate password
+                TransactionDesc = "test"
+
+            };
+
+            LipaNaMpesaOnlineClient lipaonline = new LipaNaMpesaOnlineClient(httpClient);   //initialize the LipaNaMpesaOnlineClient()                
+
+            var paymentdata = lipaonline.MakePayment(LipaNaMpesaOnline, accesstoken);// this will make the STK Push and if you use your personal number you should see that on your phone. If you complete the payment it will be reversed.           
+
+            return paymentdata.ToString(); // you can return or log to console, in a real app there is plenty that you still need to do 
+        }
+
+    }
+}
+
+```
+You should see this from your phone if you did it right...
+![STK Push Screen](screenshots/stkpush.png)

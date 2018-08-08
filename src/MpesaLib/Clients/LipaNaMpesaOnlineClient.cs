@@ -64,9 +64,7 @@ namespace MpesaLib.Clients
                 Content = new StringContent(jsonvalues.ToString(), Encoding.UTF8, "application/json")
             };
 
-            HttpResponseMessage response = await _httpclient.SendAsync(request);
-
-            Console.WriteLine("This is the request data: " + jsonvalues.ToString());
+            HttpResponseMessage response = await _httpclient.SendAsync(request);           
 
             return response.Content.ReadAsStringAsync().Result;
 
