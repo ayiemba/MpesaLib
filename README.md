@@ -64,11 +64,11 @@ There are about 10 mpesa api clients. Only register and use the specific ones yo
 ```c#
     public class PaymentsController : Controller
     {
-        private readonly AuthClient _auth;
-        private LipaNaMpesaOnlineClient _lipaNaMpesa;        
+        private readonly IAuthClient _auth;
+        private ILipaNaMpesaOnlineClient _lipaNaMpesa;        
         private readonly IConfiguration _config;
 
-        public PaymentsController(AuthClient auth, LipaNaMpesaOnlineClient lipaNampesa, IConfiguration configuration)
+        public PaymentsController(IAuthClient auth, ILipaNaMpesaOnlineClient lipaNampesa, IConfiguration configuration)
         {
             _auth = auth;
             _lipaNaMpesa = lipaNampesa;            
