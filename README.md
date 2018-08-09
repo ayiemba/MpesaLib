@@ -2,9 +2,7 @@
  
 MPESA API LIBRARY For C# Developers
 
-ONLY ASP.NET CORE Tested!!
-
-* This documentation is only meant to help you get started on how to use this library and does not explain MPESA APIs and there internal workings or exemplifications of when and where you might want to use any of them. If you need some indepth explanation on how these Mpesa APIs work you can checkout this link ---> https://peternjeru.co.ke/safdaraja. Otherwise Safaricoms developer portal should get you sufficient detail.
+* This documentation is meant to help you get started on how to use this library and does not explain MPESA APIs and there internal workings or exemplifications of when and where you might want to use any of them. If you need some indepth explanation on how these Mpesa APIs work you can checkout this link ---> https://peternjeru.co.ke/safdaraja. Otherwise Safaricoms developer portal should get you sufficient detail.
 
 Explore All existing MPESA APIs and how to generate your API Keys at Daraja - [Safaricom's Developer Portal](https://developer.safaricom.co.ke/apis-explorer)
 
@@ -17,7 +15,7 @@ Explore All existing MPESA APIs and how to generate your API Keys at Daraja - [S
 
 ## 1. HOW TO USE In an ASP.NET Core Web Application
 
-* Run `Install-Package MpesaLib -Version 1.0.8` in Package Manager Console or go to Manage Nuget Packages, Search and install MpesaLib
+* Run `Install-Package MpesaLib -Version 1.X.X` in Package Manager Console or go to Manage Nuget Packages, Search and install MpesaLib
 * Add usings 
 ```c# 
 using MpesaLib.Clients; //gives you the clients
