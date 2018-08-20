@@ -44,9 +44,18 @@ namespace MpesaLib.Clients
 
             var keyBytes = Convert.ToBase64String(Encoding.UTF8.GetBytes($"{consumerKey}:{consumerSecret}"));
 
-            _httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", keyBytes);            
+            _httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", keyBytes);
 
-            HttpResponseMessage response = await _httpclient.SendAsync(request);
+            HttpResponseMessage response;
+
+            try
+            {
+                response = await _httpclient.SendAsync(request);
+            }
+            catch (Exception e)
+            {
+                throw new ApplicationException("Something went wrong:", e);
+            }
 
             var content = response.Content;
 

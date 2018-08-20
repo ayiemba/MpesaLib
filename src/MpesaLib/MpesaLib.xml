@@ -9,12 +9,7 @@
             Instantiate this class to check Mpesa Account balance
             </summary>
         </member>
-        <member name="M:MpesaLib.Clients.AccountBalanceQueryClient.#ctor(System.Net.Http.HttpClient)">
-            <summary>
-            Queries Mpesa Account Balance
-            </summary>
-            <param name="httpClient"></param>
-        </member>
+        <!-- Badly formed XML comment ignored for member "M:MpesaLib.Clients.AccountBalanceQueryClient.#ctor(System.Net.Http.HttpClient)" -->
         <member name="P:MpesaLib.Clients.AccountBalanceQueryClient.BaseUri">
             <summary>
             Defaults to sandbox URL. Override with Mpesa production url when deploying to a production environment.
