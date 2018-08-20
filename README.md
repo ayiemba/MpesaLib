@@ -70,7 +70,9 @@ using MpesaLib.Clients;
 using MpesaLib.Interfaces;
 
 ```
+
 ```c#
+
 namespace YourWebApp.Extensions
 {
     public static class MpesaExtentions
@@ -116,8 +118,8 @@ Then in Startup.cs just add ```using YourWebApp.Extensions``` followed by ```ser
         //Code omitted for brevity
 ```
 
-*You can store your ConsumerKey and ConsumerSecret in appsettings.json as follows
 
+*You can store your ConsumerKey and ConsumerSecret in appsettings.json as follows
 
 ```json
      "MpesaConfiguration": {
@@ -170,7 +172,9 @@ var paymentrequest = await _lipaNaMpesa.MakePayment(lipaonline, accesstoken);
 * (Not Recommended) - If you dont want to use Dependency Injection you can just New-Up the clients and use them like this..
 ```c#
 
+
    var httpClient = new HttpClient(); //required, comes from System.Net.Http or Microsoft.Extensions.Http
+
    LipaNaMpesaOnlineClient LipaNaMpesa = new LipaNaMpesaOnlineClient(httpClient); //you have to pass in an instance of httpClient
 
    ...
@@ -178,10 +182,13 @@ var paymentrequest = await _lipaNaMpesa.MakePayment(lipaonline, accesstoken);
    var paymentrequest = await LipaNaMpesa.MakePayment(lipaonline, accesstoken);
 ```
 
+
+
 * Do whatever you want with the results of the request...
 
 
 ## 2. A quick and dirty Way to test Using Console App:
+
 
 ```c#
 using MpesaLib.Clients;

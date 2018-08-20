@@ -7,6 +7,7 @@ if "%config%" == "" (
 
 set version=1.1.7.1
 
+
 if not "%PackageVersion%" == "" (
    set version=%PackageVersion%
 )
