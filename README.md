@@ -170,7 +170,7 @@ var paymentrequest = await _lipaNaMpesa.MakePayment(lipaonline, accesstoken);
 * Do whatever you want with the results of the request...
 
 
-## 2. A Quick and Cheeky Way to test Using Console App:
+## 2. A quick and dirty Way to test Using Console App:
 ```c#
 using MpesaLib.Clients;
 using MpesaLib.Models;
@@ -214,7 +214,7 @@ namespace ConsoleApp1
                 PartyA = "2547xxxxxxxx", //replace with your number
                 PartyB = "174379",
                 BusinessShortCode = "174379",
-                CallBackURL = "https://use-your-own-callback-url/api/callback", //you should implement your own callback url, can be an api controller with a post method taking in a JToken (I gave you a big hint!!)
+                CallBackURL = "https://use-your-own-callback-url/api/callback", //you should implement your own callback url, can be an api controller with a post method taking in a JToken
                 Password = "use your own password",
                 PhoneNumber = "254xxxxxxx", //same as PartyA
                 Timestamp = "20180716124916", // replace with timestamp used to generate password
