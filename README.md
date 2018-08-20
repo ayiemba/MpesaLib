@@ -2,7 +2,8 @@
  
 MPESA API LIBRARY For C# Developers
 
-* This documentation is meant to help you get started on how to use this library and does not explain MPESA APIs and there internal workings or exemplifications of when and where you might want to use any of them. If you need some indepth explanation on how these Mpesa APIs work you can checkout this link ---> https://peternjeru.co.ke/safdaraja. Otherwise Safaricoms developer portal should get you sufficient detail.
+* This documentation is only meant to help you get started on how to use this library and does not explain MPESA APIs and there internal workings or exemplifications of when and where you might want to use any of them. If you need some indepth explanation on how these Mpesa APIs work you can checkout this link ---> https://peternjeru.co.ke/safdaraja. Otherwise Safaricoms developer portal should get you sufficient detail.
+
 
 Explore All existing MPESA APIs and how to generate your API Keys at Daraja - [Safaricom's Developer Portal](https://developer.safaricom.co.ke/apis-explorer)
 
@@ -17,6 +18,7 @@ Explore All existing MPESA APIs and how to generate your API Keys at Daraja - [S
 
 * Run `Install-Package MpesaLib -Version 1.X.X` in Package Manager Console or go to Manage Nuget Packages, Search and install MpesaLib
 * Add usings - these are the only namespaces you'll ever need from MpesaLib
+
 ```c# 
 using MpesaLib.Clients; //gives you the clients
 using MpesaLib.Interfaces; //gives you the interfaces for use in DI
@@ -57,6 +59,7 @@ There are about 10 mpesa api clients. Only register and use the specific ones yo
      //Add AccountBalanceQueryCient - Query Mpesa balance
     services.AddHttpClient<IAccountBalanceQueryCient, AccountBalanceQueryCient>(); 
     
+
 ```
 ### Option 2 on how to add the services using dependency Injection:
 * Option 1 above is not very clean since your startup class might get littered with too many services. To solve this, i use extention methods. The idea is to abstract these services behind one method so that we just do ```services.AddMpesaSupport()```. This makes the startup class much cleaner. To achieve this use the IserviceCollection interface available in ASP.NET Core. Here is a sample...
@@ -90,8 +93,8 @@ namespace YourWebApp.Extensions
 Then in Startup.cs just add ```using YourWebApp.Extensions``` followed by ```services.AddMpesaSupport();```
 
 
-
 * Inject the clients in the constructor of your controller or any class that makes the api calls... (in this case i only need AuthClient and LipaNaMpesaOnlineClient. I store my API Keys and secrets in a configuration file and inject them into the necessary class using ```IConfiguration``` interface.
+
 
 ```c#
     public class PaymentsController : Controller
@@ -109,7 +112,9 @@ Then in Startup.cs just add ```using YourWebApp.Extensions``` followed by ```ser
         ...
         //Code omitted for brevity
 ```
+
 **You can store your ConsumerKey and ConsumerSecret in appsettings.json as follows
+
 
 ```json
      "MpesaConfiguration": {
@@ -161,16 +166,20 @@ var paymentrequest = await _lipaNaMpesa.MakePayment(lipaonline, accesstoken);
 
 * (Not Recommended) - If you dont want to use Dependency Injection you can just New-Up the clients and use them like this..
 ```c#
+
    var httpClient = new HttpClient(); //required, comes from System.Net.Http
    LipaNaMpesaOnlineClient LipaNaMpesa = new LipaNaMpesaOnlineClient(httpClient); //you have to pass in an instance of httpClient
+
    ...
    ...
    var paymentrequest = await LipaNaMpesa.MakePayment(lipaonline, accesstoken);
 ```
+
 * Do whatever you want with the results of the request...
 
 
 ## 2. A quick and dirty Way to test Using Console App:
+
 ```c#
 using MpesaLib.Clients;
 using MpesaLib.Models;
@@ -202,6 +211,7 @@ namespace ConsoleApp1
             string ConsumerKey = "your consumer key from daraja";
 
             var httpClient = new HttpClient(); //this is needed by each client
+
            
             AuthClient Auth = new AuthClient(httpClient);   //Your have to pass in httpClient to all the MpesaLib clients.        
 
@@ -214,7 +224,9 @@ namespace ConsoleApp1
                 PartyA = "2547xxxxxxxx", //replace with your number
                 PartyB = "174379",
                 BusinessShortCode = "174379",
+
                 CallBackURL = "https://use-your-own-callback-url/api/callback", //you should implement your own callback url, can be an api controller with a post method taking in a JToken
+
                 Password = "use your own password",
                 PhoneNumber = "254xxxxxxx", //same as PartyA
                 Timestamp = "20180716124916", // replace with timestamp used to generate password
