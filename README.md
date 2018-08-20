@@ -70,7 +70,9 @@ using MpesaLib.Clients;
 using MpesaLib.Interfaces;
 
 ```
+
 ```c#
+
 namespace YourWebApp.Extensions
 {
     public static class MpesaExtentions
@@ -79,9 +81,9 @@ namespace YourWebApp.Extensions
         {
             //Add Mpesa Clients
             services.AddHttpClient<IAuthClient, AuthClient>();
-            services.AddHttpClient<ILipaNaMpesaOnlineClient, LipaNaMpesaOnlineClient>();          
+            services.AddHttpClient<ILipaNaMpesaOnlineClient, LipaNaMpesaOnlineClient>();
             services.AddHttpClient<IAccountBalanceQueryClient, AccountBalanceQueryClient>();
-            services.AddHttpClient<IC2BClient, C2BClient>();            
+            services.AddHttpClient<IC2BClient, C2BClient>();
             services.AddHttpClient<IB2BClient, B2BClient>();
             services.AddHttpClient<IB2CClient, B2CClient>();
             services.AddHttpClient<IC2BRegisterUrlClient, C2BRegisterUrlClient>();
@@ -103,21 +105,21 @@ Then in Startup.cs just add ```using YourWebApp.Extensions``` followed by ```ser
     public class PaymentsController : Controller
     {
         private readonly IAuthClient _auth;
-        private ILipaNaMpesaOnlineClient _lipaNaMpesa;        
+        private ILipaNaMpesaOnlineClient _lipaNaMpesa;
         private readonly IConfiguration _config;
 
         public PaymentsController(IAuthClient auth, ILipaNaMpesaOnlineClient lipaNampesa, IConfiguration configuration)
         {
             _auth = auth;
-            _lipaNaMpesa = lipaNampesa;            
+            _lipaNaMpesa = lipaNampesa;
             _config = configuration;
         }
         ...
         //Code omitted for brevity
 ```
 
-**You can store your ConsumerKey and ConsumerSecret in appsettings.json as follows
 
+*You can store your ConsumerKey and ConsumerSecret in appsettings.json as follows
 
 ```json
      "MpesaConfiguration": {
@@ -137,7 +139,7 @@ Then in Startup.cs just add ```using YourWebApp.Extensions``` followed by ```ser
             var consumerSecret = _config["MpesaConfiguration:ConsumerSecret"];
 
             var accesstoken = await _auth.GetToken(consumerKey,consumerSecret);
-            
+
             ...
         //code omitted for brevity
 ```
@@ -170,7 +172,9 @@ var paymentrequest = await _lipaNaMpesa.MakePayment(lipaonline, accesstoken);
 * (Not Recommended) - If you dont want to use Dependency Injection you can just New-Up the clients and use them like this..
 ```c#
 
-   var httpClient = new HttpClient(); //required, comes from System.Net.Http
+
+   var httpClient = new HttpClient(); //required, comes from System.Net.Http or Microsoft.Extensions.Http
+
    LipaNaMpesaOnlineClient LipaNaMpesa = new LipaNaMpesaOnlineClient(httpClient); //you have to pass in an instance of httpClient
 
    ...
@@ -178,10 +182,13 @@ var paymentrequest = await _lipaNaMpesa.MakePayment(lipaonline, accesstoken);
    var paymentrequest = await LipaNaMpesa.MakePayment(lipaonline, accesstoken);
 ```
 
+
+
 * Do whatever you want with the results of the request...
 
 
 ## 2. A quick and dirty Way to test Using Console App:
+
 
 ```c#
 using MpesaLib.Clients;
@@ -248,5 +255,6 @@ namespace ConsoleApp1
 }
 
 ```
-You should see this from your phone if you did it right...
+You should see the following from your phone if you configured everything propoerly...
+
 ![STK Push Screen](screenshots/stkpush.png)
