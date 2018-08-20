@@ -23,6 +23,7 @@ Explore All existing MPESA APIs and how to generate your API Keys at Daraja - [S
 using MpesaLib.Clients; //gives you the clients
 using MpesaLib.Interfaces; //gives you the interfaces for use in DI
 using MpesaLib.Models; //gives the DTOs for each client
+
 ```
 ### Option 1 on how to add the services using Dependency Injection: 
 * Add Mpesa API Clients in DI Container; For asp.net core core this can be done in Startup.cs.
@@ -68,6 +69,8 @@ using Microsoft.Extensions.DependencyInjection;
 using MpesaLib.Clients;
 using MpesaLib.Interfaces;
 
+```
+```c#
 namespace YourWebApp.Extensions
 {
     public static class MpesaExtentions
@@ -90,8 +93,8 @@ namespace YourWebApp.Extensions
 }
 
 ```
-Then in Startup.cs just add ```using YourWebApp.Extensions``` followed by ```services.AddMpesaSupport();```
 
+Then in Startup.cs just add ```using YourWebApp.Extensions``` followed by ```services.AddMpesaSupport();```
 
 * Inject the clients in the constructor of your controller or any class that makes the api calls... (in this case i only need AuthClient and LipaNaMpesaOnlineClient. I store my API Keys and secrets in a configuration file and inject them into the necessary class using ```IConfiguration``` interface.
 
