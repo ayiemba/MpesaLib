@@ -91,7 +91,7 @@ Then in Startup.cs just add ```using YourWebApp.Extensions``` followed by ```ser
 
 
 
-* Inject the clients in your controller of any class that does the api calls... (in this case am using the AuthClient and LipaNaMpesaOnlineClient. I store my API Keys and secrets in a configuration file in this case appsettings.json.
+* Inject the clients in the constructor of your controller or any class that makes the api calls... (in this case i only need AuthClient and LipaNaMpesaOnlineClient. I store my API Keys and secrets in a configuration file and inject them into the necessary class using ```IConfiguration``` interface.
 
 ```c#
     public class PaymentsController : Controller
@@ -109,7 +109,7 @@ Then in Startup.cs just add ```using YourWebApp.Extensions``` followed by ```ser
         ...
         //Code omitted for brevity
 ```
-* You can store your ConsumerKey and ConsumerSecret in appsettings.json as follows
+**You can store your ConsumerKey and ConsumerSecret in appsettings.json as follows
 
 ```json
      "MpesaConfiguration": {
@@ -118,7 +118,7 @@ Then in Startup.cs just add ```using YourWebApp.Extensions``` followed by ```ser
        }
 ```
 
-* Generate `accesstoken` using the AuthClient
+* First generate an `accesstoken` using the AuthClient as follows
 
 ```c#
         // GET: /<controller>/
@@ -134,7 +134,7 @@ Then in Startup.cs just add ```using YourWebApp.Extensions``` followed by ```ser
         //code omitted for brevity
 ```
 
-* To use Send Request to LipaNaMpesaOnline, initialize the LipaNaMpesaOnline object by providing values for it's properties
+* To Send payment Request using LipaNaMpesaOnline, initialize the LipaNaMpesaOnline data transfer object as follows. The DTOs are in namespace ```using MpesaLib.Models;```
 
 ```c#
       LipaNaMpesaOnline lipaonline = new LipaNaMpesaOnline
@@ -162,7 +162,7 @@ var paymentrequest = await _lipaNaMpesa.MakePayment(lipaonline, accesstoken);
 * (Not Recommended) - If you dont want to use Dependency Injection you can just New-Up the clients and use them like this..
 ```c#
    var httpClient = new HttpClient(); //required, comes from System.Net.Http
-   LipaNaMpesaOnlineClient LipaNaMpesa = new LipaNaMpesaOnlineClient(httpClient); //you hacve to pass in an instance of httpClient
+   LipaNaMpesaOnlineClient LipaNaMpesa = new LipaNaMpesaOnlineClient(httpClient); //you have to pass in an instance of httpClient
    ...
    ...
    var paymentrequest = await LipaNaMpesa.MakePayment(lipaonline, accesstoken);
