@@ -2,9 +2,8 @@
  
 MPESA API LIBRARY For C# Developers
 
-ONLY ASP.NET CORE Tested!!
-
 * This documentation is only meant to help you get started on how to use this library and does not explain MPESA APIs and there internal workings or exemplifications of when and where you might want to use any of them. If you need some indepth explanation on how these Mpesa APIs work you can checkout this link ---> https://peternjeru.co.ke/safdaraja. Otherwise Safaricoms developer portal should get you sufficient detail.
+
 
 Explore All existing MPESA APIs and how to generate your API Keys at Daraja - [Safaricom's Developer Portal](https://developer.safaricom.co.ke/apis-explorer)
 
@@ -17,15 +16,17 @@ Explore All existing MPESA APIs and how to generate your API Keys at Daraja - [S
 
 ## 1. HOW TO USE In an ASP.NET Core Web Application
 
-* Run `Install-Package MpesaLib -Version 1.0.8` in Package Manager Console or go to Manage Nuget Packages, Search and install MpesaLib
-* Add usings 
+* Run `Install-Package MpesaLib -Version 1.X.X` in Package Manager Console or go to Manage Nuget Packages, Search and install MpesaLib
+* Add usings - these are the only namespaces you'll ever need from MpesaLib
+
 ```c# 
 using MpesaLib.Clients; //gives you the clients
 using MpesaLib.Interfaces; //gives you the interfaces for use in DI
 using MpesaLib.Models; //gives the DTOs for each client
 ```
+### Option 1 on how to add the services using Dependency Injection: 
 * Add Mpesa API Clients in DI Container; For asp.net core core this can be done in Startup.cs.
-There are about 10 mpesa api clients. Only register and use the specific ones you need in your code. If you can abstract them behind a helper method the better for you especially if you dont want to litter Startup.cs with too many services.AddHttpClient<>();
+There are about 10 mpesa api clients. Only register and use the specific ones you need in your code. If you need more than 3 clients follow Option 2 to add them in startup.cs in a cleaner way.
 
 ```c#
     //Add AuthClient - gets you accesstokens (This is manadatory)
@@ -58,8 +59,42 @@ There are about 10 mpesa api clients. Only register and use the specific ones yo
      //Add AccountBalanceQueryCient - Query Mpesa balance
     services.AddHttpClient<IAccountBalanceQueryCient, AccountBalanceQueryCient>(); 
     
+
 ```
-* Inject the clients in your controller of any class that does the api calls... (in this case am using the AuthClient and LipaNaMpesaOnlineClient. I store my API Keys and secrets in a configuration file in this case appsettings.json.
+### Option 2 on how to add the services using dependency Injection:
+* Option 1 above is not very clean since your startup class might get littered with too many services. To solve this, i use extention methods. The idea is to abstract these services behind one method so that we just do ```services.AddMpesaSupport()```. This makes the startup class much cleaner. To achieve this use the IserviceCollection interface available in ASP.NET Core. Here is a sample...
+```c#
+using Microsoft.Extensions.DependencyInjection;
+using MpesaLib.Clients;
+using MpesaLib.Interfaces;
+
+namespace YourWebApp.Extensions
+{
+    public static class MpesaExtentions
+    {
+        public static void AddMpesaSupport(this IServiceCollection services)
+        {
+            //Add Mpesa Clients
+            services.AddHttpClient<IAuthClient, AuthClient>();
+            services.AddHttpClient<ILipaNaMpesaOnlineClient, LipaNaMpesaOnlineClient>();          
+            services.AddHttpClient<IAccountBalanceQueryClient, AccountBalanceQueryClient>();
+            services.AddHttpClient<IC2BClient, C2BClient>();            
+            services.AddHttpClient<IB2BClient, B2BClient>();
+            services.AddHttpClient<IB2CClient, B2CClient>();
+            services.AddHttpClient<IC2BRegisterUrlClient, C2BRegisterUrlClient>();
+            services.AddHttpClient<ILipaNaMpesaQueryClient, LipaNaMpesaQueryClient>();
+            services.AddHttpClient<ITransactionStatusClient, TransactionStatusClient>();
+            services.AddHttpClient<ITransactionReversalClient, TransactionReversalClient>();
+        }
+    }
+}
+
+```
+Then in Startup.cs just add ```using YourWebApp.Extensions``` followed by ```services.AddMpesaSupport();```
+
+
+* Inject the clients in the constructor of your controller or any class that makes the api calls... (in this case i only need AuthClient and LipaNaMpesaOnlineClient. I store my API Keys and secrets in a configuration file and inject them into the necessary class using ```IConfiguration``` interface.
+
 
 ```c#
     public class PaymentsController : Controller
@@ -77,7 +112,9 @@ There are about 10 mpesa api clients. Only register and use the specific ones yo
         ...
         //Code omitted for brevity
 ```
-* You can store your ConsumerKey and ConsumerSecret in appsettings.json as follows
+
+**You can store your ConsumerKey and ConsumerSecret in appsettings.json as follows
+
 
 ```json
      "MpesaConfiguration": {
@@ -86,7 +123,7 @@ There are about 10 mpesa api clients. Only register and use the specific ones yo
        }
 ```
 
-* Generate `accesstoken` using the AuthClient
+* First generate an `accesstoken` using the AuthClient as follows
 
 ```c#
         // GET: /<controller>/
@@ -102,7 +139,7 @@ There are about 10 mpesa api clients. Only register and use the specific ones yo
         //code omitted for brevity
 ```
 
-* To use Send Request to LipaNaMpesaOnline, initialize the LipaNaMpesaOnline object by providing values for it's properties
+* To Send payment Request using LipaNaMpesaOnline, initialize the LipaNaMpesaOnline data transfer object as follows. The DTOs are in namespace ```using MpesaLib.Models;```
 
 ```c#
       LipaNaMpesaOnline lipaonline = new LipaNaMpesaOnline
@@ -129,15 +166,20 @@ var paymentrequest = await _lipaNaMpesa.MakePayment(lipaonline, accesstoken);
 
 * (Not Recommended) - If you dont want to use Dependency Injection you can just New-Up the clients and use them like this..
 ```c#
-   LipaNaMpesaOnlineClient LipaNaMpesa = new LipaNaMpesaOnlineClient();
+
+   var httpClient = new HttpClient(); //required, comes from System.Net.Http
+   LipaNaMpesaOnlineClient LipaNaMpesa = new LipaNaMpesaOnlineClient(httpClient); //you have to pass in an instance of httpClient
+
    ...
    ...
    var paymentrequest = await LipaNaMpesa.MakePayment(lipaonline, accesstoken);
 ```
-* Do whatever you want with the results of the request... (Of cos i plan to make these docs better in the future)
+
+* Do whatever you want with the results of the request...
 
 
-## 2. A Quick and Cheeky Way to test Using Console App:
+## 2. A quick and dirty Way to test Using Console App:
+
 ```c#
 using MpesaLib.Clients;
 using MpesaLib.Models;
@@ -168,7 +210,8 @@ namespace ConsoleApp1
             string ConsumerSecret = "your consumer secret from daraja";
             string ConsumerKey = "your consumer key from daraja";
 
-            var httpClient = new HttpClient(); //NOT A GOOD IDEA!!
+            var httpClient = new HttpClient(); //this is needed by each client
+
            
             AuthClient Auth = new AuthClient(httpClient);   //Your have to pass in httpClient to all the MpesaLib clients.        
 
@@ -181,7 +224,9 @@ namespace ConsoleApp1
                 PartyA = "2547xxxxxxxx", //replace with your number
                 PartyB = "174379",
                 BusinessShortCode = "174379",
-                CallBackURL = "https://use-your-own-callback-url/api/callback", //you should implement your own callback url, can be an api controller with a post method taking in a JToken (I gave you a big hint!!)
+
+                CallBackURL = "https://use-your-own-callback-url/api/callback", //you should implement your own callback url, can be an api controller with a post method taking in a JToken
+
                 Password = "use your own password",
                 PhoneNumber = "254xxxxxxx", //same as PartyA
                 Timestamp = "20180716124916", // replace with timestamp used to generate password
