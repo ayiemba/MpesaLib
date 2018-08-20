@@ -16,14 +16,15 @@ Explore All existing MPESA APIs and how to generate your API Keys at Daraja - [S
 ## 1. HOW TO USE In an ASP.NET Core Web Application
 
 * Run `Install-Package MpesaLib -Version 1.X.X` in Package Manager Console or go to Manage Nuget Packages, Search and install MpesaLib
-* Add usings 
+* Add usings - these are the only namespaces you'll ever need from MpesaLib
 ```c# 
 using MpesaLib.Clients; //gives you the clients
 using MpesaLib.Interfaces; //gives you the interfaces for use in DI
 using MpesaLib.Models; //gives the DTOs for each client
 ```
+### Option 1 on how to add the services using Dependency Injection: 
 * Add Mpesa API Clients in DI Container; For asp.net core core this can be done in Startup.cs.
-There are about 10 mpesa api clients. Only register and use the specific ones you need in your code. If you can abstract them behind a helper method the better for you especially if you dont want to litter Startup.cs with too many services.AddHttpClient<>();
+There are about 10 mpesa api clients. Only register and use the specific ones you need in your code. If you need more than 3 clients follow Option 2 to add them in startup.cs in a cleaner way.
 
 ```c#
     //Add AuthClient - gets you accesstokens (This is manadatory)
@@ -57,6 +58,39 @@ There are about 10 mpesa api clients. Only register and use the specific ones yo
     services.AddHttpClient<IAccountBalanceQueryCient, AccountBalanceQueryCient>(); 
     
 ```
+### Option 2 on how to add the services using dependency Injection:
+* Option 1 above is not very clean since your startup class might get littered with too many services. To solve this, i use extention methods. The idea is to abstract these services behind one method so that we just do ```services.AddMpesaSupport()```. This makes the startup class much cleaner. To achieve this use the IserviceCollection interface available in ASP.NET Core. Here is a sample...
+```c#
+using Microsoft.Extensions.DependencyInjection;
+using MpesaLib.Clients;
+using MpesaLib.Interfaces;
+
+namespace YourWebApp.Extensions
+{
+    public static class MpesaExtentions
+    {
+        public static void AddMpesaSupport(this IServiceCollection services)
+        {
+            //Add Mpesa Clients
+            services.AddHttpClient<IAuthClient, AuthClient>();
+            services.AddHttpClient<ILipaNaMpesaOnlineClient, LipaNaMpesaOnlineClient>();          
+            services.AddHttpClient<IAccountBalanceQueryClient, AccountBalanceQueryClient>();
+            services.AddHttpClient<IC2BClient, C2BClient>();            
+            services.AddHttpClient<IB2BClient, B2BClient>();
+            services.AddHttpClient<IB2CClient, B2CClient>();
+            services.AddHttpClient<IC2BRegisterUrlClient, C2BRegisterUrlClient>();
+            services.AddHttpClient<ILipaNaMpesaQueryClient, LipaNaMpesaQueryClient>();
+            services.AddHttpClient<ITransactionStatusClient, TransactionStatusClient>();
+            services.AddHttpClient<ITransactionReversalClient, TransactionReversalClient>();
+        }
+    }
+}
+
+```
+Then in Startup.cs just add ```using YourWebApp.Extensions``` followed by ```services.AddMpesaSupport();```
+
+
+
 * Inject the clients in your controller of any class that does the api calls... (in this case am using the AuthClient and LipaNaMpesaOnlineClient. I store my API Keys and secrets in a configuration file in this case appsettings.json.
 
 ```c#
@@ -127,12 +161,13 @@ var paymentrequest = await _lipaNaMpesa.MakePayment(lipaonline, accesstoken);
 
 * (Not Recommended) - If you dont want to use Dependency Injection you can just New-Up the clients and use them like this..
 ```c#
-   LipaNaMpesaOnlineClient LipaNaMpesa = new LipaNaMpesaOnlineClient();
+   var httpClient = new HttpClient(); //required, comes from System.Net.Http
+   LipaNaMpesaOnlineClient LipaNaMpesa = new LipaNaMpesaOnlineClient(httpClient); //you hacve to pass in an instance of httpClient
    ...
    ...
    var paymentrequest = await LipaNaMpesa.MakePayment(lipaonline, accesstoken);
 ```
-* Do whatever you want with the results of the request... (Of cos i plan to make these docs better in the future)
+* Do whatever you want with the results of the request...
 
 
 ## 2. A Quick and Cheeky Way to test Using Console App:
@@ -166,7 +201,7 @@ namespace ConsoleApp1
             string ConsumerSecret = "your consumer secret from daraja";
             string ConsumerKey = "your consumer key from daraja";
 
-            var httpClient = new HttpClient(); //NOT A GOOD IDEA!!
+            var httpClient = new HttpClient(); //this is needed by each client
            
             AuthClient Auth = new AuthClient(httpClient);   //Your have to pass in httpClient to all the MpesaLib clients.        
 
