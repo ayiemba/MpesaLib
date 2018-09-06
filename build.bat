@@ -1,9 +1,9 @@
 ﻿@echo Off
 set config=%1
 if "%config%" == "" (
-   set config=Release
+   set config=Debug
 )
- 
+
 set version=1.1.9
 
 if not "%PackageVersion%" == "" (
