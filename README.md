@@ -64,6 +64,7 @@ There are about 10 mpesa api clients. Only register and use the specific ones yo
 ```
 ### Option 2 on how to add the services using dependency Injection:
 * Option 1 above is not very clean since your startup class might get littered with too many services. To solve this, i use extention methods. The idea is to abstract these services behind one method so that we just do ```services.AddMpesaSupport()```. This makes the startup class much cleaner. To achieve this use the IserviceCollection interface available in ASP.NET Core. Here is a sample...
+
 ```c#
 using Microsoft.Extensions.DependencyInjection;
 using MpesaLib.Clients;
@@ -81,9 +82,9 @@ namespace YourWebApp.Extensions
         {
             //Add Mpesa Clients
             services.AddHttpClient<IAuthClient, AuthClient>();
-            services.AddHttpClient<ILipaNaMpesaOnlineClient, LipaNaMpesaOnlineClient>();          
+            services.AddHttpClient<ILipaNaMpesaOnlineClient, LipaNaMpesaOnlineClient>();
             services.AddHttpClient<IAccountBalanceQueryClient, AccountBalanceQueryClient>();
-            services.AddHttpClient<IC2BClient, C2BClient>();            
+            services.AddHttpClient<IC2BClient, C2BClient>();
             services.AddHttpClient<IB2BClient, B2BClient>();
             services.AddHttpClient<IB2CClient, B2CClient>();
             services.AddHttpClient<IC2BRegisterUrlClient, C2BRegisterUrlClient>();
@@ -105,13 +106,13 @@ Then in Startup.cs just add ```using YourWebApp.Extensions``` followed by ```ser
     public class PaymentsController : Controller
     {
         private readonly IAuthClient _auth;
-        private ILipaNaMpesaOnlineClient _lipaNaMpesa;        
+        private ILipaNaMpesaOnlineClient _lipaNaMpesa;
         private readonly IConfiguration _config;
 
         public PaymentsController(IAuthClient auth, ILipaNaMpesaOnlineClient lipaNampesa, IConfiguration configuration)
         {
             _auth = auth;
-            _lipaNaMpesa = lipaNampesa;            
+            _lipaNaMpesa = lipaNampesa;
             _config = configuration;
         }
         ...
@@ -139,7 +140,7 @@ Then in Startup.cs just add ```using YourWebApp.Extensions``` followed by ```ser
             var consumerSecret = _config["MpesaConfiguration:ConsumerSecret"];
 
             var accesstoken = await _auth.GetToken(consumerKey,consumerSecret);
-            
+
             ...
         //code omitted for brevity
 ```

@@ -57,12 +57,21 @@ namespace MpesaLib.Clients
                 { "Occasion", b2citem.Occasion }
             };
 
+           
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, BaseAddress)
             {
                 Content = new StringContent(JsonConvert.SerializeObject(values).ToString(), Encoding.UTF8, "application/json")
             };
 
-            HttpResponseMessage response = await _httpclient.SendAsync(request);
+            HttpResponseMessage response;
+            try
+            {
+                response = await _httpclient.SendAsync(request);
+            }
+            catch (Exception e)
+            {
+                throw new ApplicationException("Something went wrong:", e);
+            }
 
             return response.Content.ReadAsStringAsync().Result;
         }
