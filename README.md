@@ -70,6 +70,10 @@ using Microsoft.Extensions.DependencyInjection;
 using MpesaLib.Clients;
 using MpesaLib.Interfaces;
 
+```
+
+```c#
+
 namespace YourWebApp.Extensions
 {
     public static class MpesaExtentions
