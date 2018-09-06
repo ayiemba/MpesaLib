@@ -64,6 +64,7 @@ There are about 10 mpesa api clients. Only register and use the specific ones yo
 ```
 ### Option 2 on how to add the services using dependency Injection:
 * Option 1 above is not very clean since your startup class might get littered with too many services. To solve this, i use extention methods. The idea is to abstract these services behind one method so that we just do ```services.AddMpesaSupport()```. This makes the startup class much cleaner. To achieve this use the IserviceCollection interface available in ASP.NET Core. Here is a sample...
+
 ```c#
 using Microsoft.Extensions.DependencyInjection;
 using MpesaLib.Clients;

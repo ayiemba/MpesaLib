@@ -4,9 +4,13 @@ if "%config%" == "" (
    set config=Debug
 )
  
+<<<<<<< HEAD
 
 set version=1.1.9
 
+=======
+set version=1.1.9
+>>>>>>> 6d922d3813c6cda0cea946f168ddd743241321da
 
 if not "%PackageVersion%" == "" (
    set version=%PackageVersion%
