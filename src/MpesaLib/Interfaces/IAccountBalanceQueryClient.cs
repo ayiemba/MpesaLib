@@ -6,5 +6,6 @@ namespace MpesaLib.Interfaces
     public interface IAccountBalanceQueryClient
     {
         Task<string> GetBalance(AccountBalance accbalance, string accesstoken);
+        string BaseUri { get; set; }
     }
 }

@@ -7,5 +7,6 @@ namespace MpesaLib.Interfaces
     public interface IC2BClient
     {
         Task<string> MakeC2BPayment(CustomerToBusinessSimulate c2bsimulate, string token);
+        string BaseUri { get; set; }
     }
 }
