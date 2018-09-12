@@ -135,7 +135,10 @@ Then in Startup.cs just add ```using YourWebApp.Extensions``` followed by ```ser
             var consumerKey = _config["MpesaConfiguration:ConsumerKey"];
 
             var consumerSecret = _config["MpesaConfiguration:ConsumerSecret"];
-
+            
+            
+            //You can override AuthClients sandbox url when moving to production as follows
+            _auth.BaseUri = "Mpesa api production Url provided by safaricom after completing GO live process"; //Only do this when moving to production, otherwise comment oout this line when in development or add an environment checker and execute the correct code
             var accesstoken = await _auth.GetToken(consumerKey,consumerSecret);
 
             ...
@@ -161,9 +164,14 @@ Then in Startup.cs just add ```using YourWebApp.Extensions``` followed by ```ser
       };
 ```
 
-* You can then make a payment request in your controller as follows..
+* You can then make a payment request in your controller as follows...
 
 ```c#
+//When Moving to production you need to overrride sandbox urls that are used by default before making api call you could probly wrap your call in an if statement that checks your environment before making api call
+//To overrride sandbox url set the BaseUri property of the Mpesa Api client you are calling
+_lipaNaMpesa.BaseUri = "https://api.safaricom.co.ke/mpesa/stkpush/v1/processrequest"; //only do this in production and ensure to get correct urls from safaricom after completing the GO Live process in daraja
+
+//Otherwise proceed and make call to api
 var paymentrequest = await _lipaNaMpesa.MakePayment(lipaonline, accesstoken);
 ```
 

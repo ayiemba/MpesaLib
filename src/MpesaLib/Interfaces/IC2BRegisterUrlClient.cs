@@ -6,5 +6,6 @@ namespace MpesaLib.Interfaces
     public interface IC2BRegisterUrlClient
     {
         Task<string> RegisterUrl(CustomerToBusinessRegister c2bregisterItem, string accesstoken);
+        string BaseUri { get; set; }
     }
 }

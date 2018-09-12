@@ -6,5 +6,6 @@ namespace MpesaLib.Interfaces
     public interface ITransactionReversalClient
     {
         Task<string> ReverseTransaction(Reversal reversal, string accesstoken);
+        string BaseUri { get; set; }
     }
 }

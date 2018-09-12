@@ -6,5 +6,6 @@ namespace MpesaLib.Interfaces
     public interface ILipaNaMpesaOnlineClient
     {
         Task<string> MakePayment(LipaNaMpesaOnline mpesaItem, string accesstoken);
+        string BaseUri { get; set; }
     }
 }
