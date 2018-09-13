@@ -57,6 +57,8 @@ namespace MpesaLib.Clients
                 throw new ApplicationException("Something went wrong:", e);
             }
 
+            response.EnsureSuccessStatusCode();
+
             var content = response.Content;
 
             var token = JsonConvert.DeserializeObject<Token>(content.ReadAsStringAsync().Result);

@@ -18,11 +18,9 @@ namespace MpesaLib.Clients
         private readonly HttpClient _httpClient;
 
         /// <summary>
-
         /// Queries Mpesa Account Balance
-
         /// </summary>
-        /// <param name="httpClient"></param>
+        /// <param name="httpClient"></param>        
         public AccountBalanceQueryClient(HttpClient httpClient)
         {
             _httpClient = httpClient;
@@ -71,6 +69,8 @@ namespace MpesaLib.Clients
             {
                 throw new ApplicationException("Something went wrong: ", e);
             }
+
+            response.EnsureSuccessStatusCode();
 
             return response.Content.ReadAsStringAsync().Result;
         }
