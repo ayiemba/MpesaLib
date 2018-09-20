@@ -85,13 +85,14 @@ public class PaymentsController : Controller
             return View();
         }
 
-        public IActionResult Error()
-        {
-            return View();
-        }
     }
 
 ```
+
+
+
+
+
 
 ## 2. C2B - Docs Coming soon
 ## 3. B2B - Docs Coming soon
