@@ -16,10 +16,12 @@ namespace MpesaLib.Interfaces
         /// <param name="token"></param>
         /// <returns></returns>
         Task<string> MakeC2BPayment(CustomerToBusinessSimulate c2bsimulate, string token);
+
         
         /// <summary>
         /// Base Uri
         /// </summary>
+
         string BaseUri { get; set; }
     }
 }

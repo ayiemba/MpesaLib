@@ -16,9 +16,11 @@ namespace MpesaLib.Interfaces
         /// <returns></returns>
         Task<string> PayCustomer(BusinessToCustomer b2citem, string accesstoken);
 
+
         /// <summary>
         /// Base uri
         /// </summary>
+
         string BaseUri { get; set; }
     }
 }

@@ -15,10 +15,12 @@ namespace MpesaLib.Interfaces
         /// <param name="accesstoken"></param>
         /// <returns></returns>
         Task<string> RegisterUrl(CustomerToBusinessRegister c2bregisterItem, string accesstoken);
+
         
         /// <summary>
         /// Base Uri
         /// </summary>
+
         string BaseUri { get; set; }
     }
 }

@@ -14,9 +14,11 @@ namespace MpesaLib.Interfaces
         /// <param name="consumerSecret"></param>
         /// <returns></returns>
         Task<string> GetToken(string consumerKey, string consumerSecret);
+
         /// <summary>
         /// Base Uri
         /// </summary>
+
         string BaseUri { get; set; }
     }
 }

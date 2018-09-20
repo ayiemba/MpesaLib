@@ -15,10 +15,12 @@ namespace MpesaLib.Interfaces
         /// <param name="accesstoken"></param>
         /// <returns></returns>
         Task<string> MakePayment(LipaNaMpesaOnline mpesaItem, string accesstoken);
+
         
         /// <summary>
         /// Base Uri
         /// </summary>
+
         string BaseUri { get; set; }
     }
 }

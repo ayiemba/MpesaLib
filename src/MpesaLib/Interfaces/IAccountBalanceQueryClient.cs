@@ -19,6 +19,7 @@ namespace MpesaLib.Interfaces
         /// <summary>
         /// 
         /// </summary>
+
         string BaseUri { get; set; }
     }
 }

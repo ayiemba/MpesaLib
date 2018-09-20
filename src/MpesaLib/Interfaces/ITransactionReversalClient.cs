@@ -15,10 +15,12 @@ namespace MpesaLib.Interfaces
         /// <param name="accesstoken"></param>
         /// <returns></returns>
         Task<string> ReverseTransaction(Reversal reversal, string accesstoken);
+
         
         /// <summary>
         /// Base Uri
         /// </summary>
+
         string BaseUri { get; set; }
     }
 }

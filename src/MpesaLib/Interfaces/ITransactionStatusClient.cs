@@ -17,9 +17,11 @@ namespace MpesaLib.Interfaces
         /// <returns></returns>
         Task<string> GetTransactionStatus(MpesaTransactionStatus transactionStatus, string accesstoken);
 
+
         /// <summary>
-        /// Base Uril
+        /// Base Uri
         /// </summary>
+
         string BaseUri { get; set; }
     }
 }
