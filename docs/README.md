@@ -9,7 +9,7 @@ Before you begin:
 
 1.  Get consumerKey, consumerSecret and Passkey (for Mpesa Express API) from daraja portal liked above by creating an App in their portal.
 2.  Ensure your project is running on the latest versions of .Net. I don't intend to support versions before .Net Framework 4.6.1 and .Net Core 2.1. However MpesaLib is based on .Net Standard 2.0 and your are at liberty to check [**here**](https://docs.microsoft.com/en-us/dotnet/standard/net-standard#net-implementation-support) if your platform is supported by .Net Standard 2.0.
-3.  Note that this Library is suited for use through dependency injection (DI). You can read more on DI in Asp.Net core [**here**](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection?view=aspnetcore-2.1). You don't have to use the default .Net DI system,you can use the one you prefer assume you know how to wire up your dependencies.
+3.  Note that this Library is suited for use through dependency injection (DI). You can read more on DI in Asp.Net core [**here**](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection?view=aspnetcore-2.1). You don't have to use the default .Net DI system,you can use the one you prefer.
 
 For now i'll just show how to do Mpesa Express or LipaNaMpesaOnline. The principle applies for the other API's, the only difference is the object passed into the API request body. I will make effort to provide documentation on how to use the others but if you can do this, you can figure out the rest. The library supports all the Mpesa APIs in daraja.
 
@@ -23,7 +23,7 @@ For now i'll just show how to do Mpesa Express or LipaNaMpesaOnline. The princip
     using MpesaLib.Interfaces;
 ```   
 
-* In Startup.cs inside Configureservices method add the following
+* Inside Configureservices method add the following
 
 
 ```c#
@@ -111,6 +111,8 @@ public class PaymentsController : Controller
 .
 .
 .
+
+
 
 
 
