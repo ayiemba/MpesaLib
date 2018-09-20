@@ -6,8 +6,9 @@
 
     <Version>2.0.4</Version>
 
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+
     <Authors>Elvis Ayiemba</Authors>
     <Company>Geospartan Tech.</Company>
     <Description>Mpesa API  Library for ASP.NET developers.</Description>
