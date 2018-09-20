@@ -38,17 +38,17 @@ For now i'll just show how to do Mpesa Express or LipaNaMpesaOnline. The princip
 
 ```c#
 
-	public class PaymentsController : Controller
-    {          
+public class PaymentsController : Controller
+{          
         private readonly IConfiguration _config;          
 		private readonly IMpesaClient _mpesaClient;
 
-		public PaymentsController(IMpesaClient mpesaClient,IConfiguration configuration)
-        {
-			_mpesaClient = mpesaClient;
-			_config = configuration;
-			
-        }
+	public PaymentsController(IMpesaClient mpesaClient,IConfiguration configuration)
+	{
+		_mpesaClient = mpesaClient;
+		_config = configuration;
+
+	}
         [HttpPost] 
         [Route("/make-payment")]
         public async Task<IActionResult> PayWithMpesa(PaymentViewModel Payment)
@@ -102,6 +102,14 @@ For now i'll just show how to do Mpesa Express or LipaNaMpesaOnline. The princip
 
 
 ### If using MpesaLib 2.0.0 and below see the following section. This is still supported in MpesaLib 2.0.4 but might be removed in future versions of the Library. Use above sections to interact with the Mpesa APIs.The difference in the above method and the below method is in the re-use of httpClient. The above reuses the same httpclient instance for all the APIs while the methods below create a httpclient instance for each API - this is risky for high traffic applications (You risk socket exhaution). Also the below sections are not straight forward on how to set the baseAdress. In the above method the BaseAdress in set once and you can easily swap sandbox address and production address. The above methods also force you to explicitly provide the API endpoint URl.
+
+.
+.
+.
+.
+.
+.
+.
 
 
 
