@@ -15,10 +15,12 @@ namespace MpesaLib.Interfaces
         /// <param name="token"></param>
         /// <returns></returns>
         Task<string> PayBusiness(BusinessToBusiness b2bitem, string token);
+
         
         /// <summary>
         /// 
         /// </summary>
+
         string BaseUri { get; set; }
     }
 }
