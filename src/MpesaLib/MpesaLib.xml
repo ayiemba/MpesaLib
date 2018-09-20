@@ -619,7 +619,7 @@
         </member>
         <member name="P:MpesaLib.Interfaces.ITransactionStatusClient.BaseUri">
             <summary>
-            Base Uril
+            Base Uri
             </summary>
         </member>
     </members>
