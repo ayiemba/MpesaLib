@@ -1,4 +1,5 @@
 ﻿using MpesaLib.Models;
+using System;
 using System.Threading.Tasks;
 
 namespace MpesaLib.Interfaces
@@ -9,34 +10,37 @@ namespace MpesaLib.Interfaces
     public interface IMpesaClient
     {
 
-        /// <summary>
-        /// Base Uri
-        /// </summary>
-        string BaseUri { get; set; }
+        ///// <summary>
+        ///// BaseAddress
+        ///// </summary>
+        ///// Uri BaseAddress { get; set; }
 
         /// <summary>
         /// Auth Client
         /// </summary>
         /// <param name="consumerKey"></param>
         /// <param name="consumerSecret"></param>
+        /// <param name="requestUri"></param>
         /// <returns></returns>
-        Task<string> GetAuthToken(string consumerKey, string consumerSecret);
+        Task<string> GetAuthTokenAsync(string consumerKey, string consumerSecret, string requestUri);
 
         /// <summary>
         /// LipaNaMpesaOnline Client
         /// </summary>
         /// <param name="mpesaItem"></param>
         /// <param name="accesstoken"></param>
+        /// <param name="requestUri"></param>
         /// <returns></returns>
-        Task<string> MakeLipaNaMpesaOnlinePayment(LipaNaMpesaOnline mpesaItem, string accesstoken);              
+        Task<string> MakeLipaNaMpesaOnlinePaymentAsync(LipaNaMpesaOnline mpesaItem, string accesstoken, string requestUri);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="mpesaQuery"></param>
         /// <param name="accesstoken"></param>
+        /// <param name="requestUri"></param>
         /// <returns></returns>
-        Task<string> QueryLipaNaMpesaOnlineTransaction(LipaNaMpesaQuery mpesaQuery, string accesstoken);
+        Task<string> QueryLipaNaMpesaTransactionAsync(LipaNaMpesaQuery mpesaQuery, string accesstoken, string requestUri);
 
 
         /// <summary>
@@ -44,16 +48,18 @@ namespace MpesaLib.Interfaces
         /// </summary>
         /// <param name="accbalance"></param>
         /// <param name="accesstoken"></param>
+        /// <param name="requestUri"></param>
         /// <returns></returns>
-        Task<string> QueryAccountBalance(AccountBalance accbalance, string accesstoken);
+        Task<string> QueryAccountBalanceAsync(AccountBalance accbalance, string accesstoken, string requestUri);
 
         /// <summary>
         /// B2B Client
         /// </summary>
         /// <param name="b2bitem"></param>
         /// <param name="token"></param>
+        /// <param name="requestUri"></param>
         /// <returns></returns>
-        Task<string> MakeB2BPayment(BusinessToBusiness b2bitem, string token);
+        Task<string> MakeB2BPaymentAsync(BusinessToBusiness b2bitem, string token, string requestUri);
 
 
         /// <summary>
@@ -61,8 +67,9 @@ namespace MpesaLib.Interfaces
         /// </summary>
         /// <param name="b2citem"></param>
         /// <param name="accesstoken"></param>
+        /// <param name="requestUri"></param>
         /// <returns></returns>
-        Task<string> MakeB2CPayment(BusinessToCustomer b2citem, string accesstoken);
+        Task<string> MakeB2CPaymentAsync(BusinessToCustomer b2citem, string accesstoken, string requestUri);
 
 
         /// <summary>
@@ -70,8 +77,9 @@ namespace MpesaLib.Interfaces
         /// </summary>
         /// <param name="c2bsimulate"></param>
         /// <param name="token"></param>
+        /// <param name="requestUri"></param>
         /// <returns></returns>
-        Task<string> MakeC2BPayment(CustomerToBusinessSimulate c2bsimulate, string token);
+        Task<string> MakeC2BPaymentAsync(CustomerToBusinessSimulate c2bsimulate, string token, string requestUri);
 
 
         /// <summary>
@@ -79,23 +87,26 @@ namespace MpesaLib.Interfaces
         /// </summary>
         /// <param name="c2bregisterItem"></param>
         /// <param name="accesstoken"></param>
+        /// <param name="requestUri"></param>
         /// <returns></returns>
-        Task<string> RegisterC2BUrl(CustomerToBusinessRegister c2bregisterItem, string accesstoken);
+        Task<string> RegisterC2BUrlAsync(CustomerToBusinessRegister c2bregisterItem, string accesstoken, string requestUri);
 
         /// <summary>
         /// Reverse transaction client
         /// </summary>
         /// <param name="reversal"></param>
         /// <param name="accesstoken"></param>
+        /// <param name="requestUri"></param>
         /// <returns></returns>
-        Task<string> ReverseMpesaTransaction(Reversal reversal, string accesstoken);
+        Task<string> ReverseMpesaTransactionAsync(Reversal reversal, string accesstoken, string requestUri);
 
         /// <summary>
         /// Query transaction status
         /// </summary>
         /// <param name="transactionStatus"></param>
         /// <param name="accesstoken"></param>
+        /// <param name="requestUri"></param>
         /// <returns></returns>
-        Task<string> QueryMpesaTransactionStatus(MpesaTransactionStatus transactionStatus, string accesstoken);
+        Task<string> QueryMpesaTransactionStatusAsync(MpesaTransactionStatus transactionStatus, string accesstoken, string requestUri);
     }
 }

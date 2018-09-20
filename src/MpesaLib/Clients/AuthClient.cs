@@ -37,7 +37,7 @@ namespace MpesaLib.Clients
         /// <param name="consumerSecret">Your Mpesa Api ConsumerSecret from daraja/safaricom</param>
         /// <returns>Returns acccesstoken only</returns>
         public async Task<string> GetToken(string consumerKey, string consumerSecret)
-        {
+        {           
             Uri BaseAddress = new Uri(BaseUri);
 
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, BaseAddress);
