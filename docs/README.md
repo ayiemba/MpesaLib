@@ -9,11 +9,11 @@ Before you begin:
 
 1.  Get consumerKey, consumerSecret and Passkey (for Mpesa Express API) from daraja portal liked above by creating an App in their portal.
 2.  Ensure your project is running on the latest versions of .Net. I don't intend to support versions before .Net Framework 4.6.1 and .Net Core 2.1. However MpesaLib is based on .Net Standard 2.0 and your are at liberty to check [**here**](https://docs.microsoft.com/en-us/dotnet/standard/net-standard#net-implementation-support) if your platform is supported by .Net Standard 2.0.
-3.  Note that this Library is suited for use through dependency injection (DI). You can read more on DI in Asp.Net core [**here**](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection?view=aspnetcore-2.1). You don't have to use the default .Net DI system,you can use the one you prefer assume you know how to wire up your dependencies.
+3.  Note that this Library is suited for use through dependency injection (DI). You can read more on DI in Asp.Net core [**here**](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection?view=aspnetcore-2.1). You don't have to use the default .Net DI system,you can use the one you prefer.
 
 For now i'll just show how to do Mpesa Express or LipaNaMpesaOnline. The principle applies for the other API's, the only difference is the object passed into the API request body. I will make effort to provide documentation on how to use the others but if you can do this, you can figure out the rest. The library supports all the Mpesa APIs in daraja.
 
-## 1. STK-PUsh / Mpesa Express/ LipaNaMpesa Online
+## 1. STK-Push / Mpesa Express/ LipaNaMpesa Online
 
 * Install MpesaLib version 2.0.4 and above in your asp.net project (dotnet core >=2.1 or dotnet framework >=4.6.1)
 * In **Startup.cs** add the following usings
@@ -23,7 +23,7 @@ For now i'll just show how to do Mpesa Express or LipaNaMpesaOnline. The princip
     using MpesaLib.Interfaces;
 ```   
 
-* In Startup.cs inside Configureservices method add the following
+* Inside Configureservices method add the following
 
 
 ```c#
@@ -38,17 +38,17 @@ For now i'll just show how to do Mpesa Express or LipaNaMpesaOnline. The princip
 
 ```c#
 
-	public class PaymentsController : Controller
-    {          
+public class PaymentsController : Controller
+{          
         private readonly IConfiguration _config;          
 		private readonly IMpesaClient _mpesaClient;
 
-		public PaymentsController(IMpesaClient mpesaClient,IConfiguration configuration)
-        {
-			_mpesaClient = mpesaClient;
-			_config = configuration;
-			
-        }
+	public PaymentsController(IMpesaClient mpesaClient,IConfiguration configuration)
+	{
+		_mpesaClient = mpesaClient;
+		_config = configuration;
+
+	}
         [HttpPost] 
         [Route("/make-payment")]
         public async Task<IActionResult> PayWithMpesa(PaymentViewModel Payment)
@@ -85,13 +85,14 @@ For now i'll just show how to do Mpesa Express or LipaNaMpesaOnline. The princip
             return View();
         }
 
-        public IActionResult Error()
-        {
-            return View();
-        }
     }
 
 ```
+
+
+
+
+
 
 ## 2. C2B - Docs Coming soon
 ## 3. B2B - Docs Coming soon
@@ -102,6 +103,16 @@ For now i'll just show how to do Mpesa Express or LipaNaMpesaOnline. The princip
 
 
 ### If using MpesaLib 2.0.0 and below see the following section. This is still supported in MpesaLib 2.0.4 but might be removed in future versions of the Library. Use above sections to interact with the Mpesa APIs.The difference in the above method and the below method is in the re-use of httpClient. The above reuses the same httpclient instance for all the APIs while the methods below create a httpclient instance for each API - this is risky for high traffic applications (You risk socket exhaution). Also the below sections are not straight forward on how to set the baseAdress. In the above method the BaseAdress in set once and you can easily swap sandbox address and production address. The above methods also force you to explicitly provide the API endpoint URl.
+
+.
+.
+.
+.
+.
+.
+.
+
+
 
 
 
