@@ -13,7 +13,7 @@ Before you begin:
 
 For now i'll just show how to do Mpesa Express or LipaNaMpesaOnline. The principle applies for the other API's, the only difference is the object passed into the API request body. I will make effort to provide documentation on how to use the others but if you can do this, you can figure out the rest. The library supports all the Mpesa APIs in daraja.
 
-## 1. STK-PUsh / Mpesa Express/ LipaNaMpesa Online
+## 1. STK-Push / Mpesa Express/ LipaNaMpesa Online
 
 * Install MpesaLib version 2.0.4 and above in your asp.net project (dotnet core >=2.1 or dotnet framework >=4.6.1)
 * In **Startup.cs** add the following usings
