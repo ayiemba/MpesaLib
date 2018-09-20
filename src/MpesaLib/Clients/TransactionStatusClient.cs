@@ -76,6 +76,7 @@ namespace MpesaLib.Clients
                 throw new ApplicationException("Something went wrong:", e);
             }
 
+            response.EnsureSuccessStatusCode();
 
             return response.Content.ReadAsStringAsync().Result;
         }

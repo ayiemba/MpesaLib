@@ -34,11 +34,17 @@ namespace MpesaLib.Models
         [JsonProperty("AccountReference")]
         public string AccountReference { get; set; }
 
-        [JsonProperty("Password")]
-        public string Password { get; set; } 
-
         [JsonProperty("TransactionDesc")]
         public string TransactionDesc { get; set; }
+
+        public string Passkey { get; set; }
+
+        private string CalculatePassword => Convert.ToBase64String(Encoding.GetEncoding("ISO-8859-1").GetBytes(PartyB + Passkey + Timestamp));
+
+        [JsonProperty("Password")]
+        public string Password { get => CalculatePassword; set => value = CalculatePassword; } 
+
+        
         
     }
 
