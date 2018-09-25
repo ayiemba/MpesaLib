@@ -37,7 +37,9 @@ Before you begin:
 
 * You can pass in the MpesaClient in the constructor of your class as follows;
 ```c#
-using MpesaLib.Clients;
+using MpesaLib.Clients; //required if injecting/instantiating the MpesaClient object
+using MpesaLib.Interfaces; // required in injecting the ImpesaClient interface
+using MpesaLib.Models;  //Models provides the objects to pass into the methods
 public class Payments
 {
 	private readonly IMpesaClient _mpesaClient;
