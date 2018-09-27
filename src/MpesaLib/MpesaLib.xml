@@ -249,7 +249,7 @@
             </summary>
             <param name="mpesaItem"></param>
             <param name="accesstoken"></param>
-            <param name="requestUri"></param>
+            <param name="requestUri"></param>        
             <returns></returns>
         </member>
         <member name="M:MpesaLib.Clients.MpesaClient.QueryAccountBalanceAsync(MpesaLib.Models.AccountBalance,System.String,System.String)">
@@ -290,7 +290,7 @@
         </member>
         <member name="M:MpesaLib.Clients.MpesaClient.ReverseMpesaTransactionAsync(MpesaLib.Models.Reversal,System.String,System.String)">
             <summary>
-            
+            Reverse Mpesa Transaction
             </summary>
             <param name="reversal"></param>
             <param name="accesstoken"></param>
@@ -511,7 +511,7 @@
             </summary>
             <param name="mpesaItem"></param>
             <param name="accesstoken"></param>
-            <param name="requestUri"></param>
+            <param name="requestUri"></param>       
             <returns></returns>
         </member>
         <member name="M:MpesaLib.Interfaces.IMpesaClient.QueryLipaNaMpesaTransactionAsync(MpesaLib.Models.LipaNaMpesaQuery,System.String,System.String)">
@@ -620,6 +620,71 @@
         <member name="P:MpesaLib.Interfaces.ITransactionStatusClient.BaseUri">
             <summary>
             Base Uri
+            </summary>
+        </member>
+        <member name="T:MpesaLib.Models.LipaNaMpesaOnline">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MpesaLib.Models.LipaNaMpesaOnline.BusinessShortCode">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MpesaLib.Models.LipaNaMpesaOnline.Timestamp">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MpesaLib.Models.LipaNaMpesaOnline.TransactionType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MpesaLib.Models.LipaNaMpesaOnline.Amount">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MpesaLib.Models.LipaNaMpesaOnline.PartyA">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MpesaLib.Models.LipaNaMpesaOnline.PartyB">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MpesaLib.Models.LipaNaMpesaOnline.PhoneNumber">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MpesaLib.Models.LipaNaMpesaOnline.CallBackURL">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MpesaLib.Models.LipaNaMpesaOnline.AccountReference">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MpesaLib.Models.LipaNaMpesaOnline.TransactionDesc">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MpesaLib.Models.LipaNaMpesaOnline.Passkey">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MpesaLib.Models.LipaNaMpesaOnline.Password">
+            <summary>
+            
             </summary>
         </member>
     </members>

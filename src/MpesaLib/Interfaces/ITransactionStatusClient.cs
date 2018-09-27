@@ -1,6 +1,5 @@
 ﻿using MpesaLib.Models;
 using System.Threading.Tasks;
-using System.Transactions;
 
 namespace MpesaLib.Interfaces
 {
