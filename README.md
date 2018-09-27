@@ -7,11 +7,12 @@ MPESA API LIBRARY For C# Developers
 
 # [Link to Official Documentation](https://github.com/ayiemba/MpesaLib/blob/Dev/docs/README.md)
 
+
 ## Documentation Below is for MpesaLib versions before 2.0.4
 
 ## 1. HOW TO USE In an ASP.NET Core Web Application
 
-* Run `Install-Package MpesaLib -Version 1.X.X` in Package Manager Console or go to Manage Nuget Packages, Search and install MpesaLib
+* Run `Install-Package MpesaLib -Version 2.X.X` in Package Manager Console or go to Manage Nuget Packages, Search and install MpesaLib
 * Add usings - these are the only namespaces you'll ever need from MpesaLib
 
 ```c# 
