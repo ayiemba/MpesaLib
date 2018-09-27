@@ -19,6 +19,8 @@
   </metadata>
   <files>
 	<file src="MpesaLib\bin\$configuration$\netstandard2.0\MpesaLib.dll" target="netstandard2.0" />
+	  <file src="MpesaLib\bin\$configuration$\net45\MpesaLib.dll" target="net45" />
+	  <file src="MpesaLib\bin\$configuration$\net40\MpesaLib.dll" target="net40" />
   </files>
   
 </package>

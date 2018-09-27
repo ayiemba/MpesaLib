@@ -3,6 +3,7 @@ using MpesaLib.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -36,25 +37,15 @@ namespace MpesaLib.Clients
         /// <returns></returns>
         public async Task<string> GetAuthTokenAsync(string consumerKey, string consumerSecret, string requestUri)
         {
-            _httpclient.DefaultRequestHeaders.Clear();
-            //_httpclient.BaseAddress = _BaseAddress;
+            _httpclient.DefaultRequestHeaders.Clear();           
 
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, requestUri);
 
             var keyBytes = Convert.ToBase64String(Encoding.UTF8.GetBytes($"{consumerKey}:{consumerSecret}"));
             
             _httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", keyBytes);
-
-            HttpResponseMessage response;
-
-            try
-            {
-                response = await _httpclient.SendAsync(request);
-            }
-            catch (Exception e)
-            {
-                throw new ApplicationException("Something went wrong:", e);
-            }
+            
+            var response = await _httpclient.SendAsync(request);           
 
             response.EnsureSuccessStatusCode();
 
@@ -65,6 +56,56 @@ namespace MpesaLib.Clients
             return token.access_token;
         }
 
+        //Polly token refresh policy
+        //private RetryPolicy<HttpResponseMessage> CreateTokenRefreshPolicy(Func<string, Task> tokenRefreshed)
+        //{
+        //    var policy = Policy
+        //        .HandleResult<HttpResponseMessage>(message => message.StatusCode == HttpStatusCode.Unauthorized)
+        //        .RetryAsync(1, async (result, retryCount, context) =>
+        //        {
+        //            if (context.ContainsKey("refresh_token"))
+        //            {
+        //                var newAccessToken = await RefreshAccessToken(context["refresh_token"].ToString());
+        //                if (newAccessToken != null)
+        //                {
+        //                    await tokenRefreshed(newAccessToken);
+
+        //                    context["access_token"] = newAccessToken;
+        //                }
+        //            }
+        //        });
+
+        //    return policy;
+        //}
+
+        //Refresh Accesstoken
+        //private async Task<string> RefreshAccessToken(string refreshToken, string consumerKey, string consumerSecret)
+        //{
+        //    var refreshMessage = new HttpRequestMessage(HttpMethod.Post, "/oauth2/v4/token")
+        //    {
+        //        Content = new FormUrlEncodedContent(new KeyValuePair<string, string>[]
+        //        {
+        //        new KeyValuePair<string, string>("client_id", consumerKey),
+        //        new KeyValuePair<string, string>("client_secret", consumerSecret),
+        //        new KeyValuePair<string, string>("refresh_token", refreshToken),
+        //        new KeyValuePair<string, string>("grant_type", "refresh_token")
+        //        })
+        //    };
+
+        //    var response = await _httpclient.SendAsync(refreshMessage);
+
+        //    if (response.IsSuccessStatusCode)
+        //    {
+        //        var tokenResponse = await response.Content.ReadAsStringAsync();
+
+        //        return tokenResponse.ToString();
+        //    }
+
+        //    // return null if we cannot request a new token
+        //    return null;
+        //}
+
+
         /// <summary>
         /// Makes a Business to Business payment
         /// </summary>
@@ -74,8 +115,7 @@ namespace MpesaLib.Clients
         /// <returns></returns>
         public async Task<string> MakeB2BPaymentAsync(BusinessToBusiness b2bitem, string accesstoken, string requestUri)
         {
-            _httpclient.DefaultRequestHeaders.Clear();
-            //_httpclient.BaseAddress = _BaseAddress;
+            _httpclient.DefaultRequestHeaders.Clear();           
             _httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             _httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accesstoken);
 
@@ -99,16 +139,8 @@ namespace MpesaLib.Clients
             {
                 Content = new StringContent(JsonConvert.SerializeObject(values).ToString(), Encoding.UTF8, "application/json")
             };
-
-            HttpResponseMessage response;
-            try
-            {
-                response = await _httpclient.SendAsync(request);
-            }
-            catch (Exception e)
-            {
-                throw new ApplicationException("Something went wrong: ", e);
-            }
+           
+            var  response = await _httpclient.SendAsync(request);            
 
             response.EnsureSuccessStatusCode();
 
@@ -124,8 +156,7 @@ namespace MpesaLib.Clients
         /// <returns></returns>
         public async Task<string> MakeB2CPaymentAsync(BusinessToCustomer b2citem, string accesstoken, string requestUri)
         {
-            _httpclient.DefaultRequestHeaders.Clear();
-            //_httpclient.BaseAddress = _BaseAddress;
+            _httpclient.DefaultRequestHeaders.Clear();           
             _httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             _httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accesstoken);
 
@@ -148,16 +179,8 @@ namespace MpesaLib.Clients
             {
                 Content = new StringContent(JsonConvert.SerializeObject(values).ToString(), Encoding.UTF8, "application/json")
             };
-
-            HttpResponseMessage response;
-            try
-            {
-                response = await _httpclient.SendAsync(request);
-            }
-            catch (Exception e)
-            {
-                throw new ApplicationException("Something went wrong:", e);
-            }
+            
+            var  response = await _httpclient.SendAsync(request);            
 
             response.EnsureSuccessStatusCode();
 
@@ -174,11 +197,9 @@ namespace MpesaLib.Clients
         /// <returns></returns>
         public async Task<string> MakeC2BPaymentAsync(CustomerToBusinessSimulate c2bsimulate, string accesstoken, string requestUri)
         {
-            _httpclient.DefaultRequestHeaders.Clear();
-            //_httpclient.BaseAddress = _BaseAddress;
+            _httpclient.DefaultRequestHeaders.Clear();          
             _httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             _httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accesstoken);
-
 
             var values = new Dictionary<string, string>
             {
@@ -194,16 +215,8 @@ namespace MpesaLib.Clients
             {
                 Content = new StringContent(JsonConvert.SerializeObject(values).ToString(), Encoding.UTF8, "application/json")
             };
-
-            HttpResponseMessage response;
-            try
-            {
-                response = await _httpclient.SendAsync(request);
-            }
-            catch (Exception e)
-            {
-                throw new ApplicationException("Something went wrong:", e);
-            }
+           
+            var  response = await _httpclient.SendAsync(request);            
 
             response.EnsureSuccessStatusCode();
 
@@ -215,12 +228,11 @@ namespace MpesaLib.Clients
         /// </summary>
         /// <param name="mpesaItem"></param>
         /// <param name="accesstoken"></param>
-        /// <param name="requestUri"></param>
+        /// <param name="requestUri"></param>        
         /// <returns></returns>
         public async Task<string> MakeLipaNaMpesaOnlinePaymentAsync(LipaNaMpesaOnline mpesaItem, string accesstoken, string requestUri)
         {
-            _httpclient.DefaultRequestHeaders.Clear();
-            //_httpclient.BaseAddress = _BaseAddress;
+            _httpclient.DefaultRequestHeaders.Clear();           
             _httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             _httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accesstoken);
 
@@ -241,26 +253,38 @@ namespace MpesaLib.Clients
 
             var jsonvalues = JsonConvert.SerializeObject(values);
 
+            //var policy = CreateTokenRefreshPolicy(tokenRefreshed);
+
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, requestUri)
             {
                 Content = new StringContent(jsonvalues.ToString(), Encoding.UTF8, "application/json")
-            };
+            };          
+            
+            var response = await _httpclient.SendAsync(request);         
+           
 
-            HttpResponseMessage response;
+            //var response1 = await policy.ExecuteAsync(context =>
+            //{
+            //    HttpRequestMessage requestMessage = new HttpRequestMessage(HttpMethod.Post, requestUri)
+            //    {
+            //        Content = new StringContent(jsonvalues.ToString(), Encoding.UTF8, "application/json")
+            //    };
 
-            try
-            {
-                response = await _httpclient.SendAsync(request);
-            }
-            catch (Exception e)
-            {
-                throw new ApplicationException("Something went wrong:", e);
-            }
+            //    requestMessage.Headers.Add("Authorization", $"Bearer {context["access_token"]}");
+
+            //    return _httpclient.SendAsync(requestMessage);
+
+            //}, new Dictionary<string, object>
+            //{
+            //    {"access_token", accesstoken},
+            //    {"refresh_token", refreshToken}
+            //});
 
             response.EnsureSuccessStatusCode();
 
             return response.Content.ReadAsStringAsync().Result;
         }
+
 
         /// <summary>
         /// Queries business Mpesa account balance
@@ -271,8 +295,7 @@ namespace MpesaLib.Clients
         /// <returns></returns>
         public async Task<string> QueryAccountBalanceAsync(AccountBalance accbalance, string accesstoken, string requestUri)
         {
-            _httpclient.DefaultRequestHeaders.Clear();
-            //_httpclient.BaseAddress = _BaseAddress;
+            _httpclient.DefaultRequestHeaders.Clear();          
             _httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             _httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accesstoken);
 
@@ -292,16 +315,8 @@ namespace MpesaLib.Clients
             {
                 Content = new StringContent(JsonConvert.SerializeObject(values).ToString(), Encoding.UTF8, "application/json")
             };
-
-            HttpResponseMessage response;
-            try
-            {
-                response = await _httpclient.SendAsync(request);
-            }
-            catch (Exception e)
-            {
-                throw new ApplicationException("Something went wrong: ", e);
-            }
+           
+            var  response = await _httpclient.SendAsync(request);            
 
             response.EnsureSuccessStatusCode();
 
@@ -317,8 +332,7 @@ namespace MpesaLib.Clients
         /// <returns></returns>
         public async Task<string> QueryLipaNaMpesaTransactionAsync(LipaNaMpesaQuery mpesaQuery, string accesstoken, string requestUri)
         {
-            _httpclient.DefaultRequestHeaders.Clear();
-            //_httpclient.BaseAddress = _BaseAddress;
+            _httpclient.DefaultRequestHeaders.Clear();          
             _httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             _httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accesstoken);
 
@@ -335,16 +349,8 @@ namespace MpesaLib.Clients
             {
                 Content = new StringContent(JsonConvert.SerializeObject(values).ToString(), Encoding.UTF8, "application/json")
             };
-
-            HttpResponseMessage response;
-            try
-            {
-                response = await _httpclient.SendAsync(request);
-            }
-            catch (Exception e)
-            {
-                throw new ApplicationException("Something went wrong:", e);
-            }
+           
+            var  response = await _httpclient.SendAsync(request);           
 
             response.EnsureSuccessStatusCode();
 
@@ -360,8 +366,7 @@ namespace MpesaLib.Clients
         /// <returns></returns>
         public async Task<string> QueryMpesaTransactionStatusAsync(MpesaTransactionStatus transactionStatus, string accesstoken, string requestUri)
         {
-            _httpclient.DefaultRequestHeaders.Clear();
-            //_httpclient.BaseAddress = _BaseAddress;
+            _httpclient.DefaultRequestHeaders.Clear();           
             _httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             _httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accesstoken);
 
@@ -384,16 +389,8 @@ namespace MpesaLib.Clients
             {
                 Content = new StringContent(JsonConvert.SerializeObject(values).ToString(), Encoding.UTF8, "application/json")
             };
-
-            HttpResponseMessage response;
-            try
-            {
-                response = await _httpclient.SendAsync(request);
-            }
-            catch (Exception e)
-            {
-                throw new ApplicationException("Something went wrong:", e);
-            }
+           
+            var response = await _httpclient.SendAsync(request);           
 
             response.EnsureSuccessStatusCode();
 
@@ -410,8 +407,7 @@ namespace MpesaLib.Clients
         /// <returns></returns>
         public async Task<string> RegisterC2BUrlAsync(CustomerToBusinessRegister c2bregisterItem, string accesstoken, string requestUri)
         {
-            _httpclient.DefaultRequestHeaders.Clear();
-            //_httpclient.BaseAddress = _BaseAddress;
+            _httpclient.DefaultRequestHeaders.Clear();            
             _httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             _httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accesstoken);
 
@@ -428,16 +424,8 @@ namespace MpesaLib.Clients
             {
                 Content = new StringContent(JsonConvert.SerializeObject(values).ToString(), Encoding.UTF8, "application/json")
             };
-
-            HttpResponseMessage response;
-            try
-            {
-                response = await _httpclient.SendAsync(request);
-            }
-            catch (Exception e)
-            {
-                throw new ApplicationException("Something went wrong:", e);
-            }
+          
+            var response = await _httpclient.SendAsync(request);           
 
             response.EnsureSuccessStatusCode();
 
@@ -445,7 +433,7 @@ namespace MpesaLib.Clients
         }
 
         /// <summary>
-        /// 
+        /// Reverse Mpesa Transaction
         /// </summary>
         /// <param name="reversal"></param>
         /// <param name="accesstoken"></param>
@@ -453,8 +441,7 @@ namespace MpesaLib.Clients
         /// <returns></returns>
         public async Task<string> ReverseMpesaTransactionAsync(Reversal reversal, string accesstoken, string requestUri)
         {
-            _httpclient.DefaultRequestHeaders.Clear();
-            //_httpclient.BaseAddress = _BaseAddress;
+            _httpclient.DefaultRequestHeaders.Clear();           
             _httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             _httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accesstoken);
 
@@ -478,20 +465,18 @@ namespace MpesaLib.Clients
             {
                 Content = new StringContent(JsonConvert.SerializeObject(values).ToString(), Encoding.UTF8, "application/json")
             };
-
-            HttpResponseMessage response;
-            try
-            {
-                response = await _httpclient.SendAsync(request);
-            }
-            catch (Exception e)
-            {
-                throw new ApplicationException("Something went wrong:", e);
-            }
+            
+            var response = await _httpclient.SendAsync(request);           
 
             response.EnsureSuccessStatusCode();
 
             return response.Content.ReadAsStringAsync().Result;
         }
+
+
+
+
+
+
     }
 }
