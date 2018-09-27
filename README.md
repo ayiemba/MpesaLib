@@ -7,6 +7,11 @@ MPESA API LIBRARY For C# Developers
 
 # [Link to Official Documentation](https://github.com/ayiemba/MpesaLib/blob/Dev/docs/README.md)
 
+.
+.
+.
+.
+.
 
 ## Documentation Below is for MpesaLib versions before 2.0.4
 
