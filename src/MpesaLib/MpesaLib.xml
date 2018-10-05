@@ -347,6 +347,49 @@
             Returns a JSON string that you should deserialize
             </returns>
         </member>
+        <member name="T:MpesaLib.Helpers.Credentials">
+            <summary>
+            Encrypt password helper class for MpesaLib
+            </summary>
+        </member>
+        <member name="M:MpesaLib.Helpers.Credentials.EncryptPassword(System.String,System.String)">
+            <summary>
+            Encrypts Mpesa API Security Credential password
+            </summary>
+            <param name="certificatePath"></param>
+            <param name="password"></param>       
+            <returns></returns>
+        </member>
+        <member name="T:MpesaLib.Helpers.RSACryptoServiceProviderExtensions">
+            <summary>
+            RSACryptoServiceProvider Extensions
+            </summary>
+        </member>
+        <member name="M:MpesaLib.Helpers.RSACryptoServiceProviderExtensions.FromXmlString2(System.Security.Cryptography.RSACryptoServiceProvider,System.String)">
+            <summary>
+            Imports the specified XML String into the crypto service provider
+            </summary>
+            <remarks>
+             .NET Core 2.0 doesn't provide an implementation of RSACryptoServiceProvider.FromXmlString/ToXmlString, so we have to do it ourselves.
+            Source: https://gist.github.com/Jargon64/5b172c452827e15b21882f1d76a94be4/
+            </remarks>
+        </member>
+        <member name="M:MpesaLib.Helpers.RSACryptoServiceProviderExtensions.ToXmlString3(System.Security.Cryptography.RSA,System.Boolean)">
+            <summary>
+            ToXmlString extention method for .net standard, netcoreapp
+            </summary>
+            <param name="rsa"></param>
+            <param name="includePrivateParameters"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MpesaLib.Helpers.RSACryptoServiceProviderExtensions.ToXmlString2(System.Security.Cryptography.RSA,System.Boolean)">
+            <summary>
+            ToXmlString extention method for .net standard, netcoreapp
+            </summary>
+            <param name="rsa"></param>
+            <param name="includePrivateParameters"></param>
+            <returns></returns>
+        </member>
         <member name="T:MpesaLib.Interfaces.IAccountBalanceQueryClient">
             <summary>
             

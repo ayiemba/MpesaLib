@@ -115,6 +115,11 @@ namespace MpesaLib.Clients
         /// <returns></returns>
         public async Task<string> MakeB2BPaymentAsync(BusinessToBusiness b2bitem, string accesstoken, string requestUri)
         {
+
+#if NET45
+            ServicePointManager.SecurityProtocol =
+                         SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
+#endif
             _httpclient.DefaultRequestHeaders.Clear();           
             _httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             _httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accesstoken);
@@ -156,6 +161,12 @@ namespace MpesaLib.Clients
         /// <returns></returns>
         public async Task<string> MakeB2CPaymentAsync(BusinessToCustomer b2citem, string accesstoken, string requestUri)
         {
+
+#if NET45
+            ServicePointManager.SecurityProtocol =
+                         SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
+#endif           
+
             _httpclient.DefaultRequestHeaders.Clear();           
             _httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             _httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accesstoken);
@@ -197,6 +208,11 @@ namespace MpesaLib.Clients
         /// <returns></returns>
         public async Task<string> MakeC2BPaymentAsync(CustomerToBusinessSimulate c2bsimulate, string accesstoken, string requestUri)
         {
+
+#if NET45
+            ServicePointManager.SecurityProtocol =
+                         SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
+#endif
             _httpclient.DefaultRequestHeaders.Clear();          
             _httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             _httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accesstoken);
@@ -232,6 +248,11 @@ namespace MpesaLib.Clients
         /// <returns></returns>
         public async Task<string> MakeLipaNaMpesaOnlinePaymentAsync(LipaNaMpesaOnline mpesaItem, string accesstoken, string requestUri)
         {
+
+#if NET45
+            ServicePointManager.SecurityProtocol =
+                         SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
+#endif
             _httpclient.DefaultRequestHeaders.Clear();           
             _httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             _httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accesstoken);
@@ -295,6 +316,11 @@ namespace MpesaLib.Clients
         /// <returns></returns>
         public async Task<string> QueryAccountBalanceAsync(AccountBalance accbalance, string accesstoken, string requestUri)
         {
+
+#if NET45
+            ServicePointManager.SecurityProtocol =
+                         SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
+#endif
             _httpclient.DefaultRequestHeaders.Clear();          
             _httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             _httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accesstoken);
@@ -332,6 +358,11 @@ namespace MpesaLib.Clients
         /// <returns></returns>
         public async Task<string> QueryLipaNaMpesaTransactionAsync(LipaNaMpesaQuery mpesaQuery, string accesstoken, string requestUri)
         {
+
+#if NET45
+            ServicePointManager.SecurityProtocol =
+                         SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
+#endif
             _httpclient.DefaultRequestHeaders.Clear();          
             _httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             _httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accesstoken);
@@ -366,6 +397,11 @@ namespace MpesaLib.Clients
         /// <returns></returns>
         public async Task<string> QueryMpesaTransactionStatusAsync(MpesaTransactionStatus transactionStatus, string accesstoken, string requestUri)
         {
+
+#if NET45
+            ServicePointManager.SecurityProtocol =
+                         SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
+#endif
             _httpclient.DefaultRequestHeaders.Clear();           
             _httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             _httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accesstoken);
@@ -407,6 +443,11 @@ namespace MpesaLib.Clients
         /// <returns></returns>
         public async Task<string> RegisterC2BUrlAsync(CustomerToBusinessRegister c2bregisterItem, string accesstoken, string requestUri)
         {
+
+#if NET45
+            ServicePointManager.SecurityProtocol =
+                         SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
+#endif
             _httpclient.DefaultRequestHeaders.Clear();            
             _httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             _httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accesstoken);
@@ -441,6 +482,11 @@ namespace MpesaLib.Clients
         /// <returns></returns>
         public async Task<string> ReverseMpesaTransactionAsync(Reversal reversal, string accesstoken, string requestUri)
         {
+
+#if NET45
+            ServicePointManager.SecurityProtocol =
+                         SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
+#endif
             _httpclient.DefaultRequestHeaders.Clear();           
             _httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             _httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accesstoken);
