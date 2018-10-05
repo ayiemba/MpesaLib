@@ -4,7 +4,7 @@ if "%config%" == "" (
    set config=Debug
 )
 
-set version=2.0.2
+set version=2.1.1
 
 if not "%PackageVersion%" == "" (
    set version=%PackageVersion%

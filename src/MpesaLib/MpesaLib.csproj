@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;net45;net40;</TargetFrameworks>    
 
-    <Version>2.0.5</Version> 
+    <Version>2.1.1</Version> 
 
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
 
@@ -15,7 +15,7 @@
     <Copyright>Copyright © Geospartan Tech.  All rights reserved.</Copyright>
     <PackageLicenseUrl>https://github.com/ayiemba/MpesaLib/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://ayiemba.github.io/MpesaLib</PackageProjectUrl>
-    <PackageReleaseNotes>MInor Enhancements</PackageReleaseNotes>   
+    <PackageReleaseNotes>Added Security Credential Password Encryption for B2B, B2C, Reversal, Transaction, Account Balance APIs</PackageReleaseNotes>   
     <IncludeBuildOutput>true</IncludeBuildOutput>
   </PropertyGroup>
 
@@ -25,7 +25,7 @@
   </PropertyGroup>
 
   <ItemGroup>     
-    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />  
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />        
   </ItemGroup>
   
   <ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">    
@@ -36,6 +36,8 @@
     <PackageReference Include="Microsoft.Net.Http" Version="2.2.29" />
     <PackageReference Include="Microsoft.Bcl.Async" Version="1.0.168" />
   </ItemGroup>
+
+  
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.0'">
     <DefineConstants>NETCORE;NETSTANDARD;NETSTANDARD2_0</DefineConstants>
