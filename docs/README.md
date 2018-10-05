@@ -167,4 +167,22 @@ var transactionrequest = await _mpesaClient.QueryMpesaTransactionStatusAsync(Tra
 ```c#
 var reversalrequest = await _mpesaClient.ReverseMpesaTransactionAsync(TransactionReversalObject, accesstoken, "mpesa/reversal/v1/request");
 ```
+## 12. Getting Security Credential for B2B, B2C, Reversal, Transaction Status and Account Balance APIs - Docs Coming soon
+The Security Credential helper is found in MpesaLib.Helpers.Credential.
+All you have to do is call 
+
+```c# 
+Credentials.EncryptPassword(pathToSafaricomPublicCertificate, YourInitiatorpassword)
+```
+
+```c#
+using MpesaLib.Helpers; // Add this to your class
+
+//set path of Mpesa public certificate
+ string certificate = @"C:\Dev\Work\MpesaIntegration\MpesaLibSamples\WebApplication1\Certificate\prod.cer";
+ 
+ //set security credential as follows...
+ var SecutityCredential = Credentials.EncryptPassword(certificate, "971796");
+
+```
 
