@@ -236,7 +236,7 @@ var TransactionStatus = new MpesaTransactionStatus
 	Remarks = "",
 	SecurityCredential = "" //see #12 below on how to get security credential
 };
-var transactionrequest = await _mpesaClient.QueryMpesaTransactionStatusAsync(TransactionStatusObject, accesstoken, "mpesa/transactionstatus/v1/query");
+var transactionrequest = await _mpesaClient.QueryMpesaTransactionStatusAsync(TransactionStatus, accesstoken, "mpesa/transactionstatus/v1/query");
 ```
 
 ## 11. Transaction Reversal
