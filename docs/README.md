@@ -130,44 +130,134 @@ public class PaymentsController : Controller
 
 ## 4. STK Push (LipaNaMpesaOnline/MpesaExpress) Query Request
 ```c#
-var stkpushquery = await _mpesaClient.QueryLipaNaMpesaTransactionAsync(STKPushObject, accesstoken, "mpesa/stkpushquery/v1/query");
+var STKPushQueryObject = new LipaNaMpesaQuery
+{
+	BusinessShortCode = "174379",
+	CheckoutRequestID = "",
+	Password = "", //this will change in future to use passkey
+	Timestamp = "" //this will be taken care of with future release of MpesaLib
+
+};
+var stkpushquery = await _mpesaClient.QueryLipaNaMpesaTransactionAsync(STKPushQueryObject, accesstoken, "mpesa/stkpushquery/v1/query");
 ```
 
-## 5. C2B Register Urls (required for C2B API calls) - Docs Coming soon
+## 5. C2B Register Urls (required for C2B API calls)
 ```c#
-var c2brequest = await _mpesaClient.RegisterC2BUrlAsync(C2BRegisterUrlObject, accesstoken, "mpesa/c2b/v1/registerurl");
+var C2BRegister = new CustomerToBusinessRegister
+{
+	ConfirmationURL = "https://blablabala/api/confirm",
+	ValidationURL = "https://blablabala/api/validate",
+	ResponseType = "Cancelled",
+	ShortCode = "603047"
+};
+var c2brequest = await _mpesaClient.RegisterC2BUrlAsync(C2BRegister, accesstoken, "mpesa/c2b/v1/registerurl");
 ```
 
-## 6. C2B - Docs Coming soon
+## 6. C2B
 ```c#
-var c2brequest = await _mpesaClient.MakeC2BPaymentAsync(C2BObject, accesstoken, "mpesa/c2b/v1/simulate");
+//C2B Object
+CustomerToBusinessSimulate C2B = new CustomerToBusinessSimulate
+{
+	ShortCode = "603047",
+	Amount = "10",
+	BillRefNumber = "account",
+	Msisdn = "254708374149",
+};
+
+var c2brequest = await _mpesaClient.MakeC2BPaymentAsync(C2B, accesstoken, "mpesa/c2b/v1/simulate");
 ```
 
-## 7. B2B - Docs Coming soon
+## 7. B2B
 
 ```c#
-var b2brequest = await _mpesaClient.MakeB2BPaymentAsync(B2BObject, accesstoken, "mpesa/b2b/v1/paymentrequest");
+BusinessToBusiness B2B = new BusinessToBusiness
+{
+	AccountReference = "test",
+	Initiator = "safaricom.13",
+	Amount = "1",
+	PartyA = "603047",
+	PartyB = "600000",
+	CommandID = "MerchantToMerchantTransfer",// Please chack the correct command from Daraja
+	QueueTimeOutURL = "https://blablabala/callback",
+	RecieverIdentifierType = "4",
+	SecurityCredential = B2BsecurityCred, // See #12 on how to get security credential
+	SenderIdentifierType = "4",
+	ResultURL = "https://blablabala/callback",
+	Remarks = "payment"
+};
+var b2brequest = await _mpesaClient.MakeB2BPaymentAsync(B2B, accesstoken, "mpesa/b2b/v1/paymentrequest");
 ```
-## 8. B2C - Docs Coming soon
+## 8. B2C
 ```c#
-var b2crequest = await _mpesaClient.MakeB2CPaymentAsync(B2CObject, accesstoken, "mpesa/b2c/v1/paymentrequest");
+//B2C Object
+BusinessToCustomer B2C = new BusinessToCustomer
+{
+	Remarks = "test",
+	Amount = "1",
+	CommandID = "BusinessPayment",
+	InitiatorName = "safaricom.15",
+	Occasion = "test",
+	PartyA = "603047",
+	PartyB = "254708374149",
+	QueueTimeOutURL = "https://blablabala/callback",
+	ResultURL = "https://blablabala/callback",
+	SecurityCredential = B2CsecurityCred //see #12 below on how to get security credential
+};
+var b2crequest = await _mpesaClient.MakeB2CPaymentAsync(B2C, accesstoken, "mpesa/b2c/v1/paymentrequest");
 ```
 
-## 9. Account Balance Query - Docs Coming soon
+## 9. Account Balance Query
 ```c#
-var accountbalancerequest = await _mpesaClient.QueryAccountBalanceAsync(AccounBalaceObject, accesstoken, "mpesa/accountbalance/v1/query");
+var AccountBalance = new AccountBalance
+{
+	Amount = "",
+	IdentifierType = "",
+	Initiator = "",
+	PartyA = "",
+	QueueTimeOutURL = "",
+	ResultURL = "",
+	Remarks = "",
+	SecurityCredential = "", //see #12 below on how to get security credential
+};
+var accountbalancerequest = await _mpesaClient.QueryAccountBalanceAsync(AccountBalance, accesstoken, "mpesa/accountbalance/v1/query");
 ```
 
-## 10. Transaction Status - Docs Coming soon
+## 10. Transaction Status
 ```c#
+var TransactionStatus = new MpesaTransactionStatus
+{
+	IdentifierType = "",
+	Initiator = "",
+	Occasion = "",
+	PartyA = "",
+	QueueTimeOutURL = "",
+	ResultURL = "",
+	TransactionID = "",
+	Remarks = "",
+	SecurityCredential = "" //see #12 below on how to get security credential
+};
 var transactionrequest = await _mpesaClient.QueryMpesaTransactionStatusAsync(TransactionStatusObject, accesstoken, "mpesa/transactionstatus/v1/query");
 ```
 
-## 11. Transaction Reversal - Docs Coming soon
+## 11. Transaction Reversal
 ```c#
-var reversalrequest = await _mpesaClient.ReverseMpesaTransactionAsync(TransactionReversalObject, accesstoken, "mpesa/reversal/v1/request");
+var TransactionReversal = new Reversal
+{
+	Initiator = "",
+	Amount = "",
+	Occasion = "",
+	ReceiverParty = "",
+	RecieverIdentifierType = "",
+	QueueTimeOutURL = "",
+	ResultURL = "",
+	TransactionID = "",
+	SecurityCredential = "", //see #12 below on how to get security credential
+	Remarks = "",
+
+};
+var reversalrequest = await _mpesaClient.ReverseMpesaTransactionAsync(TransactionReversal, accesstoken, "mpesa/reversal/v1/request");
 ```
-## 12. Getting Security Credential for B2B, B2C, Reversal, Transaction Status and Account Balance APIs - Docs Coming soon
+## 12. Getting Security Credential for B2B, B2C, Reversal, Transaction Status and Account Balance APIs
 The Security Credential helper is found in MpesaLib.Helpers.Credential.
 All you have to do is call 
 
