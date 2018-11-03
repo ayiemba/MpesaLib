@@ -43,7 +43,7 @@ steps:
 - powershell: |
     mkdir $(Build.ArtifactStagingDirectory)\Packages     
     $version = .\nbgv get-version -f json | ConvertFrom-Json
-    ls .\NuSpecs\*.nuspec | %{ nuget pack $_.FullName -version "$($version.NuGetPackageVersion)" -BasePath "src" -NoPackageAnalysis -OutputDirectory $(Build.ArtifactStagingDirectory)\Packages -Properties "RepositoryType=git;RepositoryCommit=$($version.GitCommitId);RepositoryUrl=https://github.com/ayiemba/MpesaLib"}
+    ls .\src\*.nuspec | %{ nuget pack $_.FullName -version "$($version.NuGetPackageVersion)" -BasePath "src" -NoPackageAnalysis -OutputDirectory $(Build.ArtifactStagingDirectory)\Packages -Properties "RepositoryType=git;RepositoryCommit=$($version.GitCommitId);RepositoryUrl=https://github.com/ayiemba/MpesaLib"}
   displayName: Create packages
   condition: and(succeeded(), eq(variables['system.pullrequest.isfork'], false))
   
