@@ -56,56 +56,6 @@ namespace MpesaLib.Clients
             return token.access_token;
         }
 
-        //Polly token refresh policy
-        //private RetryPolicy<HttpResponseMessage> CreateTokenRefreshPolicy(Func<string, Task> tokenRefreshed)
-        //{
-        //    var policy = Policy
-        //        .HandleResult<HttpResponseMessage>(message => message.StatusCode == HttpStatusCode.Unauthorized)
-        //        .RetryAsync(1, async (result, retryCount, context) =>
-        //        {
-        //            if (context.ContainsKey("refresh_token"))
-        //            {
-        //                var newAccessToken = await RefreshAccessToken(context["refresh_token"].ToString());
-        //                if (newAccessToken != null)
-        //                {
-        //                    await tokenRefreshed(newAccessToken);
-
-        //                    context["access_token"] = newAccessToken;
-        //                }
-        //            }
-        //        });
-
-        //    return policy;
-        //}
-
-        //Refresh Accesstoken
-        //private async Task<string> RefreshAccessToken(string refreshToken, string consumerKey, string consumerSecret)
-        //{
-        //    var refreshMessage = new HttpRequestMessage(HttpMethod.Post, "/oauth2/v4/token")
-        //    {
-        //        Content = new FormUrlEncodedContent(new KeyValuePair<string, string>[]
-        //        {
-        //        new KeyValuePair<string, string>("client_id", consumerKey),
-        //        new KeyValuePair<string, string>("client_secret", consumerSecret),
-        //        new KeyValuePair<string, string>("refresh_token", refreshToken),
-        //        new KeyValuePair<string, string>("grant_type", "refresh_token")
-        //        })
-        //    };
-
-        //    var response = await _httpclient.SendAsync(refreshMessage);
-
-        //    if (response.IsSuccessStatusCode)
-        //    {
-        //        var tokenResponse = await response.Content.ReadAsStringAsync();
-
-        //        return tokenResponse.ToString();
-        //    }
-
-        //    // return null if we cannot request a new token
-        //    return null;
-        //}
-
-
         /// <summary>
         /// Makes a Business to Business payment
         /// </summary>
