@@ -55,3 +55,11 @@ steps:
     artifactType: container
     artifactName: Packages
   condition: and(succeeded(), eq(variables['system.pullrequest.isfork'], false))
+  
+  - task: NuGetCommand@2
+  inputs:
+    command: push
+    nuGetFeedType: external
+    publishFeedCredentials: 'MpesaLib'
+    versioningScheme: byEnvVar
+    versionEnvVar: Version
