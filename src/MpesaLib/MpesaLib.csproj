@@ -1,9 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net45;net40;</TargetFrameworks>    
+    <TargetFrameworks>netstandard2.0;net45;</TargetFrameworks>    
 
-    <Version>2.1.1</Version> 
+    <Version>2.2.0</Version> 
 
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
 
@@ -15,7 +15,7 @@
     <Copyright>Copyright © Geospartan Tech.  All rights reserved.</Copyright>
     <PackageLicenseUrl>https://github.com/ayiemba/MpesaLib/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://ayiemba.github.io/MpesaLib</PackageProjectUrl>
-    <PackageReleaseNotes>Added Security Credential Password Encryption for B2B, B2C, Reversal, Transaction, Account Balance APIs</PackageReleaseNotes>   
+    <PackageReleaseNotes>Removed support for NET FRAMEWORK 4.0, hard to maintain and not woking in most cases</PackageReleaseNotes>   
     <IncludeBuildOutput>true</IncludeBuildOutput>
   </PropertyGroup>
 
@@ -30,14 +30,7 @@
   
   <ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">    
     <Reference Include="System.Net.Http" />
-  </ItemGroup>
-
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net40' ">  
-    <PackageReference Include="Microsoft.Net.Http" Version="2.2.29" />
-    <PackageReference Include="Microsoft.Bcl.Async" Version="1.0.168" />
-  </ItemGroup>
-
-  
+  </ItemGroup>  
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.0'">
     <DefineConstants>NETCORE;NETSTANDARD;NETSTANDARD2_0</DefineConstants>
@@ -47,8 +40,6 @@
     <DefineConstants>NET45;NETFULL</DefineConstants>
   </PropertyGroup>
 
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'net40'">
-    <DefineConstants>NET40;NETFULL</DefineConstants>
-  </PropertyGroup>
+ 
 
 </Project>
