@@ -25,6 +25,7 @@ steps:
 - script: nbgv cloud
   displayName: Set Version
   condition: and(succeeded(), eq(variables['system.pullrequest.isfork'], false))
+  
 
 - task: NuGetToolInstaller@0
   displayName: Use NuGet 4.7.0
