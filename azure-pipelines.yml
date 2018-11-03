@@ -10,6 +10,9 @@ variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
+  Major: '2'
+  Minor: '2'
+  Patch: '0'
 
 steps:
 - task: NuGetToolInstaller@0
@@ -23,6 +26,15 @@ steps:
     solution: '$(solution)'
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
+
+- task: NuGetCommand@2
+  inputs:
+    command: pack
+    versioningScheme: byPrereleaseNumber
+    majorVersion: '$(Major)'
+    minorVersion: '$(Minor)'
+    patchVersion: '$(Patch)'
+    packagesToPack: '**/*.csproj'
 
 - task: VSTest@2
   inputs:
