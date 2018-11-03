@@ -1,9 +1,9 @@
 # Add steps that publish symbols, save build artifacts, and more:
 # https://docs.microsoft.com/vsts/pipelines/apps/windows/dot-net
 
-trigger:
-- dev
-- rel/*
+#trigger:
+#- dev
+#- rel/*
 
 pool:
   vmImage: 'VS2017-Win2016'
