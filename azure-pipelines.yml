@@ -56,7 +56,7 @@ steps:
     artifactName: Packages
   condition: and(succeeded(), eq(variables['system.pullrequest.isfork'], false))
   
-  - task: NuGetCommand@2
+- task: NuGetCommand@2
   inputs:
     command: push
     nuGetFeedType: external
