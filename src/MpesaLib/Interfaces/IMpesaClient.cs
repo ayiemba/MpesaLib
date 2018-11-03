@@ -8,12 +8,7 @@ namespace MpesaLib.Interfaces
     /// Mpesa API Client interface
     /// </summary>
     public interface IMpesaClient
-    {
-
-        ///// <summary>
-        ///// BaseAddress
-        ///// </summary>
-        ///// Uri BaseAddress { get; set; }
+    {       
 
         /// <summary>
         /// Auth Client
