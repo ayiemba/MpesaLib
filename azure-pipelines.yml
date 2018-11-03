@@ -2,8 +2,8 @@
 # https://docs.microsoft.com/vsts/pipelines/apps/windows/dot-net
 
 trigger:
--dev
--rel/*
+- dev
+- rel/*
 
 pool:
   vmImage: 'VS2017-Win2016'
