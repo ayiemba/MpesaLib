@@ -1,7 +1,7 @@
 # MpesaLib 
 [![mpesalib MyGet Build Status](https://www.myget.org/BuildSource/Badge/mpesalib?identifier=cf0f8e5c-2a40-41cf-8065-9f27db7e2678)](https://www.myget.org/) [![Build Status](https://geospartan.visualstudio.com/MpesaLib/_apis/build/status/ayiemba.MpesaLib)](https://geospartan.visualstudio.com/MpesaLib/_build/latest?definitionId=2)
  
-MPESA API LIBRARY For C# Developers
+MPESA API LIBRARY For C# Developers - Supports .NET Standard 2.0
 
 * This documentation is meant to help you get started on how to use this library and does not explain MPESA APIs and there internal workings or exemplifications of when and where you might want to use any of them. If you need some indepth explanation on how these Mpesa APIs work you can checkout this link ---> https://peternjeru.co.ke/safdaraja. Otherwise Safaricoms developer portal should get you sufficient detail.[Safaricom's Developer Portal](https://developer.safaricom.co.ke/apis-explorer)
 
