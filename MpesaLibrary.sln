@@ -8,6 +8,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{9372EA7C-3B1B-4E16-A108-6E1F0B7C23BD}"
 	ProjectSection(SolutionItems) = preProject
 		MpesaLib.nuspec = MpesaLib.nuspec
+		version.json = version.json
 	EndProjectSection
 EndProject
 Global
