@@ -53,17 +53,17 @@ steps:
 - powershell: |
     mkdir $(Build.ArtifactStagingDirectory)\Packages     
     $version = .\nbgv get-version -f json | ConvertFrom-Json
-    ls .\src\*.nuspec | %{ nuget pack $_.FullName -version "$($version.NuGetPackageVersion)" -BasePath ".\src" -NoPackageAnalysis -OutputDirectory $(Build.ArtifactStagingDirectory)\Packages -Properties "RepositoryType=git;RepositoryCommit=$($version.GitCommitId);RepositoryUrl=https://github.com/ayiemba/MpesaLib"}
+    ls '**/*.csproj' | %{ dotnet pack $_.FullName -version "$($version.NuGetPackageVersion)" -BasePath ".\src" -NoPackageAnalysis -OutputDirectory $(Build.ArtifactStagingDirectory)\Packages -Properties "RepositoryType=git;RepositoryCommit=$($version.GitCommitId);RepositoryUrl=https://github.com/ayiemba/MpesaLib"}
   displayName: Create packages
   condition: and(succeeded(), eq(variables['system.pullrequest.isfork'], false))
  
-- task: DotNetCoreCLI@2
-  inputs:
-    command: pack 
-    arguments: -c $(BuildConfiguration)
-    packagesToPack: '**/*.csproj'
-    packDirectory: '$(Build.ArtifactStagingDirectory)\Packages'
-  displayName: Dotnet Pack
+#- task: DotNetCoreCLI@2
+ # inputs:
+  #  command: pack 
+  #  arguments: -c $(BuildConfiguration)
+  #  packagesToPack: '**/*.csproj'
+  #  packDirectory: '$(Build.ArtifactStagingDirectory)\Packages'
+  #displayName: Dotnet Pack
   
 
     
