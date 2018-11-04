@@ -55,15 +55,26 @@ steps:
   condition: and(succeeded(), eq(variables['system.pullrequest.isfork'], false))
   
 
-- task: PublishBuildArtifacts@1
-  displayName: Publish Package Artifacts
+- task: NuGetCommand@2
   inputs:
-    pathToPublish: $(Build.ArtifactStagingDirectory)\Packages
-    artifactType: container
-    artifactName: Packages
-  condition: and(succeeded(), eq(variables['system.pullrequest.isfork'], false))
+    command: pack    
+    configuration: '$(buildConfiguration)'
+    packagesToPack: '**/*.csproj'
+    packDestination: '$(Build.ArtifactStagingDirectory)\Packages'
+    versioningScheme: 'off'
+    
+
+
+#- task: PublishBuildArtifacts@1
+#  displayName: Publish Package Artifacts
+ # inputs:
+ #   pathToPublish: $(Build.ArtifactStagingDirectory)\Packages
+  #  artifactType: container
+   # artifactName: Packages
+ # condition: and(succeeded(), eq(variables['system.pullrequest.isfork'], false))
   
   
+
 #- task: NuGetCommand@2
  # inputs:
  #   command: push
