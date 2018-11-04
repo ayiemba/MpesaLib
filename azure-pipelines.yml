@@ -2,7 +2,7 @@
 # https://docs.microsoft.com/vsts/pipelines/apps/windows/dot-net
 
 trigger:
-- Master
+- master
 - rel/*
 
 pool:
