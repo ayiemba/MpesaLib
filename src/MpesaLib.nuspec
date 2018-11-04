@@ -24,8 +24,14 @@
 	</group>
 
     </dependencies>
+	  
+    <frameworkAssemblies>
+       <frameworkAssembly assemblyName="System.Net.Http" targetFramework="net45" />
+    </frameworkAssemblies>
 	
   </metadata>
-  <files />
+  <files> 
+     <file src="build\**" target="build" />        
+  </files>
   
 </package>
