@@ -48,6 +48,7 @@ steps:
   
 - powershell: |
     mkdir $(Build.ArtifactStagingDirectory)\Packages
+    $version = .\nbgv get-version -f json | ConvertFrom-Json
   displayName: Create package folder
 
   
@@ -63,6 +64,7 @@ steps:
     command: pack 
     arguments: -c $(BuildConfiguration)
     packagesToPack: '**/*.csproj'
+    versioningScheme: byEnvVar
     packDirectory: '$(Build.ArtifactStagingDirectory)\Packages'
   displayName: Dotnet Pack 
 
