@@ -232,24 +232,6 @@ namespace MpesaLib.Clients
             };          
             
             var response = await _httpclient.SendAsync(request);         
-           
-
-            //var response1 = await policy.ExecuteAsync(context =>
-            //{
-            //    HttpRequestMessage requestMessage = new HttpRequestMessage(HttpMethod.Post, requestUri)
-            //    {
-            //        Content = new StringContent(jsonvalues.ToString(), Encoding.UTF8, "application/json")
-            //    };
-
-            //    requestMessage.Headers.Add("Authorization", $"Bearer {context["access_token"]}");
-
-            //    return _httpclient.SendAsync(requestMessage);
-
-            //}, new Dictionary<string, object>
-            //{
-            //    {"access_token", accesstoken},
-            //    {"refresh_token", refreshToken}
-            //});
 
             response.EnsureSuccessStatusCode();
 
