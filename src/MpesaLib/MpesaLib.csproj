@@ -5,8 +5,7 @@
 
     <Version>2.2.0</Version> 
 
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 
     <Authors>Elvis Ayiemba</Authors>
     <Company>Geospartan Tech.</Company>
