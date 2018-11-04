@@ -65,6 +65,7 @@ steps:
     arguments: -c $(BuildConfiguration)
     packagesToPack: '**/*.csproj'
     versioningScheme: byEnvVar
+    versionEnvVar: $version
     packDirectory: '$(Build.ArtifactStagingDirectory)\Packages'
   displayName: Dotnet Pack 
 
