@@ -50,14 +50,13 @@ steps:
     mkdir $(Build.ArtifactStagingDirectory)\Packages
   displayName: Create package folder
  
-- task: NuGetCommand@2
+- task: DotNetCoreCLI@2
   inputs:
-    command: pack    
-    #configuration: '$(buildConfiguration)'
+    command: pack 
+    arguments: -c $(BuildConfiguration)
     packagesToPack: '**/*.csproj'
-    packDestination: '$(Build.ArtifactStagingDirectory)\Packages'
-    versioningScheme: 'off'
-  displayName: Nuget Pack
+    packDirectory: '$(Build.ArtifactStagingDirectory)\Packages'
+  displayName: Dotnet Pack
   
 #- powershell: |
  #   mkdir $(Build.ArtifactStagingDirectory)\Packages     
@@ -65,16 +64,12 @@ steps:
   #  ls .\src\*.nuspec | %{ nuget pack $_.FullName -version "$($version.NuGetPackageVersion)" -BasePath ".\src" -NoPackageAnalysis -OutputDirectory $(Build.ArtifactStagingDirectory)\Packages -Properties "RepositoryType=git;RepositoryCommit=$($version.GitCommitId);RepositoryUrl=https://github.com/ayiemba/MpesaLib"}
   #displayName: Create packages
   #condition: and(succeeded(), eq(variables['system.pullrequest.isfork'], false))
-  
-
-
     
 
-
 #- task: PublishBuildArtifacts@1
-#  displayName: Publish Package Artifacts
+ # displayName: Publish Package Artifacts
  # inputs:
- #   pathToPublish: $(Build.ArtifactStagingDirectory)\Packages
+  #  pathToPublish: $(Build.ArtifactStagingDirectory)\Packages
   #  artifactType: container
    # artifactName: Packages
  # condition: and(succeeded(), eq(variables['system.pullrequest.isfork'], false))
