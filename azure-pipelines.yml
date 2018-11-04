@@ -1,9 +1,9 @@
 # Add steps that publish symbols, save build artifacts, and more:
 # https://docs.microsoft.com/vsts/pipelines/apps/windows/dot-net
 
-#trigger:
-#- dev
-#- rel/*
+trigger:
+- Master
+- rel/*
 
 pool:
   vmImage: 'VS2017-Win2016'
@@ -27,10 +27,17 @@ steps:
   condition: and(succeeded(), eq(variables['system.pullrequest.isfork'], false))
   
 
+#- task: NuGetToolInstaller@0
+#  displayName: Use NuGet 4.7.0
+#  inputs:
+#    versionSpec: 4.7.0
+    
+
 - task: NuGetToolInstaller@0
-  displayName: Use NuGet 4.7.0
+
+- task: NuGetCommand@2
   inputs:
-    versionSpec: 4.7.0
+    restoreSolution: '$(solution)'
  
 - task: DotNetCoreCLI@2
   inputs:
@@ -57,10 +64,10 @@ steps:
   condition: and(succeeded(), eq(variables['system.pullrequest.isfork'], false))
   
   
-- task: NuGetCommand@2
-  inputs:
-    command: push
-    nuGetFeedType: external
-    publishFeedCredentials: 'MpesaLib'
-    versioningScheme: byEnvVar
-    versionEnvVar: Version
+#- task: NuGetCommand@2
+ # inputs:
+ #   command: push
+ #   nuGetFeedType: external
+  #  publishFeedCredentials: 'MpesaLib'
+  #  versioningScheme: byEnvVar
+ #   versionEnvVar: Version
