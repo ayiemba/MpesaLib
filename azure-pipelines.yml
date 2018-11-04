@@ -27,13 +27,13 @@ steps:
   condition: and(succeeded(), eq(variables['system.pullrequest.isfork'], false))
   
 
-#- task: NuGetToolInstaller@0
-#  displayName: Use NuGet 4.7.0
-#  inputs:
-#    versionSpec: 4.7.0
+- task: NuGetToolInstaller@0
+  displayName: Use NuGet 4.7.0
+  inputs:
+    versionSpec: 4.7.0
     
 
-- task: NuGetToolInstaller@0
+#- task: NuGetToolInstaller@0
 
 - task: NuGetCommand@2
   inputs:
@@ -46,22 +46,24 @@ steps:
     arguments: -c $(BuildConfiguration)   
   displayName: Build 
   
-  
-- powershell: |
-    mkdir $(Build.ArtifactStagingDirectory)\Packages     
-    $version = .\nbgv get-version -f json | ConvertFrom-Json
-    ls .\src\*.nuspec | %{ nuget pack $_.FullName -version "$($version.NuGetPackageVersion)" -BasePath ".\src" -NoPackageAnalysis -OutputDirectory $(Build.ArtifactStagingDirectory)\Packages -Properties "RepositoryType=git;RepositoryCommit=$($version.GitCommitId);RepositoryUrl=https://github.com/ayiemba/MpesaLib"}
-  displayName: Create packages
-  condition: and(succeeded(), eq(variables['system.pullrequest.isfork'], false))
-  
-
 - task: NuGetCommand@2
   inputs:
     command: pack    
     configuration: '$(buildConfiguration)'
     packagesToPack: '**/*.csproj'
-    packDestination: '$(Build.ArtifactStagingDirectory)\Packages'
+    packDestination: '$(Build.ArtifactStagingDirectory)'
     versioningScheme: 'off'
+  displayName: Nuget Pack
+  
+#- powershell: |
+ #   mkdir $(Build.ArtifactStagingDirectory)\Packages     
+   # $version = .\nbgv get-version -f json | ConvertFrom-Json
+  #  ls .\src\*.nuspec | %{ nuget pack $_.FullName -version "$($version.NuGetPackageVersion)" -BasePath ".\src" -NoPackageAnalysis -OutputDirectory $(Build.ArtifactStagingDirectory)\Packages -Properties "RepositoryType=git;RepositoryCommit=$($version.GitCommitId);RepositoryUrl=https://github.com/ayiemba/MpesaLib"}
+  #displayName: Create packages
+  #condition: and(succeeded(), eq(variables['system.pullrequest.isfork'], false))
+  
+
+
     
 
 
