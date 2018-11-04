@@ -46,16 +46,17 @@ steps:
     arguments: -c $(BuildConfiguration)   
   displayName: Build 
   
-#- powershell: |
- #   mkdir $(Build.ArtifactStagingDirectory)\Packages
- # displayName: Create package folder
-  
 - powershell: |
-    mkdir $(Build.ArtifactStagingDirectory)\Packages     
-    $version = .\nbgv get-version -f json | ConvertFrom-Json
-    ls .\src\*.nuspec | %{ nuget pack $_.FullName -version "$($version.NuGetPackageVersion)" -BasePath ".\src" -NoPackageAnalysis -OutputDirectory $(Build.ArtifactStagingDirectory)\Packages -Properties "RepositoryType=git;RepositoryCommit=$($version.GitCommitId);RepositoryUrl=https://github.com/ayiemba/MpesaLib"}
-  displayName: Create packages
-  condition: and(succeeded(), eq(variables['system.pullrequest.isfork'], false))
+    mkdir $(Build.ArtifactStagingDirectory)\Packages
+  displayName: Create package folder
+
+  
+#- powershell: |
+ #   mkdir $(Build.ArtifactStagingDirectory)\Packages     
+   # $version = .\nbgv get-version -f json | ConvertFrom-Json
+  #  ls '**/*.csproj' | %{ dotnet pack $_.FullName -version "$($version.NuGetPackageVersion)" -BasePath ".\src" -NoPackageAnalysis -OutputDirectory $(Build.ArtifactStagingDirectory)\Packages -Properties "RepositoryType=git;RepositoryCommit=$($version.GitCommitId);RepositoryUrl=https://github.com/ayiemba/MpesaLib"}
+  #displayName: Create packages
+  #condition: and(succeeded(), eq(variables['system.pullrequest.isfork'], false))
  
 - task: DotNetCoreCLI@2
   inputs:
@@ -63,10 +64,7 @@ steps:
     arguments: -c $(BuildConfiguration)
     packagesToPack: '**/*.csproj'
     packDirectory: '$(Build.ArtifactStagingDirectory)\Packages'
-  displayName: Dotnet Pack
-  
-
-    
+  displayName: Dotnet Pack 
 
 - task: PublishBuildArtifacts@1
   displayName: Publish Package Artifacts
