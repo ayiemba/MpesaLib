@@ -48,7 +48,7 @@ steps:
   
 - powershell: |
     mkdir $(Build.ArtifactStagingDirectory)\Packages
-    displayName: Create package folder
+  displayName: Create package folder
  
 - task: NuGetCommand@2
   inputs:
