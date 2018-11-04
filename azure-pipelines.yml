@@ -46,12 +46,16 @@ steps:
     arguments: -c $(BuildConfiguration)   
   displayName: Build 
   
+- powershell: |
+    mkdir $(Build.ArtifactStagingDirectory)\Packages
+    displaName: create package folder
+ 
 - task: NuGetCommand@2
   inputs:
     command: pack    
-    configuration: '$(buildConfiguration)'
+    #configuration: '$(buildConfiguration)'
     packagesToPack: '**/*.csproj'
-    packDestination: '$(Build.ArtifactStagingDirectory)'
+    packDestination: '$(Build.ArtifactStagingDirectory)\Packages'
     versioningScheme: 'off'
   displayName: Nuget Pack
   
