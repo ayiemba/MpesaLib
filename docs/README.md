@@ -4,18 +4,28 @@
  
 MPESA API LIBRARY For C# Developers
 
-This documentation is meant to help you get started on how to use this library and does not explain MPESA APIs and there internal workings or exemplifications of when and where you might want to use any of them. If you need in-depth explanation on how Mpesa APIs work you can check **[this](https://peternjeru.co.ke/safdaraja)** well written community site. Otherwise **[Safaricom's Developer Portal](https://developer.safaricom.co.ke/apis-explorer)** should get you all the details you need plus your API keys.
+This documentation is meant to help you get started on how to use this library and does not explain MPESA APIs and their internal workings or exemplifications of when and where you might want to use any of them. If you need in-depth explanation on how Mpesa APIs work you can check **[this](https://peternjeru.co.ke/safdaraja)** well written community site. Otherwise **[Safaricom's Developer Portal](https://developer.safaricom.co.ke/apis-explorer)** should get you all the details you need plus your API keys to get started.
 
-**[Check Sample Code](https://github.com/ayiemba/MpesaLibSamples/blob/master/Apps/WebAppNetCore21/Controllers/HomeController.cs)**
+**[Check Sample/basic Code from this repo if curious](https://github.com/ayiemba/MpesaLibSamples/blob/master/Apps/WebAppNetCore21/Controllers/HomeController.cs)**
 
 ## Setting Up
 Before you begin:
 
 1.  Get consumerKey, consumerSecret and Passkey (for Mpesa Express API) from daraja portal liked above by creating an App in their portal.
 
-2.  Ensure your project is running on the latest versions of .Net. I don't intend to support versions before .Net Framework 4.6.1 and .Net Core 2.1. However MpesaLib is based on .Net Standard 2.0 and your are at liberty to check [**here**](https://docs.microsoft.com/en-us/dotnet/standard/net-standard#net-implementation-support) if your platform supports .Net Standard 2.0.
+2.  Ensure your project is running on the latest versions of .Net. I don't intend to provide support for versions before .Net Framework 4.6.1 and .Net Core 2.1. However MpesaLib is based on .Net Standard 2.0 and your are at liberty to check [**here**](https://docs.microsoft.com/en-us/dotnet/standard/net-standard#net-implementation-support) if your platform supports .Net Standard 2.0.
 
-3.  Note that this Library is suited for use through dependency injection (DI). You can read more on DI in Asp.Net core [**here**](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection?view=aspnetcore-2.1). If you don't want to use DI you can always new up MpesaClient by passing in an httpClient instance in the constructor (you have to explicitly provide BaseAdress for the httpClient).
+3.  Note that this Library is suitable for use through dependency injection (DI). You can read more on DI in Asp.Net core [**here**](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection?view=aspnetcore-2.1). If you don't want to use DI you can always new up MpesaClient by passing in an httpClient instance in the constructor (you have to explicitly provide BaseAdress for the httpClient). eg.
+```c#
+	//Use only when you don't want to use Dependency injection
+	//create httpclient instance
+	var httpClient = new HttpClient();
+	httpClient.BaseAddress = new Uri("https://sandbox.safaricom.co.ke/");
+	
+	//create Mpesa API client instance
+	var mpesaClient = new MpesaClient(httpClient); //note how httpClient instance is passed into MpesaClient as a parameter.
+	
+```
 
 ## 1. Registering MpesaClient & Setting BaseAddress
 * Install MpesaLib version 2.0.4 and above in your asp.net project (dotnet core >=2.1 or dotnet framework >=4.6.1)
@@ -55,12 +65,16 @@ public class Payments
 ## 2. Getting an accesstoken
 Mpesa APIs require an accesstoken for authentication/authorization to use the APIs. The accesstoken has to be passed into the available api method calls. MpesaLib provides two methods (asyncronous and non-asyncronous) for requesting an accesstoken. Currently only asynchronous method is supported by the library for all API calls. The accesstokens expire after an hour so it is recommended that you implement a caching strategy that refereshes the token after every hour or less.
 
-* To get an accesstoken, invoke the ``` MpesaClient.GetAuthTokenAsync() ``` method. You have to await the call.
+* To get an accesstoken, invoke the ``` MpesaClient.GetAuthTokenAsync() ``` method. You have to await the Async call. use Non-Async call if method is not async.
 
 e.g. 
 
 ```c# 
-	var accesstoken = await _mpesaClient.GetAuthTokenAsync(consumerKey, consumerSecret, "oauth/v1/generate?grant_type=client_credentials")
+	//Asyn
+	var accesstoken = await _mpesaClient.GetAuthTokenAsync(consumerKey, consumerSecret, "oauth/v1/generate?grant_type=client_credentials");
+	
+	//Non-Async
+	var accesstoken = _mpesaClient.GetAuthTokenAsync(consumerKey, consumerSecret, "oauth/v1/generate?grant_type=client_credentials").GetAwaiter().GetResult();
 ```
 
 Note that you have to pass in a conusmerKey, ConsumerSecret and an end-point Url which is *"oauth/v1/generate?grant_type=client_credentials"* for sandbox. When moving to production use the correct end-point url provided by Safaricom after completing the GO-Live process.
@@ -276,3 +290,5 @@ using MpesaLib.Helpers; // Add this to your class
 
 ```
 
+## 13. Async vs Sync Tips
+** You can use MpesaClient.GetAuthToken.GetAwaiter().GetResult();  if you dont want to use await key word infront of every api method call.
