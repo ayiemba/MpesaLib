@@ -16,8 +16,9 @@ Before you begin:
 2.  Ensure your project is running on the latest versions of .Net. I don't intend to provide support for versions before .Net Framework 4.6.1 and .Net Core 2.1. However MpesaLib is based on .Net Standard 2.0 and your are at liberty to check [**here**](https://docs.microsoft.com/en-us/dotnet/standard/net-standard#net-implementation-support) if your platform supports .Net Standard 2.0.
 
 3.  Note that this Library is suitable for use through dependency injection (DI). You can read more on DI in Asp.Net core [**here**](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection?view=aspnetcore-2.1). If you don't want to use DI you can always new up MpesaClient by passing in an httpClient instance in the constructor (you have to explicitly provide BaseAdress for the httpClient). eg.
+
 ```c#
-	//Use only when you don't want to use Dependency injection
+	//Use only when you don't can't use Dependency injection
 	//create httpclient instance
 	var httpClient = new HttpClient();
 	httpClient.BaseAddress = new Uri("https://sandbox.safaricom.co.ke/");
@@ -27,7 +28,8 @@ Before you begin:
 	
 ```
 
-## 1. Registering MpesaClient & Setting BaseAddress
+
+## 1. Registering MpesaClient & Setting BaseAddress (Via Dependency Injection)
 * Install MpesaLib version 2.0.4 and above in your asp.net project (dotnet core >=2.1 or dotnet framework >=4.6.1)
 * In **Startup.cs** add the following usings
 
@@ -291,4 +293,4 @@ using MpesaLib.Helpers; // Add this to your class
 ```
 
 ## 13. Async vs Sync Tips
-** You can use MpesaClient.GetAuthToken.GetAwaiter().GetResult();  if you dont want to use await key word infront of every api method call.
+* You can use ```MpesaClient.GetAuthToken(*args).GetAwaiter().GetResult();```  if you can't use asynchrounous methods.
