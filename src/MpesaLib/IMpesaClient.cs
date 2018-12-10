@@ -22,7 +22,7 @@ namespace MpesaLib
         //string QueryAccountBalance(AccountBalance accbalance, string accesstoken, string requestUri);
 
        
-        Task<string> MakeB2BPaymentAsync(BusinessToBusinessDto businessToBusinessDto, string token, string requestEndPoint);
+        Task<string> MakeB2BPaymentAsync(BusinessToBusinessDto businessToBusinessDto, string accesstoken, string requestEndPoint);
         //string MakeB2BPayment(BusinessToBusiness b2bitem, string token, string requestUri);
 
 
@@ -32,7 +32,7 @@ namespace MpesaLib
 
 
         
-        Task<string> MakeC2BPaymentAsync(CustomerToBusinessSimulateDto customerToBusinessSimulateDto, string token, string requestEndPoint);
+        Task<string> MakeC2BPaymentAsync(CustomerToBusinessSimulateDto customerToBusinessSimulateDto, string accesstoken, string requestEndPoint);
         //string MakeC2BPayment(CustomerToBusinessSimulate c2bsimulate, string token, string requestUri);
 
 
