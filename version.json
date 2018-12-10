@@ -4,7 +4,7 @@
     "^refs/heads/master$", // we release out of master
     "^refs/heads/rel/v\\d+\\.\\d+" // we also release branches starting with rel/vN.N
   ],
-  "nugetPackageVersion": {s
+  "nugetPackageVersion": {
     "semVer": 2
   }
 }
