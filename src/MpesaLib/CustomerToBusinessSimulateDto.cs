@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MpesaLib.Models
+﻿namespace MpesaLib
 {
-    public class CustomerToBusinessSimulate
+    public class CustomerToBusinessSimulateDto
     {
         public string ShortCode { get; set; }
         public string CommandID { get; } = "CustomerPayBillOnline";

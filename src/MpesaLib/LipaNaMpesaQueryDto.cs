@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MpesaLib.Models
+namespace MpesaLib
 {
-    public class LipaNaMpesaQuery
+    public class LipaNaMpesaQueryDto
     {
         public string BusinessShortCode { get; set; }
         public string Password { get; set; }

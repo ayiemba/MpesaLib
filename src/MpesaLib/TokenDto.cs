@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MpesaLib.Models
+namespace MpesaLib
 {
-    public class Token
+    public class TokenDto
     {     
         public string access_token { get; set; } 
         
