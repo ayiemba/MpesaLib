@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MpesaLib.Models
+namespace MpesaLib
 {
-    public class CustomerToBusinessRegister
+    public class CustomerToBusinessRegisterUrlDto
     {
         public string ShortCode { get; set; }
         public string ResponseType { get; set; }
