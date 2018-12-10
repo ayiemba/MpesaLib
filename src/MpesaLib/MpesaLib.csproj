@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0</TargetFrameworks>    
+    <TargetFramework>netstandard2.0</TargetFramework>    
 
     <Version>3.0.0</Version> 
 
@@ -14,7 +14,7 @@
     <Copyright>Copyright © Elvis Ayiemba.  All rights reserved.</Copyright>
     <PackageLicenseUrl>https://github.com/ayiemba/MpesaLib/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://ayiemba.github.io/MpesaLib</PackageProjectUrl>
-    <PackageReleaseNotes>Removed support for NET FRAMEWORK 4.0, hard to maintain and not woking in most cases</PackageReleaseNotes>   
+    <PackageReleaseNotes>Removed support for .NET FRAMEWORK 4.5</PackageReleaseNotes>   
     <IncludeBuildOutput>true</IncludeBuildOutput>
   </PropertyGroup>
 
