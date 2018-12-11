@@ -6,7 +6,7 @@ MPESA API LIBRARY For C# Developers
 
 This documentation is meant to help you get started on how to use this library and does not explain MPESA APIs and their internal workings or exemplifications of when and where you might want to use any of them. If you need in-depth explanation on how Mpesa APIs work you can check **[this](https://peternjeru.co.ke/safdaraja)** well written community site. Otherwise **[Safaricom's Developer Portal](https://developer.safaricom.co.ke/apis-explorer)** should get you all the details you need plus your API keys to get started.
 
-## MpesaLib Version 3.x.x s in preview and comes with breaking changes. Watchout for updates to this documentation before proceeding with upgrades.
+## MpesaLib Version 3.x.x is in preview and comes with breaking changes. Watchout for updates to this documentation before proceeding with upgrades.
 
 **[Check Sample/basic Code from this repo if curious](https://github.com/ayiemba/MpesaLibSamples/blob/master/Apps/WebAppNetCore21/Controllers/HomeController.cs)**
 
