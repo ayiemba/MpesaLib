@@ -2,7 +2,11 @@
   "version": "3.0.1-preview1",
   "buildNumberOffset": 100,
   "semVer1NumericIdentifierPadding": 3,
-  
+  "publicReleaseRefSpec": [
+    "^refs/heads/master$", 
+    "^refs/heads/rel/v\\d+\\.\\d+"
+  ],
+
   "nugetPackageVersion": {
     "semVer": 2
   }
