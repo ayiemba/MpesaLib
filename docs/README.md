@@ -8,7 +8,6 @@ This documentation is meant to help you get started on how to use this library a
 
 ## MpesaLib Version 3.x.x is in preview and comes with breaking changes. Watchout for updates to this documentation before proceeding with upgrades.
 
-**[Check Sample/basic Code from this repo if curious](https://github.com/ayiemba/MpesaLibSamples/blob/master/Apps/WebAppNetCore21/Controllers/HomeController.cs)**
 
 ## Setting Up
 Before you begin:
@@ -294,3 +293,6 @@ using MpesaLib.Helpers; // Add this to your class
 
 ## 13. Async vs Sync Tips
 ** You can use MpesaClient.GetAuthToken.GetAwaiter().GetResult();  if you dont want to use await key word infront of every api method call.
+
+**[Check Samples](https://github.com/ayiemba/MpesaLibSamples/blob/master/Apps/WebAppNetCore21/Controllers/HomeController.cs)**
+
