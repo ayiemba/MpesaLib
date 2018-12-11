@@ -1,7 +1,7 @@
 {
   "version": "3.0.0-prerelease",
   "buildNumberOffset": 100,
-  "semVer1NumericIdentifierPadding": 3,
+  "semVer1NumericIdentifierPadding": 2,
   "publicReleaseRefSpec": [
     "^refs/heads/master$",
     "^refs/heads/rel/v\\d+\\.\\d+"
