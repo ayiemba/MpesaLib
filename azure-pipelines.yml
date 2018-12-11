@@ -15,8 +15,8 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-- script: dotnet --info
-  displayName: Show dotnet SDK info
+#- script: dotnet --info
+#  displayName: Show dotnet SDK info
 
 - task: DotNetCoreCLI@2  
   inputs:
@@ -50,18 +50,18 @@ steps:
     arguments: -c $(BuildConfiguration)   
   displayName: Build 
   
-- powershell: |
-    mkdir $(Build.ArtifactStagingDirectory)\Packages
-    $version = .\nbgv get-version -f json | ConvertFrom-Json
-  displayName: Create package folder
+#- powershell: |
+#    mkdir $(Build.ArtifactStagingDirectory)\Packages
+#    $version = .\nbgv get-version -f json | ConvertFrom-Json
+#  displayName: Create package folder
 
   
-#- powershell: |
- #   mkdir $(Build.ArtifactStagingDirectory)\Packages     
-   # $version = .\nbgv get-version -f json | ConvertFrom-Json
-  #  ls '**/*.csproj' | %{ dotnet pack $_.FullName -version "$($version.NuGetPackageVersion)" -BasePath ".\src" -NoPackageAnalysis -OutputDirectory $(Build.ArtifactStagingDirectory)\Packages -Properties "RepositoryType=git;RepositoryCommit=$($version.GitCommitId);RepositoryUrl=https://github.com/ayiemba/MpesaLib"}
-  #displayName: Create packages
-  #condition: and(succeeded(), eq(variables['system.pullrequest.isfork'], false))
+- powershell: |
+    mkdir $(Build.ArtifactStagingDirectory)\Packages     
+    $version = .\nbgv get-version -f json | ConvertFrom-Json
+    ls '**/*.csproj' | %{ dotnet pack $_.FullName -version "$($version.NuGetPackageVersion)" -BasePath ".\src" -NoPackageAnalysis -OutputDirectory $(Build.ArtifactStagingDirectory)\Packages -Properties "RepositoryType=git;RepositoryCommit=$($version.GitCommitId);RepositoryUrl=https://github.com/ayiemba/MpesaLib"}
+  displayName: Create packages
+  condition: and(succeeded(), eq(variables['system.pullrequest.isfork'], false))
  
 - task: DotNetCoreCLI@2
   inputs:
