@@ -3,6 +3,7 @@
 
 trigger:
 - master
+- Dev
 - rel/*
 
 pool:
@@ -14,6 +15,9 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
+- script: dotnet --info
+  displayName: Show dotnet SDK info
+
 - task: DotNetCoreCLI@2  
   inputs:
     command: custom
