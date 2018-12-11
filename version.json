@@ -1,5 +1,5 @@
 {
-  "version": "3.0.0-prerelease.{height}",
+  "version": "3.0.0-prerelease",
   "buildNumberOffset": 100,
   "semVer1NumericIdentifierPadding": 3,
   "publicReleaseRefSpec": [
