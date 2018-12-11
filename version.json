@@ -2,9 +2,19 @@
   "version": "3.0.100",
   "buildNumberOffset": 100,
   "publicReleaseRefSpec": [
-    "^refs/heads/master$", 
+    "^refs/heads/master$",
     "^refs/heads/rel/v\\d+\\.\\d+"
   ],
+  "cloudBuild": {
+    "setVersionVariables": true,
+    "buildNumber": {
+      "enabled": true,
+      "includeCommitId": {
+        "when": "nonPublicReleaseOnly",
+        "where": "buildMetadata"
+      }
+    }
+  },
 
   "nugetPackageVersion": {
     "semVer": 2
