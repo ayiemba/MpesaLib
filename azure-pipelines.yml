@@ -15,8 +15,8 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-- script: dotnet --info
-  displayName: Show dotnet SDK info
+#- script: dotnet --info
+#  displayName: Show dotnet SDK info
 
 - task: DotNetCoreCLI@2  
   inputs:
