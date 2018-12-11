@@ -1,6 +1,6 @@
 {
-  "version": "2.3",
-  "buildNumberOffset": 4,
+  "version": "3.0.0-prerelease",
+  "buildNumberOffset": 1,
   "publicReleaseRefSpec": [
     "^refs/heads/master$",
     "^refs/heads/rel/v\\d+\\.\\d+"
