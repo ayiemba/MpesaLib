@@ -1,7 +1,7 @@
 {
-  "version": "3.0.0-preview1",
+  "version": "3.0.1-preview1",
   "buildNumberOffset": 100,
-  "semVer1NumericIdentifierPadding": 4,
+  "semVer1NumericIdentifierPadding": 3,
   
   "nugetPackageVersion": {
     "semVer": 2
