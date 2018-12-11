@@ -1,6 +1,6 @@
 {
-  "version": "3.0.0-prerelease",
-  "buildNumberOffset": 1,
+  "version": "3.0.0-prerelease.{height}",
+  "buildNumberOffset": 100,
   "semVer1NumericIdentifierPadding": 3,
   "publicReleaseRefSpec": [
     "^refs/heads/master$",
