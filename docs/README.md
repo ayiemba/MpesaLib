@@ -6,7 +6,8 @@ MPESA API LIBRARY For C# Developers
 
 This documentation is meant to help you get started on how to use this library and does not explain MPESA APIs and their internal workings or exemplifications of when and where you might want to use any of them. If you need in-depth explanation on how Mpesa APIs work you can check **[this](https://peternjeru.co.ke/safdaraja)** well written community site. Otherwise **[Safaricom's Developer Portal](https://developer.safaricom.co.ke/apis-explorer)** should get you all the details you need plus your API keys to get started.
 
-**[Check Sample/basic Code from this repo if curious](https://github.com/ayiemba/MpesaLibSamples/blob/master/Apps/WebAppNetCore21/Controllers/HomeController.cs)**
+## MpesaLib Version 3.x.x is in preview and comes with breaking changes. Watchout for updates to this documentation before proceeding with upgrades.
+
 
 ## Setting Up
 Before you begin:
@@ -16,8 +17,9 @@ Before you begin:
 2.  Ensure your project is running on the latest versions of .Net. I don't intend to provide support for versions before .Net Framework 4.6.1 and .Net Core 2.1. However MpesaLib is based on .Net Standard 2.0 and your are at liberty to check [**here**](https://docs.microsoft.com/en-us/dotnet/standard/net-standard#net-implementation-support) if your platform supports .Net Standard 2.0.
 
 3.  Note that this Library is suitable for use through dependency injection (DI). You can read more on DI in Asp.Net core [**here**](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection?view=aspnetcore-2.1). If you don't want to use DI you can always new up MpesaClient by passing in an httpClient instance in the constructor (you have to explicitly provide BaseAdress for the httpClient). eg.
+
 ```c#
-	//Use only when you don't want to use Dependency injection
+	//Use only when you don't can't use Dependency injection
 	//create httpclient instance
 	var httpClient = new HttpClient();
 	httpClient.BaseAddress = new Uri("https://sandbox.safaricom.co.ke/");
@@ -27,7 +29,8 @@ Before you begin:
 	
 ```
 
-## 1. Registering MpesaClient & Setting BaseAddress
+
+## 1. Registering MpesaClient & Setting BaseAddress (Via Dependency Injection)
 * Install MpesaLib version 2.0.4 and above in your asp.net project (dotnet core >=2.1 or dotnet framework >=4.6.1)
 * In **Startup.cs** add the following usings
 
@@ -292,3 +295,9 @@ using MpesaLib.Helpers; // Add this to your class
 
 ## 13. Async vs Sync Tips
 ** You can use MpesaClient.GetAuthToken.GetAwaiter().GetResult();  if you dont want to use await key word infront of every api method call.
+
+
+
+**[Check Samples](https://github.com/ayiemba/MpesaLibSamples/blob/master/Apps/WebAppNetCore21/Controllers/HomeController.cs)**
+
+
