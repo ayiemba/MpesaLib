@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>    
+    <TargetFramework>netstandard2.0</TargetFramework>   
 
     <Version>3.0.100-Prerelease</Version> 
 
@@ -15,10 +15,10 @@
     <PackageLicenseUrl>https://github.com/ayiemba/MpesaLib/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://ayiemba.github.io/MpesaLib</PackageProjectUrl>
     <PackageReleaseNotes>
-      Breaking Changes. Renamed data transfer object classess e.g CustomerToBusinessSimulate class has been renamed to CustomerToBusinessDto.
+      Breaking Changes. Renamed data transfer objects e.g CustomerToBusinessSimulate class has been renamed to CustomerToBusinessSimulateDto.
       We have also completely removed support for .Net Framework 4.0 and 4.5. The library now supports only .Net Standard 2.0 Projects. 
-      Last but not least we have removed MpesaLib.Clients and MpesaLib.Models namespaces. Almost everything is now available under using MpesaLib. Security Credential Helper is 
-      still under MpesaLib.Helpers.
+      Last but not least we have removed MpesaLib.Clients and MpesaLib.Models namespaces. Almost everything is now available under using MpesaLib; . Security Credential Helper is 
+      still under using MpesaLib.Helpers; .
     </PackageReleaseNotes>   
     <IncludeBuildOutput>true</IncludeBuildOutput>
   </PropertyGroup>
