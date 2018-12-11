@@ -8,7 +8,7 @@ namespace MpesaLib
     {
         public string Initiator { get; set; }
         public string SecurityCredential { get; set; }
-        public string CommandID { get; } = "TransactionStatusQuery";
+        public string CommandID { get; set; } = "TransactionStatusQuery";
         public string TransactionID { get; set; }
         public string PartyA { get; set; }
         public string IdentifierType { get; set; }
