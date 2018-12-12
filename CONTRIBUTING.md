@@ -1,6 +1,6 @@
 # How to contribute
 
-Please read these guidelines before contributing to Json.NET:
+Please read these guidelines before contributing to MpesaLib:
 
  - [Question or Problem?](#question)
  - [Issues and Bugs](#issue)
