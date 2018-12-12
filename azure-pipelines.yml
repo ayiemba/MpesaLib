@@ -37,8 +37,6 @@ steps:
     versionSpec: 4.7.0
     
 
-#- task: NuGetToolInstaller@0
-
 - task: NuGetCommand@2
   inputs:
     restoreSolution: '$(solution)'
@@ -63,14 +61,24 @@ steps:
   displayName: Create packages
   condition: and(succeeded(), eq(variables['system.pullrequest.isfork'], false))
  
-- task: DotNetCoreCLI@2
+#- task: DotNetCoreCLI@2
+ # inputs:
+  #  command: pack 
+   # arguments: -c $(BuildConfiguration) -p:Version=1.0.$(Build.BuildId) -o $(Build.ArtifactStagingDirectory)
+    #packagesToPack: '**/*.csproj'
+    #versioningScheme: byBuildNumber
+    #packDirectory: '$(Build.ArtifactStagingDirectory)\Packages'
+  #displayName: Dotnet Pack 
+
+
+- task: NuGetCommand@2
   inputs:
     command: pack 
-    arguments: -c $(BuildConfiguration) -p:Version=1.0.$(Build.BuildId) -o $(Build.ArtifactStagingDirectory)
+    arguments: -c $(BuildConfiguration) -p:Version=3.0.$(Build.BuildId) -o $(Build.ArtifactStagingDirectory)
     packagesToPack: '**/*.csproj'
     versioningScheme: byBuildNumber
     packDirectory: '$(Build.ArtifactStagingDirectory)\Packages'
-  displayName: Dotnet Pack 
+  displayName: Nuget Pack 
 
 - task: PublishBuildArtifacts@1
   displayName: Publish Package Artifacts
