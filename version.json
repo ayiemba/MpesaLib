@@ -1,5 +1,5 @@
 {
-  "version": "3.0.100-preview1",
+  "version": "3.0-preview1",
   "assemblyVersion": "3.0",
   "buildNumberOffset": 100,
   "semVer1NumericIdentifierPadding": 3,
@@ -8,17 +8,7 @@
     "^refs/heads/master$",
     "^refs/heads/rel/v\\d+\\.\\d+"
   ],
-  "cloudBuild": {
-    "setVersionVariables": true,
-    "buildNumber": {
-      "enabled": false,
-      "includeCommitId": {
-        "when": "nonPublicReleaseOnly",
-        "where": "buildMetadata"
-      }
-    }
-  },
-
+  
   "nugetPackageVersion": {
     "semVer": 2
   }
