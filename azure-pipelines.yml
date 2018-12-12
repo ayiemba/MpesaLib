@@ -37,11 +37,10 @@ steps:
     versionSpec: 4.7.0
     
 
-#- task: NuGetToolInstaller@0
-
 - task: NuGetCommand@2
   inputs:
     restoreSolution: '$(solution)'
+  displayName: Nuget Restore
  
 - task: DotNetCoreCLI@2
   inputs:
@@ -50,27 +49,37 @@ steps:
     arguments: -c $(BuildConfiguration)   
   displayName: Build 
   
-#- powershell: |
-#    mkdir $(Build.ArtifactStagingDirectory)\Packages
-#    $version = .\nbgv get-version -f json | ConvertFrom-Json
-#  displayName: Create package folder
+- powershell: |
+    mkdir $(Build.ArtifactStagingDirectory)\Packages
+    $version = .\nbgv get-version -f json | ConvertFrom-Json
+  displayName: Create package folder
 
   
-- powershell: |
-    mkdir $(Build.ArtifactStagingDirectory)\Packages     
-    $version = .\nbgv get-version -f json | ConvertFrom-Json
-    ls '**/*.csproj' | %{ dotnet pack $_.FullName -version "$($version.NuGetPackageVersion)" -BasePath ".\src" -NoPackageAnalysis -OutputDirectory $(Build.ArtifactStagingDirectory)\Packages -Properties "RepositoryType=git;RepositoryCommit=$($version.GitCommitId);RepositoryUrl=https://github.com/ayiemba/MpesaLib"}
-  displayName: Create packages
-  condition: and(succeeded(), eq(variables['system.pullrequest.isfork'], false))
+#- powershell: |
+ #   ls '**/*.csproj' | %{ nuget pack $_.FullName -version "$($version.NuGetPackageVersion)" -BasePath ".\src" -NoPackageAnalysis -OutputDirectory $(Build.ArtifactStagingDirectory)\Packages -Properties "RepositoryType=git;RepositoryCommit=$($version.GitCommitId);RepositoryUrl=https://github.com/ayiemba/MpesaLib"}
+ # displayName: Create packages
+ # condition: and(succeeded(), eq(variables['system.pullrequest.isfork'], false))
+
  
 - task: DotNetCoreCLI@2
   inputs:
     command: pack 
-    arguments: -c $(BuildConfiguration)
+    arguments: -c $(BuildConfiguration) 
     packagesToPack: '**/*.csproj'
     versioningScheme: byBuildNumber
     packDirectory: '$(Build.ArtifactStagingDirectory)\Packages'
   displayName: Dotnet Pack 
+
+
+#- task: NuGetCommand@2
+#  inputs:
+#    command: pack 
+#    arguments: -c $(BuildConfiguration) -p:Version=1.0.$(Build.BuildId) -o $(Build.ArtifactStagingDirectory)
+#    packagesToPack: '**/*.csproj'
+#    versioningScheme: byBuildNumber
+#    packDirectory: '$(Build.ArtifactStagingDirectory)\Packages'
+#  displayName: Nuget Pack 
+
 
 - task: PublishBuildArtifacts@1
   displayName: Publish Package Artifacts
@@ -82,10 +91,3 @@ steps:
   
   
 
-#- task: NuGetCommand@2
- # inputs:
- #   command: push
- #   nuGetFeedType: external
-  #  publishFeedCredentials: 'MpesaLib'
-  #  versioningScheme: byEnvVar
- #   versionEnvVar: Version

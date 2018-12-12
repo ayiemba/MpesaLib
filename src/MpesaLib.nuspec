@@ -19,15 +19,9 @@
 	<group targetFramework="netstandard20">
 	   <dependency id="Newtonsoft.Json" version="11.0.2" />
 	</group>
-	<group targetFramework="net45">
-	   <dependency id="Newtonsoft.Json" version="11.0.2" />
-	</group>
-
     </dependencies>
 	  
-    <frameworkAssemblies>
-       <frameworkAssembly assemblyName="System.Net.Http" targetFramework="net45" />
-    </frameworkAssemblies>
+   
 	
   </metadata>
   <files> 
