@@ -14,8 +14,7 @@ Please read these guidelines before contributing to Json.NET:
 If you have questions about how to use MpesaLib, please read the
 [MpesaLib documentation][documentation]. For Questions related to how Mpesa APIs work ask on [Mpesa Daraja Portal][daraja]. There are
 hundreds of Mpesa questions on Daraja that might address you challenges. If you don't find help from daraja, there is a
-[vibrant community][payments_api_community] of payment apis developers and integrators that have come across the challenges you culd be 
-having with Mpesa APIs and are more than willing to assist.
+[vibrant community][payments_api_community] of payment apis developers and integrators that have experrienced the challenges you could be having with Mpesa APIs and are more than willing to assist.
 
 GitHub issues are only for [reporting bugs](#issue) and [feature requests](#feature), not
 questions or help.
@@ -53,17 +52,17 @@ large breaking changes are unlikely to be accepted
 
 When submitting a pull request to the [GitHub Repository][github] make sure to do the following:
 
-- Check that new and updated code follows Json.NET's existing code formatting and naming standard
-- Run Json.NET's unit tests to ensure no existing functionality has been affected
+- Check that new and updated code follows MpesaLib's existing code formatting and naming standard
+- Run MpesaLib's unit tests (to be introduced) to ensure no existing functionality has been affected
 - Write new unit tests to test your changes. All features and fixed bugs must have tests to verify
-they work
+they work.
 
 Read [GitHub Help][pullrequesthelp] for more details about creating pull requests.
 
 
 ## <a name="cla"></a> Contributor License Agreement
 
-By contributing your code to Json.NET you grant Elvis Ayiemba a non-exclusive, irrevocable, worldwide,
+By contributing your code to MpesaLib you grant Elvis Ayiemba a non-exclusive, irrevocable, worldwide,
 royalty-free, sublicenseable, transferable license under all of Your relevant intellectual property rights
 (including copyright, patent, and any other rights), to use, copy, prepare derivative works of, distribute and
 publicly perform and display the Contributions on any licensing terms, including without limitation:
