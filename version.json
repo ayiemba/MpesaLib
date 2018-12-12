@@ -1,6 +1,5 @@
 {
-  "version": "3.0.100",
-  "buildNumberOffset": 100,
+  "version": "3.0.100-preview1",
   "publicReleaseRefSpec": [
     "^refs/heads/master$",
     "^refs/heads/rel/v\\d+\\.\\d+"
@@ -10,7 +9,6 @@
     "buildNumber": {
       "enabled": true,
       "includeCommitId": {
-        "when": "nonPublicReleaseOnly",
         "where": "buildMetadata"
       }
     }
