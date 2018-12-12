@@ -1,5 +1,6 @@
 {
   "version": "3.0.100-preview1",
+
   "publicReleaseRefSpec": [
     "^refs/heads/master$",
     "^refs/heads/rel/v\\d+\\.\\d+"
@@ -7,7 +8,7 @@
   "cloudBuild": {
     "setVersionVariables": true,
     "buildNumber": {
-      "enabled": true,
+      "enabled": false,
       "includeCommitId": {
         "where": "buildMetadata"
       }
