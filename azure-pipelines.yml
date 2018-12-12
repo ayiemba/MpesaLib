@@ -35,7 +35,6 @@ steps:
   displayName: Use NuGet 4.7.0
   inputs:
     versionSpec: 4.7.0
-  displayName: Use Nuget 4.7.0
     
 
 - task: NuGetCommand@2
