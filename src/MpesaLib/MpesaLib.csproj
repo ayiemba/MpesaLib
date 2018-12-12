@@ -1,10 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>   
-    
+    <TargetFramework>netstandard2.0</TargetFramework>      
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-
     <Authors>Elvis Ayiemba</Authors>
     <Company>Indpendent Developer</Company>
     <Description>.Net Standard Mpesa API  Library for .NET developers.</Description>
@@ -19,12 +17,9 @@
  - Last but not least we have removed MpesaLib.Clients and MpesaLib.Models namespaces. 
  - Almost everything is now available under using MpesaLib;  
  - Security Credential Helper class is  still under using MpesaLib.Helpers;
-</PackageReleaseNotes>   
+  </PackageReleaseNotes>   
     <IncludeBuildOutput>true</IncludeBuildOutput>   
-    <Version>3.0</Version>   
-    <AssemblyVersion>3</AssemblyVersion>   
-    <FileVersion>3</FileVersion>   
-    <SignAssembly>false</SignAssembly>
+   
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
