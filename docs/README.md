@@ -312,11 +312,11 @@ await _mpesaClient.ReverseMpesaTransactionAsync(TransactionReversalObject, acces
 The same when setting BaseAdress...
 For Sandbox:
 ```c#
-services.AddHttpClient<IMpesaClient, MpesaClient>(opts=>opts.BaseAddress = RequestEndPoint.SandboxBaseAdress);
+services.AddHttpClient<IMpesaClient, MpesaClient>(opts=>opts.BaseAddress = RequestEndPoint.SandboxBaseAddress);
 ```
 For Live API:
 ```c#
-services.AddHttpClient<IMpesaClient, MpesaClient>(opts=>opts.BaseAddress = RequestEndPoint.LiveBaseAdress);
+services.AddHttpClient<IMpesaClient, MpesaClient>(opts=>opts.BaseAddress = RequestEndPoint.LiveBaseAddress);
 ```
 
 
