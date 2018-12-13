@@ -3,7 +3,6 @@
 
 trigger:
 - master
-- Dev
 - rel/*
 
 pool:
@@ -15,8 +14,6 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-#- script: dotnet --info
-#  displayName: Show dotnet SDK info
 
 - task: DotNetCoreCLI@2  
   inputs:
@@ -54,12 +51,6 @@ steps:
     $version = .\nbgv get-version -f json | ConvertFrom-Json
   displayName: Create package folder
 
-  
-#- powershell: |
- #   ls '**/*.csproj' | %{ nuget pack $_.FullName -version "$($version.NuGetPackageVersion)" -BasePath ".\src" -NoPackageAnalysis -OutputDirectory $(Build.ArtifactStagingDirectory)\Packages -Properties "RepositoryType=git;RepositoryCommit=$($version.GitCommitId);RepositoryUrl=https://github.com/ayiemba/MpesaLib"}
- # displayName: Create packages
- # condition: and(succeeded(), eq(variables['system.pullrequest.isfork'], false))
-
  
 - task: DotNetCoreCLI@2
   inputs:
@@ -69,16 +60,6 @@ steps:
     versioningScheme: byBuildNumber
     packDirectory: '$(Build.ArtifactStagingDirectory)\Packages'
   displayName: Dotnet Pack 
-
-
-#- task: NuGetCommand@2
-#  inputs:
-#    command: pack 
-#    arguments: -c $(BuildConfiguration) -p:Version=1.0.$(Build.BuildId) -o $(Build.ArtifactStagingDirectory)
-#    packagesToPack: '**/*.csproj'
-#    versioningScheme: byBuildNumber
-#    packDirectory: '$(Build.ArtifactStagingDirectory)\Packages'
-#  displayName: Nuget Pack 
 
 
 - task: PublishBuildArtifacts@1

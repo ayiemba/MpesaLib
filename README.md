@@ -7,7 +7,7 @@
 
 - [Documentation](https://ayiemba.github.io/MpesaLib/)
 - [NuGet Package](https://www.nuget.org/packages/MpesaLib/)
-- [Release Notes](https://github.com/JamesNK/Newtonsoft.Json/releases)
+- [Release Notes](https://github.com/ayiemba/MpesaLib/releases)
 - [Contributing Guidelines](CONTRIBUTING.md)
 - [License](LICENSE.md)
 - [Mpesa Daraja Portal](https://developer.safaricom.co.ke/)
