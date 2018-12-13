@@ -3,21 +3,21 @@
 [![mpesalib MyGet Build Status](https://www.myget.org/BuildSource/Badge/mpesalib?identifier=cf0f8e5c-2a40-41cf-8065-9f27db7e2678)](https://www.myget.org/) [![Build Status](https://geospartan.visualstudio.com/MpesaLib/_apis/build/status/ayiemba.MpesaLib)](https://geospartan.visualstudio.com/MpesaLib/_build/latest?definitionId=2)
 [![NuGet version (MpesaLib)](https://img.shields.io/nuget/v/MpesaLib.svg?style=flat-square)](https://www.nuget.org/packages/MpesaLib/)
  
-MPESA API LIBRARY For C# Developers
+.NET Standard MPESA API LIBRARY For C# Developers
 
 This documentation is meant to help you get started on how to use this library and does not explain MPESA APIs and their internal workings or exemplifications of when and where you might want to use any of them. If you need in-depth explanation on how Mpesa APIs work you can check **[this](https://peternjeru.co.ke/safdaraja)** well written community site. Otherwise **[Safaricom's Developer Portal](https://developer.safaricom.co.ke/apis-explorer)** should get you all the details you need plus your API keys to get started.
 
-## Note that MpesaLib Version 3.x.x comes with breaking changes and the documentation has been updated to capture the changes.
+## Note that MpesaLib Version 3.x.x comes with breaking changes for those on versions 2.X.X and the documentation has been updated to capture the changes.
 
 
 ## Setting Up
-Before you proceed aquaint yourself with Mpesa Apis by going through the Docs in Safaricom's developer portal linked above:
+Before you proceed kindly aquaint yourself with Mpesa Apis by going through the Docs in Safaricom's developer portal linked above.
 
-1.  Get consumerKey, consumerSecret and Passkey (for STK PUsh APIs) from daraja portal linked above by creating your App.
+1.  Obtain consumerKey, consumerSecret and Passkey (for STK PUsh APIs) from daraja portal linked above by creating your App.
 
-2.  Ensure your project is running on the latest versions of .Net. I don't intend to provide support for versions before .Net Framework 4.6.1 and .Net Core 2.1. However MpesaLib is based on .Net Standard 2.0 and your are at liberty to check [**here**](https://docs.microsoft.com/en-us/dotnet/standard/net-standard#net-implementation-support) if your platform supports .Net Standard 2.0.
+2.  Ensure your project is running on the latest versions of .Net. This library does not support .Net versions before .Net Framework 4.6.1 and .Net Core 2.1. However, MpesaLib is based on .Net Standard 2.0 and your are at liberty to check [**here**](https://docs.microsoft.com/en-us/dotnet/standard/net-standard#net-implementation-support) if your platform supports .Net Standard 2.0.
 
-3.  Note that this Library is suitable for use through dependency injection (DI). You can read more on DI in Asp.Net core [**here**](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection?view=aspnetcore-2.1). If you don't want to use DI you can always new-up MpesaClient and pass in an httpClient instance in the constructor (you have to explicitly provide the BaseAdress). eg.
+3.  MpesaLib is dependency injection (DI) friendly and can be readily injected into your classes. You can read more on DI in Asp.Net core [**here**](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection?view=aspnetcore-2.1). If you can't use DI you can always manually create a new instance of MpesaClient and pass in an httpClient instance in it's constructor (you have to explicitly provide the BaseAdress for the same). eg.
 
 ```c#
 	//Use only when you can't use Dependency injection
@@ -298,16 +298,26 @@ using MpesaLib.Helpers; // Add this to your class
 ** You can use ```_mpesaClient.GetAuthToken(*args).GetAwaiter().GetResult();``` instead of ```await _mpesaClient.GetAuthToken(*args);```  when for one reason or another you can't use asynchronous methods.
 
 ## 14. Magic Strings
-From version 3.X.X of MpesaLib you can avoid having to put magic strings in your method calls by taking advantage of the ```MpesaLib.RequestEndPoint``` class. The RequestEndPoint Class defines all the string for you so you don't have to worry about getting an endpoint wrong. For example now you do the following..
-```await _mpesaClient.ReverseMpesaTransactionAsync(TransactionReversalObject, accesstoken, RequestEndPoint.ReverseMpesaTransaction");```
+From version 3.X.X of MpesaLib you can avoid having to put magic strings in your method calls by taking advantage of the 
+```c# MpesaLib.RequestEndPoint``` class. The RequestEndPoint Class defines all the string for you so you don't have to worry about getting an endpoint wrong. For example now you do the following..
+```c#
+await _mpesaClient.ReverseMpesaTransactionAsync(TransactionReversalObject, accesstoken, RequestEndPoint.ReverseMpesaTransaction");
+```
 instead of...
-```await _mpesaClient.ReverseMpesaTransactionAsync(TransactionReversalObject, accesstoken, "mpesa/reversal/v1/request");```
+
+```c#
+await _mpesaClient.ReverseMpesaTransactionAsync(TransactionReversalObject, accesstoken, "mpesa/reversal/v1/request");
+```
 
 The same when setting BaseAdress...
 For Sandbox:
-```services.AddHttpClient<IMpesaClient, MpesaClient>(opts=>opts.BaseAddress = RequestEndPoint.SandboxBaseAdress);```
+```c#
+services.AddHttpClient<IMpesaClient, MpesaClient>(opts=>opts.BaseAddress = RequestEndPoint.SandboxBaseAdress);
+```
 For Live API:
-```services.AddHttpClient<IMpesaClient, MpesaClient>(opts=>opts.BaseAddress = RequestEndPoint.LiveBaseAdress);```
+```c#
+services.AddHttpClient<IMpesaClient, MpesaClient>(opts=>opts.BaseAddress = RequestEndPoint.LiveBaseAdress);
+```
 
 
 
