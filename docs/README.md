@@ -301,7 +301,7 @@ using MpesaLib.Helpers; // Add this to your class
 From version 3.X.X of MpesaLib you can avoid having to put magic strings in your method calls by taking advantage of the 
 ```c# MpesaLib.RequestEndPoint``` class. The RequestEndPoint Class defines all the string for you so you don't have to worry about getting an endpoint wrong. For example now you do the following..
 ```c#
-await _mpesaClient.ReverseMpesaTransactionAsync(TransactionReversalObject, accesstoken, RequestEndPoint.ReverseMpesaTransaction");
+await _mpesaClient.ReverseMpesaTransactionAsync(TransactionReversalObject, accesstoken, RequestEndPoint.ReverseMpesaTransaction);
 ```
 instead of...
 
