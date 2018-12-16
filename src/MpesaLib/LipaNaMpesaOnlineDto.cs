@@ -16,7 +16,7 @@ namespace MpesaLib
         public string Timestamp { get; set; } = DateTime.Now.ToString("yyyyMMddHHmmss");
 
         [JsonProperty("TransactionType")]
-        public string TransactionType { get; set; } = TransactType.CustomerBuyGoodsOnline;
+        public string TransactionType { get; set; } = TransactType.CustomerPayBillOnline;
 
         [JsonProperty("Amount")]
         public string Amount { get; set; }
