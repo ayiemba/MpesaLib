@@ -33,7 +33,24 @@ namespace MpesaLib
         /// <returns>A string of characters representing the accesstoken.</returns>
         public string GetAuthToken(string consumerKey, string consumerSecret, string requestEndPoint)
         {
-            throw new NotImplementedException();
+            _httpclient.DefaultRequestHeaders.Clear();
+
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, requestEndPoint);
+
+            var keyBytes = Convert.ToBase64String(Encoding.UTF8.GetBytes($"{consumerKey}:{consumerSecret}"));
+
+            _httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", keyBytes);
+
+            var response = _httpclient.SendAsync(request).GetAwaiter().GetResult();
+
+            response.EnsureSuccessStatusCode();
+
+            var content = response.Content;
+
+            var token = JsonConvert.DeserializeObject<TokenDto>(content.ReadAsStringAsync().Result);
+
+            return token.access_token;
+
         }
 
         /// <summary>
@@ -74,7 +91,20 @@ namespace MpesaLib
         /// <returns>A JSON string containing data from MPESA API reposnse.</returns>
         public string MakeB2BPayment(BusinessToBusinessDto businessToBusinessDto, string accesstoken, string requestEndPoint)
         {
-            throw new NotImplementedException();
+            _httpclient.DefaultRequestHeaders.Clear();
+            _httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            _httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accesstoken);
+
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, requestEndPoint)
+            {
+                Content = new StringContent(JsonConvert.SerializeObject(businessToBusinessDto).ToString(), Encoding.UTF8, "application/json")
+            };
+
+            var response = _httpclient.SendAsync(request).GetAwaiter().GetResult();
+
+            response.EnsureSuccessStatusCode();
+
+            return response.Content.ReadAsStringAsync().Result;
         }
 
 
@@ -87,30 +117,13 @@ namespace MpesaLib
         /// <returns>A JSON string containing data from MPESA API reposnse.</returns>
         public async Task<string> MakeB2BPaymentAsync(BusinessToBusinessDto businessToBusinessDto, string accesstoken, string requestEndPoint)
         {
-
             _httpclient.DefaultRequestHeaders.Clear();           
             _httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            _httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accesstoken);
-
-            var values = new Dictionary<string, string>
-            {
-                { "Initiator", businessToBusinessDto.Initiator },
-                { "SecurityCredential", businessToBusinessDto.SecurityCredential },
-                {"CommandID", businessToBusinessDto.CommandID },
-                {"SenderIdentifierType", businessToBusinessDto.SenderIdentifierType },
-                {"RecieverIdentifierType", businessToBusinessDto.RecieverIdentifierType },
-                {"Amount", businessToBusinessDto.Amount },
-                {"PartyA", businessToBusinessDto.PartyA },
-                {"PartyB", businessToBusinessDto.PartyB },
-                {"AccountReference", businessToBusinessDto.AccountReference },
-                {"Remarks", businessToBusinessDto.Remarks },
-                { "QueueTimeOutURL", businessToBusinessDto.QueueTimeOutURL},
-                { "ResultURL", businessToBusinessDto.ResultURL }
-            };
+            _httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accesstoken);            
 
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, requestEndPoint)
             {
-                Content = new StringContent(JsonConvert.SerializeObject(values).ToString(), Encoding.UTF8, "application/json")
+                Content = new StringContent(JsonConvert.SerializeObject(businessToBusinessDto).ToString(), Encoding.UTF8, "application/json")
             };
            
             var  response = await _httpclient.SendAsync(request);            
@@ -133,7 +146,21 @@ namespace MpesaLib
         /// </remarks>
         public string MakeB2CPayment(BusinessToCustomerDto businessToCustomerDto, string accesstoken, string requestEndPoint)
         {
-            throw new NotImplementedException();
+            _httpclient.DefaultRequestHeaders.Clear();
+            _httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            _httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accesstoken);
+
+
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, requestEndPoint)
+            {
+                Content = new StringContent(JsonConvert.SerializeObject(businessToCustomerDto).ToString(), Encoding.UTF8, "application/json")
+            };
+
+            var response = _httpclient.SendAsync(request).GetAwaiter().GetResult();
+
+            response.EnsureSuccessStatusCode();
+
+            return response.Content.ReadAsStringAsync().Result;
         }
 
         /// <summary>
@@ -147,30 +174,14 @@ namespace MpesaLib
         /// Suitable for refunds, rewards or just about any transaction that involves a business paying a customer.
         /// </remarks>
         public async Task<string> MakeB2CPaymentAsync(BusinessToCustomerDto businessToCustomerDto, string accesstoken, string requestEndPoint)
-        {
-            
+        {            
             _httpclient.DefaultRequestHeaders.Clear();           
             _httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            _httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accesstoken);
-
-            var values = new Dictionary<string, string>
-            {
-                {"InitiatorName", businessToCustomerDto.InitiatorName },
-                {"SecurityCredential", businessToCustomerDto.SecurityCredential },
-                {"CommandID", businessToCustomerDto.CommandID },
-                {"Amount", businessToCustomerDto.Amount },
-                {"PartyA", businessToCustomerDto.PartyA },
-                {"PartyB", businessToCustomerDto.PartyB },
-                {"Remarks", businessToCustomerDto.Remarks },
-                {"QueueTimeOutURL", businessToCustomerDto.QueueTimeOutURL },
-                {"ResultURL", businessToCustomerDto.ResultURL },
-                { "Occasion", businessToCustomerDto.Occasion }
-            };
-
+            _httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accesstoken);            
 
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, requestEndPoint)
             {
-                Content = new StringContent(JsonConvert.SerializeObject(values).ToString(), Encoding.UTF8, "application/json")
+                Content = new StringContent(JsonConvert.SerializeObject(businessToCustomerDto).ToString(), Encoding.UTF8, "application/json")
             };
             
             var  response = await _httpclient.SendAsync(request);            
@@ -195,7 +206,20 @@ namespace MpesaLib
         /// </remarks>
         public string MakeC2BPayment(CustomerToBusinessSimulateDto customerToBusinessSimulateDto, string accesstoken, string requestEndPoint)
         {
-            throw new NotImplementedException();
+            _httpclient.DefaultRequestHeaders.Clear();
+            _httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            _httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accesstoken);
+
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, requestEndPoint)
+            {
+                Content = new StringContent(JsonConvert.SerializeObject(customerToBusinessSimulateDto).ToString(), Encoding.UTF8, "application/json")
+            };
+
+            var response = _httpclient.SendAsync(request).GetAwaiter().GetResult();
+
+            response.EnsureSuccessStatusCode();
+
+            return response.Content.ReadAsStringAsync().Result;
         }
 
 
@@ -215,21 +239,11 @@ namespace MpesaLib
         {
             _httpclient.DefaultRequestHeaders.Clear();          
             _httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            _httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accesstoken);
-
-            var values = new Dictionary<string, string>
-            {
-                {"ShortCode", customerToBusinessSimulateDto.ShortCode },
-                {"CommandID", customerToBusinessSimulateDto.CommandID },
-                {"Amount", customerToBusinessSimulateDto.Amount },
-                {"Msisdn", customerToBusinessSimulateDto.Msisdn },
-                { "BillRefNumber", customerToBusinessSimulateDto.BillRefNumber }
-
-            };
+            _httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accesstoken);            
 
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, requestEndPoint)
             {
-                Content = new StringContent(JsonConvert.SerializeObject(values).ToString(), Encoding.UTF8, "application/json")
+                Content = new StringContent(JsonConvert.SerializeObject(customerToBusinessSimulateDto).ToString(), Encoding.UTF8, "application/json")
             };
            
             var  response = await _httpclient.SendAsync(request);            
@@ -251,7 +265,22 @@ namespace MpesaLib
         /// <returns>A JSON string containing LNMO response data from MPESA API Server</returns>
         public string MakeLipaNaMpesaOnlinePayment(LipaNaMpesaOnlineDto lipaNaMpesaOnlineDto, string accesstoken, string requestEndPoint)
         {
-            throw new NotImplementedException();
+            _httpclient.DefaultRequestHeaders.Clear();
+            _httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            _httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accesstoken);           
+
+            var jsonvalues = JsonConvert.SerializeObject(lipaNaMpesaOnlineDto);          
+
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, requestEndPoint)
+            {
+                Content = new StringContent(jsonvalues.ToString(), Encoding.UTF8, "application/json")
+            };
+
+            var response = _httpclient.SendAsync(request).GetAwaiter().GetResult();
+
+            response.EnsureSuccessStatusCode();
+
+            return response.Content.ReadAsStringAsync().Result;
         }
 
         /// <summary>
@@ -265,33 +294,11 @@ namespace MpesaLib
         /// <returns>A JSON string containing LNMO response data from MPESA API Server</returns>
         public async Task<string> MakeLipaNaMpesaOnlinePaymentAsync(LipaNaMpesaOnlineDto lipaNaMpesaOnlineDto, string accesstoken, string requestEndPoint)
         {
-
-/*#if NET45
-            ServicePointManager.SecurityProtocol =
-                         SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
-#endif*/
             _httpclient.DefaultRequestHeaders.Clear();           
             _httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            _httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accesstoken);
+            _httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accesstoken);            
 
-            var values = new Dictionary<string, string>
-            {
-                { "BusinessShortCode", lipaNaMpesaOnlineDto.BusinessShortCode },
-                { "Password", lipaNaMpesaOnlineDto.Password },
-                { "Timestamp", lipaNaMpesaOnlineDto.Timestamp },
-                { "TransactionType", lipaNaMpesaOnlineDto.TransactionType },
-                { "Amount", lipaNaMpesaOnlineDto.Amount },
-                { "PartyA", lipaNaMpesaOnlineDto.PartyA },
-                { "PartyB", lipaNaMpesaOnlineDto.PartyB },
-                { "PhoneNumber", lipaNaMpesaOnlineDto.PhoneNumber },
-                { "CallBackURL", lipaNaMpesaOnlineDto.CallBackURL },
-                { "AccountReference", lipaNaMpesaOnlineDto.AccountReference },
-                { "TransactionDesc", lipaNaMpesaOnlineDto.TransactionDesc }
-            };
-
-            var jsonvalues = JsonConvert.SerializeObject(values);
-
-            //var policy = CreateTokenRefreshPolicy(tokenRefreshed);
+            var jsonvalues = JsonConvert.SerializeObject(lipaNaMpesaOnlineDto);         
 
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, requestEndPoint)
             {
@@ -315,7 +322,20 @@ namespace MpesaLib
         /// <returns>A JSON string containing data from MPESA API reposnse.</returns>
         public string QueryAccountBalance(AccountBalanceDto accountBalanceQueryDto, string accesstoken, string requestEndPoint)
         {
-            throw new NotImplementedException();
+            _httpclient.DefaultRequestHeaders.Clear();
+            _httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            _httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accesstoken);
+
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, requestEndPoint)
+            {
+                Content = new StringContent(JsonConvert.SerializeObject(accountBalanceQueryDto).ToString(), Encoding.UTF8, "application/json")
+            };
+
+            var response = _httpclient.SendAsync(request).GetAwaiter().GetResult();
+
+            response.EnsureSuccessStatusCode();
+
+            return response.Content.ReadAsStringAsync().Result;
         }
 
 
@@ -328,27 +348,13 @@ namespace MpesaLib
         /// <returns>A JSON string containing data from MPESA API reposnse.</returns>
         public async Task<string> QueryAccountBalanceAsync(AccountBalanceDto accountBalanceQueryDto, string accesstoken, string requestEndPoint)
         {
-
-
             _httpclient.DefaultRequestHeaders.Clear();          
             _httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            _httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accesstoken);
-
-            var values = new Dictionary<string, string>
-            {
-                { "Initiator", accountBalanceQueryDto.Initiator },
-                { "SecurityCredential", accountBalanceQueryDto.SecurityCredential},
-                { "CommandID", accountBalanceQueryDto.CommandID},
-                { "PartyA", accountBalanceQueryDto.PartyA},
-                { "IdentifierType", accountBalanceQueryDto.IdentifierType},
-                { "Remarks", accountBalanceQueryDto.Remarks },
-                { "QueueTimeOutURL", accountBalanceQueryDto.QueueTimeOutURL},
-                { "ResultURL", accountBalanceQueryDto.ResultURL}
-            };
+            _httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accesstoken);           
 
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, requestEndPoint)
             {
-                Content = new StringContent(JsonConvert.SerializeObject(values).ToString(), Encoding.UTF8, "application/json")
+                Content = new StringContent(JsonConvert.SerializeObject(accountBalanceQueryDto).ToString(), Encoding.UTF8, "application/json")
             };
            
             var  response = await _httpclient.SendAsync(request);            
@@ -362,7 +368,7 @@ namespace MpesaLib
         /// <summary>
         /// Queries Mpesa Online Transaction Status
         /// </summary>
-        /// <param name="mpesaTransactionQueryDto">Transaction Query Data transfer object</param>
+        /// <param name="lipaNaMpesaQueryDto">Transaction Query Data transfer object</param>
         /// <param name="accesstoken">Acccesstoken retrieved by the <c>GetAuthTokenAsync</c> method.</param>
         /// <param name="requestEndPoint">Set to <c>RequestEndPoint.QueryLipaNaMpesaOnlieTransaction</c></param>
         /// <returns>
@@ -372,9 +378,22 @@ namespace MpesaLib
         /// Use only for transactions initiated with <c>MakeLipaNaMpesaOnlinePayment</c> method.
         /// For Other transaction based methods (C2B,B2C,B2B) use <c>QueryMpesaTransactionStatusAsync</c> method.
         /// </remarks>
-        public string QueryLipaNaMpesaTransaction(LipaNaMpesaQueryDto mpesaTransactionQueryDto, string accesstoken, string requestEndPoint)
+        public string QueryLipaNaMpesaTransaction(LipaNaMpesaQueryDto lipaNaMpesaQueryDto, string accesstoken, string requestEndPoint)
         {
-            throw new NotImplementedException();
+            _httpclient.DefaultRequestHeaders.Clear();
+            _httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            _httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accesstoken);
+
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, requestEndPoint)
+            {
+                Content = new StringContent(JsonConvert.SerializeObject(lipaNaMpesaQueryDto).ToString(), Encoding.UTF8, "application/json")
+            };
+
+            var response = _httpclient.SendAsync(request).GetAwaiter().GetResult();
+
+            response.EnsureSuccessStatusCode();
+
+            return response.Content.ReadAsStringAsync().Result;
         }
 
         /// <summary>
@@ -394,20 +413,11 @@ namespace MpesaLib
         {
             _httpclient.DefaultRequestHeaders.Clear();          
             _httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            _httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accesstoken);
-
-            var values = new Dictionary<string, string>
-            {
-                {"BusinessShortCode", lipaNaMpesaQueryDto.BusinessShortCode },
-                {"Password", lipaNaMpesaQueryDto.Password },
-                {"Timestamp", lipaNaMpesaQueryDto.Timestamp },
-                { "CheckoutRequestID", lipaNaMpesaQueryDto.CheckoutRequestID }
-
-            };
+            _httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accesstoken);           
 
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, requestEndPoint)
             {
-                Content = new StringContent(JsonConvert.SerializeObject(values).ToString(), Encoding.UTF8, "application/json")
+                Content = new StringContent(JsonConvert.SerializeObject(lipaNaMpesaQueryDto).ToString(), Encoding.UTF8, "application/json")
             };
            
             var  response = await _httpclient.SendAsync(request);           
@@ -416,7 +426,6 @@ namespace MpesaLib
 
             return response.Content.ReadAsStringAsync().Result;
         }
-
 
 
         /// <summary>
@@ -428,7 +437,20 @@ namespace MpesaLib
         /// <returns></returns>
         public string QueryMpesaTransactionStatus(MpesaTransactionStatusDto mpesaTransactionStatusDto, string accesstoken, string requestEndPoint)
         {
-            throw new NotImplementedException();
+            _httpclient.DefaultRequestHeaders.Clear();
+            _httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            _httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accesstoken);
+
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, requestEndPoint)
+            {
+                Content = new StringContent(JsonConvert.SerializeObject(mpesaTransactionStatusDto).ToString(), Encoding.UTF8, "application/json")
+            };
+
+            var response = _httpclient.SendAsync(request).GetAwaiter().GetResult();
+
+            response.EnsureSuccessStatusCode();
+
+            return response.Content.ReadAsStringAsync().Result;
         }
 
         /// <summary>
@@ -443,26 +465,11 @@ namespace MpesaLib
 
             _httpclient.DefaultRequestHeaders.Clear();           
             _httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            _httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accesstoken);
-
-            var values = new Dictionary<string, string>
-            {
-                {"Initiator", mpesaTransactionStatusDto.Initiator },
-                {"SecurityCredential", mpesaTransactionStatusDto.SecurityCredential },
-                {"CommandID", mpesaTransactionStatusDto.CommandID },
-                {"TransactionID", mpesaTransactionStatusDto.TransactionID },
-                {"PartyA", mpesaTransactionStatusDto.PartyA },
-                {"IdentifierType", mpesaTransactionStatusDto.IdentifierType },
-                {"ResultURL", mpesaTransactionStatusDto.ResultURL },
-                {"QueueTimeOutURL", mpesaTransactionStatusDto.QueueTimeOutURL },
-                {"Remarks", mpesaTransactionStatusDto.Remarks },
-                { "Occasion", mpesaTransactionStatusDto.Occasion }
-
-            };
+            _httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accesstoken);            
 
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, requestEndPoint)
             {
-                Content = new StringContent(JsonConvert.SerializeObject(values).ToString(), Encoding.UTF8, "application/json")
+                Content = new StringContent(JsonConvert.SerializeObject(mpesaTransactionStatusDto).ToString(), Encoding.UTF8, "application/json")
             };
            
             var response = await _httpclient.SendAsync(request);           
@@ -482,7 +489,20 @@ namespace MpesaLib
         /// <returns>A JSON string containing data from MPESA API reposnse.</returns>
         public string RegisterC2BUrl(CustomerToBusinessRegisterUrlDto customerToBusinessRegisterUrlDto, string accesstoken, string requestEndPoint)
         {
-            throw new NotImplementedException();
+            _httpclient.DefaultRequestHeaders.Clear();
+            _httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            _httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accesstoken);
+
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, requestEndPoint)
+            {
+                Content = new StringContent(JsonConvert.SerializeObject(customerToBusinessRegisterUrlDto).ToString(), Encoding.UTF8, "application/json")
+            };
+
+            var response = _httpclient.SendAsync(request).GetAwaiter().GetResult();
+
+            response.EnsureSuccessStatusCode();
+
+            return response.Content.ReadAsStringAsync().Result;
         }
 
 
@@ -495,23 +515,13 @@ namespace MpesaLib
         /// <returns>A JSON string containing data from MPESA API reposnse.</returns>
         public async Task<string> RegisterC2BUrlAsync(CustomerToBusinessRegisterUrlDto customerToBusinessRegisterUrlDto, string accesstoken, string requestEndPoint)
         {
-
             _httpclient.DefaultRequestHeaders.Clear();            
             _httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            _httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accesstoken);
-
-            var values = new Dictionary<string, string>
-            {
-                {"ShortCode", customerToBusinessRegisterUrlDto.ShortCode },
-                {"ResponseType", customerToBusinessRegisterUrlDto.ResponseType },
-                {"ConfirmationURL", customerToBusinessRegisterUrlDto.ConfirmationURL },
-                { "ValidationURL", customerToBusinessRegisterUrlDto.ValidationURL }
-
-            };
+            _httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accesstoken);            
 
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, requestEndPoint)
             {
-                Content = new StringContent(JsonConvert.SerializeObject(values).ToString(), Encoding.UTF8, "application/json")
+                Content = new StringContent(JsonConvert.SerializeObject(customerToBusinessRegisterUrlDto).ToString(), Encoding.UTF8, "application/json")
             };
           
             var response = await _httpclient.SendAsync(request);           
@@ -531,7 +541,20 @@ namespace MpesaLib
         /// <returns>A JSON string containing data from MPESA API reposnse.</returns>
         public string ReverseMpesaTransaction(ReversalDto reversalDto, string accesstoken, string requestEndPoint)
         {
-            throw new NotImplementedException();
+            _httpclient.DefaultRequestHeaders.Clear();
+            _httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            _httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accesstoken);
+
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, requestEndPoint)
+            {
+                Content = new StringContent(JsonConvert.SerializeObject(reversalDto).ToString(), Encoding.UTF8, "application/json")
+            };
+
+            var response = _httpclient.SendAsync(request).GetAwaiter().GetResult();
+
+            response.EnsureSuccessStatusCode();
+
+            return response.Content.ReadAsStringAsync().Result;
         }
 
         /// <summary>
@@ -542,29 +565,14 @@ namespace MpesaLib
         /// <param name="requestEndPoint">Set to <c>RequestEndPoint.ReverseMpesaTransaction</c></param>
         /// <returns>A JSON string containing data from MPESA API reposnse.</returns>
         public async Task<string> ReverseMpesaTransactionAsync(ReversalDto reversalDto, string accesstoken, string requestEndPoint)
-        {
+        {            
             _httpclient.DefaultRequestHeaders.Clear();           
             _httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            _httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accesstoken);
-
-            var values = new Dictionary<string, string>
-            {
-                {"Initiator", reversalDto.Initiator },
-                {"SecurityCredential", reversalDto.SecurityCredential },
-                {"CommandID", reversalDto.CommandID },
-                {"TransactionID", reversalDto.TransactionID },                
-                {"ReceiverParty", reversalDto.ReceiverParty },
-                {"RecieverIdentifierType", reversalDto.RecieverIdentifierType },
-                {"ResultURL", reversalDto.ResultURL },
-                {"QueueTimeOutURL", reversalDto.QueueTimeOutURL },
-                {"Remarks", reversalDto.Remarks },
-                { "Occasion", reversalDto.Occasion }
-
-            };
+            _httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accesstoken);            
 
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, requestEndPoint)
             {
-                Content = new StringContent(JsonConvert.SerializeObject(values).ToString(), Encoding.UTF8, "application/json")
+                Content = new StringContent(JsonConvert.SerializeObject(reversalDto).ToString(), Encoding.UTF8, "application/json")
             };
             
             var response = await _httpclient.SendAsync(request);           
@@ -574,10 +582,12 @@ namespace MpesaLib
             return response.Content.ReadAsStringAsync().Result;
         }
 
-
-
-
-
+        //private static void HttpClientInit(HttpClient httpclient, string accesstoken)
+        //{
+        //    httpclient.DefaultRequestHeaders.Clear();
+        //    httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+        //    httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accesstoken);
+        //}
 
     }
 }
