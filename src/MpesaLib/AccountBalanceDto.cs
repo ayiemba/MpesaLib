@@ -1,19 +1,62 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace MpesaLib
 {
+    /// <summary>
+    /// Accountbalance data transfer object
+    /// </summary>
     public class AccountBalanceDto
     {
+        /// <summary>
+        /// This is the credential/username used to authenticate the transaction request.
+        /// </summary>
+        [JsonProperty("Initiator")]
         public string Initiator { get; set; }
+
+        /// <summary>
+        /// Base64 encoded string of the Security Credential, which is encrypted using M-Pesa public key and 
+        /// validates the transaction on M-Pesa Core system.
+        /// </summary>
+        [JsonProperty("SecurityCredential")]
         public string SecurityCredential { get; set; }
+
+        /// <summary>
+        /// A unique command passed to the M-Pesa system.
+        /// </summary>
+        [JsonProperty("CommandID")]
         public string CommandID { get; set; } = "AccountBalance";
-        public string Amount { get; set; }
+
+        /// <summary>
+        /// The shortcode of the organisation receiving the transaction.
+        /// </summary>
+        [JsonProperty("PartyA")]
         public string PartyA { get; set; }
+
+        /// <summary>
+        /// Type of the organisation receiving the transaction.
+        /// </summary>
+        [JsonProperty("IdentifierType")]
         public string IdentifierType { get; set; }
+
+        /// <summary>
+        /// Comments that are sent along with the transaction.
+        /// </summary>
+        [JsonProperty("Remarks")]
         public string Remarks { get; set; }
+
+        /// <summary>
+        /// The timeout end-point that receives a timeout message.
+        /// </summary>
+        [JsonProperty("QueueTimeOutURL")]
         public string QueueTimeOutURL { get; set; }
+
+        /// <summary>
+        /// The end-point that receives a successful transaction.
+        /// </summary>
+        [JsonProperty("ResultURL")]
         public string ResultURL { get; set; }
     }
 }

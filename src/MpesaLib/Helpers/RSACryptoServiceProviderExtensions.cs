@@ -119,9 +119,9 @@ namespace MpesaLib.Helpers
         /// <summary>
         /// ToXmlString extention method for .net standard, netcoreapp
         /// </summary>
-        /// <param name="rsa"></param>
+        /// <param name="rsa">RSA algorithm</param>
         /// <param name="includePrivateParameters"></param>
-        /// <returns></returns>
+        /// <returns>XML String</returns>
         public static string ToXmlString2(this RSA rsa, bool includePrivateParameters = false)
         {
             RSAParameters parameters = rsa.ExportParameters(includePrivateParameters);

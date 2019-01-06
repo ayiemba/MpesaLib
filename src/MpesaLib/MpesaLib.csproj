@@ -4,27 +4,27 @@
     <TargetFramework>netstandard2.0</TargetFramework>      
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <Authors>Elvis Ayiemba</Authors>
-    <Company>Indpendent Developer</Company>
+    <Company>Independent Developer</Company>
     <Description>.Net Standard Mpesa API  Library for .NET developers.</Description>
     <PackageTags>mpesa payment billing c2b b2c, lipanampesa</PackageTags>
     <Copyright>Copyright © Elvis Ayiemba.  All rights reserved.</Copyright>
     <PackageLicenseUrl>https://github.com/ayiemba/MpesaLib/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://ayiemba.github.io/MpesaLib</PackageProjectUrl>
     <PackageReleaseNotes>Breaking Changes! 
- - Renamed data transfer objects e.g CustomerToBusinessSimulate class has been renamed to CustomerToBusinessSimulateDto.
- - We have also completely removed support for .Net Framework 4.0 and 4.5. 
- - The library now supports only .Net Standard 2.0 Compatible Projects. 
- - Last but not least we have removed MpesaLib.Clients and MpesaLib.Models namespaces. 
- - Almost everything is now available under using MpesaLib;  
- - Security Credential Helper class is  still under using MpesaLib.Helpers;
-  </PackageReleaseNotes>   
-    <IncludeBuildOutput>true</IncludeBuildOutput>   
+     - Renamed data transfer objects e.g CustomerToBusinessSimulate class has been renamed to CustomerToBusinessSimulateDto.
+     - We have also completely removed support for .Net Framework 4.0 and 4.5. 
+     - The library now supports only .Net Standard 2.0 Compatible Projects. 
+     - Last but not least we have removed MpesaLib.Clients and MpesaLib.Models namespaces. 
+     - Almost everything is now available under using MpesaLib;  
+     - Security Credential Helper class is  still under using MpesaLib.Helpers;
+    </PackageReleaseNotes>   
+    <IncludeBuildOutput>true</IncludeBuildOutput>  
    
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <DocumentationFile>C:\Dev\Work\MpesaIntegration\MpesaLibrary\src\MpesaLib\MpesaLib.xml</DocumentationFile>
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>     
