@@ -3,7 +3,7 @@
   "assemblyVersion": "3.1",
   "buildNumberOffset": 10,
   "semVer1NumericIdentifierPadding": 3,
-
+  
   "publicReleaseRefSpec": [
     "^refs/heads/master$",
     "^refs/heads/rel/v\\d+\\.\\d+"
