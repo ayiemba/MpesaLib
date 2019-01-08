@@ -1,6 +1,6 @@
 {
   "homepages": [],
-  "source_base_path": "E:/Dev/Github/MpesaLib/docs",
+  "source_base_path": "E:/Dev/Github/MpesaLib/docfx_project",
   "xrefmap": "xrefmap.yml",
   "files": [
     {
@@ -53,10 +53,10 @@
       "output": {
         ".html": {
           "relative_path": "api/MpesaLib.AccountBalanceDto.html",
-          "hash": "yO4SC57B2XYw3tNLyyqteg=="
+          "hash": "7xGmLecA2/+k/HKvpX2osg=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -65,10 +65,10 @@
       "output": {
         ".html": {
           "relative_path": "api/MpesaLib.BusinessToBusinessDto.html",
-          "hash": "SeFY3hwKFkGVnsWXuqHsog=="
+          "hash": "qqd6qA1azQ30+i/3jKHRHQ=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -77,10 +77,10 @@
       "output": {
         ".html": {
           "relative_path": "api/MpesaLib.BusinessToCustomerDto.html",
-          "hash": "qG8rnES6qqBZTNuIwaabmQ=="
+          "hash": "uUxchzrmMAhDb45BtjovtA=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -89,10 +89,10 @@
       "output": {
         ".html": {
           "relative_path": "api/MpesaLib.CustomerToBusinessRegisterUrlDto.html",
-          "hash": "Pw9uWEIn+5EzCBP8tz53yw=="
+          "hash": "e/slmczVmdTKbzxWypUZcw=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -101,10 +101,10 @@
       "output": {
         ".html": {
           "relative_path": "api/MpesaLib.CustomerToBusinessSimulateDto.html",
-          "hash": "wvajaikYv7FKc91+EC63XA=="
+          "hash": "2r2UMYQeldYKBIM75nahdA=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -113,10 +113,10 @@
       "output": {
         ".html": {
           "relative_path": "api/MpesaLib.Helpers.Credentials.html",
-          "hash": "37/xqSME+8Z/151otbhbig=="
+          "hash": "uVfrqlqjnd9TgldNoHaWRQ=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -125,10 +125,10 @@
       "output": {
         ".html": {
           "relative_path": "api/MpesaLib.Helpers.RSACryptoServiceProviderExtensions.html",
-          "hash": "LmwUHcn7eFef5FWkqsvU9w=="
+          "hash": "/EZpTIJMqWXon+Mq5clzgQ=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -137,10 +137,10 @@
       "output": {
         ".html": {
           "relative_path": "api/MpesaLib.Helpers.Serialization.JSONStreamHelper.html",
-          "hash": "I2tTxBI9p9MhqXfZX0vlMQ=="
+          "hash": "Z9a7uhi9K2QoNW46MIXAqQ=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -149,10 +149,10 @@
       "output": {
         ".html": {
           "relative_path": "api/MpesaLib.Helpers.Serialization.html",
-          "hash": "/TczqRWQMqJU64reiY9bCg=="
+          "hash": "Dn/mJpPfPYBhIM0Ikyk/0Q=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -161,10 +161,10 @@
       "output": {
         ".html": {
           "relative_path": "api/MpesaLib.Helpers.html",
-          "hash": "YUftnTiIz0pP0C4/NiVVSA=="
+          "hash": "aOFO9KksCYP6ATZyJQKbSA=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -173,10 +173,10 @@
       "output": {
         ".html": {
           "relative_path": "api/MpesaLib.IMpesaClient.html",
-          "hash": "OLb4O/lASQUUtOznxv5ZtQ=="
+          "hash": "lRH+1EgOGpKzUrDjJ5G5MQ=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -185,10 +185,10 @@
       "output": {
         ".html": {
           "relative_path": "api/MpesaLib.LipaNaMpesaOnlineDto.html",
-          "hash": "OaGrCCbIiNkzRrHrlgIH6g=="
+          "hash": "OYZ+1rUxFpu+RMq8twCZ5Q=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -197,10 +197,10 @@
       "output": {
         ".html": {
           "relative_path": "api/MpesaLib.LipaNaMpesaQueryDto.html",
-          "hash": "t95twrV78Xo+HS9mQSx55g=="
+          "hash": "M47/kuKvr6LIe/UDjf+Ukw=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -209,10 +209,10 @@
       "output": {
         ".html": {
           "relative_path": "api/MpesaLib.MpesaClient.html",
-          "hash": "1SbuOHTP8e4BWgJL8Fu8rg=="
+          "hash": "tdBgV461u0w7WuyGJZkRtg=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -221,10 +221,10 @@
       "output": {
         ".html": {
           "relative_path": "api/MpesaLib.MpesaTransactionStatusDto.html",
-          "hash": "NVlZVyXo7jC/ugu/PSILcw=="
+          "hash": "xKOO8i00ZWqKTPe+SW6vcg=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -233,10 +233,10 @@
       "output": {
         ".html": {
           "relative_path": "api/MpesaLib.RequestEndPoint.html",
-          "hash": "b00M5ZRBYIVdWHdUiXXwxg=="
+          "hash": "yiRVzzrCcbwDfe5VOjS94A=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -245,10 +245,10 @@
       "output": {
         ".html": {
           "relative_path": "api/MpesaLib.ReversalDto.html",
-          "hash": "RxY8Rm1dKJrZsjsUjHxo6Q=="
+          "hash": "vMiX1E6IwDO07Leh70OvCw=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -257,10 +257,10 @@
       "output": {
         ".html": {
           "relative_path": "api/MpesaLib.TokenDto.html",
-          "hash": "TDgXUgOGI91bjgPgmzAtkQ=="
+          "hash": "0L3Q4L/B3ajjVnYhoYjLvg=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -269,10 +269,10 @@
       "output": {
         ".html": {
           "relative_path": "api/MpesaLib.TransactType.html",
-          "hash": "mSxstVWtI7QPYER0uFtC0g=="
+          "hash": "4yVrrErPzfqseLKaBXEl6g=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -281,10 +281,10 @@
       "output": {
         ".html": {
           "relative_path": "api/MpesaLib.html",
-          "hash": "dnJsPYAJCSNiImNmi+vpdw=="
+          "hash": "S9L7ljzSJSRT/rVa0c1YFA=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -293,10 +293,10 @@
       "output": {
         ".html": {
           "relative_path": "api/index.html",
-          "hash": "NYN59xJf0cSbSqdKn/Tyjg=="
+          "hash": "7HOouPQAx1kDkjc9b1Qo3Q=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -305,10 +305,10 @@
       "output": {
         ".html": {
           "relative_path": "articles/accountbalance.html",
-          "hash": "iA+UWh6u9uesIJzofcjesg=="
+          "hash": "qjEA5E7ud4nchKZjSJ8eRA=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -317,10 +317,10 @@
       "output": {
         ".html": {
           "relative_path": "articles/b2b.html",
-          "hash": "GqvHAeDmVu5Yq8wxwW3V6Q=="
+          "hash": "mF5mZjHkxtFl13yAQOJ8Tw=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -329,10 +329,10 @@
       "output": {
         ".html": {
           "relative_path": "articles/b2c.html",
-          "hash": "cl+OlvN4FwFAlp46TexqiA=="
+          "hash": "zumi/Hd1gCGNnfSZm1fHhw=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -341,10 +341,10 @@
       "output": {
         ".html": {
           "relative_path": "articles/c2b.html",
-          "hash": "IqHGzNpdLmFzlzUJTTmGhA=="
+          "hash": "oBkEpCwl9p8d2Iw7Owrggg=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -353,10 +353,10 @@
       "output": {
         ".html": {
           "relative_path": "articles/callbacks.html",
-          "hash": "2QJmO6WxlmgoQb8aX9kp8g=="
+          "hash": "yRpixFFnc9Jbw7u/deFATA=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -365,10 +365,10 @@
       "output": {
         ".html": {
           "relative_path": "articles/commonpitfalls.html",
-          "hash": "v9uXotrBu9IpG21oZNkCUA=="
+          "hash": "I6Dm+Vi550op0YyB+e6FLw=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -377,10 +377,10 @@
       "output": {
         ".html": {
           "relative_path": "articles/contributing.html",
-          "hash": "Zt756PizcrtVg5Sb3Sf9nA=="
+          "hash": "60e2RRIM/2Ie7x8O/dxgAQ=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -389,10 +389,10 @@
       "output": {
         ".html": {
           "relative_path": "articles/intro.html",
-          "hash": "auoIV7bfowCk6J6p+pRnfA=="
+          "hash": "2EVaVlt8zeOYJidFqgtJ8Q=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -401,10 +401,10 @@
       "output": {
         ".html": {
           "relative_path": "articles/license.html",
-          "hash": "ey/988zLHb2uyUr1qiE1dQ=="
+          "hash": "1hdt6Ya8BJ9ybpgt6TtZpQ=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -413,10 +413,10 @@
       "output": {
         ".html": {
           "relative_path": "articles/reversal.html",
-          "hash": "Bv9+Z8K4Cvjy8q93RL44tA=="
+          "hash": "pIMr8l+pVjWbRtIH5G6X8w=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -425,10 +425,10 @@
       "output": {
         ".html": {
           "relative_path": "articles/roadmap.html",
-          "hash": "5kKv3vz97BfeapY36snK0A=="
+          "hash": "gl6Q4YE6DrJ8DFlYRFydkw=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -437,10 +437,10 @@
       "output": {
         ".html": {
           "relative_path": "articles/stkpush.html",
-          "hash": "r1dXB5KVwTEZNF5R93OX3Q=="
+          "hash": "nZstTSedoa3F32SuAjni4w=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -449,10 +449,10 @@
       "output": {
         ".html": {
           "relative_path": "articles/stkpushstatus.html",
-          "hash": "ElI9N0qBvaJ7UF54WSPypQ=="
+          "hash": "eBrXteJtYVITQ4StvDybgA=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -461,10 +461,10 @@
       "output": {
         ".html": {
           "relative_path": "articles/transactionstatus.html",
-          "hash": "RpwcRukqqHsOY+yfYuT4/A=="
+          "hash": "+2PbViT0Tju1WdveywJiVg=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -485,10 +485,10 @@
       "output": {
         ".html": {
           "relative_path": "index.html",
-          "hash": "tVAUsMahRHHUhqqpA34iRg=="
+          "hash": "vXED6LMRdb2QzvjzuHJNgA=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -507,7 +507,8 @@
   "incremental_info": [
     {
       "status": {
-        "can_incremental": true,
+        "can_incremental": false,
+        "details": "Cannot build incrementally because last build info is missing.",
         "incrementalPhase": "build"
       },
       "processors": {
@@ -516,12 +517,12 @@
           "details": "Processor ResourceDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
           "incrementalPhase": "build"
         },
-        "ManagedReferenceDocumentProcessor": {
-          "can_incremental": true,
+        "ConceptualDocumentProcessor": {
+          "can_incremental": false,
           "incrementalPhase": "build"
         },
-        "ConceptualDocumentProcessor": {
-          "can_incremental": true,
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": false,
           "incrementalPhase": "build"
         },
         "TocDocumentProcessor": {
@@ -533,8 +534,8 @@
     },
     {
       "status": {
-        "can_incremental": true,
-        "details": "Can support incremental post processing.",
+        "can_incremental": false,
+        "details": "Cannot support incremental post processing, the reason is: last post processor info is null.",
         "incrementalPhase": "postProcessing"
       },
       "processors": {}

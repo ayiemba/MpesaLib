@@ -18,9 +18,9 @@ A .NET Standard M-PESA API Helper Library for .NET Developers.
 ## Quick Links
 - [NuGet Package](https://www.nuget.org/packages/MpesaLib/)
 - [Release Notes](https://github.com/ayiemba/MpesaLib/releases)
-- [Contributing Guidelines](/articles/contributing.md)
-- [Roadmap](/articles/roadmap.md)
-- [End User License](/articles/license.md)
-- [Getting Started](/articles/intro.md)
+- [Contributing Guidelines](articles/contributing.md)
+- [Roadmap](/articlesroadmap.md)
+- [End User License](articles/license.md)
+- [Getting Started](articles/intro.md)
 - [Mpesa Daraja Portal](https://developer.safaricom.co.ke/)
 

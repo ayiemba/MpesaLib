@@ -74,7 +74,7 @@
   <div class="markdown level0 summary"><p>Mpesa Client Class provides all the methods that make the different API calls to MPESA Server</p>
 </div>
   <div class="markdown level0 conceptual"></div>
-
+  
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
@@ -114,7 +114,7 @@
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public class MpesaClient : IMpesaClient</code></pre>
   </div>
-
+  
   
   
   
@@ -139,11 +139,11 @@
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
-
+  
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public MpesaClient(HttpClient httpClient)</code></pre>
   </div>
-
+  
   <h5 class="parameters">Parameters</h5>
   <table>
     <tr>
@@ -187,11 +187,11 @@
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
-
+  
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public string GetAuthToken(string consumerKey, string consumerSecret, string requestEndPoint)</code></pre>
   </div>
-
+  
   <h5 class="parameters">Parameters</h5>
   <table>
     <tr>
@@ -261,11 +261,11 @@
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
-
+  
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Task&lt;string&gt; GetAuthTokenAsync(string consumerKey, string consumerSecret, string requestEndPoint)</code></pre>
   </div>
-
+  
   <h5 class="parameters">Parameters</h5>
   <table>
     <tr>
@@ -335,11 +335,11 @@
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
-
+  
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public string MakeB2BPayment(BusinessToBusinessDto businessToBusinessDto, string accesstoken, string requestEndPoint)</code></pre>
   </div>
-
+  
   <h5 class="parameters">Parameters</h5>
   <table>
     <tr>
@@ -409,11 +409,11 @@
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
-
+  
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Task&lt;string&gt; MakeB2BPaymentAsync(BusinessToBusinessDto businessToBusinessDto, string accesstoken, string requestEndPoint)</code></pre>
   </div>
-
+  
   <h5 class="parameters">Parameters</h5>
   <table>
     <tr>
@@ -483,11 +483,11 @@
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
-
+  
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public string MakeB2CPayment(BusinessToCustomerDto businessToCustomerDto, string accesstoken, string requestEndPoint)</code></pre>
   </div>
-
+  
   <h5 class="parameters">Parameters</h5>
   <table>
     <tr>
@@ -560,11 +560,11 @@
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
-
+  
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Task&lt;string&gt; MakeB2CPaymentAsync(BusinessToCustomerDto businessToCustomerDto, string accesstoken, string requestEndPoint)</code></pre>
   </div>
-
+  
   <h5 class="parameters">Parameters</h5>
   <table>
     <tr>
@@ -637,11 +637,11 @@
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
-
+  
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public string MakeC2BPayment(CustomerToBusinessSimulateDto customerToBusinessSimulateDto, string accesstoken, string requestEndPoint)</code></pre>
   </div>
-
+  
   <h5 class="parameters">Parameters</h5>
   <table>
     <tr>
@@ -716,11 +716,11 @@ for confirmation and/or validation</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
-
+  
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Task&lt;string&gt; MakeC2BPaymentAsync(CustomerToBusinessSimulateDto customerToBusinessSimulateDto, string accesstoken, string requestEndPoint)</code></pre>
   </div>
-
+  
   <h5 class="parameters">Parameters</h5>
   <table>
     <tr>
@@ -795,11 +795,11 @@ for confirmation and/or validation</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
-
+  
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public string MakeLipaNaMpesaOnlinePayment(LipaNaMpesaOnlineDto lipaNaMpesaOnlineDto, string accesstoken, string requestEndPoint)</code></pre>
   </div>
-
+  
   <h5 class="parameters">Parameters</h5>
   <table>
     <tr>
@@ -869,11 +869,11 @@ for confirmation and/or validation</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
-
+  
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Task&lt;string&gt; MakeLipaNaMpesaOnlinePaymentAsync(LipaNaMpesaOnlineDto lipaNaMpesaOnlineDto, string accesstoken, string requestEndPoint)</code></pre>
   </div>
-
+  
   <h5 class="parameters">Parameters</h5>
   <table>
     <tr>
@@ -943,11 +943,11 @@ for confirmation and/or validation</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
-
+  
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public string QueryAccountBalance(AccountBalanceDto accountBalanceQueryDto, string accesstoken, string requestEndPoint)</code></pre>
   </div>
-
+  
   <h5 class="parameters">Parameters</h5>
   <table>
     <tr>
@@ -1017,11 +1017,11 @@ for confirmation and/or validation</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
-
+  
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Task&lt;string&gt; QueryAccountBalanceAsync(AccountBalanceDto accountBalanceQueryDto, string accesstoken, string requestEndPoint)</code></pre>
   </div>
-
+  
   <h5 class="parameters">Parameters</h5>
   <table>
     <tr>
@@ -1091,11 +1091,11 @@ for confirmation and/or validation</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
-
+  
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public string QueryLipaNaMpesaTransaction(LipaNaMpesaQueryDto lipaNaMpesaQueryDto, string accesstoken, string requestEndPoint)</code></pre>
   </div>
-
+  
   <h5 class="parameters">Parameters</h5>
   <table>
     <tr>
@@ -1169,11 +1169,11 @@ For Other transaction based methods (C2B,B2C,B2B) use <code>QueryMpesaTransactio
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
-
+  
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Task&lt;string&gt; QueryLipaNaMpesaTransactionAsync(LipaNaMpesaQueryDto lipaNaMpesaQueryDto, string accesstoken, string requestEndPoint)</code></pre>
   </div>
-
+  
   <h5 class="parameters">Parameters</h5>
   <table>
     <tr>
@@ -1247,11 +1247,11 @@ For Other transaction based methods (C2B,B2C,B2B) use <code>QueryMpesaTransactio
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
-
+  
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public string QueryMpesaTransactionStatus(MpesaTransactionStatusDto mpesaTransactionStatusDto, string accesstoken, string requestEndPoint)</code></pre>
   </div>
-
+  
   <h5 class="parameters">Parameters</h5>
   <table>
     <tr>
@@ -1317,11 +1317,11 @@ For Other transaction based methods (C2B,B2C,B2B) use <code>QueryMpesaTransactio
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
-
+  
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Task&lt;string&gt; QueryMpesaTransactionStatusAsync(MpesaTransactionStatusDto mpesaTransactionStatusDto, string accesstoken, string requestEndPoint)</code></pre>
   </div>
-
+  
   <h5 class="parameters">Parameters</h5>
   <table>
     <tr>
@@ -1387,11 +1387,11 @@ For Other transaction based methods (C2B,B2C,B2B) use <code>QueryMpesaTransactio
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
-
+  
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public string RegisterC2BUrl(CustomerToBusinessRegisterUrlDto customerToBusinessRegisterUrlDto, string accesstoken, string requestEndPoint)</code></pre>
   </div>
-
+  
   <h5 class="parameters">Parameters</h5>
   <table>
     <tr>
@@ -1461,11 +1461,11 @@ For Other transaction based methods (C2B,B2C,B2B) use <code>QueryMpesaTransactio
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
-
+  
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Task&lt;string&gt; RegisterC2BUrlAsync(CustomerToBusinessRegisterUrlDto customerToBusinessRegisterUrlDto, string accesstoken, string requestEndPoint)</code></pre>
   </div>
-
+  
   <h5 class="parameters">Parameters</h5>
   <table>
     <tr>
@@ -1535,11 +1535,11 @@ For Other transaction based methods (C2B,B2C,B2B) use <code>QueryMpesaTransactio
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
-
+  
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public string ReverseMpesaTransaction(ReversalDto reversalDto, string accesstoken, string requestEndPoint)</code></pre>
   </div>
-
+  
   <h5 class="parameters">Parameters</h5>
   <table>
     <tr>
@@ -1609,11 +1609,11 @@ For Other transaction based methods (C2B,B2C,B2B) use <code>QueryMpesaTransactio
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
-
+  
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Task&lt;string&gt; ReverseMpesaTransactionAsync(ReversalDto reversalDto, string accesstoken, string requestEndPoint)</code></pre>
   </div>
-
+  
   <h5 class="parameters">Parameters</h5>
   <table>
     <tr>
