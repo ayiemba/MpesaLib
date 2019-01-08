@@ -17,5 +17,6 @@ var BusinessToBusinessObject = new BusinessToBusinessDto
 	ResultURL = "https://blablabala/callback",
 	Remarks = "payment"
 };
+
 var b2brequest = await _mpesaClient.MakeB2BPaymentAsync(BusinessToBusinessObject, accesstoken, "mpesa/b2b/v1/paymentrequest");
 ```
