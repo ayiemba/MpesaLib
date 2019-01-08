@@ -1,0 +1,175 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Intalling </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Intalling ">
+    <meta name="generator" content="docfx 2.40.7.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="../fusion/toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h2 id="intalling">Intalling</h2>
+
+<ul>
+<li><code>PM&gt; Install-Package MpesaLib</code></li>
+<li><code>&gt;dotnet add package MpesaLib</code></li>
+</ul>
+<h2 id="setting-up">Setting Up</h2>
+<p>Before you proceed kindly aquaint yourself with Mpesa Apis by going through the Docs in Safaricom's developer portal linked above.</p>
+<ol>
+<li><p>Obtain consumerKey, consumerSecret and Passkey (for STK PUsh APIs) from daraja portal linked above by creating your App.</p>
+</li>
+<li><p>Ensure your project is running on the latest versions of .Net. This library does not support .Net versions before .Net Framework 4.6.1 and .Net Core 2.1. However, MpesaLib is based on .Net Standard 2.0 and your are at liberty to check <a href="https://docs.microsoft.com/en-us/dotnet/standard/net-standard#net-implementation-support"><strong>here</strong></a> if your platform supports .Net Standard 2.0.</p>
+</li>
+<li><p>MpesaLib is dependency injection (DI) friendly and can be readily injected into your classes. You can read more on DI in Asp.Net core <a href="https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection?view=aspnetcore-2.1"><strong>here</strong></a>. If you can't use DI you can always manually create a new instance of MpesaClient and pass in an httpClient instance in it's constructor (you have to explicitly provide the BaseAdress for the same). eg.</p>
+</li>
+</ol>
+<pre><code class="lang-c#">	//Use only when you can't use Dependency injection
+	//create httpclient instance
+	var httpClient = new HttpClient();
+	httpClient.BaseAddress = new Uri(&quot;https://sandbox.safaricom.co.ke/&quot;);
+	
+	//create Mpesa API client instance
+	var mpesaClient = new MpesaClient(httpClient); //note how httpClient instance is passed into MpesaClient as a parameter.
+	
+</code></pre>
+<p>These Documentation recommends the DI way of doing things.</p>
+<h2 id="how-to-register-mpesaclient--set-the-baseaddress">How to Register MpesaClient &amp; Set the BaseAddress</h2>
+<ul>
+<li>Install MpesaLib .Net Project (dotnet core &gt;= 2.1 or dotnet framework &gt;= 4.6.1)
+*Install-Package MpesaLib -Version 3.0.132</li>
+</ul>
+<p>In visual Studio, under Manage Nuget Packages, search for and Install MpesaLib.</p>
+<ul>
+<li>In <strong>Startup.cs</strong> add the namespace...</li>
+</ul>
+<pre><code class="lang-c#">    using MpesaLib;
+</code></pre>
+<ul>
+<li>Inside Configureservices method add the following</li>
+</ul>
+<pre><code class="lang-c#">    services.AddHttpClient&lt;IMpesaClient, MpesaClient&gt;(options =&gt; options.BaseAddress = new Uri(&quot;https://sandbox.safaricom.co.ke/&quot;));
+</code></pre>
+<p>*When going live replace &quot;https://sandbox.safaricom.co.ke/&quot; with &quot;https://api.safaricom.co.ke/&quot;
+*Or even better, use <code>RequestEndPoint.SandboxBaseAddress</code>  or <code>RequestEndPoint.LiveBaseAddress</code></p>
+<ul>
+<li>You can pass in the MpesaClient in the constructor of your class as follows;</li>
+</ul>
+<pre><code class="lang-c#">using MpesaLib; //MpesaLib namespace
+public class Payments
+{
+	private readonly IMpesaClient _mpesaClient;
+	public Payments(IMpesaCleint mpesaClient)
+	{
+		_mpesaClient = mpesaClient;
+	}
+	....
+	//code omitted for brevity
+}
+</code></pre>
+<h2 id="getting-an-accesstoken">Getting an accesstoken</h2>
+<p>Mpesa APIs require an accesstoken for authentication/authorization to use the APIs. The accesstoken has to be passed into the available api method calls. MpesaLib provides two methods (asyncronous and non-asyncronous) for requesting an accesstoken. Currently only asynchronous method is supported by the library for all API calls. The accesstokens expire after an hour so it is recommended that you implement a caching strategy that refereshes the token after every hour or less.</p>
+<ul>
+<li>To get an accesstoken, invoke the <code>_mpesaClient.GetAuthTokenAsync(*args);</code> method. You have to await the Async call. use Non-Async call if method is not async.</li>
+</ul>
+<p>e.g.</p>
+<pre><code class="lang-c#">	//Async 
+	var accesstoken = await _mpesaClient.GetAuthTokenAsync(consumerKey, consumerSecret, &quot;oauth/v1/generate?grant_type=client_credentials&quot;);
+	
+	//Non-Async 
+	var accesstoken = _mpesaClient.GetAuthTokenAsync(consumerKey, consumerSecret, &quot;oauth/v1/generate?grant_type=client_credentials&quot;).GetAwaiter().GetResult();
+</code></pre>
+<p>Note that you have to pass in a conusmerKey, ConsumerSecret and an end-point Url which is <em>&quot;oauth/v1/generate?grant_type=client_credentials&quot;</em> for sandbox. When moving to production use the correct end-point url provided by Safaricom after completing the GO-Live process.</p>
+</article>
+          </div>
+          <div class="contribution-panel mobile-hide">
+              <a href="https://github.com/ayiemba/MpesaLib/blob/Dev/docs/articles/intro.md/#L1" title="Improve this Doc" class="fab btn-warning pull-right"><i class="glyphicon glyphicon-pencil"></i></a>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
