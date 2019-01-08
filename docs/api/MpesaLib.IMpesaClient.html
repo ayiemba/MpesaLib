@@ -1,0 +1,1600 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Interface IMpesaClient
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Interface IMpesaClient
+   ">
+    <meta name="generator" content="docfx 2.40.7.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="../fusion/toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="MpesaLib.IMpesaClient">
+  <h1 id="MpesaLib_IMpesaClient" data-uid="MpesaLib.IMpesaClient">Interface IMpesaClient
+  </h1>
+  <div class="markdown level0 summary"><p>IMpesaClient Interface</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  
+  
+  
+  <h6><strong>Namespace</strong>: System.Dynamic.ExpandoObject</h6>
+  <h6><strong>Assembly</strong>: MpesaLib.dll</h6>
+  
+  <h5 id="MpesaLib_IMpesaClient_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface IMpesaClient</code></pre>
+  </div>
+
+  
+  
+  
+  <h5 id="MpesaLib_IMpesaClient_remarks"><strong>Remarks</strong></h5>
+  <div class="markdown level0 remarks"><p>Provides all the Methods implemented by MpesaClient Class.
+A developer can create their own implementation for example for tests/mocks by inheriting from this interface.</p>
+</div>
+  
+  <h3 id="methods">Methods
+  </h3>
+  
+  <span class="small pull-right mobile-hide">
+    <span class="divider"> </span>
+    <a href="https://github.com/ayiemba/MpesaLib/new/Dev/apiSpec/new?filename=MpesaLib_IMpesaClient_GetAuthToken_System_String_System_String_System_String_.md&amp;value=---%0Auid%3A%20MpesaLib.IMpesaClient.GetAuthToken(System.String%2CSystem.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ayiemba/MpesaLib/blob/Dev/src/MpesaLib/IMpesaClient.cs/#L30" title="View Source"><i class="fa fa-code"></i></a>
+  </span>
+  
+  <a id="MpesaLib_IMpesaClient_GetAuthToken_" data-uid="MpesaLib.IMpesaClient.GetAuthToken*"></a>
+  
+  <h4 id="MpesaLib_IMpesaClient_GetAuthToken_System_String_System_String_System_String_" data-uid="MpesaLib.IMpesaClient.GetAuthToken(System.String,System.String,System.String)"><a href="#collapsible-MpesaLib_IMpesaClient_GetAuthToken_System_String_System_String_System_String_" class="expander" data-toggle="collapse">GetAuthToken(String, String, String)</a></h4>
+  
+  <div id="collapsible-MpesaLib_IMpesaClient_GetAuthToken_System_String_System_String_System_String_" class="collapse in">
+  <div class="markdown level1 summary"><p>GetAuthTokenAsync is an asynchronous method that requests for and returns an accesstoken from MPESA API Server.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string GetAuthToken(string consumerKey, string consumerSecret, string requestEndPoint)</code></pre>
+  </div>
+
+  <h5 class="parameters">Parameters</h5>
+  <table>
+    <tr>
+      <td>
+        <span class="pull-right"><span class="xref">System.String</span></span>
+        <span class="parametername">consumerKey</span>
+        <p><p>ConsumerKey provided by Safaricom in Daraja Portal.</p>
+</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span class="pull-right"><span class="xref">System.String</span></span>
+        <span class="parametername">consumerSecret</span>
+        <p><p>ConsumerSecret provided by Safaricom in Daraja Portal.</p>
+</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span class="pull-right"><span class="xref">System.String</span></span>
+        <span class="parametername">requestEndPoint</span>
+        <p><p>Set to <code>RequestEndPoint.AuthToken</code></p>
+</p>
+      </td>
+    </tr>
+  </table>
+  
+  <h5 class="returns">Returns</h5>
+  <table>
+    <tr>
+      <td>
+        <span class="xref">System.String</span>
+        <p><p>A string of characters representing the accesstoken.</p>
+</p>
+      </td>
+    </tr>
+  </table>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  </div>
+  
+  <span class="small pull-right mobile-hide">
+    <span class="divider"> </span>
+    <a href="https://github.com/ayiemba/MpesaLib/new/Dev/apiSpec/new?filename=MpesaLib_IMpesaClient_GetAuthTokenAsync_System_String_System_String_System_String_.md&amp;value=---%0Auid%3A%20MpesaLib.IMpesaClient.GetAuthTokenAsync(System.String%2CSystem.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ayiemba/MpesaLib/blob/Dev/src/MpesaLib/IMpesaClient.cs/#L21" title="View Source"><i class="fa fa-code"></i></a>
+  </span>
+  
+  <a id="MpesaLib_IMpesaClient_GetAuthTokenAsync_" data-uid="MpesaLib.IMpesaClient.GetAuthTokenAsync*"></a>
+  
+  <h4 id="MpesaLib_IMpesaClient_GetAuthTokenAsync_System_String_System_String_System_String_" data-uid="MpesaLib.IMpesaClient.GetAuthTokenAsync(System.String,System.String,System.String)"><a href="#collapsible-MpesaLib_IMpesaClient_GetAuthTokenAsync_System_String_System_String_System_String_" class="expander" data-toggle="collapse">GetAuthTokenAsync(String, String, String)</a></h4>
+  
+  <div id="collapsible-MpesaLib_IMpesaClient_GetAuthTokenAsync_System_String_System_String_System_String_" class="collapse in">
+  <div class="markdown level1 summary"><p>GetAuthTokenAsync is an asynchronous method that requests for and returns an accesstoken from MPESA API Server.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;string&gt; GetAuthTokenAsync(string consumerKey, string consumerSecret, string requestEndPoint)</code></pre>
+  </div>
+
+  <h5 class="parameters">Parameters</h5>
+  <table>
+    <tr>
+      <td>
+        <span class="pull-right"><span class="xref">System.String</span></span>
+        <span class="parametername">consumerKey</span>
+        <p><p>ConsumerKey provided by Safaricom in Daraja Portal.</p>
+</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span class="pull-right"><span class="xref">System.String</span></span>
+        <span class="parametername">consumerSecret</span>
+        <p><p>ConsumerSecret provided by Safaricom in Daraja Portal.</p>
+</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span class="pull-right"><span class="xref">System.String</span></span>
+        <span class="parametername">requestEndPoint</span>
+        <p><p>Set to <code>RequestEndPoint.AuthToken</code></p>
+</p>
+      </td>
+    </tr>
+  </table>
+  
+  <h5 class="returns">Returns</h5>
+  <table>
+    <tr>
+      <td>
+        <span class="xref">System.Threading.Tasks.Task</span>&lt;<span class="xref">System.String</span>&gt;
+        <p><p>A string of characters representing the accesstoken.</p>
+</p>
+      </td>
+    </tr>
+  </table>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  </div>
+  
+  <span class="small pull-right mobile-hide">
+    <span class="divider"> </span>
+    <a href="https://github.com/ayiemba/MpesaLib/new/Dev/apiSpec/new?filename=MpesaLib_IMpesaClient_MakeB2BPayment_MpesaLib_BusinessToBusinessDto_System_String_System_String_.md&amp;value=---%0Auid%3A%20MpesaLib.IMpesaClient.MakeB2BPayment(MpesaLib.BusinessToBusinessDto%2CSystem.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ayiemba/MpesaLib/blob/Dev/src/MpesaLib/IMpesaClient.cs/#L127" title="View Source"><i class="fa fa-code"></i></a>
+  </span>
+  
+  <a id="MpesaLib_IMpesaClient_MakeB2BPayment_" data-uid="MpesaLib.IMpesaClient.MakeB2BPayment*"></a>
+  
+  <h4 id="MpesaLib_IMpesaClient_MakeB2BPayment_MpesaLib_BusinessToBusinessDto_System_String_System_String_" data-uid="MpesaLib.IMpesaClient.MakeB2BPayment(MpesaLib.BusinessToBusinessDto,System.String,System.String)"><a href="#collapsible-MpesaLib_IMpesaClient_MakeB2BPayment_MpesaLib_BusinessToBusinessDto_System_String_System_String_" class="expander" data-toggle="collapse">MakeB2BPayment(BusinessToBusinessDto, String, String)</a></h4>
+  
+  <div id="collapsible-MpesaLib_IMpesaClient_MakeB2BPayment_MpesaLib_BusinessToBusinessDto_System_String_System_String_" class="collapse in">
+  <div class="markdown level1 summary"><p>Makes a Business to Business payment request between Paybill numbers.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string MakeB2BPayment(BusinessToBusinessDto businessToBusinessDto, string accesstoken, string requestEndPoint)</code></pre>
+  </div>
+
+  <h5 class="parameters">Parameters</h5>
+  <table>
+    <tr>
+      <td>
+        <span class="pull-right"><a class="xref" href="MpesaLib.BusinessToBusinessDto.html">BusinessToBusinessDto</a></span>
+        <span class="parametername">businessToBusinessDto</span>
+        <p><p>B2B data transfer object.</p>
+</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span class="pull-right"><span class="xref">System.String</span></span>
+        <span class="parametername">accesstoken</span>
+        <p><p>Acccesstoken retrieved by the <code>GetAuthTokenAsync</code> method.</p>
+</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span class="pull-right"><span class="xref">System.String</span></span>
+        <span class="parametername">requestEndPoint</span>
+        <p><p>Set to <code>RequestEndPoint.BusinessToBusiness</code></p>
+</p>
+      </td>
+    </tr>
+  </table>
+  
+  <h5 class="returns">Returns</h5>
+  <table>
+    <tr>
+      <td>
+        <span class="xref">System.String</span>
+        <p><p>A JSON string containing data from MPESA API reposnse.</p>
+</p>
+      </td>
+    </tr>
+  </table>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  </div>
+  
+  <span class="small pull-right mobile-hide">
+    <span class="divider"> </span>
+    <a href="https://github.com/ayiemba/MpesaLib/new/Dev/apiSpec/new?filename=MpesaLib_IMpesaClient_MakeB2BPaymentAsync_MpesaLib_BusinessToBusinessDto_System_String_System_String_.md&amp;value=---%0Auid%3A%20MpesaLib.IMpesaClient.MakeB2BPaymentAsync(MpesaLib.BusinessToBusinessDto%2CSystem.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ayiemba/MpesaLib/blob/Dev/src/MpesaLib/IMpesaClient.cs/#L117" title="View Source"><i class="fa fa-code"></i></a>
+  </span>
+  
+  <a id="MpesaLib_IMpesaClient_MakeB2BPaymentAsync_" data-uid="MpesaLib.IMpesaClient.MakeB2BPaymentAsync*"></a>
+  
+  <h4 id="MpesaLib_IMpesaClient_MakeB2BPaymentAsync_MpesaLib_BusinessToBusinessDto_System_String_System_String_" data-uid="MpesaLib.IMpesaClient.MakeB2BPaymentAsync(MpesaLib.BusinessToBusinessDto,System.String,System.String)"><a href="#collapsible-MpesaLib_IMpesaClient_MakeB2BPaymentAsync_MpesaLib_BusinessToBusinessDto_System_String_System_String_" class="expander" data-toggle="collapse">MakeB2BPaymentAsync(BusinessToBusinessDto, String, String)</a></h4>
+  
+  <div id="collapsible-MpesaLib_IMpesaClient_MakeB2BPaymentAsync_MpesaLib_BusinessToBusinessDto_System_String_System_String_" class="collapse in">
+  <div class="markdown level1 summary"><p>Makes a Business to Business payment request between Paybill numbers.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;string&gt; MakeB2BPaymentAsync(BusinessToBusinessDto businessToBusinessDto, string accesstoken, string requestEndPoint)</code></pre>
+  </div>
+
+  <h5 class="parameters">Parameters</h5>
+  <table>
+    <tr>
+      <td>
+        <span class="pull-right"><a class="xref" href="MpesaLib.BusinessToBusinessDto.html">BusinessToBusinessDto</a></span>
+        <span class="parametername">businessToBusinessDto</span>
+        <p><p>B2B data transfer object.</p>
+</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span class="pull-right"><span class="xref">System.String</span></span>
+        <span class="parametername">accesstoken</span>
+        <p><p>Acccesstoken retrieved by the <code>GetAuthTokenAsync</code> method.</p>
+</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span class="pull-right"><span class="xref">System.String</span></span>
+        <span class="parametername">requestEndPoint</span>
+        <p><p>Set to <code>RequestEndPoint.BusinessToBusiness</code></p>
+</p>
+      </td>
+    </tr>
+  </table>
+  
+  <h5 class="returns">Returns</h5>
+  <table>
+    <tr>
+      <td>
+        <span class="xref">System.Threading.Tasks.Task</span>&lt;<span class="xref">System.String</span>&gt;
+        <p><p>A JSON string containing data from MPESA API reposnse.</p>
+</p>
+      </td>
+    </tr>
+  </table>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  </div>
+  
+  <span class="small pull-right mobile-hide">
+    <span class="divider"> </span>
+    <a href="https://github.com/ayiemba/MpesaLib/new/Dev/apiSpec/new?filename=MpesaLib_IMpesaClient_MakeB2CPayment_MpesaLib_BusinessToCustomerDto_System_String_System_String_.md&amp;value=---%0Auid%3A%20MpesaLib.IMpesaClient.MakeB2CPayment(MpesaLib.BusinessToCustomerDto%2CSystem.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ayiemba/MpesaLib/blob/Dev/src/MpesaLib/IMpesaClient.cs/#L154" title="View Source"><i class="fa fa-code"></i></a>
+  </span>
+  
+  <a id="MpesaLib_IMpesaClient_MakeB2CPayment_" data-uid="MpesaLib.IMpesaClient.MakeB2CPayment*"></a>
+  
+  <h4 id="MpesaLib_IMpesaClient_MakeB2CPayment_MpesaLib_BusinessToCustomerDto_System_String_System_String_" data-uid="MpesaLib.IMpesaClient.MakeB2CPayment(MpesaLib.BusinessToCustomerDto,System.String,System.String)"><a href="#collapsible-MpesaLib_IMpesaClient_MakeB2CPayment_MpesaLib_BusinessToCustomerDto_System_String_System_String_" class="expander" data-toggle="collapse">MakeB2CPayment(BusinessToCustomerDto, String, String)</a></h4>
+  
+  <div id="collapsible-MpesaLib_IMpesaClient_MakeB2CPayment_MpesaLib_BusinessToCustomerDto_System_String_System_String_" class="collapse in">
+  <div class="markdown level1 summary"><p>Makes a Business to Customer payment request. Paybill to Phone Number.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string MakeB2CPayment(BusinessToCustomerDto businessToCustomerDto, string accesstoken, string requestEndPoint)</code></pre>
+  </div>
+
+  <h5 class="parameters">Parameters</h5>
+  <table>
+    <tr>
+      <td>
+        <span class="pull-right"><a class="xref" href="MpesaLib.BusinessToCustomerDto.html">BusinessToCustomerDto</a></span>
+        <span class="parametername">businessToCustomerDto</span>
+        <p><p>B2C data transfer object.</p>
+</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span class="pull-right"><span class="xref">System.String</span></span>
+        <span class="parametername">accesstoken</span>
+        <p><p>Acccesstoken retrieved by the <code>GetAuthTokenAsync</code> method.</p>
+</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span class="pull-right"><span class="xref">System.String</span></span>
+        <span class="parametername">requestEndPoint</span>
+        <p><p>Set to <code>RequestEndPoint.BusinessToCustomer</code></p>
+</p>
+      </td>
+    </tr>
+  </table>
+  
+  <h5 class="returns">Returns</h5>
+  <table>
+    <tr>
+      <td>
+        <span class="xref">System.String</span>
+        <p><p>A JSON string containing data from MPESA API reposnse.</p>
+</p>
+      </td>
+    </tr>
+  </table>
+  
+  
+  
+  
+  
+  
+  
+  <h5 id="MpesaLib_IMpesaClient_MakeB2CPayment_MpesaLib_BusinessToCustomerDto_System_String_System_String__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Suitable for refunds, rewards or just about any transaction that involves a business paying a customer.</p>
+</div>
+  
+  
+  
+  </div>
+  
+  <span class="small pull-right mobile-hide">
+    <span class="divider"> </span>
+    <a href="https://github.com/ayiemba/MpesaLib/new/Dev/apiSpec/new?filename=MpesaLib_IMpesaClient_MakeB2CPaymentAsync_MpesaLib_BusinessToCustomerDto_System_String_System_String_.md&amp;value=---%0Auid%3A%20MpesaLib.IMpesaClient.MakeB2CPaymentAsync(MpesaLib.BusinessToCustomerDto%2CSystem.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ayiemba/MpesaLib/blob/Dev/src/MpesaLib/IMpesaClient.cs/#L141" title="View Source"><i class="fa fa-code"></i></a>
+  </span>
+  
+  <a id="MpesaLib_IMpesaClient_MakeB2CPaymentAsync_" data-uid="MpesaLib.IMpesaClient.MakeB2CPaymentAsync*"></a>
+  
+  <h4 id="MpesaLib_IMpesaClient_MakeB2CPaymentAsync_MpesaLib_BusinessToCustomerDto_System_String_System_String_" data-uid="MpesaLib.IMpesaClient.MakeB2CPaymentAsync(MpesaLib.BusinessToCustomerDto,System.String,System.String)"><a href="#collapsible-MpesaLib_IMpesaClient_MakeB2CPaymentAsync_MpesaLib_BusinessToCustomerDto_System_String_System_String_" class="expander" data-toggle="collapse">MakeB2CPaymentAsync(BusinessToCustomerDto, String, String)</a></h4>
+  
+  <div id="collapsible-MpesaLib_IMpesaClient_MakeB2CPaymentAsync_MpesaLib_BusinessToCustomerDto_System_String_System_String_" class="collapse in">
+  <div class="markdown level1 summary"><p>Makes a Business to Customer payment request. Paybill to Phone Number.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;string&gt; MakeB2CPaymentAsync(BusinessToCustomerDto businessToCustomerDto, string accesstoken, string requestEndPoint)</code></pre>
+  </div>
+
+  <h5 class="parameters">Parameters</h5>
+  <table>
+    <tr>
+      <td>
+        <span class="pull-right"><a class="xref" href="MpesaLib.BusinessToCustomerDto.html">BusinessToCustomerDto</a></span>
+        <span class="parametername">businessToCustomerDto</span>
+        <p><p>B2C data transfer object.</p>
+</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span class="pull-right"><span class="xref">System.String</span></span>
+        <span class="parametername">accesstoken</span>
+        <p><p>Acccesstoken retrieved by the <code>GetAuthTokenAsync</code> method.</p>
+</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span class="pull-right"><span class="xref">System.String</span></span>
+        <span class="parametername">requestEndPoint</span>
+        <p><p>Set to <code>RequestEndPoint.BusinessToCustomer</code></p>
+</p>
+      </td>
+    </tr>
+  </table>
+  
+  <h5 class="returns">Returns</h5>
+  <table>
+    <tr>
+      <td>
+        <span class="xref">System.Threading.Tasks.Task</span>&lt;<span class="xref">System.String</span>&gt;
+        <p><p>A JSON string containing data from MPESA API reposnse.</p>
+</p>
+      </td>
+    </tr>
+  </table>
+  
+  
+  
+  
+  
+  
+  
+  <h5 id="MpesaLib_IMpesaClient_MakeB2CPaymentAsync_MpesaLib_BusinessToCustomerDto_System_String_System_String__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Suitable for refunds, rewards or just about any transaction that involves a business paying a customer.</p>
+</div>
+  
+  
+  
+  </div>
+  
+  <span class="small pull-right mobile-hide">
+    <span class="divider"> </span>
+    <a href="https://github.com/ayiemba/MpesaLib/new/Dev/apiSpec/new?filename=MpesaLib_IMpesaClient_MakeC2BPayment_MpesaLib_CustomerToBusinessSimulateDto_System_String_System_String_.md&amp;value=---%0Auid%3A%20MpesaLib.IMpesaClient.MakeC2BPayment(MpesaLib.CustomerToBusinessSimulateDto%2CSystem.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ayiemba/MpesaLib/blob/Dev/src/MpesaLib/IMpesaClient.cs/#L183" title="View Source"><i class="fa fa-code"></i></a>
+  </span>
+  
+  <a id="MpesaLib_IMpesaClient_MakeC2BPayment_" data-uid="MpesaLib.IMpesaClient.MakeC2BPayment*"></a>
+  
+  <h4 id="MpesaLib_IMpesaClient_MakeC2BPayment_MpesaLib_CustomerToBusinessSimulateDto_System_String_System_String_" data-uid="MpesaLib.IMpesaClient.MakeC2BPayment(MpesaLib.CustomerToBusinessSimulateDto,System.String,System.String)"><a href="#collapsible-MpesaLib_IMpesaClient_MakeC2BPayment_MpesaLib_CustomerToBusinessSimulateDto_System_String_System_String_" class="expander" data-toggle="collapse">MakeC2BPayment(CustomerToBusinessSimulateDto, String, String)</a></h4>
+  
+  <div id="collapsible-MpesaLib_IMpesaClient_MakeC2BPayment_MpesaLib_CustomerToBusinessSimulateDto_System_String_System_String_" class="collapse in">
+  <div class="markdown level1 summary"><p>Simulates a Customer to Business payment request.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string MakeC2BPayment(CustomerToBusinessSimulateDto customerToBusinessSimulateDto, string accesstoken, string requestEndPoint)</code></pre>
+  </div>
+
+  <h5 class="parameters">Parameters</h5>
+  <table>
+    <tr>
+      <td>
+        <span class="pull-right"><a class="xref" href="MpesaLib.CustomerToBusinessSimulateDto.html">CustomerToBusinessSimulateDto</a></span>
+        <span class="parametername">customerToBusinessSimulateDto</span>
+        <p><p>C2B data transfer object</p>
+</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span class="pull-right"><span class="xref">System.String</span></span>
+        <span class="parametername">accesstoken</span>
+        <p><p>Acccesstoken retrieved by the <code>GetAuthTokenAsync</code> method.</p>
+</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span class="pull-right"><span class="xref">System.String</span></span>
+        <span class="parametername">requestEndPoint</span>
+        <p><p>Set to <code>RequestEndPoint.CustomerToBusinessSimulate</code></p>
+</p>
+      </td>
+    </tr>
+  </table>
+  
+  <h5 class="returns">Returns</h5>
+  <table>
+    <tr>
+      <td>
+        <span class="xref">System.String</span>
+        <p><p>A JSON string containing data from MPESA API reposnse.</p>
+</p>
+      </td>
+    </tr>
+  </table>
+  
+  
+  
+  
+  
+  
+  
+  <h5 id="MpesaLib_IMpesaClient_MakeC2BPayment_MpesaLib_CustomerToBusinessSimulateDto_System_String_System_String__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Use only for Simulation/testing. In production use <code>RegisterC2BUrlAsync</code> method to register
+endpoints in your application that receive customer initiated transactions from the MPESA API
+for confirmation and/or validation</p>
+</div>
+  
+  
+  
+  </div>
+  
+  <span class="small pull-right mobile-hide">
+    <span class="divider"> </span>
+    <a href="https://github.com/ayiemba/MpesaLib/new/Dev/apiSpec/new?filename=MpesaLib_IMpesaClient_MakeC2BPaymentAsync_MpesaLib_CustomerToBusinessSimulateDto_System_String_System_String_.md&amp;value=---%0Auid%3A%20MpesaLib.IMpesaClient.MakeC2BPaymentAsync(MpesaLib.CustomerToBusinessSimulateDto%2CSystem.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ayiemba/MpesaLib/blob/Dev/src/MpesaLib/IMpesaClient.cs/#L169" title="View Source"><i class="fa fa-code"></i></a>
+  </span>
+  
+  <a id="MpesaLib_IMpesaClient_MakeC2BPaymentAsync_" data-uid="MpesaLib.IMpesaClient.MakeC2BPaymentAsync*"></a>
+  
+  <h4 id="MpesaLib_IMpesaClient_MakeC2BPaymentAsync_MpesaLib_CustomerToBusinessSimulateDto_System_String_System_String_" data-uid="MpesaLib.IMpesaClient.MakeC2BPaymentAsync(MpesaLib.CustomerToBusinessSimulateDto,System.String,System.String)"><a href="#collapsible-MpesaLib_IMpesaClient_MakeC2BPaymentAsync_MpesaLib_CustomerToBusinessSimulateDto_System_String_System_String_" class="expander" data-toggle="collapse">MakeC2BPaymentAsync(CustomerToBusinessSimulateDto, String, String)</a></h4>
+  
+  <div id="collapsible-MpesaLib_IMpesaClient_MakeC2BPaymentAsync_MpesaLib_CustomerToBusinessSimulateDto_System_String_System_String_" class="collapse in">
+  <div class="markdown level1 summary"><p>Simulates a Customer to Business payment request.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;string&gt; MakeC2BPaymentAsync(CustomerToBusinessSimulateDto customerToBusinessSimulateDto, string accesstoken, string requestEndPoint)</code></pre>
+  </div>
+
+  <h5 class="parameters">Parameters</h5>
+  <table>
+    <tr>
+      <td>
+        <span class="pull-right"><a class="xref" href="MpesaLib.CustomerToBusinessSimulateDto.html">CustomerToBusinessSimulateDto</a></span>
+        <span class="parametername">customerToBusinessSimulateDto</span>
+        <p><p>C2B data transfer object</p>
+</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span class="pull-right"><span class="xref">System.String</span></span>
+        <span class="parametername">accesstoken</span>
+        <p><p>Acccesstoken retrieved by the <code>GetAuthTokenAsync</code> method.</p>
+</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span class="pull-right"><span class="xref">System.String</span></span>
+        <span class="parametername">requestEndPoint</span>
+        <p><p>Set to <code>RequestEndPoint.CustomerToBusinessSimulate</code></p>
+</p>
+      </td>
+    </tr>
+  </table>
+  
+  <h5 class="returns">Returns</h5>
+  <table>
+    <tr>
+      <td>
+        <span class="xref">System.Threading.Tasks.Task</span>&lt;<span class="xref">System.String</span>&gt;
+        <p><p>A JSON string containing data from MPESA API reposnse.</p>
+</p>
+      </td>
+    </tr>
+  </table>
+  
+  
+  
+  
+  
+  
+  
+  <h5 id="MpesaLib_IMpesaClient_MakeC2BPaymentAsync_MpesaLib_CustomerToBusinessSimulateDto_System_String_System_String__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Use only for Simulation/testing. In production use <code>RegisterC2BUrlAsync</code> method to register
+endpoints in your application that receive customer initiated transactions from the MPESA API
+for confirmation and/or validation</p>
+</div>
+  
+  
+  
+  </div>
+  
+  <span class="small pull-right mobile-hide">
+    <span class="divider"> </span>
+    <a href="https://github.com/ayiemba/MpesaLib/new/Dev/apiSpec/new?filename=MpesaLib_IMpesaClient_MakeLipaNaMpesaOnlinePayment_MpesaLib_LipaNaMpesaOnlineDto_System_String_System_String_.md&amp;value=---%0Auid%3A%20MpesaLib.IMpesaClient.MakeLipaNaMpesaOnlinePayment(MpesaLib.LipaNaMpesaOnlineDto%2CSystem.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ayiemba/MpesaLib/blob/Dev/src/MpesaLib/IMpesaClient.cs/#L54" title="View Source"><i class="fa fa-code"></i></a>
+  </span>
+  
+  <a id="MpesaLib_IMpesaClient_MakeLipaNaMpesaOnlinePayment_" data-uid="MpesaLib.IMpesaClient.MakeLipaNaMpesaOnlinePayment*"></a>
+  
+  <h4 id="MpesaLib_IMpesaClient_MakeLipaNaMpesaOnlinePayment_MpesaLib_LipaNaMpesaOnlineDto_System_String_System_String_" data-uid="MpesaLib.IMpesaClient.MakeLipaNaMpesaOnlinePayment(MpesaLib.LipaNaMpesaOnlineDto,System.String,System.String)"><a href="#collapsible-MpesaLib_IMpesaClient_MakeLipaNaMpesaOnlinePayment_MpesaLib_LipaNaMpesaOnlineDto_System_String_System_String_" class="expander" data-toggle="collapse">MakeLipaNaMpesaOnlinePayment(LipaNaMpesaOnlineDto, String, String)</a></h4>
+  
+  <div id="collapsible-MpesaLib_IMpesaClient_MakeLipaNaMpesaOnlinePayment_MpesaLib_LipaNaMpesaOnlineDto_System_String_System_String_" class="collapse in">
+  <div class="markdown level1 summary"><p>Makes an STK Push payment request to MPESA API Server.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string MakeLipaNaMpesaOnlinePayment(LipaNaMpesaOnlineDto mpesaLipaOnlineDto, string accesstoken, string requestEndPoint)</code></pre>
+  </div>
+
+  <h5 class="parameters">Parameters</h5>
+  <table>
+    <tr>
+      <td>
+        <span class="pull-right"><a class="xref" href="MpesaLib.LipaNaMpesaOnlineDto.html">LipaNaMpesaOnlineDto</a></span>
+        <span class="parametername">mpesaLipaOnlineDto</span>
+        <p><p>Data trnasfer object containing properties for the Lipa Na Mpesa Online API endpoint.</p>
+</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span class="pull-right"><span class="xref">System.String</span></span>
+        <span class="parametername">accesstoken</span>
+        <p><p>Acccesstoken retrieved by the <code>GetAuthTokenAsync</code> method.</p>
+</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span class="pull-right"><span class="xref">System.String</span></span>
+        <span class="parametername">requestEndPoint</span>
+        <p><p>Set to <code>RequestEndPoint.LipaNaMpesaOnline</code></p>
+</p>
+      </td>
+    </tr>
+  </table>
+  
+  <h5 class="returns">Returns</h5>
+  <table>
+    <tr>
+      <td>
+        <span class="xref">System.String</span>
+        <p><p>A JSON string containing data from MPESA API response</p>
+</p>
+      </td>
+    </tr>
+  </table>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  </div>
+  
+  <span class="small pull-right mobile-hide">
+    <span class="divider"> </span>
+    <a href="https://github.com/ayiemba/MpesaLib/new/Dev/apiSpec/new?filename=MpesaLib_IMpesaClient_MakeLipaNaMpesaOnlinePaymentAsync_MpesaLib_LipaNaMpesaOnlineDto_System_String_System_String_.md&amp;value=---%0Auid%3A%20MpesaLib.IMpesaClient.MakeLipaNaMpesaOnlinePaymentAsync(MpesaLib.LipaNaMpesaOnlineDto%2CSystem.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ayiemba/MpesaLib/blob/Dev/src/MpesaLib/IMpesaClient.cs/#L42" title="View Source"><i class="fa fa-code"></i></a>
+  </span>
+  
+  <a id="MpesaLib_IMpesaClient_MakeLipaNaMpesaOnlinePaymentAsync_" data-uid="MpesaLib.IMpesaClient.MakeLipaNaMpesaOnlinePaymentAsync*"></a>
+  
+  <h4 id="MpesaLib_IMpesaClient_MakeLipaNaMpesaOnlinePaymentAsync_MpesaLib_LipaNaMpesaOnlineDto_System_String_System_String_" data-uid="MpesaLib.IMpesaClient.MakeLipaNaMpesaOnlinePaymentAsync(MpesaLib.LipaNaMpesaOnlineDto,System.String,System.String)"><a href="#collapsible-MpesaLib_IMpesaClient_MakeLipaNaMpesaOnlinePaymentAsync_MpesaLib_LipaNaMpesaOnlineDto_System_String_System_String_" class="expander" data-toggle="collapse">MakeLipaNaMpesaOnlinePaymentAsync(LipaNaMpesaOnlineDto, String, String)</a></h4>
+  
+  <div id="collapsible-MpesaLib_IMpesaClient_MakeLipaNaMpesaOnlinePaymentAsync_MpesaLib_LipaNaMpesaOnlineDto_System_String_System_String_" class="collapse in">
+  <div class="markdown level1 summary"><p>Makes an STK Push payment request to MPESA API Server.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;string&gt; MakeLipaNaMpesaOnlinePaymentAsync(LipaNaMpesaOnlineDto mpesaLipaOnlineDto, string accesstoken, string requestEndPoint)</code></pre>
+  </div>
+
+  <h5 class="parameters">Parameters</h5>
+  <table>
+    <tr>
+      <td>
+        <span class="pull-right"><a class="xref" href="MpesaLib.LipaNaMpesaOnlineDto.html">LipaNaMpesaOnlineDto</a></span>
+        <span class="parametername">mpesaLipaOnlineDto</span>
+        <p><p>Data trnasfer object containing properties for the Lipa Na Mpesa Online API endpoint.</p>
+</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span class="pull-right"><span class="xref">System.String</span></span>
+        <span class="parametername">accesstoken</span>
+        <p><p>Acccesstoken retrieved by the <code>GetAuthTokenAsync</code> method.</p>
+</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span class="pull-right"><span class="xref">System.String</span></span>
+        <span class="parametername">requestEndPoint</span>
+        <p><p>Set to <code>RequestEndPoint.LipaNaMpesaOnline</code></p>
+</p>
+      </td>
+    </tr>
+  </table>
+  
+  <h5 class="returns">Returns</h5>
+  <table>
+    <tr>
+      <td>
+        <span class="xref">System.Threading.Tasks.Task</span>&lt;<span class="xref">System.String</span>&gt;
+        <p><p>A JSON string containing LNMO response data from MPESA API Server</p>
+</p>
+      </td>
+    </tr>
+  </table>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  </div>
+  
+  <span class="small pull-right mobile-hide">
+    <span class="divider"> </span>
+    <a href="https://github.com/ayiemba/MpesaLib/new/Dev/apiSpec/new?filename=MpesaLib_IMpesaClient_QueryAccountBalance_MpesaLib_AccountBalanceDto_System_String_System_String_.md&amp;value=---%0Auid%3A%20MpesaLib.IMpesaClient.QueryAccountBalance(MpesaLib.AccountBalanceDto%2CSystem.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ayiemba/MpesaLib/blob/Dev/src/MpesaLib/IMpesaClient.cs/#L107" title="View Source"><i class="fa fa-code"></i></a>
+  </span>
+  
+  <a id="MpesaLib_IMpesaClient_QueryAccountBalance_" data-uid="MpesaLib.IMpesaClient.QueryAccountBalance*"></a>
+  
+  <h4 id="MpesaLib_IMpesaClient_QueryAccountBalance_MpesaLib_AccountBalanceDto_System_String_System_String_" data-uid="MpesaLib.IMpesaClient.QueryAccountBalance(MpesaLib.AccountBalanceDto,System.String,System.String)"><a href="#collapsible-MpesaLib_IMpesaClient_QueryAccountBalance_MpesaLib_AccountBalanceDto_System_String_System_String_" class="expander" data-toggle="collapse">QueryAccountBalance(AccountBalanceDto, String, String)</a></h4>
+  
+  <div id="collapsible-MpesaLib_IMpesaClient_QueryAccountBalance_MpesaLib_AccountBalanceDto_System_String_System_String_" class="collapse in">
+  <div class="markdown level1 summary"><p>Queries MPESA Paybill Account balance.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string QueryAccountBalance(AccountBalanceDto accountBalanceQueryDto, string accesstoken, string requestEndPoint)</code></pre>
+  </div>
+
+  <h5 class="parameters">Parameters</h5>
+  <table>
+    <tr>
+      <td>
+        <span class="pull-right"><a class="xref" href="MpesaLib.AccountBalanceDto.html">AccountBalanceDto</a></span>
+        <span class="parametername">accountBalanceQueryDto</span>
+        <p><p>Account balance query data transfer object.</p>
+</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span class="pull-right"><span class="xref">System.String</span></span>
+        <span class="parametername">accesstoken</span>
+        <p><p>Acccesstoken retrieved by the <code>GetAuthTokenAsync</code> method.</p>
+</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span class="pull-right"><span class="xref">System.String</span></span>
+        <span class="parametername">requestEndPoint</span>
+        <p><p>Set to <code>RequestEndPoint.QueryAccountBalance</code></p>
+</p>
+      </td>
+    </tr>
+  </table>
+  
+  <h5 class="returns">Returns</h5>
+  <table>
+    <tr>
+      <td>
+        <span class="xref">System.String</span>
+        <p><p>A JSON string containing data from MPESA API reposnse.</p>
+</p>
+      </td>
+    </tr>
+  </table>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  </div>
+  
+  <span class="small pull-right mobile-hide">
+    <span class="divider"> </span>
+    <a href="https://github.com/ayiemba/MpesaLib/new/Dev/apiSpec/new?filename=MpesaLib_IMpesaClient_QueryAccountBalanceAsync_MpesaLib_AccountBalanceDto_System_String_System_String_.md&amp;value=---%0Auid%3A%20MpesaLib.IMpesaClient.QueryAccountBalanceAsync(MpesaLib.AccountBalanceDto%2CSystem.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ayiemba/MpesaLib/blob/Dev/src/MpesaLib/IMpesaClient.cs/#L97" title="View Source"><i class="fa fa-code"></i></a>
+  </span>
+  
+  <a id="MpesaLib_IMpesaClient_QueryAccountBalanceAsync_" data-uid="MpesaLib.IMpesaClient.QueryAccountBalanceAsync*"></a>
+  
+  <h4 id="MpesaLib_IMpesaClient_QueryAccountBalanceAsync_MpesaLib_AccountBalanceDto_System_String_System_String_" data-uid="MpesaLib.IMpesaClient.QueryAccountBalanceAsync(MpesaLib.AccountBalanceDto,System.String,System.String)"><a href="#collapsible-MpesaLib_IMpesaClient_QueryAccountBalanceAsync_MpesaLib_AccountBalanceDto_System_String_System_String_" class="expander" data-toggle="collapse">QueryAccountBalanceAsync(AccountBalanceDto, String, String)</a></h4>
+  
+  <div id="collapsible-MpesaLib_IMpesaClient_QueryAccountBalanceAsync_MpesaLib_AccountBalanceDto_System_String_System_String_" class="collapse in">
+  <div class="markdown level1 summary"><p>Queries MPESA Paybill Account balance.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;string&gt; QueryAccountBalanceAsync(AccountBalanceDto accountBalanceQueryDto, string accesstoken, string requestEndPoint)</code></pre>
+  </div>
+
+  <h5 class="parameters">Parameters</h5>
+  <table>
+    <tr>
+      <td>
+        <span class="pull-right"><a class="xref" href="MpesaLib.AccountBalanceDto.html">AccountBalanceDto</a></span>
+        <span class="parametername">accountBalanceQueryDto</span>
+        <p><p>Account balance query data transfer object.</p>
+</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span class="pull-right"><span class="xref">System.String</span></span>
+        <span class="parametername">accesstoken</span>
+        <p><p>Acccesstoken retrieved by the <code>GetAuthTokenAsync</code> method.</p>
+</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span class="pull-right"><span class="xref">System.String</span></span>
+        <span class="parametername">requestEndPoint</span>
+        <p><p>Set to <code>RequestEndPoint.QueryAccountBalance</code></p>
+</p>
+      </td>
+    </tr>
+  </table>
+  
+  <h5 class="returns">Returns</h5>
+  <table>
+    <tr>
+      <td>
+        <span class="xref">System.Threading.Tasks.Task</span>&lt;<span class="xref">System.String</span>&gt;
+        <p><p>A JSON string containing data from MPESA API reposnse.</p>
+</p>
+      </td>
+    </tr>
+  </table>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  </div>
+  
+  <span class="small pull-right mobile-hide">
+    <span class="divider"> </span>
+    <a href="https://github.com/ayiemba/MpesaLib/new/Dev/apiSpec/new?filename=MpesaLib_IMpesaClient_QueryLipaNaMpesaTransaction_MpesaLib_LipaNaMpesaQueryDto_System_String_System_String_.md&amp;value=---%0Auid%3A%20MpesaLib.IMpesaClient.QueryLipaNaMpesaTransaction(MpesaLib.LipaNaMpesaQueryDto%2CSystem.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ayiemba/MpesaLib/blob/Dev/src/MpesaLib/IMpesaClient.cs/#L87" title="View Source"><i class="fa fa-code"></i></a>
+  </span>
+  
+  <a id="MpesaLib_IMpesaClient_QueryLipaNaMpesaTransaction_" data-uid="MpesaLib.IMpesaClient.QueryLipaNaMpesaTransaction*"></a>
+  
+  <h4 id="MpesaLib_IMpesaClient_QueryLipaNaMpesaTransaction_MpesaLib_LipaNaMpesaQueryDto_System_String_System_String_" data-uid="MpesaLib.IMpesaClient.QueryLipaNaMpesaTransaction(MpesaLib.LipaNaMpesaQueryDto,System.String,System.String)"><a href="#collapsible-MpesaLib_IMpesaClient_QueryLipaNaMpesaTransaction_MpesaLib_LipaNaMpesaQueryDto_System_String_System_String_" class="expander" data-toggle="collapse">QueryLipaNaMpesaTransaction(LipaNaMpesaQueryDto, String, String)</a></h4>
+  
+  <div id="collapsible-MpesaLib_IMpesaClient_QueryLipaNaMpesaTransaction_MpesaLib_LipaNaMpesaQueryDto_System_String_System_String_" class="collapse in">
+  <div class="markdown level1 summary"><p>Queries Mpesa Online Transaction Status.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string QueryLipaNaMpesaTransaction(LipaNaMpesaQueryDto mpesaTransactionQueryDto, string accesstoken, string requestEndPoint)</code></pre>
+  </div>
+
+  <h5 class="parameters">Parameters</h5>
+  <table>
+    <tr>
+      <td>
+        <span class="pull-right"><a class="xref" href="MpesaLib.LipaNaMpesaQueryDto.html">LipaNaMpesaQueryDto</a></span>
+        <span class="parametername">mpesaTransactionQueryDto</span>
+        <p><p>Transaction Query Data transfer object.</p>
+</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span class="pull-right"><span class="xref">System.String</span></span>
+        <span class="parametername">accesstoken</span>
+        <p><p>Acccesstoken retrieved by the <code>GetAuthTokenAsync</code> method.</p>
+</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span class="pull-right"><span class="xref">System.String</span></span>
+        <span class="parametername">requestEndPoint</span>
+        <p><p>Set to <code>RequestEndPoint.QueryLipaNaMpesaOnlieTransaction</code></p>
+</p>
+      </td>
+    </tr>
+  </table>
+  
+  <h5 class="returns">Returns</h5>
+  <table>
+    <tr>
+      <td>
+        <span class="xref">System.String</span>
+        <p><p>A JSON string containing data from MPESA API reposnse.</p>
+</p>
+      </td>
+    </tr>
+  </table>
+  
+  
+  
+  
+  
+  
+  
+  <h5 id="MpesaLib_IMpesaClient_QueryLipaNaMpesaTransaction_MpesaLib_LipaNaMpesaQueryDto_System_String_System_String__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Use only for transactions initiated with <code>MakeLipaNaMpesaOnlinePayment</code> method.
+For Other transaction based methods (C2B, B2C, B2B, Accountbalance, Reversal)
+use <code>QueryMpesaTransactionStatusAsync</code> method.</p>
+</div>
+  
+  
+  
+  </div>
+  
+  <span class="small pull-right mobile-hide">
+    <span class="divider"> </span>
+    <a href="https://github.com/ayiemba/MpesaLib/new/Dev/apiSpec/new?filename=MpesaLib_IMpesaClient_QueryLipaNaMpesaTransactionAsync_MpesaLib_LipaNaMpesaQueryDto_System_String_System_String_.md&amp;value=---%0Auid%3A%20MpesaLib.IMpesaClient.QueryLipaNaMpesaTransactionAsync(MpesaLib.LipaNaMpesaQueryDto%2CSystem.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ayiemba/MpesaLib/blob/Dev/src/MpesaLib/IMpesaClient.cs/#L70" title="View Source"><i class="fa fa-code"></i></a>
+  </span>
+  
+  <a id="MpesaLib_IMpesaClient_QueryLipaNaMpesaTransactionAsync_" data-uid="MpesaLib.IMpesaClient.QueryLipaNaMpesaTransactionAsync*"></a>
+  
+  <h4 id="MpesaLib_IMpesaClient_QueryLipaNaMpesaTransactionAsync_MpesaLib_LipaNaMpesaQueryDto_System_String_System_String_" data-uid="MpesaLib.IMpesaClient.QueryLipaNaMpesaTransactionAsync(MpesaLib.LipaNaMpesaQueryDto,System.String,System.String)"><a href="#collapsible-MpesaLib_IMpesaClient_QueryLipaNaMpesaTransactionAsync_MpesaLib_LipaNaMpesaQueryDto_System_String_System_String_" class="expander" data-toggle="collapse">QueryLipaNaMpesaTransactionAsync(LipaNaMpesaQueryDto, String, String)</a></h4>
+  
+  <div id="collapsible-MpesaLib_IMpesaClient_QueryLipaNaMpesaTransactionAsync_MpesaLib_LipaNaMpesaQueryDto_System_String_System_String_" class="collapse in">
+  <div class="markdown level1 summary"><p>Queries Mpesa Online Transaction Status</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;string&gt; QueryLipaNaMpesaTransactionAsync(LipaNaMpesaQueryDto mpesaTransactionQueryDto, string accesstoken, string requestEndPoint)</code></pre>
+  </div>
+
+  <h5 class="parameters">Parameters</h5>
+  <table>
+    <tr>
+      <td>
+        <span class="pull-right"><a class="xref" href="MpesaLib.LipaNaMpesaQueryDto.html">LipaNaMpesaQueryDto</a></span>
+        <span class="parametername">mpesaTransactionQueryDto</span>
+        <p><p>Transaction Query Data transfer object</p>
+</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span class="pull-right"><span class="xref">System.String</span></span>
+        <span class="parametername">accesstoken</span>
+        <p><p>Acccesstoken retrieved by the <code>GetAuthTokenAsync</code> method.</p>
+</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span class="pull-right"><span class="xref">System.String</span></span>
+        <span class="parametername">requestEndPoint</span>
+        <p><p>Set to <code>RequestEndPoint.QueryLipaNaMpesaOnlieTransaction</code></p>
+</p>
+      </td>
+    </tr>
+  </table>
+  
+  <h5 class="returns">Returns</h5>
+  <table>
+    <tr>
+      <td>
+        <span class="xref">System.Threading.Tasks.Task</span>&lt;<span class="xref">System.String</span>&gt;
+        <p><p>A JSON string containing data from MPESA API reposnse</p>
+</p>
+      </td>
+    </tr>
+  </table>
+  
+  
+  
+  
+  
+  
+  
+  <h5 id="MpesaLib_IMpesaClient_QueryLipaNaMpesaTransactionAsync_MpesaLib_LipaNaMpesaQueryDto_System_String_System_String__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Use only for transactions initiated with <code>MakeLipaNaMpesaOnlinePayment</code> method.
+For Other transaction based methods (C2B,B2C,B2B) use <code>QueryMpesaTransactionStatusAsync</code> method.</p>
+</div>
+  
+  
+  
+  </div>
+  
+  <span class="small pull-right mobile-hide">
+    <span class="divider"> </span>
+    <a href="https://github.com/ayiemba/MpesaLib/new/Dev/apiSpec/new?filename=MpesaLib_IMpesaClient_QueryMpesaTransactionStatus_MpesaLib_MpesaTransactionStatusDto_System_String_System_String_.md&amp;value=---%0Auid%3A%20MpesaLib.IMpesaClient.QueryMpesaTransactionStatus(MpesaLib.MpesaTransactionStatusDto%2CSystem.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ayiemba/MpesaLib/blob/Dev/src/MpesaLib/IMpesaClient.cs/#L243" title="View Source"><i class="fa fa-code"></i></a>
+  </span>
+  
+  <a id="MpesaLib_IMpesaClient_QueryMpesaTransactionStatus_" data-uid="MpesaLib.IMpesaClient.QueryMpesaTransactionStatus*"></a>
+  
+  <h4 id="MpesaLib_IMpesaClient_QueryMpesaTransactionStatus_MpesaLib_MpesaTransactionStatusDto_System_String_System_String_" data-uid="MpesaLib.IMpesaClient.QueryMpesaTransactionStatus(MpesaLib.MpesaTransactionStatusDto,System.String,System.String)"><a href="#collapsible-MpesaLib_IMpesaClient_QueryMpesaTransactionStatus_MpesaLib_MpesaTransactionStatusDto_System_String_System_String_" class="expander" data-toggle="collapse">QueryMpesaTransactionStatus(MpesaTransactionStatusDto, String, String)</a></h4>
+  
+  <div id="collapsible-MpesaLib_IMpesaClient_QueryMpesaTransactionStatus_MpesaLib_MpesaTransactionStatusDto_System_String_System_String_" class="collapse in">
+  <div class="markdown level1 summary"><p>Queries the status of an Mpesa Transaction.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string QueryMpesaTransactionStatus(MpesaTransactionStatusDto mpesaTransactionStatusDto, string accesstoken, string requestEndPoint)</code></pre>
+  </div>
+
+  <h5 class="parameters">Parameters</h5>
+  <table>
+    <tr>
+      <td>
+        <span class="pull-right"><a class="xref" href="MpesaLib.MpesaTransactionStatusDto.html">MpesaTransactionStatusDto</a></span>
+        <span class="parametername">mpesaTransactionStatusDto</span>
+        <p><p>Transaction Status data transfer object.</p>
+</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span class="pull-right"><span class="xref">System.String</span></span>
+        <span class="parametername">accesstoken</span>
+        <p><p>Acccesstoken retrieved by the <code>GetAuthTokenAsync</code> method.</p>
+</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span class="pull-right"><span class="xref">System.String</span></span>
+        <span class="parametername">requestEndPoint</span>
+        <p><p>Set to <code>RequestEndPoint.QueryMpesaTransactionStatus</code></p>
+</p>
+      </td>
+    </tr>
+  </table>
+  
+  <h5 class="returns">Returns</h5>
+  <table>
+    <tr>
+      <td>
+        <span class="xref">System.String</span>
+        <p><p>A JSON string containing data from MPESA API reposnse.</p>
+</p>
+      </td>
+    </tr>
+  </table>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  </div>
+  
+  <span class="small pull-right mobile-hide">
+    <span class="divider"> </span>
+    <a href="https://github.com/ayiemba/MpesaLib/new/Dev/apiSpec/new?filename=MpesaLib_IMpesaClient_QueryMpesaTransactionStatusAsync_MpesaLib_MpesaTransactionStatusDto_System_String_System_String_.md&amp;value=---%0Auid%3A%20MpesaLib.IMpesaClient.QueryMpesaTransactionStatusAsync(MpesaLib.MpesaTransactionStatusDto%2CSystem.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ayiemba/MpesaLib/blob/Dev/src/MpesaLib/IMpesaClient.cs/#L233" title="View Source"><i class="fa fa-code"></i></a>
+  </span>
+  
+  <a id="MpesaLib_IMpesaClient_QueryMpesaTransactionStatusAsync_" data-uid="MpesaLib.IMpesaClient.QueryMpesaTransactionStatusAsync*"></a>
+  
+  <h4 id="MpesaLib_IMpesaClient_QueryMpesaTransactionStatusAsync_MpesaLib_MpesaTransactionStatusDto_System_String_System_String_" data-uid="MpesaLib.IMpesaClient.QueryMpesaTransactionStatusAsync(MpesaLib.MpesaTransactionStatusDto,System.String,System.String)"><a href="#collapsible-MpesaLib_IMpesaClient_QueryMpesaTransactionStatusAsync_MpesaLib_MpesaTransactionStatusDto_System_String_System_String_" class="expander" data-toggle="collapse">QueryMpesaTransactionStatusAsync(MpesaTransactionStatusDto, String, String)</a></h4>
+  
+  <div id="collapsible-MpesaLib_IMpesaClient_QueryMpesaTransactionStatusAsync_MpesaLib_MpesaTransactionStatusDto_System_String_System_String_" class="collapse in">
+  <div class="markdown level1 summary"><p>Queries the status of an Mpesa Transaction.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;string&gt; QueryMpesaTransactionStatusAsync(MpesaTransactionStatusDto mpesaTransactionStatusDto, string accesstoken, string requestEndPoint)</code></pre>
+  </div>
+
+  <h5 class="parameters">Parameters</h5>
+  <table>
+    <tr>
+      <td>
+        <span class="pull-right"><a class="xref" href="MpesaLib.MpesaTransactionStatusDto.html">MpesaTransactionStatusDto</a></span>
+        <span class="parametername">mpesaTransactionStatusDto</span>
+        <p><p>Transaction Status data transfer object.</p>
+</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span class="pull-right"><span class="xref">System.String</span></span>
+        <span class="parametername">accesstoken</span>
+        <p><p>Acccesstoken retrieved by the <code>GetAuthTokenAsync</code> method.</p>
+</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span class="pull-right"><span class="xref">System.String</span></span>
+        <span class="parametername">requestEndPoint</span>
+        <p><p>Set to <code>RequestEndPoint.QueryMpesaTransactionStatus</code></p>
+</p>
+      </td>
+    </tr>
+  </table>
+  
+  <h5 class="returns">Returns</h5>
+  <table>
+    <tr>
+      <td>
+        <span class="xref">System.Threading.Tasks.Task</span>&lt;<span class="xref">System.String</span>&gt;
+        <p><p>A JSON string containing data from MPESA API reposnse.</p>
+</p>
+      </td>
+    </tr>
+  </table>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  </div>
+  
+  <span class="small pull-right mobile-hide">
+    <span class="divider"> </span>
+    <a href="https://github.com/ayiemba/MpesaLib/new/Dev/apiSpec/new?filename=MpesaLib_IMpesaClient_RegisterC2BUrl_MpesaLib_CustomerToBusinessRegisterUrlDto_System_String_System_String_.md&amp;value=---%0Auid%3A%20MpesaLib.IMpesaClient.RegisterC2BUrl(MpesaLib.CustomerToBusinessRegisterUrlDto%2CSystem.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ayiemba/MpesaLib/blob/Dev/src/MpesaLib/IMpesaClient.cs/#L203" title="View Source"><i class="fa fa-code"></i></a>
+  </span>
+  
+  <a id="MpesaLib_IMpesaClient_RegisterC2BUrl_" data-uid="MpesaLib.IMpesaClient.RegisterC2BUrl*"></a>
+  
+  <h4 id="MpesaLib_IMpesaClient_RegisterC2BUrl_MpesaLib_CustomerToBusinessRegisterUrlDto_System_String_System_String_" data-uid="MpesaLib.IMpesaClient.RegisterC2BUrl(MpesaLib.CustomerToBusinessRegisterUrlDto,System.String,System.String)"><a href="#collapsible-MpesaLib_IMpesaClient_RegisterC2BUrl_MpesaLib_CustomerToBusinessRegisterUrlDto_System_String_System_String_" class="expander" data-toggle="collapse">RegisterC2BUrl(CustomerToBusinessRegisterUrlDto, String, String)</a></h4>
+  
+  <div id="collapsible-MpesaLib_IMpesaClient_RegisterC2BUrl_MpesaLib_CustomerToBusinessRegisterUrlDto_System_String_System_String_" class="collapse in">
+  <div class="markdown level1 summary"><p>Registers Customer to Business Confirmation and Validation URLs.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string RegisterC2BUrl(CustomerToBusinessRegisterUrlDto customerToBusinessRegisterUrlDto, string accesstoken, string requestEndPoint)</code></pre>
+  </div>
+
+  <h5 class="parameters">Parameters</h5>
+  <table>
+    <tr>
+      <td>
+        <span class="pull-right"><a class="xref" href="MpesaLib.CustomerToBusinessRegisterUrlDto.html">CustomerToBusinessRegisterUrlDto</a></span>
+        <span class="parametername">customerToBusinessRegisterUrlDto</span>
+        <p><p>C2B Register URLs data transfer object.</p>
+</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span class="pull-right"><span class="xref">System.String</span></span>
+        <span class="parametername">accesstoken</span>
+        <p><p>Acccesstoken retrieved by the <code>GetAuthTokenAsync</code> method.</p>
+</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span class="pull-right"><span class="xref">System.String</span></span>
+        <span class="parametername">requestEndPoint</span>
+        <p><p>Set to <code>RequestEndPoint.RegisterC2BUrl</code></p>
+</p>
+      </td>
+    </tr>
+  </table>
+  
+  <h5 class="returns">Returns</h5>
+  <table>
+    <tr>
+      <td>
+        <span class="xref">System.String</span>
+        <p><p>A JSON string containing data from MPESA API reposnse.</p>
+</p>
+      </td>
+    </tr>
+  </table>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  </div>
+  
+  <span class="small pull-right mobile-hide">
+    <span class="divider"> </span>
+    <a href="https://github.com/ayiemba/MpesaLib/new/Dev/apiSpec/new?filename=MpesaLib_IMpesaClient_RegisterC2BUrlAsync_MpesaLib_CustomerToBusinessRegisterUrlDto_System_String_System_String_.md&amp;value=---%0Auid%3A%20MpesaLib.IMpesaClient.RegisterC2BUrlAsync(MpesaLib.CustomerToBusinessRegisterUrlDto%2CSystem.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ayiemba/MpesaLib/blob/Dev/src/MpesaLib/IMpesaClient.cs/#L193" title="View Source"><i class="fa fa-code"></i></a>
+  </span>
+  
+  <a id="MpesaLib_IMpesaClient_RegisterC2BUrlAsync_" data-uid="MpesaLib.IMpesaClient.RegisterC2BUrlAsync*"></a>
+  
+  <h4 id="MpesaLib_IMpesaClient_RegisterC2BUrlAsync_MpesaLib_CustomerToBusinessRegisterUrlDto_System_String_System_String_" data-uid="MpesaLib.IMpesaClient.RegisterC2BUrlAsync(MpesaLib.CustomerToBusinessRegisterUrlDto,System.String,System.String)"><a href="#collapsible-MpesaLib_IMpesaClient_RegisterC2BUrlAsync_MpesaLib_CustomerToBusinessRegisterUrlDto_System_String_System_String_" class="expander" data-toggle="collapse">RegisterC2BUrlAsync(CustomerToBusinessRegisterUrlDto, String, String)</a></h4>
+  
+  <div id="collapsible-MpesaLib_IMpesaClient_RegisterC2BUrlAsync_MpesaLib_CustomerToBusinessRegisterUrlDto_System_String_System_String_" class="collapse in">
+  <div class="markdown level1 summary"><p>Registers Customer to Business Confirmation and Validation URLs.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;string&gt; RegisterC2BUrlAsync(CustomerToBusinessRegisterUrlDto customerToBusinessRegisterUrlDto, string accesstoken, string requestEndPoint)</code></pre>
+  </div>
+
+  <h5 class="parameters">Parameters</h5>
+  <table>
+    <tr>
+      <td>
+        <span class="pull-right"><a class="xref" href="MpesaLib.CustomerToBusinessRegisterUrlDto.html">CustomerToBusinessRegisterUrlDto</a></span>
+        <span class="parametername">customerToBusinessRegisterUrlDto</span>
+        <p><p>C2B Register URLs data transfer object.</p>
+</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span class="pull-right"><span class="xref">System.String</span></span>
+        <span class="parametername">accesstoken</span>
+        <p><p>Acccesstoken retrieved by the <code>GetAuthTokenAsync</code> method.</p>
+</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span class="pull-right"><span class="xref">System.String</span></span>
+        <span class="parametername">requestEndPoint</span>
+        <p><p>Set to <code>RequestEndPoint.RegisterC2BUrl</code></p>
+</p>
+      </td>
+    </tr>
+  </table>
+  
+  <h5 class="returns">Returns</h5>
+  <table>
+    <tr>
+      <td>
+        <span class="xref">System.Threading.Tasks.Task</span>&lt;<span class="xref">System.String</span>&gt;
+        <p><p>A JSON string containing data from MPESA API reposnse.</p>
+</p>
+      </td>
+    </tr>
+  </table>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  </div>
+  
+  <span class="small pull-right mobile-hide">
+    <span class="divider"> </span>
+    <a href="https://github.com/ayiemba/MpesaLib/new/Dev/apiSpec/new?filename=MpesaLib_IMpesaClient_ReverseMpesaTransaction_MpesaLib_ReversalDto_System_String_System_String_.md&amp;value=---%0Auid%3A%20MpesaLib.IMpesaClient.ReverseMpesaTransaction(MpesaLib.ReversalDto%2CSystem.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ayiemba/MpesaLib/blob/Dev/src/MpesaLib/IMpesaClient.cs/#L223" title="View Source"><i class="fa fa-code"></i></a>
+  </span>
+  
+  <a id="MpesaLib_IMpesaClient_ReverseMpesaTransaction_" data-uid="MpesaLib.IMpesaClient.ReverseMpesaTransaction*"></a>
+  
+  <h4 id="MpesaLib_IMpesaClient_ReverseMpesaTransaction_MpesaLib_ReversalDto_System_String_System_String_" data-uid="MpesaLib.IMpesaClient.ReverseMpesaTransaction(MpesaLib.ReversalDto,System.String,System.String)"><a href="#collapsible-MpesaLib_IMpesaClient_ReverseMpesaTransaction_MpesaLib_ReversalDto_System_String_System_String_" class="expander" data-toggle="collapse">ReverseMpesaTransaction(ReversalDto, String, String)</a></h4>
+  
+  <div id="collapsible-MpesaLib_IMpesaClient_ReverseMpesaTransaction_MpesaLib_ReversalDto_System_String_System_String_" class="collapse in">
+  <div class="markdown level1 summary"><p>Reverses a Mpesa Transaction.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string ReverseMpesaTransaction(ReversalDto reversalDto, string accesstoken, string requestEndPoint)</code></pre>
+  </div>
+
+  <h5 class="parameters">Parameters</h5>
+  <table>
+    <tr>
+      <td>
+        <span class="pull-right"><a class="xref" href="MpesaLib.ReversalDto.html">ReversalDto</a></span>
+        <span class="parametername">reversalDto</span>
+        <p><p>Reversal data transfer object.</p>
+</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span class="pull-right"><span class="xref">System.String</span></span>
+        <span class="parametername">accesstoken</span>
+        <p><p>Acccesstoken retrieved by the <code>GetAuthTokenAsync</code> method.</p>
+</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span class="pull-right"><span class="xref">System.String</span></span>
+        <span class="parametername">requestEndPoint</span>
+        <p><p>Set to <code>RequestEndPoint.ReverseMpesaTransaction</code></p>
+</p>
+      </td>
+    </tr>
+  </table>
+  
+  <h5 class="returns">Returns</h5>
+  <table>
+    <tr>
+      <td>
+        <span class="xref">System.String</span>
+        <p><p>A JSON string containing data from MPESA API reposnse.</p>
+</p>
+      </td>
+    </tr>
+  </table>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  </div>
+  
+  <span class="small pull-right mobile-hide">
+    <span class="divider"> </span>
+    <a href="https://github.com/ayiemba/MpesaLib/new/Dev/apiSpec/new?filename=MpesaLib_IMpesaClient_ReverseMpesaTransactionAsync_MpesaLib_ReversalDto_System_String_System_String_.md&amp;value=---%0Auid%3A%20MpesaLib.IMpesaClient.ReverseMpesaTransactionAsync(MpesaLib.ReversalDto%2CSystem.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc"><i class="fa fa-pencil"></i></a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ayiemba/MpesaLib/blob/Dev/src/MpesaLib/IMpesaClient.cs/#L213" title="View Source"><i class="fa fa-code"></i></a>
+  </span>
+  
+  <a id="MpesaLib_IMpesaClient_ReverseMpesaTransactionAsync_" data-uid="MpesaLib.IMpesaClient.ReverseMpesaTransactionAsync*"></a>
+  
+  <h4 id="MpesaLib_IMpesaClient_ReverseMpesaTransactionAsync_MpesaLib_ReversalDto_System_String_System_String_" data-uid="MpesaLib.IMpesaClient.ReverseMpesaTransactionAsync(MpesaLib.ReversalDto,System.String,System.String)"><a href="#collapsible-MpesaLib_IMpesaClient_ReverseMpesaTransactionAsync_MpesaLib_ReversalDto_System_String_System_String_" class="expander" data-toggle="collapse">ReverseMpesaTransactionAsync(ReversalDto, String, String)</a></h4>
+  
+  <div id="collapsible-MpesaLib_IMpesaClient_ReverseMpesaTransactionAsync_MpesaLib_ReversalDto_System_String_System_String_" class="collapse in">
+  <div class="markdown level1 summary"><p>Reverses a Mpesa Transaction.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;string&gt; ReverseMpesaTransactionAsync(ReversalDto reversalDto, string accesstoken, string requestEndPoint)</code></pre>
+  </div>
+
+  <h5 class="parameters">Parameters</h5>
+  <table>
+    <tr>
+      <td>
+        <span class="pull-right"><a class="xref" href="MpesaLib.ReversalDto.html">ReversalDto</a></span>
+        <span class="parametername">reversalDto</span>
+        <p><p>Reversal data transfer object.</p>
+</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span class="pull-right"><span class="xref">System.String</span></span>
+        <span class="parametername">accesstoken</span>
+        <p><p>Acccesstoken retrieved by the <code>GetAuthTokenAsync</code> method.</p>
+</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span class="pull-right"><span class="xref">System.String</span></span>
+        <span class="parametername">requestEndPoint</span>
+        <p><p>Set to <code>RequestEndPoint.ReverseMpesaTransaction</code></p>
+</p>
+      </td>
+    </tr>
+  </table>
+  
+  <h5 class="returns">Returns</h5>
+  <table>
+    <tr>
+      <td>
+        <span class="xref">System.Threading.Tasks.Task</span>&lt;<span class="xref">System.String</span>&gt;
+        <p><p>A JSON string containing data from MPESA API reposnse.</p>
+</p>
+      </td>
+    </tr>
+  </table>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  </div>
+  
+  
+</article>
+          </div>
+          <div class="contribution-panel mobile-hide">
+              <a href="https://github.com/ayiemba/MpesaLib/new/Dev/apiSpec/new?filename=MpesaLib_IMpesaClient.md&amp;value=---%0Auid%3A%20MpesaLib.IMpesaClient%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" title="Improve this Doc" class="fab btn-warning pull-right"><i class="glyphicon glyphicon-pencil"></i></a>
+              <a href="https://github.com/ayiemba/MpesaLib/blob/Dev/src/MpesaLib/IMpesaClient.cs/#L12" title="View Source" class="fab btn-info pull-right"><i class="fa fa-code"></i></a>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
