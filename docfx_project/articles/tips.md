@@ -19,7 +19,7 @@ using MpesaLib.Helpers; // Add this to your class
 ```
 
 ## Async vs Sync Tips
-**MpesaLib Clients provide two methods, one asynchronous and one synchronous. For Example the ```ReverseMpesaTransactionAsync()``` Vs ```ReverseMpesaTransaction()```.
+MpesaLib Clients provide two methods, one asynchronous and one synchronous. For Example the ```ReverseMpesaTransactionAsync()``` Vs ```ReverseMpesaTransaction()```.
 
 Use Asynchronous method in a method/controller that has the async keyword.
 Use Syncronous method in a method/controller that does not have the async keyword.
