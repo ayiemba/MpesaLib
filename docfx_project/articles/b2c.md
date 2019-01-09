@@ -2,7 +2,7 @@
 ## B2C Payment Request
 ```c#
 //B2C Object
-var BusinessToCustomerObject = new BusinessToCustomer
+var BusinessToCustomerObject = new BusinessToCustomerDto
 {
 	Remarks = "test",
 	Amount = "1",
@@ -11,9 +11,9 @@ var BusinessToCustomerObject = new BusinessToCustomer
 	Occasion = "test",
 	PartyA = "603047",
 	PartyB = "254708374149",
-	QueueTimeOutURL = "https://blablabala/timeoutendpoint",
-	ResultURL = "https://blablabala/resultendpoint",
-	SecurityCredential = B2CsecurityCred //see #12 below on how to get security credential
+	QueueTimeOutURL = "https://blablabla/timeoutendpoint",
+	ResultURL = "https://blablabla/resultendpoint",
+	SecurityCredential = "" 
 };
 var b2crequest = await _mpesaClient.MakeB2CPaymentAsync(BusinessToCustomerObject, accesstoken, "mpesa/b2c/v1/paymentrequest");
 ```

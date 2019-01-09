@@ -9,7 +9,7 @@ var AccountBalanceObject = new AccountBalanceDto
 	QueueTimeOutURL = "",
 	ResultURL = "",
 	Remarks = "",
-	SecurityCredential = "", //see #12 below on how to get security credential
+	SecurityCredential = "", 
 };
 var accountbalancerequest = await _mpesaClient.QueryAccountBalanceAsync(AccountBalanceObject, accesstoken, "mpesa/accountbalance/v1/query");
 ```
