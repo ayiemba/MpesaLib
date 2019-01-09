@@ -25,4 +25,4 @@
 - name: Handling Callbacks
   href: callbacks.md
 - name: Pitfalls and Remedies
-  href: commonpitfalls.md
+  href: tips.md

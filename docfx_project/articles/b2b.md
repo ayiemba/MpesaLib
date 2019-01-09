@@ -10,11 +10,11 @@ var BusinessToBusinessObject = new BusinessToBusinessDto
 	PartyA = "603047",
 	PartyB = "600000",
 	CommandID = "MerchantToMerchantTransfer",// Please chack the correct command from Daraja
-	QueueTimeOutURL = "https://blablabala/callback",
+	QueueTimeOutURL = "https://blablabla/callback",
 	RecieverIdentifierType = "4", //Read on identifier types from daraja
-	SecurityCredential = B2BsecurityCred, // See #12 on how to generate security credential
+	SecurityCredential = "", // Use MpesaLib.Helpers.Credentisla class to generate security credential
 	SenderIdentifierType = "4",
-	ResultURL = "https://blablabala/callback",
+	ResultURL = "https://blablabla/callback",
 	Remarks = "payment"
 };
 

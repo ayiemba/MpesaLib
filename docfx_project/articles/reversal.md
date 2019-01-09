@@ -3,15 +3,14 @@
 ```c#
 var TransactionReversalObject = new ReversalDto
 {
-	Initiator = "",
-	Amount = "",
+	Initiator = "",	
 	Occasion = "",
 	ReceiverParty = "",
 	RecieverIdentifierType = "",
 	QueueTimeOutURL = "",
 	ResultURL = "",
 	TransactionID = "",
-	SecurityCredential = "", //see #12 below on how to get security credential
+	SecurityCredential = "", 
 	Remarks = "",
 
 };
