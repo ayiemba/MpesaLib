@@ -8,5 +8,5 @@
 - [NuGet Package](https://www.nuget.org/packages/MpesaLib/)
 - [Release Notes](https://github.com/ayiemba/MpesaLib/releases)
 - [Contributing Guidelines](https://ayiemba.github.io/MpesaLib/articles/contributing.html)
-- [License](https://ayiemba.github.io/MpesaLib/articles/license.html)
+- [End User License](https://ayiemba.github.io/MpesaLib/articles/license.html)
 - [Mpesa Daraja Portal](https://developer.safaricom.co.ke/)
