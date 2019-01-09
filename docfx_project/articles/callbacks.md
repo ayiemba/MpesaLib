@@ -1,2 +1,2 @@
 ## How to handle/process callbacks
-### *Docs coming soon
+### *Docs coming soon*
