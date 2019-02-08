@@ -71,15 +71,19 @@
 
 <pre><code class="lang-c#">var AccountBalanceObject = new AccountBalanceDto
 {	
-	IdentifierType = &quot;&quot;,
-	Initiator = &quot;&quot;,
-	PartyA = &quot;&quot;,
+	IdentifierType = &quot;&quot;,// 4 for Paybill 2 for Till
+	Initiator = &quot;&quot;, //Initiator password
+	PartyA = &quot;&quot;, 
 	QueueTimeOutURL = &quot;&quot;,
 	ResultURL = &quot;&quot;,
 	Remarks = &quot;&quot;,
 	SecurityCredential = &quot;&quot;, 
 };
-var accountbalancerequest = await _mpesaClient.QueryAccountBalanceAsync(AccountBalanceObject, accesstoken, &quot;mpesa/accountbalance/v1/query&quot;);
+
+var accountbalancerequest = await _mpesaClient.QueryAccountBalanceAsync(AccountBalanceObject, accesstoken, RequestEndPoint.QueryAccountBalance); //async method
+
+var accountbalancerequest = await _mpesaClient.QueryAccountBalance(AccountBalanceObject, accesstoken, RequestEndPoint.QueryAccountBalance); //non-async method
+
 </code></pre>
 </article>
           </div>

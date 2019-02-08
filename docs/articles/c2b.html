@@ -76,7 +76,8 @@
 	ResponseType = &quot;Cancelled&quot;,
 	ShortCode = &quot;603047&quot;
 };
-var c2bRegisterUrlrequest = await _mpesaClient.RegisterC2BUrlAsync(RegisterC2BUrlObject, accesstoken, &quot;mpesa/c2b/v1/registerurl&quot;);
+
+var c2bRegisterUrlrequest = await _mpesaClient.RegisterC2BUrlAsync(RegisterC2BUrlObject, accesstoken, RequestEndPoint.RegisterC2BUrl);
 </code></pre>
 <h2 id="c2b-payment-request">C2B Payment Request</h2>
 <pre><code class="lang-c#">//C2B Object
@@ -89,7 +90,7 @@ Var CustomerToBusinessSimulateObject = new CustomerToBusinessSimulateDto
 	CommandID = &quot;CustomerPayBillOnline&quot;
 };
 
-var c2brequest = await _mpesaClient.MakeC2BPaymentAsync(CustomerToBusinessSimulateObject, accesstoken, &quot;mpesa/c2b/v1/simulate&quot;);
+var c2brequest = await _mpesaClient.MakeC2BPaymentAsync(CustomerToBusinessSimulateObject, accesstoken, RequestEndPoint.CustomerToBusinessSimulate);
 </code></pre>
 </article>
           </div>
