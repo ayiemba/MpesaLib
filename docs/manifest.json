@@ -306,6 +306,7 @@
         ".html": {
           "relative_path": "articles/accountbalance.html",
           "hash": "eM3hjbRZHU+32U53BS3gfg=="
+
         }
       },
       "is_incremental": false,
@@ -318,6 +319,7 @@
         ".html": {
           "relative_path": "articles/b2b.html",
           "hash": "3MLCO8wAfBVL2nOcNKXrWg=="
+
         }
       },
       "is_incremental": false,
@@ -450,6 +452,18 @@
         ".html": {
           "relative_path": "articles/tips.html",
           "hash": "93GCYo06lhI8oITys2up9w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/tips.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/tips.html",
+          "hash": "UAJ4gP1hchQ3t3OL87gXEA=="
         }
       },
       "is_incremental": false,

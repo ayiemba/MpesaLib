@@ -19,4 +19,5 @@ var BusinessToBusinessObject = new BusinessToBusinessDto
 };
 
 var b2brequest = await _mpesaClient.MakeB2BPaymentAsync(BusinessToBusinessObject, accesstoken, RequestEndPoint.BusinessToBusiness);
+
 ```
