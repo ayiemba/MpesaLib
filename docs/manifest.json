@@ -305,7 +305,8 @@
       "output": {
         ".html": {
           "relative_path": "articles/accountbalance.html",
-          "hash": "4SgA0YOlnfX0GJQj7iDbFw=="
+          "hash": "eM3hjbRZHU+32U53BS3gfg=="
+
         }
       },
       "is_incremental": false,
@@ -317,7 +318,8 @@
       "output": {
         ".html": {
           "relative_path": "articles/b2b.html",
-          "hash": "sZHqr03SOIiKNXLso1oyCQ=="
+          "hash": "3MLCO8wAfBVL2nOcNKXrWg=="
+
         }
       },
       "is_incremental": false,
@@ -329,7 +331,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/b2c.html",
-          "hash": "IVomaf4dUAeEMU+sWZQKkQ=="
+          "hash": "Km37vr2TWCdhzsjcmlGbYQ=="
         }
       },
       "is_incremental": false,
@@ -341,7 +343,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/c2b.html",
-          "hash": "oBkEpCwl9p8d2Iw7Owrggg=="
+          "hash": "AfzR5HQkki7kxnsa5w9WgA=="
         }
       },
       "is_incremental": false,
@@ -353,7 +355,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/callbacks.html",
-          "hash": "N63PjycA5JuDdKqvQduWiw=="
+          "hash": "Ult0uX81a+7pIbm9cqRHyQ=="
         }
       },
       "is_incremental": false,
@@ -377,7 +379,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/intro.html",
-          "hash": "2EVaVlt8zeOYJidFqgtJ8Q=="
+          "hash": "Dfp0qOpN1vxzebsciKm/dg=="
         }
       },
       "is_incremental": false,
@@ -401,7 +403,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/reversal.html",
-          "hash": "RsEtevI5xiMvri14xV7PQQ=="
+          "hash": "K6CMHZKqIxuEQktS9QKNOw=="
         }
       },
       "is_incremental": false,
@@ -413,7 +415,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/roadmap.html",
-          "hash": "gl6Q4YE6DrJ8DFlYRFydkw=="
+          "hash": "Q/RPpkG/yqEpknJDUToJqg=="
         }
       },
       "is_incremental": false,
@@ -425,7 +427,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/stkpush.html",
-          "hash": "nZstTSedoa3F32SuAjni4w=="
+          "hash": "0522wjIIMDG3t7bdVbbSzA=="
         }
       },
       "is_incremental": false,
@@ -437,7 +439,19 @@
       "output": {
         ".html": {
           "relative_path": "articles/stkpushstatus.html",
-          "hash": "eBrXteJtYVITQ4StvDybgA=="
+          "hash": "BCchsUo0hi+Gl78GxDVbcA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/tips.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/tips.html",
+          "hash": "93GCYo06lhI8oITys2up9w=="
         }
       },
       "is_incremental": false,
@@ -461,7 +475,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/transactionstatus.html",
-          "hash": "+2PbViT0Tju1WdveywJiVg=="
+          "hash": "J9u+cy/15bD9kvtUKX7UTw=="
         }
       },
       "is_incremental": false,

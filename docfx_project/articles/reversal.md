@@ -14,5 +14,7 @@ var TransactionReversalObject = new ReversalDto
 	Remarks = "",
 
 };
-var reversalrequest = await _mpesaClient.ReverseMpesaTransactionAsync(TransactionReversalObject, accesstoken, "mpesa/reversal/v1/request");
+
+var reversalrequest = await _mpesaClient.ReverseMpesaTransactionAsync(TransactionReversalObject, accesstoken, RequestEndPoint.ReverseMpesaTransaction);
+
 ```

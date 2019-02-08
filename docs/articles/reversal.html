@@ -82,7 +82,8 @@
 	Remarks = &quot;&quot;,
 
 };
-var reversalrequest = await _mpesaClient.ReverseMpesaTransactionAsync(TransactionReversalObject, accesstoken, &quot;mpesa/reversal/v1/request&quot;);
+
+var reversalrequest = await _mpesaClient.ReverseMpesaTransactionAsync(TransactionReversalObject, accesstoken, RequestEndPoint.ReverseMpesaTransaction);
 </code></pre>
 </article>
           </div>

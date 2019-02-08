@@ -12,7 +12,8 @@ var TransactionStatusObject = new MpesaTransactionStatusDto
 	ResultURL = "",
 	TransactionID = "",
 	Remarks = "",
-	SecurityCredential = "" //see #12 below on how to get security credential
+	SecurityCredential = ""
 };
-var transactionrequest = await _mpesaClient.QueryMpesaTransactionStatusAsync(TransactionStatusObject, accesstoken, "mpesa/transactionstatus/v1/query");
+
+var transactionrequest = await _mpesaClient.QueryMpesaTransactionStatusAsync(TransactionStatusObject, accesstoken, RequestEndPoint.QueryMpesaTransactionStatus);
 ```

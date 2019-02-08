@@ -70,39 +70,18 @@
 <h2 id="getting-security-credential-for-b2b-b2c-reversal-transaction-status-and-account-balance-apis">Getting Security Credential for B2B, B2C, Reversal, Transaction Status and Account Balance APIs</h2>
 
 <p>The Security Credential helper class is in MpesaLib.Helpers namespace.
-The signature is as follows..</p>
-<pre><code class="lang-c#">var SecutityCredential = Credentials.EncryptPassword(pathToSafaricomPublicCertificate, YourInitiatorpassword);
-</code></pre>
-<p>e.g</p>
+
+This class helps you generate the required credential to be used to authorize the above mentioned APIs.</p>
 <pre><code class="lang-c#">using MpesaLib.Helpers; // Add this to your class
 
-//get path of Mpesa public certificate
- string certificate = @&quot;C:\Dev\MpesaIntegration\MpesaLibSamples\WebApplication1\Certificate\prod.cer&quot;;
+//get path of Mpesa public certificate. There are different certs for development and for production, ensure to use the correct one)
+string certificate = @&quot;C:\Dev\MpesaLibSamples\WebApplication1\Certificate\prod.cer&quot;;
  
  //generate security credential as follows...
- var SecutityCredential = Credentials.EncryptPassword(certificate, &quot;971796&quot;);
+var SecutityCredential = Credentials.EncryptPassword(certificate, &quot;Initiator Password&quot;);
 
 </code></pre>
-<h2 id="async-vs-sync-tips">Async vs Sync Tips</h2>
-<p>MpesaLib Clients provide two methods, one asynchronous and one synchronous. For Example the <code>ReverseMpesaTransactionAsync()</code> Vs <code>ReverseMpesaTransaction()</code>.</p>
-<p>Use Asynchronous method in a method/controller that has the async keyword.
-Use Syncronous method in a method/controller that does not have the async keyword.</p>
-<p><em>The Synchronous method actually uses a <code>.GetAwaiter().GetResutl()</code> internally on the HttpClient request so it is not entirely synchronous.</em></p>
-<h2 id="dealing-with-magic-strings">Dealing With Magic Strings</h2>
-<p>From version 3.X.X of MpesaLib you can avoid having to put magic strings in your method calls by taking advantage of the
-<code>MpesaLib.RequestEndPoint</code> class. The RequestEndPoint Class defines all the strings for you so you don't have to worry about getting an endpoints wrong. For example you can do the following..</p>
-<pre><code class="lang-c#">await _mpesaClient.ReverseMpesaTransactionAsync(TransactionReversalObject, accesstoken, RequestEndPoint.ReverseMpesaTransaction);
-</code></pre>
-<p>instead of...</p>
-<pre><code class="lang-c#">await _mpesaClient.ReverseMpesaTransactionAsync(TransactionReversalObject, accesstoken, &quot;mpesa/reversal/v1/request&quot;);
-</code></pre>
-<p>The same when setting BaseAdress...
-For Sandbox:</p>
-<pre><code class="lang-c#">services.AddHttpClient&lt;IMpesaClient, MpesaClient&gt;(opts=&gt;opts.BaseAddress = RequestEndPoint.SandboxBaseAddress);
-</code></pre>
-<p>For Live API:</p>
-<pre><code class="lang-c#">services.AddHttpClient&lt;IMpesaClient, MpesaClient&gt;(opts=&gt;opts.BaseAddress = RequestEndPoint.LiveBaseAddress);
-</code></pre>
+
 </article>
           </div>
           <div class="contribution-panel mobile-hide">
