@@ -10,5 +10,6 @@ var QueryLipaNaMpesaTransactionObject = new LipaNaMpesaQueryDto
 	Timestamp = "" //this will be taken care of with future release of MpesaLib
 
 };
-var stkpushquery = await _mpesaClient.QueryLipaNaMpesaTransactionAsync(QueryLipaNaMpesaTransactionObject, accesstoken, "mpesa/stkpushquery/v1/query");
+
+var stkpushquery = await _mpesaClient.QueryLipaNaMpesaTransactionAsync(QueryLipaNaMpesaTransactionObject, accesstoken, equestEndPoint.QueryLipaNaMpesaOnlieTransaction);
 ```

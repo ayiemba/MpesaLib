@@ -2,7 +2,7 @@
 
 #### Version 3.1.x (Q1 2019)
 - Error handling/logging
-- Tests
+- Writing Tests
 - Improved Documentation
 
 #### Version 3.2.x (Q2 2019)

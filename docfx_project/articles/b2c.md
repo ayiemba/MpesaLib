@@ -15,5 +15,5 @@ var BusinessToCustomerObject = new BusinessToCustomerDto
 	ResultURL = "https://blablabla/resultendpoint",
 	SecurityCredential = "" 
 };
-var b2crequest = await _mpesaClient.MakeB2CPaymentAsync(BusinessToCustomerObject, accesstoken, "mpesa/b2c/v1/paymentrequest");
+var b2crequest = await _mpesaClient.MakeB2CPaymentAsync(BusinessToCustomerObject, accesstoken, RequestEndPoint.BusinessToCustomer);
 ```
