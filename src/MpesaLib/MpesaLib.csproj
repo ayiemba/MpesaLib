@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>      
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Elvis Ayiemba</Authors>
     <Company>Independent Developer</Company>
     <Description>.Net Standard Mpesa API  Library for .NET developers.</Description>
@@ -13,7 +13,7 @@
     <PackageReleaseNotes>
     </PackageReleaseNotes>   
     <IncludeBuildOutput>true</IncludeBuildOutput>   
-    <Version>3.1.201</Version>  
+    <Version>3.1.204</Version>  
    
   </PropertyGroup>
 
