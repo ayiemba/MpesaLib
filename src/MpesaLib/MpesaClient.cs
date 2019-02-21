@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using MpesaLib.Responses;
+using Newtonsoft.Json;
 using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -46,9 +47,9 @@ namespace MpesaLib
 
             var content = response.Content;
 
-            var token = JsonConvert.DeserializeObject<TokenDto>(content.ReadAsStringAsync().Result);
+            var token = JsonConvert.DeserializeObject<TokenResponse>(content.ReadAsStringAsync().Result);
 
-            return token.access_token;
+            return token.AccessToken;
 
         }
 
@@ -75,9 +76,9 @@ namespace MpesaLib
 
             var content = response.Content;
 
-            var token = JsonConvert.DeserializeObject<TokenDto>(content.ReadAsStringAsync().Result);
+            var token = JsonConvert.DeserializeObject<TokenResponse>(content.ReadAsStringAsync().Result);
 
-            return token.access_token;
+            return token.AccessToken;
         }
 
 
