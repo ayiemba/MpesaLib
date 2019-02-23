@@ -364,6 +364,12 @@ namespace MpesaLib
             return await MpesaHttpCall(reversalDto,accesstoken, requestEndPoint, true);
         }
 
+
+        /// <summary>
+        /// Initializes the Httpclient for each handler
+        /// </summary>
+        /// <param name="httpclient">httpclient instance</param>
+        /// <param name="accesstoken">accesstoken</param>
         private static void HttpClientInit(HttpClient httpclient, string accesstoken)
         {
             httpclient.DefaultRequestHeaders.Clear();
@@ -371,6 +377,17 @@ namespace MpesaLib
             httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accesstoken);
         }
 
+
+        /// <summary>
+        /// Makes HttpRequest to mpesa api server
+        /// </summary>
+        /// <param name="Dto">Data transfer object</param>
+        /// <param name="token">Mpesa Accesstoken</param>
+        /// <param name="Endpoint">Request endpoint</param>
+        /// <param name="Asynchronous">
+        /// Bool for whether the http call should be syncronous or asyncronous, true is asyncronuos, false is syncronous.
+        /// </param>
+        /// <returns>Mpesa API response</returns>
         private async Task<string> MpesaHttpCall(object Dto,string token, string Endpoint, bool Asynchronous)
         {
             HttpClientInit(_httpclient, token);
