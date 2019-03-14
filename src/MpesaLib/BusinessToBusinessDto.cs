@@ -1,0 +1,86 @@
+﻿using Newtonsoft.Json;
+
+namespace MpesaLib
+{
+    /// <summary>
+    /// B2B Data transfer object
+    /// </summary>
+    public class BusinessToBusinessDto
+    {
+        /// <summary>
+        /// This is the credential/username used to authenticate the transaction request.
+        /// </summary>
+        [JsonProperty("Initiator")]
+        public string Initiator { get; set; }
+
+        /// <summary>
+        /// Base64 encoded string of the Security Credential, which is encrypted using M-Pesa public key and 
+        /// validates the transaction on M-Pesa Core system.
+        /// </summary>
+        [JsonProperty("SecurityCredential")]
+        public string SecurityCredential { get; set; }
+
+        /// <summary>
+        /// Unique command for each transaction type, possible values are: BusinessPayBill, MerchantToMerchantTransfer,
+        /// MerchantTransferFromMerchantToWorking, MerchantServicesMMFAccountTransfer, AgencyFloatAdvance
+        /// </summary>
+        [JsonProperty("CommandID")]
+        public string CommandID { get; set; }
+
+        /// <summary>
+        /// Type of organization sending the transaction.
+        /// </summary>
+        [JsonProperty("SenderIdentifierType")]
+        public string SenderIdentifierType { get; set; }
+
+        /// <summary>
+        /// Type of organization receiving the funds being transacted.
+        /// </summary>
+        [JsonProperty("RecieverIdentifierType")]
+        public string RecieverIdentifierType { get; set; }
+
+        /// <summary>
+        /// The amount being transacted.
+        /// </summary>
+        [JsonProperty("Amount")]
+        public string Amount { get; set; }
+
+        /// <summary>
+        /// Organization’s short code initiating the transaction.
+        /// </summary>
+        [JsonProperty("PartyA")]
+        public string PartyA { get; set; }
+
+        /// <summary>
+        /// Organization’s short code receiving the funds being transacted.
+        /// </summary>
+        [JsonProperty("PartyB")]
+        public string PartyB { get; set; }
+
+        /// <summary>
+        /// Account Reference mandatory for “BusinessPaybill” CommandID.
+        /// </summary>
+        [JsonProperty("AccountReference")]
+        public string AccountReference { get; set; }
+
+        /// <summary>
+        /// Comments that are sent along with the transaction.
+        /// </summary>
+        [JsonProperty("Remarks")]
+        public string Remarks { get; set; }
+
+        /// <summary>
+        /// The path that stores information of time out transactions. It should be properly validated to 
+        /// make sure that it contains the port, URI and domain name or publicly available IP.
+        /// </summary>
+        [JsonProperty("QueueTimeOutURL")]
+        public string QueueTimeOutURL { get; set; }
+
+        /// <summary>
+        /// The path that receives results from M-Pesa. It should be properly validated to make sure 
+        /// that it contains the port, URI and domain name or publicly available IP.
+        /// </summary>
+        [JsonProperty("ResultURL")]
+        public string ResultURL { get; set; }
+    }
+}

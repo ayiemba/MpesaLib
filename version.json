@@ -1,0 +1,14 @@
+{
+  "version": "3.2",
+  "assemblyVersion": "3.2",
+  "buildNumberOffset": 10,
+  "semVer1NumericIdentifierPadding": 3,  
+  "publicReleaseRefSpec": [
+    "^refs/heads/master$",
+    "^refs/heads/rel/v\\d+\\.\\d+"
+  ],
+  
+  "nugetPackageVersion": {
+    "semVer": 1
+  }
+}

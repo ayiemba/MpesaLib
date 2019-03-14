@@ -1,0 +1,74 @@
+# Add steps that publish symbols, save build artifacts, and more:
+# https://docs.microsoft.com/vsts/pipelines/apps/windows/dot-net
+
+trigger:
+- master
+- rel/*
+
+pool:
+  vmImage: 'VS2017-Win2016'
+
+variables:
+  solution: '**/*.sln'
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
+
+steps:
+
+- task: DotNetCoreCLI@2  
+  inputs:
+    command: custom
+    custom: tool
+    arguments: install --tool-path . nbgv
+  displayName: Install NBGV tool
+  condition: and(succeeded(), eq(variables['system.pullrequest.isfork'], false))
+
+- script: nbgv cloud
+  displayName: Set Version
+  condition: and(succeeded(), eq(variables['system.pullrequest.isfork'], false))
+  
+
+- task: NuGetToolInstaller@0
+  displayName: Use NuGet 4.7.0
+  inputs:
+    versionSpec: 4.7.0
+    
+
+- task: NuGetCommand@2
+  inputs:
+    restoreSolution: '$(solution)'
+  displayName: Nuget Restore
+ 
+- task: DotNetCoreCLI@2
+  inputs:
+    command: build
+    projects: $(solution)
+    arguments: -c $(BuildConfiguration)   
+  displayName: Build 
+  
+- powershell: |
+    mkdir $(Build.ArtifactStagingDirectory)\Packages
+    $version = .\nbgv get-version -f json | ConvertFrom-Json
+  displayName: Create package folder
+
+ 
+- task: DotNetCoreCLI@2
+  inputs:
+    command: pack 
+    arguments: -c $(BuildConfiguration) 
+    packagesToPack: '**/*.csproj'
+    versioningScheme: byBuildNumber
+    packDirectory: '$(Build.ArtifactStagingDirectory)\Packages'
+  displayName: Dotnet Pack 
+
+
+- task: PublishBuildArtifacts@1
+  displayName: Publish Package Artifacts
+  inputs:
+    pathToPublish: $(Build.ArtifactStagingDirectory)\Packages
+    artifactType: container
+    artifactName: Packages
+  condition: and(succeeded(), eq(variables['system.pullrequest.isfork'], false))
+  
+  
+

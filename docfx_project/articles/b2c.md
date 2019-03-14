@@ -1,0 +1,21 @@
+
+## B2C Payment Request
+```c#
+//B2C Object
+var BusinessToCustomerObject = new BusinessToCustomerDto
+{
+	Remarks = "test",
+	Amount = "1",
+	CommandID = "BusinessPayment",
+	InitiatorName = "safaricom.15",
+	Occasion = "test",
+	PartyA = "603047",
+	PartyB = "254708374149",
+	QueueTimeOutURL = "https://blablabla/timeoutendpoint",
+	ResultURL = "https://blablabla/resultendpoint",
+	SecurityCredential = "" 
+};
+
+var b2crequest = await _mpesaClient.MakeB2CPaymentAsync(BusinessToCustomerObject, accesstoken, RequestEndPoint.BusinessToCustomer);
+
+```
