@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\MpesaLib\MpesaLib.csproj" />
+    <ProjectReference Include="..\MpesaLib\MpesaLib.csproj" />
   </ItemGroup>
 
 </Project>

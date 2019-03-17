@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Threading;
+using System.Threading.Tasks;
 
 namespace MpesaLib
 {
@@ -17,8 +18,9 @@ namespace MpesaLib
         /// <param name="consumerKey">ConsumerKey provided by Safaricom in Daraja Portal.</param>
         /// <param name="consumerSecret">ConsumerSecret provided by Safaricom in Daraja Portal.</param>
         /// <param name="requestEndPoint">Set to <c>RequestEndPoint.AuthToken</c></param>
+        /// <param name="cancellationToken">Cancellation Token</param>
         /// <returns>A string of characters representing the accesstoken.</returns>
-        Task<string> GetAuthTokenAsync(string consumerKey, string consumerSecret, string requestEndPoint);
+        Task<string> GetAuthTokenAsync(string consumerKey, string consumerSecret, string requestEndPoint, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// GetAuthTokenAsync is an asynchronous method that requests for and returns an accesstoken from MPESA API Server.
@@ -26,20 +28,22 @@ namespace MpesaLib
         /// <param name="consumerKey">ConsumerKey provided by Safaricom in Daraja Portal.</param>
         /// <param name="consumerSecret">ConsumerSecret provided by Safaricom in Daraja Portal.</param>
         /// <param name="requestEndPoint">Set to <c>RequestEndPoint.AuthToken</c></param>
+        /// <param name="cancellationToken">Cancellation Token</param>
         /// <returns>A string of characters representing the accesstoken.</returns>
-        string GetAuthToken(string consumerKey, string consumerSecret, string requestEndPoint);
+        string GetAuthToken(string consumerKey, string consumerSecret, string requestEndPoint, CancellationToken cancellationToken = default);
 
 
         /// <summary>
-        /// Makes an STK Push payment request to MPESA API Server.
+        /// Makes STK Push payment request to MPESA API Server.
         /// </summary>
         /// <param name="mpesaLipaOnlineDto">
         /// Data trnasfer object containing properties for the Lipa Na Mpesa Online API endpoint.
         /// </param>
         /// <param name="accesstoken">Acccesstoken retrieved by the <c>GetAuthTokenAsync</c> method.</param>
         /// <param name="requestEndPoint">Set to <c>RequestEndPoint.LipaNaMpesaOnline</c></param>
+        /// <param name="cancellationToken">Cancellation Token</param>
         /// <returns>A JSON string containing LNMO response data from MPESA API Server</returns>
-        Task<string> MakeLipaNaMpesaOnlinePaymentAsync(LipaNaMpesaOnlineDto mpesaLipaOnlineDto, string accesstoken, string requestEndPoint);
+        Task<string> MakeLipaNaMpesaOnlinePaymentAsync(LipaNaMpesaOnlineDto mpesaLipaOnlineDto, string accesstoken, string requestEndPoint, CancellationToken cancellationToken = default);
 
 
         /// <summary>
@@ -50,8 +54,9 @@ namespace MpesaLib
         /// </param>
         /// <param name="accesstoken">Acccesstoken retrieved by the <c>GetAuthTokenAsync</c> method.</param>
         /// <param name="requestEndPoint">Set to <c>RequestEndPoint.LipaNaMpesaOnline</c></param>
+        /// <param name="cancellationToken">Cancellation Token</param>
         /// <returns>A JSON string containing data from MPESA API response</returns>
-        string MakeLipaNaMpesaOnlinePayment(LipaNaMpesaOnlineDto mpesaLipaOnlineDto, string accesstoken, string requestEndPoint);
+        string MakeLipaNaMpesaOnlinePayment(LipaNaMpesaOnlineDto mpesaLipaOnlineDto, string accesstoken, string requestEndPoint, CancellationToken cancellationToken = default);
 
 
         /// <summary>
@@ -60,6 +65,7 @@ namespace MpesaLib
         /// <param name="mpesaTransactionQueryDto">Transaction Query Data transfer object</param>
         /// <param name="accesstoken">Acccesstoken retrieved by the <c>GetAuthTokenAsync</c> method.</param>
         /// <param name="requestEndPoint">Set to <c>RequestEndPoint.QueryLipaNaMpesaOnlieTransaction</c></param>
+        /// <param name="cancellationToken">Cancellation Token</param>
         /// <returns>
         /// A JSON string containing data from MPESA API reposnse
         /// </returns>
@@ -67,7 +73,7 @@ namespace MpesaLib
         /// Use only for transactions initiated with <c>MakeLipaNaMpesaOnlinePayment</c> method.
         /// For Other transaction based methods (C2B,B2C,B2B) use <c>QueryMpesaTransactionStatusAsync</c> method.
         /// </remarks>
-        Task<string> QueryLipaNaMpesaTransactionAsync(LipaNaMpesaQueryDto mpesaTransactionQueryDto, string accesstoken, string requestEndPoint);
+        Task<string> QueryLipaNaMpesaTransactionAsync(LipaNaMpesaQueryDto mpesaTransactionQueryDto, string accesstoken, string requestEndPoint, CancellationToken cancellationToken = default);
 
 
         /// <summary>
@@ -76,6 +82,7 @@ namespace MpesaLib
         /// <param name="mpesaTransactionQueryDto">Transaction Query Data transfer object.</param>
         /// <param name="accesstoken">Acccesstoken retrieved by the <c>GetAuthTokenAsync</c> method.</param>
         /// <param name="requestEndPoint">Set to <c>RequestEndPoint.QueryLipaNaMpesaOnlieTransaction</c></param>
+        /// <param name="cancellationToken">Cancellation Token</param>
         /// <returns>
         /// A JSON string containing data from MPESA API reposnse.
         /// </returns>
@@ -84,7 +91,7 @@ namespace MpesaLib
         /// For Other transaction based methods (C2B, B2C, B2B, Accountbalance, Reversal) 
         /// use <c>QueryMpesaTransactionStatusAsync</c> method.
         /// </remarks>
-        string QueryLipaNaMpesaTransaction(LipaNaMpesaQueryDto mpesaTransactionQueryDto, string accesstoken, string requestEndPoint);
+        string QueryLipaNaMpesaTransaction(LipaNaMpesaQueryDto mpesaTransactionQueryDto, string accesstoken, string requestEndPoint, CancellationToken cancellationToken = default);
 
 
         /// <summary>
@@ -93,8 +100,9 @@ namespace MpesaLib
         /// <param name="accountBalanceQueryDto">Account balance query data transfer object.</param>
         /// <param name="accesstoken">Acccesstoken retrieved by the <c>GetAuthTokenAsync</c> method.</param>
         /// <param name="requestEndPoint">Set to <c>RequestEndPoint.QueryAccountBalance</c></param>
+        /// <param name="cancellationToken">Cancellation Token</param>
         /// <returns>A JSON string containing data from MPESA API reposnse.</returns>
-        Task<string> QueryAccountBalanceAsync(AccountBalanceDto accountBalanceQueryDto, string accesstoken, string requestEndPoint);
+        Task<string> QueryAccountBalanceAsync(AccountBalanceDto accountBalanceQueryDto, string accesstoken, string requestEndPoint, CancellationToken cancellationToken = default);
 
 
         /// <summary>
@@ -103,8 +111,9 @@ namespace MpesaLib
         /// <param name="accountBalanceQueryDto">Account balance query data transfer object.</param>
         /// <param name="accesstoken">Acccesstoken retrieved by the <c>GetAuthTokenAsync</c> method.</param>
         /// <param name="requestEndPoint">Set to <c>RequestEndPoint.QueryAccountBalance</c></param>
+        /// <param name="cancellationToken">Cancellation Token</param>
         /// <returns>A JSON string containing data from MPESA API reposnse.</returns>
-        string QueryAccountBalance(AccountBalanceDto accountBalanceQueryDto, string accesstoken, string requestEndPoint);
+        string QueryAccountBalance(AccountBalanceDto accountBalanceQueryDto, string accesstoken, string requestEndPoint, CancellationToken cancellationToken = default);
 
 
         /// <summary>
@@ -113,8 +122,9 @@ namespace MpesaLib
         /// <param name="businessToBusinessDto">B2B data transfer object.</param>
         /// <param name="accesstoken">Acccesstoken retrieved by the <c>GetAuthTokenAsync</c> method.</param>
         /// <param name="requestEndPoint">Set to <c>RequestEndPoint.BusinessToBusiness</c></param>
+        /// <param name="cancellationToken">Cancellation Token</param>
         /// <returns>A JSON string containing data from MPESA API reposnse.</returns>
-        Task<string> MakeB2BPaymentAsync(BusinessToBusinessDto businessToBusinessDto, string accesstoken, string requestEndPoint);
+        Task<string> MakeB2BPaymentAsync(BusinessToBusinessDto businessToBusinessDto, string accesstoken, string requestEndPoint, CancellationToken cancellationToken = default);
 
 
         /// <summary>
@@ -123,8 +133,9 @@ namespace MpesaLib
         /// <param name="businessToBusinessDto">B2B data transfer object.</param>
         /// <param name="accesstoken">Acccesstoken retrieved by the <c>GetAuthTokenAsync</c> method.</param>
         /// <param name="requestEndPoint">Set to <c>RequestEndPoint.BusinessToBusiness</c></param>
+        /// <param name="cancellationToken">Cancellation Token</param>
         /// <returns>A JSON string containing data from MPESA API reposnse.</returns>
-        string MakeB2BPayment(BusinessToBusinessDto businessToBusinessDto, string accesstoken, string requestEndPoint);
+        string MakeB2BPayment(BusinessToBusinessDto businessToBusinessDto, string accesstoken, string requestEndPoint, CancellationToken cancellationToken = default);
 
 
 
@@ -134,11 +145,12 @@ namespace MpesaLib
         /// <param name="businessToCustomerDto">B2C data transfer object.</param>
         /// <param name="accesstoken">Acccesstoken retrieved by the <c>GetAuthTokenAsync</c> method.</param>
         /// <param name="requestEndPoint">Set to <c>RequestEndPoint.BusinessToCustomer</c></param>
+        /// <param name="cancellationToken">Cancellation Token</param>
         /// <returns>A JSON string containing data from MPESA API reposnse.</returns>
         /// <remarks>
         /// Suitable for refunds, rewards or just about any transaction that involves a business paying a customer.
         /// </remarks>
-        Task<string> MakeB2CPaymentAsync(BusinessToCustomerDto businessToCustomerDto, string accesstoken, string requestEndPoint);
+        Task<string> MakeB2CPaymentAsync(BusinessToCustomerDto businessToCustomerDto, string accesstoken, string requestEndPoint, CancellationToken cancellationToken = default);
 
 
         /// <summary>
@@ -147,11 +159,12 @@ namespace MpesaLib
         /// <param name="businessToCustomerDto">B2C data transfer object.</param>
         /// <param name="accesstoken">Acccesstoken retrieved by the <c>GetAuthTokenAsync</c> method.</param>
         /// <param name="requestEndPoint">Set to <c>RequestEndPoint.BusinessToCustomer</c></param>
+        /// <param name="cancellationToken">Cancellation Token</param>
         /// <returns>A JSON string containing data from MPESA API reposnse.</returns>
         /// <remarks>
         /// Suitable for refunds, rewards or just about any transaction that involves a business paying a customer.
         /// </remarks>
-        string MakeB2CPayment(BusinessToCustomerDto businessToCustomerDto, string accesstoken, string requestEndPoint);
+        string MakeB2CPayment(BusinessToCustomerDto businessToCustomerDto, string accesstoken, string requestEndPoint, CancellationToken cancellationToken = default);
 
 
         /// <summary>
@@ -160,13 +173,14 @@ namespace MpesaLib
         /// <param name="customerToBusinessSimulateDto">C2B data transfer object</param>
         /// <param name="accesstoken">Acccesstoken retrieved by the <c>GetAuthTokenAsync</c> method.</param>
         /// <param name="requestEndPoint">Set to <c>RequestEndPoint.CustomerToBusinessSimulate</c></param>
+        /// <param name="cancellationToken">Cancellation Token</param>
         /// <returns>A JSON string containing data from MPESA API reposnse.</returns>
         /// <remarks>
         /// Use only for Simulation/testing. In production use <c>RegisterC2BUrlAsync</c> method to register 
         /// endpoints in your application that receive customer initiated transactions from the MPESA API
         /// for confirmation and/or validation
         /// </remarks>
-        Task<string> MakeC2BPaymentAsync(CustomerToBusinessSimulateDto customerToBusinessSimulateDto, string accesstoken, string requestEndPoint);
+        Task<string> MakeC2BPaymentAsync(CustomerToBusinessSimulateDto customerToBusinessSimulateDto, string accesstoken, string requestEndPoint, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Simulates a Customer to Business payment request.
@@ -174,13 +188,14 @@ namespace MpesaLib
         /// <param name="customerToBusinessSimulateDto">C2B data transfer object</param>
         /// <param name="accesstoken">Acccesstoken retrieved by the <c>GetAuthTokenAsync</c> method.</param>
         /// <param name="requestEndPoint">Set to <c>RequestEndPoint.CustomerToBusinessSimulate</c></param>
+        /// <param name="cancellationToken">Cancellation Token</param>
         /// <returns>A JSON string containing data from MPESA API reposnse.</returns>
         /// <remarks>
         /// Use only for Simulation/testing. In production use <c>RegisterC2BUrlAsync</c> method to register 
         /// endpoints in your application that receive customer initiated transactions from the MPESA API
         /// for confirmation and/or validation
         /// </remarks>
-        string MakeC2BPayment(CustomerToBusinessSimulateDto customerToBusinessSimulateDto, string accesstoken, string requestEndPoint);
+        string MakeC2BPayment(CustomerToBusinessSimulateDto customerToBusinessSimulateDto, string accesstoken, string requestEndPoint, CancellationToken cancellationToken = default);
 
 
         /// <summary>
@@ -189,8 +204,9 @@ namespace MpesaLib
         /// <param name="customerToBusinessRegisterUrlDto">C2B Register URLs data transfer object.</param>
         /// <param name="accesstoken">Acccesstoken retrieved by the <c>GetAuthTokenAsync</c> method.</param>
         /// <param name="requestEndPoint">Set to <c>RequestEndPoint.RegisterC2BUrl</c></param>
+        /// <param name="cancellationToken">Cancellation Token</param>
         /// <returns>A JSON string containing data from MPESA API reposnse.</returns>
-        Task<string> RegisterC2BUrlAsync(CustomerToBusinessRegisterUrlDto customerToBusinessRegisterUrlDto, string accesstoken, string requestEndPoint);
+        Task<string> RegisterC2BUrlAsync(CustomerToBusinessRegisterUrlDto customerToBusinessRegisterUrlDto, string accesstoken, string requestEndPoint, CancellationToken cancellationToken = default);
 
 
         /// <summary>
@@ -199,8 +215,9 @@ namespace MpesaLib
         /// <param name="customerToBusinessRegisterUrlDto">C2B Register URLs data transfer object.</param>
         /// <param name="accesstoken">Acccesstoken retrieved by the <c>GetAuthTokenAsync</c> method.</param>
         /// <param name="requestEndPoint">Set to <c>RequestEndPoint.RegisterC2BUrl</c></param>
+        /// <param name="cancellationToken">Cancellation Token</param>
         /// <returns>A JSON string containing data from MPESA API reposnse.</returns>
-        string RegisterC2BUrl(CustomerToBusinessRegisterUrlDto customerToBusinessRegisterUrlDto, string accesstoken, string requestEndPoint);
+        string RegisterC2BUrl(CustomerToBusinessRegisterUrlDto customerToBusinessRegisterUrlDto, string accesstoken, string requestEndPoint, CancellationToken cancellationToken = default);
 
 
         /// <summary>
@@ -209,8 +226,9 @@ namespace MpesaLib
         /// <param name="reversalDto">Reversal data transfer object.</param>
         /// <param name="accesstoken">Acccesstoken retrieved by the <c>GetAuthTokenAsync</c> method.</param>
         /// <param name="requestEndPoint">Set to <c>RequestEndPoint.ReverseMpesaTransaction</c></param>
+        /// <param name="cancellationToken">Cancellation Token</param>
         /// <returns>A JSON string containing data from MPESA API reposnse.</returns>
-        Task<string> ReverseMpesaTransactionAsync(ReversalDto reversalDto, string accesstoken, string requestEndPoint);
+        Task<string> ReverseMpesaTransactionAsync(ReversalDto reversalDto, string accesstoken, string requestEndPoint, CancellationToken cancellationToken = default);
 
 
         /// <summary>
@@ -219,8 +237,9 @@ namespace MpesaLib
         /// <param name="reversalDto">Reversal data transfer object.</param>
         /// <param name="accesstoken">Acccesstoken retrieved by the <c>GetAuthTokenAsync</c> method.</param>
         /// <param name="requestEndPoint">Set to <c>RequestEndPoint.ReverseMpesaTransaction</c></param>
+        /// <param name="cancellationToken">Cancellation Token</param>
         /// <returns>A JSON string containing data from MPESA API reposnse.</returns>
-        string ReverseMpesaTransaction(ReversalDto reversalDto, string accesstoken, string requestEndPoint);
+        string ReverseMpesaTransaction(ReversalDto reversalDto, string accesstoken, string requestEndPoint, CancellationToken cancellationToken = default);
 
 
         /// <summary>
@@ -229,8 +248,9 @@ namespace MpesaLib
         /// <param name="mpesaTransactionStatusDto">Transaction Status data transfer object.</param>
         /// <param name="accesstoken">Acccesstoken retrieved by the <c>GetAuthTokenAsync</c> method.</param>
         /// <param name="requestEndPoint">Set to <c>RequestEndPoint.QueryMpesaTransactionStatus</c></param>
+        /// <param name="cancellationToken">Cancellation Token</param>
         /// <returns>A JSON string containing data from MPESA API reposnse.</returns>
-        Task<string> QueryMpesaTransactionStatusAsync(MpesaTransactionStatusDto mpesaTransactionStatusDto, string accesstoken, string requestEndPoint);
+        Task<string> QueryMpesaTransactionStatusAsync(MpesaTransactionStatusDto mpesaTransactionStatusDto, string accesstoken, string requestEndPoint, CancellationToken cancellationToken = default);
 
 
         /// <summary>
@@ -239,7 +259,8 @@ namespace MpesaLib
         /// <param name="mpesaTransactionStatusDto">Transaction Status data transfer object.</param>
         /// <param name="accesstoken">Acccesstoken retrieved by the <c>GetAuthTokenAsync</c> method.</param>
         /// <param name="requestEndPoint">Set to <c>RequestEndPoint.QueryMpesaTransactionStatus</c></param>
+        /// <param name="cancellationToken">Cancellation Token</param>
         /// <returns>A JSON string containing data from MPESA API reposnse.</returns>
-        string QueryMpesaTransactionStatus(MpesaTransactionStatusDto mpesaTransactionStatusDto, string accesstoken, string requestEndPoint);
+        string QueryMpesaTransactionStatus(MpesaTransactionStatusDto mpesaTransactionStatusDto, string accesstoken, string requestEndPoint, CancellationToken cancellationToken = default);
     }
 }
