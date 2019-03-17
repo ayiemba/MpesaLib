@@ -34,7 +34,7 @@ namespace MpesaLib
 
 
         /// <summary>
-        /// Makes an STK Push payment request to MPESA API Server.
+        /// Makes STK Push payment request to MPESA API Server.
         /// </summary>
         /// <param name="mpesaLipaOnlineDto">
         /// Data trnasfer object containing properties for the Lipa Na Mpesa Online API endpoint.
