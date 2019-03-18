@@ -13,7 +13,7 @@ var MpesaExpressObject = new LipaNaMpesaOnlineDto
 	Passkey = "",	//get passkey from daraja			  
 	PhoneNumber = "", 				
 	TransactionDesc = "test"
-	//Note that you don't have to provide password and timestamp, these are calculated for you automatically provided you enter passkey.
+	//Note that you don't have to provide Password and Timestamp, these are calculated for you automatically provided you enter passkey.
 };
 
 //Make payment request 

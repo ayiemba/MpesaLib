@@ -67,7 +67,7 @@ Mpesa APIs require an accesstoken for authentication/authorization to use the AP
 //Async 
 var accesstoken = await _mpesaClient.GetAuthTokenAsync(ConsumerKey, ConsumerSecret, RequestEndPoint.AuthToken);
 
-//Non-Async 
+//Non-Async (Avoid non-asyn calls if you can)
 var accesstoken = await _mpesaClient.GetAuthToken(ConsumerKey, ConsumerSecret, RequestEndPoint.AuthToken);
 ```
 

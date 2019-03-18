@@ -1,4 +1,5 @@
 ﻿using MpesaLib.Helpers.Exceptions;
+using MpesaLib.Helpers.Serialization;
 using MpesaLib.Responses;
 using Newtonsoft.Json;
 using System;
@@ -334,19 +335,13 @@ namespace MpesaLib
             return await MpesaHttpRequest(reversalDto,accesstoken, requestEndPoint,cancellationToken);
         }
 
-
-        /// <summary>
-        /// Initializes the Httpclient for each handler
-        /// </summary>
-        /// <param name="httpclient">httpclient instance</param>
-        /// <param name="accesstoken">accesstoken</param>
-        private static void HttpClientInit(HttpClient httpclient, string accesstoken)
-        {
-            httpclient.DefaultRequestHeaders.Clear();
-            httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accesstoken);
-        }
-
+        
+        //private static void HttpClientInit(HttpClient httpclient, string accesstoken)
+        //{
+        //    httpclient.DefaultRequestHeaders.Clear();
+        //    httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+        //    httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accesstoken);
+        //}
 
 
         /// <summary>
@@ -359,29 +354,34 @@ namespace MpesaLib
         /// <returns>string representing accesstoken</returns>
         private async Task<string> RequestAccessToken(string consumerKey, string consumerSecret, string requestEndPoint, CancellationToken cancellationToken = default)
         {
-            _httpclient.DefaultRequestHeaders.Clear();
+            var keyBytes = Convert.ToBase64String(Encoding.UTF8.GetBytes($"{consumerKey}:{consumerSecret}"));
 
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, requestEndPoint);
 
-            var keyBytes = Convert.ToBase64String(Encoding.UTF8.GetBytes($"{consumerKey}:{consumerSecret}"));
+            request.Headers.Authorization = new AuthenticationHeaderValue("Basic", keyBytes);
 
-            _httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", keyBytes);
+            cancellationToken.ThrowIfCancellationRequested();
 
             var response = await _httpclient.SendAsync(request, cancellationToken);            
 
-            var content = await response.Content.ReadAsStringAsync();
+            var content = await response.Content.ReadAsStreamAsync();
+
+            var data = JSONStreamHelper.DeserializeFromStream(content);
+
+            var strData = JsonConvert.SerializeObject(data);
 
             if (response.IsSuccessStatusCode == false)
             {
                 throw new MpesaApiException
                 {
                     StatusCode = (int)response.StatusCode,
-                    Content = content
-                };
+                    Content = strData
+                };                
             }
 
-            return JsonConvert.DeserializeObject<TokenResponse>(content).AccessToken;
+            return JsonConvert.DeserializeObject<TokenResponse>(strData).AccessToken;
         }
+        
 
         /// <summary>
         /// Makes HttpRequest to mpesa api server
@@ -392,30 +392,38 @@ namespace MpesaLib
         /// <param name="cancellationToken">Cancellation Token</param>        
         /// <returns>Mpesa API response</returns>
         private async Task<string> MpesaHttpRequest(object Dto,string token, string Endpoint, CancellationToken cancellationToken = default)
-        {
-            HttpClientInit(_httpclient, token);
-
+        {          
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, Endpoint)
             {
                 Content = new StringContent(JsonConvert.SerializeObject(Dto).ToString(), Encoding.UTF8, "application/json")
             };
 
-            HttpResponseMessage response = await _httpclient.SendAsync(request, cancellationToken);
 
-            var content = await response.Content.ReadAsStringAsync();
+            request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            cancellationToken.ThrowIfCancellationRequested();
+
+            HttpResponseMessage response = await _httpclient.SendAsync(request, cancellationToken);          
+            var content = await response.Content.ReadAsStreamAsync();
+
+            var data = JSONStreamHelper.DeserializeFromStream(content);
+
+            var strData = JsonConvert.SerializeObject(data);
 
             if (response.IsSuccessStatusCode == false)
             {
                 throw new MpesaApiException
                 {
                     StatusCode = (int)response.StatusCode,
-                    Content = content
+
+                    Content = strData
                 };
             }
 
-            return content;
+            return strData;
         }
-
 
     }
 }
