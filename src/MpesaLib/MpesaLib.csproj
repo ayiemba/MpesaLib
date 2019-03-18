@@ -11,10 +11,10 @@
     <PackageLicenseUrl>https://ayiemba.github.io/MpesaLib/articles/license.html</PackageLicenseUrl>
     <PackageProjectUrl>https://ayiemba.github.io/MpesaLib</PackageProjectUrl>
     <PackageReleaseNotes>
-       - Refactoring
+       - Moved Headers from httclient object to the request object
     </PackageReleaseNotes>   
     <IncludeBuildOutput>true</IncludeBuildOutput>   
-    <Version>3.1.3</Version> 
+    <Version>3.2.4</Version> 
   </PropertyGroup>
   
   <PropertyGroup>

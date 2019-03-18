@@ -335,17 +335,13 @@ namespace MpesaLib
         }
 
 
-        /// <summary>
-        /// Initializes the Httpclient for each handler
-        /// </summary>
-        /// <param name="httpclient">httpclient instance</param>
-        /// <param name="accesstoken">accesstoken</param>
-        private static void HttpClientInit(HttpClient httpclient, string accesstoken)
-        {
-            httpclient.DefaultRequestHeaders.Clear();
-            httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accesstoken);
-        }
+        
+        //private static void HttpClientInit(HttpClient httpclient, string accesstoken)
+        //{
+        //    httpclient.DefaultRequestHeaders.Clear();
+        //    httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+        //    httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accesstoken);
+        //}
 
 
 
@@ -359,14 +355,12 @@ namespace MpesaLib
         /// <returns>string representing accesstoken</returns>
         private async Task<string> RequestAccessToken(string consumerKey, string consumerSecret, string requestEndPoint, CancellationToken cancellationToken = default)
         {
-            _httpclient.DefaultRequestHeaders.Clear();
+            var keyBytes = Convert.ToBase64String(Encoding.UTF8.GetBytes($"{consumerKey}:{consumerSecret}"));
 
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, requestEndPoint);
 
-            var keyBytes = Convert.ToBase64String(Encoding.UTF8.GetBytes($"{consumerKey}:{consumerSecret}"));
-
-            _httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", keyBytes);
-
+            request.Headers.Authorization = new AuthenticationHeaderValue("Basic", keyBytes);
+           
             var response = await _httpclient.SendAsync(request, cancellationToken);            
 
             var content = await response.Content.ReadAsStringAsync();
@@ -392,13 +386,15 @@ namespace MpesaLib
         /// <param name="cancellationToken">Cancellation Token</param>        
         /// <returns>Mpesa API response</returns>
         private async Task<string> MpesaHttpRequest(object Dto,string token, string Endpoint, CancellationToken cancellationToken = default)
-        {
-            HttpClientInit(_httpclient, token);
-
+        {          
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, Endpoint)
             {
                 Content = new StringContent(JsonConvert.SerializeObject(Dto).ToString(), Encoding.UTF8, "application/json")
             };
+
+            request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
             HttpResponseMessage response = await _httpclient.SendAsync(request, cancellationToken);
 
