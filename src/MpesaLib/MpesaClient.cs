@@ -1,4 +1,5 @@
 ﻿using MpesaLib.Helpers.Exceptions;
+using MpesaLib.Helpers.Serialization;
 using MpesaLib.Responses;
 using Newtonsoft.Json;
 using System;
@@ -360,21 +361,27 @@ namespace MpesaLib
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, requestEndPoint);
 
             request.Headers.Authorization = new AuthenticationHeaderValue("Basic", keyBytes);
-           
+
+            cancellationToken.ThrowIfCancellationRequested();
+
             var response = await _httpclient.SendAsync(request, cancellationToken);            
 
-            var content = await response.Content.ReadAsStringAsync();
+            var content = await response.Content.ReadAsStreamAsync();
+
+            var data = JSONStreamHelper.DeserializeFromStream(content);
+
+            var strData = JsonConvert.SerializeObject(data);
 
             if (response.IsSuccessStatusCode == false)
             {
                 throw new MpesaApiException
                 {
                     StatusCode = (int)response.StatusCode,
-                    Content = content
-                };
+                    Content = strData
+                };                
             }
 
-            return JsonConvert.DeserializeObject<TokenResponse>(content).AccessToken;
+            return JsonConvert.DeserializeObject<TokenResponse>(strData).AccessToken;
         }
 
         /// <summary>
@@ -396,20 +403,25 @@ namespace MpesaLib
 
             request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
-            HttpResponseMessage response = await _httpclient.SendAsync(request, cancellationToken);
+            cancellationToken.ThrowIfCancellationRequested();
 
-            var content = await response.Content.ReadAsStringAsync();
+            HttpResponseMessage response = await _httpclient.SendAsync(request, cancellationToken);          
+            var content = await response.Content.ReadAsStreamAsync();
+
+            var data = JSONStreamHelper.DeserializeFromStream(content);
+
+            var strData = JsonConvert.SerializeObject(data);
 
             if (response.IsSuccessStatusCode == false)
             {
                 throw new MpesaApiException
                 {
                     StatusCode = (int)response.StatusCode,
-                    Content = content
+                    Content = strData
                 };
             }
 
-            return content;
+            return strData;
         }
 
 

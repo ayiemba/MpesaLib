@@ -11,7 +11,8 @@
     <PackageLicenseUrl>https://ayiemba.github.io/MpesaLib/articles/license.html</PackageLicenseUrl>
     <PackageProjectUrl>https://ayiemba.github.io/MpesaLib</PackageProjectUrl>
     <PackageReleaseNotes>
-       - Moved Headers from httclient object to the request object
+       - Moved Default Headers from HttClient object to the HttpRequestMessage object
+       - Using ReadAsStreamAsync instead of ReadAsStringAsync to avoid unnecessary allocations
     </PackageReleaseNotes>   
     <IncludeBuildOutput>true</IncludeBuildOutput>   
     <Version>3.2.4</Version> 
