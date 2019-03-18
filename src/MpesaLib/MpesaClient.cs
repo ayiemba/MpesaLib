@@ -335,7 +335,6 @@ namespace MpesaLib
             return await MpesaHttpRequest(reversalDto,accesstoken, requestEndPoint,cancellationToken);
         }
 
-
         
         //private static void HttpClientInit(HttpClient httpclient, string accesstoken)
         //{
@@ -343,7 +342,6 @@ namespace MpesaLib
         //    httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         //    httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accesstoken);
         //}
-
 
 
         /// <summary>
@@ -383,6 +381,7 @@ namespace MpesaLib
 
             return JsonConvert.DeserializeObject<TokenResponse>(strData).AccessToken;
         }
+        
 
         /// <summary>
         /// Makes HttpRequest to mpesa api server
@@ -398,6 +397,7 @@ namespace MpesaLib
             {
                 Content = new StringContent(JsonConvert.SerializeObject(Dto).ToString(), Encoding.UTF8, "application/json")
             };
+
 
             request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -417,13 +417,13 @@ namespace MpesaLib
                 throw new MpesaApiException
                 {
                     StatusCode = (int)response.StatusCode,
+
                     Content = strData
                 };
             }
 
             return strData;
         }
-
 
     }
 }
