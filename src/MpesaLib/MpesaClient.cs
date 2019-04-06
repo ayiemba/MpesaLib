@@ -50,9 +50,7 @@ namespace MpesaLib
         /// <returns>A string of characters representing the accesstoken.</returns>
         public async Task<string> GetAuthTokenAsync(string consumerKey, string consumerSecret, string requestEndPoint, CancellationToken cancellationToken = default)
         {
-            string token = await RequestAccessToken(consumerKey, consumerSecret, requestEndPoint, cancellationToken);
-
-            return token;
+           return await RequestAccessToken(consumerKey, consumerSecret, requestEndPoint, cancellationToken);
         }
 
 
@@ -397,7 +395,6 @@ namespace MpesaLib
             {
                 Content = new StringContent(JsonConvert.SerializeObject(Dto).ToString(), Encoding.UTF8, "application/json")
             };
-
 
             request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
