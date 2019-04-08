@@ -14,6 +14,6 @@ var AccountBalanceObject = new AccountBalanceDto
 
 var accountbalancerequest = await _mpesaClient.QueryAccountBalanceAsync(AccountBalanceObject, accesstoken, RequestEndPoint.QueryAccountBalance); //async method
 
-var accountbalancerequest = await _mpesaClient.QueryAccountBalance(AccountBalanceObject, accesstoken, RequestEndPoint.QueryAccountBalance); //non-async method - avoid if you can
+var accountbalancerequest = _mpesaClient.QueryAccountBalance(AccountBalanceObject, accesstoken, RequestEndPoint.QueryAccountBalance); //non-async method - avoid if you can
 
 ```

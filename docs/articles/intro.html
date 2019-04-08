@@ -8,7 +8,7 @@
     <title>Installation </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Installation ">
-    <meta name="generator" content="docfx 2.40.7.0">
+    <meta name="generator" content="docfx 2.39.2.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -94,7 +94,6 @@ httpClient.BaseAddress = RequestEndPoint.SandboxBaseAddress; //Use RequestEndPoi
 var mpesaClient = new MpesaClient(httpClient); //make sure to pass httpclient intance as an argument
 	
 </code></pre>
-
 <p>These Documentation recommends the DI way of doing things. Sorry if that's  opinionated.</p>
 <h2 id="how-to-register-mpesaclient--set-the-baseaddress">How to Register MpesaClient &amp; Set the BaseAddress</h2>
 <ul>
@@ -134,7 +133,7 @@ public class Payments
 <pre><code class="lang-c#">//Async 
 var accesstoken = await _mpesaClient.GetAuthTokenAsync(ConsumerKey, ConsumerSecret, RequestEndPoint.AuthToken);
 
-//Non-Async 
+//Non-Async (Avoid non-asyn calls if you can)
 var accesstoken = await _mpesaClient.GetAuthToken(ConsumerKey, ConsumerSecret, RequestEndPoint.AuthToken);
 </code></pre>
 <p>Note that you have to pass in a conusmerKey, ConsumerSecret from daraja.</p>
