@@ -8,7 +8,7 @@
     <title>Getting Security Credential for B2B, B2C, Reversal, Transaction Status and Account Balance APIs </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Getting Security Credential for B2B, B2C, Reversal, Transaction Status and Account Balance APIs ">
-    <meta name="generator" content="docfx 2.40.7.0">
+    <meta name="generator" content="docfx 2.39.2.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -69,19 +69,39 @@
             <article class="content wrap" id="_content" data-uid="">
 <h2 id="getting-security-credential-for-b2b-b2c-reversal-transaction-status-and-account-balance-apis">Getting Security Credential for B2B, B2C, Reversal, Transaction Status and Account Balance APIs</h2>
 
-<p>The Security Credential helper class is in MpesaLib.Helpers namespace.
+<p>The Security Credential helper class is in MpesaLib.Helpers namespace.</p>
+<p>This class helps you generate the required credential to be used to authorize the above mentioned APIs.</p>
+<pre><code class="lang-c#">using MpesaLib.Helpers; // add this to your class or namespace
 
-This class helps you generate the required credential to be used to authorize the above mentioned APIs.</p>
-<pre><code class="lang-c#">using MpesaLib.Helpers; // Add this to your class
+//get path to Mpesa public certificate. There are different certs for development and for production, ensure to use the correct one)
 
-//get path of Mpesa public certificate. There are different certs for development and for production, ensure to use the correct one)
 string certificate = @&quot;C:\Dev\MpesaLibSamples\WebApplication1\Certificate\prod.cer&quot;;
  
  //generate security credential as follows...
+
 var SecutityCredential = Credentials.EncryptPassword(certificate, &quot;Initiator Password&quot;);
 
 </code></pre>
+<h2 id="error-handling">Error handling</h2>
+<p>MpesaClient Throws <code>MpesaApiException</code> whenever A 200 status code is not returned. It is your role as the developer to catch
+the exception and continue processing in your aplication. Snippet below shows how you can catch the MpesaApiException.</p>
+<pre><code class="lang-c#">using MpesaLib.Helpers.Exceptions; // add this to you class or namespace
 
+
+try
+{	
+	return await _mpesaClient.MakeLipaNaMpesaOnlinePaymentAsync(MpesaPayment, accesstoken, RequestEndPoint.LipaNaMpesaOnline);
+}
+catch (MpesaApiException e)
+{
+	_logger.LogError($&quot;An Error Occured, Status Code {e.StatusCode}: {e.Content}&quot;);
+
+//check the status code and return what is appropriate for your case. e.Content has the error message from Mpesa inform of a json string (not object) incase you do things like tying to transact 0 shillings or more than the 70k limit per transaction, or your shorcode is wrong or your accesstoken is not valid etc.
+    
+	return BadRequest(); //I am just being lazy here.
+}
+			
+</code></pre>
 </article>
           </div>
           <div class="contribution-panel mobile-hide">
