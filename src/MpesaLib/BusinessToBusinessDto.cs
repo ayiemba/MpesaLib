@@ -11,76 +11,94 @@ namespace MpesaLib
         /// This is the credential/username used to authenticate the transaction request.
         /// </summary>
         [JsonProperty("Initiator")]
-        public string Initiator { get; set; }
+        public string Initiator { get; private set; }
 
         /// <summary>
         /// Base64 encoded string of the Security Credential, which is encrypted using M-Pesa public key and 
         /// validates the transaction on M-Pesa Core system.
         /// </summary>
         [JsonProperty("SecurityCredential")]
-        public string SecurityCredential { get; set; }
+        public string SecurityCredential { get; private set; }
 
         /// <summary>
         /// Unique command for each transaction type, possible values are: BusinessPayBill, MerchantToMerchantTransfer,
         /// MerchantTransferFromMerchantToWorking, MerchantServicesMMFAccountTransfer, AgencyFloatAdvance
         /// </summary>
         [JsonProperty("CommandID")]
-        public string CommandID { get; set; }
+        public string CommandID { get; private set; }
 
         /// <summary>
         /// Type of organization sending the transaction.
         /// </summary>
         [JsonProperty("SenderIdentifierType")]
-        public string SenderIdentifierType { get; set; }
+        public string SenderIdentifierType { get; private set; }
 
         /// <summary>
         /// Type of organization receiving the funds being transacted.
         /// </summary>
         [JsonProperty("RecieverIdentifierType")]
-        public string RecieverIdentifierType { get; set; }
+        public string RecieverIdentifierType { get; private set; }
 
         /// <summary>
         /// The amount being transacted.
         /// </summary>
         [JsonProperty("Amount")]
-        public string Amount { get; set; }
+        public string Amount { get; private set; }
 
         /// <summary>
         /// Organization’s short code initiating the transaction.
         /// </summary>
         [JsonProperty("PartyA")]
-        public string PartyA { get; set; }
+        public string PartyA { get; private set; }
 
         /// <summary>
         /// Organization’s short code receiving the funds being transacted.
         /// </summary>
         [JsonProperty("PartyB")]
-        public string PartyB { get; set; }
+        public string PartyB { get; private set; }
 
         /// <summary>
         /// Account Reference mandatory for “BusinessPaybill” CommandID.
         /// </summary>
         [JsonProperty("AccountReference")]
-        public string AccountReference { get; set; }
+        public string AccountReference { get; private set; }
 
         /// <summary>
         /// Comments that are sent along with the transaction.
         /// </summary>
         [JsonProperty("Remarks")]
-        public string Remarks { get; set; }
+        public string Remarks { get; private set; }
 
         /// <summary>
         /// The path that stores information of time out transactions. It should be properly validated to 
         /// make sure that it contains the port, URI and domain name or publicly available IP.
         /// </summary>
         [JsonProperty("QueueTimeOutURL")]
-        public string QueueTimeOutURL { get; set; }
+        public string QueueTimeOutURL { get; private set; }
 
         /// <summary>
         /// The path that receives results from M-Pesa. It should be properly validated to make sure 
         /// that it contains the port, URI and domain name or publicly available IP.
         /// </summary>
         [JsonProperty("ResultURL")]
-        public string ResultURL { get; set; }
+        public string ResultURL { get; private set; }
+
+        public BusinessToBusinessDto(string intiator, string securityCredential, string commandId, string amount, string partyA, string partyB, 
+            string senderIdentifierType, string receiverIdentifierType, string accountReference, string remarks, string queueTimeoutUrl, string resultUrl)
+        {
+            Initiator = intiator;
+            SecurityCredential = securityCredential;
+            CommandID = commandId;
+            Amount = amount;
+            PartyA = partyA;
+            PartyB = partyB;
+            SenderIdentifierType = senderIdentifierType;
+            RecieverIdentifierType = receiverIdentifierType;
+            AccountReference = accountReference;
+            Remarks = remarks;
+            QueueTimeOutURL = queueTimeoutUrl;
+            ResultURL = resultUrl;
+
+        }
     }
 }

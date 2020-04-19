@@ -14,13 +14,13 @@ namespace MpesaLib
         /// used to identify an organization and receive the transaction.
         /// </summary>
         [JsonProperty("BusinessShortCode")]
-        public string BusinessShortCode { get; set; }
+        public string BusinessShortCode { get; private set; }
 
         /// <summary>
         /// Lipa Na Mpesa Online PassKey
         /// Provide the Passkey only if you want MpesaLib to Encode the Password for you.
         /// </summary>
-        public string Passkey { get; set; }
+        public string Passkey { get; private set; }
 
         /// <summary>
         /// This is the password used for encrypting the request sent: A base64 encoded string. 
@@ -29,7 +29,7 @@ namespace MpesaLib
         /// Don't set this property if you have set the passKey property.
         /// </summary>
         [JsonProperty("Password")]
-        public string Password { get => CalculatePassword; set => value = CalculatePassword; }
+        public string Password { get; private set;}
         
 
         /// <summary>
@@ -39,21 +39,37 @@ namespace MpesaLib
         /// By Default this property is set to <c>DateTime.Now.ToString("yyyyMMddHHmmss")</c> so you don't have to set its value.
         /// </summary>
         [JsonProperty("Timestamp")]
-        public string Timestamp { get; set; } = DateTime.Now.ToString("yyyyMMddHHmmss");
+        public string Timestamp { get; private set; } = DateTime.Now.ToString("yyyyMMddHHmmss");
 
         /// <summary>
         /// This is a global unique identifier of the processed checkout transaction request.
         /// e.g ws_CO_DMZ_123212312_2342347678234
         /// </summary>
         [JsonProperty("CheckoutRequestID")]
-        public string CheckoutRequestID { get; set; }
-      
+        public string CheckoutRequestID { get; private set; }
+
+
+       
+
+        public LipaNaMpesaQueryDto(string businessShortCode, string passkey, DateTime timeStamp, 
+            string checkoutRequestId )
+        {
+            BusinessShortCode = businessShortCode;
+            Passkey = passkey;
+            Timestamp = timeStamp.ToString("yyyyMMddHHmmss");
+            Password = CalculatePassword(businessShortCode,passkey, timeStamp.ToString("yyyyMMddHHmmss"));
+            CheckoutRequestID = checkoutRequestId;
+
+        }
 
         /// <summary>
         /// This method creates the necessary base64 encoded string that encrypts the request sent 
         /// </summary>
-        private string CalculatePassword => Convert.ToBase64String(Encoding.GetEncoding("ISO-8859-1").GetBytes(BusinessShortCode + Passkey + Timestamp));
+        private string CalculatePassword(string shortCode, string passkey, string timestamp)
+        {
+            return Convert.ToBase64String(Encoding.GetEncoding("ISO-8859-1").GetBytes(shortCode + passkey + timestamp));
+        }
 
-        
+
     }
 }

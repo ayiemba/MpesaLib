@@ -11,7 +11,7 @@ namespace MpesaLib
         /// The short code of the organization. 
         /// </summary>      
         [JsonProperty("ShortCode")]
-        public string ShortCode { get; set; }
+        public string ShortCode { get; private set; }
 
         /// <summary>
         /// This parameter specifies what is to happen if for any reason the validation URL is nor reachable. 
@@ -24,13 +24,13 @@ namespace MpesaLib
         /// reach your Validation URL.
         /// </summary>
         [JsonProperty("ResponseType")]
-        public string ResponseType { get; set; }
+        public string ResponseType { get; private set; }
 
         /// <summary>
         /// This is the URL that receives the confirmation request from API upon payment completion.
         /// </summary>
         [JsonProperty("ConfirmationURL")]
-        public string ConfirmationURL { get; set; }
+        public string ConfirmationURL { get; private set; }
 
         /// <summary>
         /// This is the URL that receives the validation request from API upon payment submission. 
@@ -38,6 +38,22 @@ namespace MpesaLib
         /// (By default External Validation is dissabled, contact MPESA API team if you want this enbaled for your app)
         /// </summary>
         [JsonProperty("ValidationURL")]
-        public string ValidationURL { get; set; }
+        public string ValidationURL { get; private set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="shortCode"></param>
+        /// <param name="responseType"></param>
+        /// <param name="confirmationUrl"></param>
+        /// <param name="validationUrl"></param>
+        public CustomerToBusinessRegisterUrlDto(string shortCode, string responseType,string confirmationUrl, string validationUrl)
+        {
+            ShortCode = shortCode;
+            ResponseType = responseType;
+            ConfirmationURL = confirmationUrl;
+            ValidationURL = validationUrl;
+
+        }
     }
 }

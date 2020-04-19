@@ -3,7 +3,7 @@
     /// <summary>
     /// Trasaction Types
     /// </summary>
-    public class TransactType
+    public static class TransactType
     {
         /// <summary>
         /// CustomerPayBillOnline
@@ -14,6 +14,16 @@
         /// CustomerBuyGoodsOnline
         /// </summary>
         public const string CustomerBuyGoodsOnline = "CustomerBuyGoodsOnline";
+
+        /// <summary>
+        /// TransactionStatusQuery
+        /// </summary>
+        public const string TransactionStatusQuery = "TransactionStatusQuery";
+
+        /// <summary>
+        /// TransactionReversal
+        /// </summary>
+        public const string TransactionReversal = "TransactionReversal";
 
     }
 

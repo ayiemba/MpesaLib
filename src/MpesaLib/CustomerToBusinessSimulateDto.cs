@@ -12,7 +12,7 @@ namespace MpesaLib
         /// This is the Short Code receiving the amount being transacted.
         /// </summary>
         [JsonProperty("ShortCode")]
-        public string ShortCode { get; set; }
+        public string ShortCode { get; private set; }
 
         /// <summary>
         /// This is a unique identifier of the transaction type: There are two types of these Identifiers:
@@ -21,25 +21,35 @@ namespace MpesaLib
         /// Buy Default this property is set to CustomerPayBillOnline
         /// </summary>
         [JsonProperty("CommandID")]
-        public string CommandID { get; set; } = "CustomerPayBillOnline";
+        public string CommandID { get; private set; } = TransactType.CustomerPayBillOnline;
 
         /// <summary>
         /// This is the amount being transacted. The parameter expected is a numeric value.
         /// </summary>
         [JsonProperty("Amount")]
-        public string Amount { get; set; }
+        public string Amount { get; private set; }
 
         /// <summary>
         /// This is the phone number initiating the C2B transaction.(format: 2547XXXXXXXX)
         /// </summary>
         [JsonProperty("Msisdn")]
-        public string Msisdn { get; set; }
+        public string Msisdn { get; private set; }
 
         /// <summary>
         /// This is used on CustomerPayBillOnline option only. 
         /// This is where a customer is expected to enter a unique bill identifier, e.g an Account Number. 
         /// </summary>
         [JsonProperty("BillRefNumber")]
-        public string BillRefNumber { get; set; }
+        public string BillRefNumber { get; private set; }
+
+        public CustomerToBusinessSimulateDto(string shortCode, string commandId, string amount, string msisdn, 
+            string billReferenceNumber)
+        {
+            ShortCode = shortCode;
+            CommandID = commandId;
+            Amount = amount;
+            Msisdn = msisdn;
+            BillRefNumber = billReferenceNumber;
+        }
     }
 }
