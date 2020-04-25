@@ -3,13 +3,13 @@
 ## LipaNaMpesaOnline/MpesaExpress Transaction Query Request
 ```c#
 var QueryLipaNaMpesaTransactionObject = new LipaNaMpesaQueryDto
-{
-	BusinessShortCode = "174379",
-	CheckoutRequestID = "",
-	Password = "",
-	Timestamp = "" 
+(
+	 "174379", //BusinessShortCode
+	 "CheckoutRequestID", //CheckoutRequestID
+	 "Password", //Password
+	 "Timestamp" //Timestamp
 
-};
+);
 
 var stkpushquery = await _mpesaClient.QueryLipaNaMpesaTransactionAsync(QueryLipaNaMpesaTransactionObject, accesstoken, equestEndPoint.QueryLipaNaMpesaOnlieTransaction);
 ```

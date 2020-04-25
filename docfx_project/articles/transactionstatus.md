@@ -3,17 +3,17 @@
 ## Transaction Status Request
 ```c#
 var TransactionStatusObject = new MpesaTransactionStatusDto
-{
-	IdentifierType = "",
-	Initiator = "",
-	Occasion = "",
-	PartyA = "",
-	QueueTimeOutURL = "",
-	ResultURL = "",
-	TransactionID = "",
-	Remarks = "",
-	SecurityCredential = ""
-};
+(
+	 "IdentifierType",//IdentifierType
+	 "Initiator", //Initiator
+	 "Occasion", //Occasion
+	 "PartyA", //PartyA
+	 "QueueTimeOutURL", //QueueTimeOutURL
+	 "ResultURL", //ResultURL
+	 "TransactionID", //TransactionID
+	 "Remarks", //Remarks
+	 "SecurityCredential" //SecurityCredential
+);
 
 var transactionrequest = await _mpesaClient.QueryMpesaTransactionStatusAsync(TransactionStatusObject, accesstoken, RequestEndPoint.QueryMpesaTransactionStatus);
 ```

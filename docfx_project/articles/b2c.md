@@ -3,18 +3,18 @@
 ```c#
 //B2C Object
 var BusinessToCustomerObject = new BusinessToCustomerDto
-{
-	Remarks = "test",
-	Amount = "1",
-	CommandID = "BusinessPayment",
-	InitiatorName = "safaricom.15",
-	Occasion = "test",
-	PartyA = "603047",
-	PartyB = "254708374149",
-	QueueTimeOutURL = "https://blablabla/timeoutendpoint",
-	ResultURL = "https://blablabla/resultendpoint",
-	SecurityCredential = "" 
-};
+(
+	"test",//Remarks
+	"1", //Amount
+	"BusinessPayment", //CommandID
+	"safaricom.15", //InitiatorName
+	"test", //Occasion
+	"603047", //PartyA
+	"254708374149", //PartyB
+	"https://blablabla/timeoutendpoint", //QueueTimeOutURL
+	"https://blablabla/resultendpoint", //ResultURL
+	"security credential" //SecurityCredential
+);
 
 var b2crequest = await _mpesaClient.MakeB2CPaymentAsync(BusinessToCustomerObject, accesstoken, RequestEndPoint.BusinessToCustomer);
 
