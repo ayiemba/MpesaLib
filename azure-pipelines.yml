@@ -16,6 +16,7 @@ variables:
   nugetVersion: '5.2.0' # https://dist.nuget.org/tools.json
 
 steps:
+
 - task: UseDotNet@2
   displayName: 'Use dotnet sdk 3.1.201'
   inputs:
@@ -75,4 +76,11 @@ steps:
     artifactType: container
     artifactName: Packages
   condition: and(succeeded(), eq(variables['system.pullrequest.isfork'], false))
-
+  
+- powershell: |
+    choco install docfx -y
+    docfx docfx_project/docfx.json
+    if ($lastexitcode -ne 0){
+      throw ("Error generating document")
+    }
+  displayName: "docfx documentation build"
