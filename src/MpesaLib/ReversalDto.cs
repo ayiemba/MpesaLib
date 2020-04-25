@@ -70,6 +70,24 @@ namespace MpesaLib
         [JsonProperty("Occasion")]
         public string Occasion { get; private set; }
 
+        /// <summary>
+        /// Transaction reversal data transfer object
+        /// </summary>
+        /// <param name="initiator">The name of Initiator to initiating  the request</param>
+        /// <param name="securityCredential">
+        /// Encrypted password for the initiator to authenticate the transaction request.
+        /// Use <c>Credentials.EncryptPassword</c> method available under MpesaLib.Helpers to encrypt the password.
+        /// </param>
+        /// <param name="transactionId">Unique identifier to identify a transaction on M-Pesa. e.g LKXXXX1234</param>
+        /// <param name="receiverparty">Organization receiving the transaction (Shortcode)</param>
+        /// <param name="receiverIdentifierType">
+        /// Type of organization receiving the transaction.
+        /// 11 - Organization Identifier on M-Pesa
+        /// </param>
+        /// <param name="remarks">Comments that are sent along with the transaction. (Upto 100 characters)</param>
+        /// <param name="queueTimeoutUrl">The path that stores information of time out transaction.</param>
+        /// <param name="resultUrl">The path that stores information of transaction </param>
+        /// <param name="occasion"> Optional Parameter (upto 100 characters)</param>
         public ReversalDto(string initiator, string securityCredential, string transactionId,
             string receiverparty, string receiverIdentifierType, string remarks, string queueTimeoutUrl, string resultUrl, string occasion)
         {

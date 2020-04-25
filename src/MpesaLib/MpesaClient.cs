@@ -333,14 +333,6 @@ namespace MpesaLib
             return await MpesaHttpRequest(reversalDto,accesstoken, requestEndPoint,cancellationToken);
         }
 
-        
-        //private static void HttpClientInit(HttpClient httpclient, string accesstoken)
-        //{
-        //    httpclient.DefaultRequestHeaders.Clear();
-        //    httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-        //    httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accesstoken);
-        //}
-
 
         /// <summary>
         /// Method makes the accesstoken request to mpesa api

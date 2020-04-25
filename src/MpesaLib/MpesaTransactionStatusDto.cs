@@ -73,6 +73,32 @@ namespace MpesaLib
         [JsonProperty("Occasion")]
         public string Occasion { get; private set; }
 
+
+        /// <summary>
+        /// Mpesa Transaction Status Query data transfer object
+        /// </summary>
+        /// <param name="initiator">
+        /// The name of Initiator to initiating  the request.
+        /// This is the credential/username used to authenticate the transaction request.
+        /// </param>
+        /// <param name="securityCredential">
+        /// Encrypted password for the initiator to authenticate the transaction request.
+        /// Use <c>Credentials.EncryptPassword</c> method available under MpesaLib.Helpers to encrypt the password.
+        /// </param>
+        /// <param name="transactionId">Unique identifier to identify a transaction on M-Pesa. e.g LKXXXX1234</param>
+        /// <param name="partyA">Organization/MSISDN receiving the transaction</param>
+        /// <param name="identifierType">
+        /// Type of organization receiving the transaction
+        /// 1 – MSISDN
+        /// 2 – Till Number
+        /// 4 – Organization short code
+        /// </param>
+        /// <param name="remarks">
+        /// Comments that are sent along with the transaction
+        /// </param>
+        /// <param name="queueTimeoutUrl">The path that stores information of time out transaction. https://ip or domain:port/path</param>
+        /// <param name="resultUrl">The path that stores information of transaction. https://ip or domain:port/path</param>
+        /// <param name="occasion">Optional Parameter. (upto 100 characters)</param>
         public MpesaTransactionStatusDto(string initiator, string securityCredential, string transactionId,
             string partyA, string identifierType, string remarks, string queueTimeoutUrl,string resultUrl, string occasion)
         {

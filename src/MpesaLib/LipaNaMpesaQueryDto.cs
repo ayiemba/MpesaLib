@@ -18,15 +18,12 @@ namespace MpesaLib
 
         /// <summary>
         /// Lipa Na Mpesa Online PassKey
-        /// Provide the Passkey only if you want MpesaLib to Encode the Password for you.
         /// </summary>
         public string Passkey { get; private set; }
 
         /// <summary>
         /// This is the password used for encrypting the request sent: A base64 encoded string. 
         /// The base64 string is a combination of Shortcode+Passkey+Timestamp
-        /// The Defualt value is set by a private method that creates the necessary base64 encoded string
-        /// Don't set this property if you have set the passKey property.
         /// </summary>
         [JsonProperty("Password")]
         public string Password { get; private set;}
@@ -36,7 +33,6 @@ namespace MpesaLib
         /// This is the Timestamp of the transaction, 
         /// normaly in the formart of YEAR+MONTH+DATE+HOUR+MINUTE+SECOND (YYYYMMDDHHMMSS) 
         /// Each part should be atleast two digits apart from the year which takes four digits.
-        /// By Default this property is set to <c>DateTime.Now.ToString("yyyyMMddHHmmss")</c> so you don't have to set its value.
         /// </summary>
         [JsonProperty("Timestamp")]
         public string Timestamp { get; private set; } = DateTime.Now.ToString("yyyyMMddHHmmss");
@@ -49,15 +45,33 @@ namespace MpesaLib
         public string CheckoutRequestID { get; private set; }
 
 
-       
 
+        /// <summary>
+        /// LipaNaMpesa Query transaction status data transfer object
+        /// </summary>
+        /// <param name="businessShortCode">
+        /// This is organizations shortcode (Paybill or Buygoods - A 5 to 6 digit account number) 
+        /// used to identify an organization and receive the transaction.
+        /// </param>
+        /// <param name="passkey">Lipa Na Mpesa Online PassKey</param>
+        /// <param name="timeStamp">
+        /// This is the Timestamp of the transaction, 
+        /// normaly in the formart of YEAR+MONTH+DATE+HOUR+MINUTE+SECOND (YYYYMMDDHHMMSS) 
+        /// Each part should be atleast two digits apart from the year which takes four digits.
+        /// </param>
+        /// <param name="checkoutRequestId">
+        /// This is a global unique identifier of the processed checkout transaction request.
+        /// e.g ws_CO_DMZ_123212312_2342347678234
+        /// </param>
         public LipaNaMpesaQueryDto(string businessShortCode, string passkey, DateTime timeStamp, 
             string checkoutRequestId )
         {
+            var formattedTimestamp = timeStamp.ToString("yyyyMMddHHmmss");
+
             BusinessShortCode = businessShortCode;
             Passkey = passkey;
-            Timestamp = timeStamp.ToString("yyyyMMddHHmmss");
-            Password = CalculatePassword(businessShortCode,passkey, timeStamp.ToString("yyyyMMddHHmmss"));
+            Timestamp = formattedTimestamp;
+            Password = CalculatePassword(businessShortCode,passkey, formattedTimestamp);
             CheckoutRequestID = checkoutRequestId;
 
         }
