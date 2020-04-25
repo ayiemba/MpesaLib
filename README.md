@@ -3,15 +3,18 @@
 [![NuGet version (MpesaLib)](https://img.shields.io/nuget/v/MpesaLib.svg?style=flat-square)](https://www.nuget.org/packages/MpesaLib/)
  
 A .NET Standard M-PESA API Helper Library for .NET Developers.
-- [NuGet Package](https://www.nuget.org/packages/MpesaLib/)
-
-- [Roadmap](https://github.com/ayiemba/MpesaLib/blob/master/docfx_project/articles/roadmap.md)
-
-- [Release Notes](https://github.com/ayiemba/MpesaLib/releases)
-- [Contributing Guidelines](https://github.com/ayiemba/MpesaLib/blob/master/docfx_project/articles/contributing.md)
 - [End User License](https://github.com/ayiemba/MpesaLib/blob/master/LICENSE)
+- [Release Notes](https://github.com/ayiemba/MpesaLib/releases)
+- [NuGet Package](https://www.nuget.org/packages/MpesaLib/)
+- [Roadmap](https://github.com/ayiemba/MpesaLib/blob/master/docfx_project/articles/roadmap.md)
+- [Contributing Guidelines](https://github.com/ayiemba/MpesaLib/blob/master/docfx_project/articles/contributing.md)
 - [Mpesa Daraja Portal](https://developer.safaricom.co.ke/)
 
+## Supported Platforms
+
+|   *Platform*   | .NET Core | .NET Framework | Mono | Xamarin.iOS | Xamarin.Android | Xamarin.Mac |     UWP    |
+|:------------:|:---------:|:--------------:|:----:|:-----------:|:---------------:|:-----------:|:----------:|
+| *Min. Version* |    2.0    |      4.6.1     |  5.4 |    10.14    |       8.0       |     3.8     | 10.0.16299 |
 
 ## Installation
 - ```PM> Install-Package MpesaLib```
