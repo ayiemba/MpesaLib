@@ -22,8 +22,8 @@ namespace MpesaLib.Responses
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="accessToken">Access token required to access other Mpesa API endpoints</param>
-        /// <param name="expiresIn">time in seconds after which the token expires</param>
+        /// <param name="access_token">Access token required to access other Mpesa API endpoints</param>
+        /// <param name="expires_in">time in seconds after which the token expires</param>
         public TokenResponse(string access_token, string expires_in)
         {
             AccessToken = access_token;
