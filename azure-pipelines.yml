@@ -34,14 +34,15 @@ steps:
   displayName: Set Version
   condition: and(succeeded(), eq(variables['system.pullrequest.isfork'], false))
 
-- task: NuGetToolInstaller@0
-  displayName: Use NuGet 4.7.0
+- task: NuGetToolInstaller@1
   inputs:
-    versionSpec: 4.7.0
+    versionSpec: $(nugetVersion) 
+    checkLatest: true
     
 
 - task: NuGetCommand@2
   inputs:
+    command: restore
     restoreSolution: '$(solution)'
   displayName: Nuget Restore
  
@@ -61,7 +62,7 @@ steps:
   inputs:
     command: pack 
     arguments: -c $(BuildConfiguration) 
-    packagesToPack: '**/*.csproj'
+    packagesToPack: '**/MpesaLib.csproj'
     versioningScheme: byBuildNumber
     packDirectory: '$(Build.ArtifactStagingDirectory)\Packages'
   displayName: Dotnet Pack 
