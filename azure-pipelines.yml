@@ -6,14 +6,21 @@ trigger:
 - rel/*
 
 pool:
-  vmImage: 'VS2017-Win2016'
+  vmImage: 'windows-latest'
 
 variables:
   solution: '**/*.sln'
+  project: '**/MpesaLib.csproj'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
+  nugetVersion: '5.2.0' # https://dist.nuget.org/tools.json
 
 steps:
+- task: UseDotNet@2
+  displayName: 'Use dotnet sdk 3.1.201'
+  inputs:
+    version: 3.1.201
+    includePreviewVersions: true
 
 - task: DotNetCoreCLI@2  
   inputs:
@@ -26,16 +33,16 @@ steps:
 - script: nbgv cloud
   displayName: Set Version
   condition: and(succeeded(), eq(variables['system.pullrequest.isfork'], false))
-  
 
-- task: NuGetToolInstaller@0
-  displayName: Use NuGet 4.7.0
+- task: NuGetToolInstaller@1
   inputs:
-    versionSpec: 4.7.0
+    versionSpec: $(nugetVersion) 
+    checkLatest: true
     
 
 - task: NuGetCommand@2
   inputs:
+    command: restore
     restoreSolution: '$(solution)'
   displayName: Nuget Restore
  
@@ -51,12 +58,11 @@ steps:
     $version = .\nbgv get-version -f json | ConvertFrom-Json
   displayName: Create package folder
 
- 
 - task: DotNetCoreCLI@2
   inputs:
     command: pack 
     arguments: -c $(BuildConfiguration) 
-    packagesToPack: '**/*.csproj'
+    packagesToPack: '**/MpesaLib.csproj'
     versioningScheme: byBuildNumber
     packDirectory: '$(Build.ArtifactStagingDirectory)\Packages'
   displayName: Dotnet Pack 
@@ -69,6 +75,4 @@ steps:
     artifactType: container
     artifactName: Packages
   condition: and(succeeded(), eq(variables['system.pullrequest.isfork'], false))
-  
-  
 
