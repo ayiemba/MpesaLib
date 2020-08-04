@@ -169,7 +169,7 @@ namespace MpesaLib
             AccountReference = accountReference;
             TransactionDesc = transactionDescription;
             Passkey = passkey;
-            Password = CalculatePassword(partyB, businessShortCode, formattedTimestamp);
+            Password = CalculatePassword(BusinessShortCode, passkey, formattedTimestamp);
 
         }
         #endregion
@@ -178,9 +178,9 @@ namespace MpesaLib
         /// <summary>
         /// This method creates the necessary base64 encoded string that encrypts the request sent 
         /// </summary>
-        private string CalculatePassword(string partyB, string shortCode, string timestamp)
+        private string CalculatePassword(string shortCode, string passkey, string timestamp)
         {
-            return Convert.ToBase64String(Encoding.GetEncoding("ISO-8859-1").GetBytes(partyB + shortCode + timestamp));
+            return Convert.ToBase64String(Encoding.GetEncoding("ISO-8859-1").GetBytes(shortCode + passkey + timestamp));
         }
         #endregion
 
