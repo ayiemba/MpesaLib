@@ -92,10 +92,10 @@ Note that you have to pass in a consusmerKey, ConsumerSecret provided by Mpesa.
 ## C2B Register Urls Request
 ```c#
 var RegisterC2BUrlObject = new CustomerToBusinessRegisterUrlDto(
-	"https://blablabala/api/confirm",
-	"https://blablabala/api/validate",
-	"Cancelled",
-	"603047"
+	"ShortCode",
+    	"ResponseType",
+    	"ConfirmationURL",
+    	"ValidationURL"
 );
 
 var c2bRegisterUrlrequest = await _mpesaClient.RegisterC2BUrlAsync(RegisterC2BUrlObject, accesstoken, RequestEndPoint.RegisterC2BUrl);
@@ -106,11 +106,11 @@ var c2bRegisterUrlrequest = await _mpesaClient.RegisterC2BUrlAsync(RegisterC2BUr
 //C2B Object
 Var CustomerToBusinessSimulateObject = new CustomerToBusinessSimulateDto
 (
-	"603047",
-	"10",
-	"account",
-	"254708374149",
-	"CustomerPayBillOnline"
+	"ShortCode",
+    	"CommandID",
+    	"Amount",
+    	"Msisdn",
+    	"BillRefNumber"
 );
 
 var c2brequest = await _mpesaClient.MakeC2BPaymentAsync(CustomerToBusinessSimulateObject, accesstoken, RequestEndPoint.CustomerToBusinessSimulate);
