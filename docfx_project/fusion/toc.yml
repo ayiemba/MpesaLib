@@ -1,7 +1,0 @@
-- name: Home
-  href: ../index.md
-- name: Developer Guide
-  href: ../articles/toc.yml
-- name: API Reference
-  href: ../api/toc.yml
-  
